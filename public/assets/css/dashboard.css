@@ -1,0 +1,241 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #F1F6F9;
+    transition: all 0.3s ease; /* Tambahkan transisi global */
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+/* Navbar Styles */
+.navbar {
+    background-color: #F1F6F9;
+    width: 100%;
+    color: #000;
+    padding: 10px 20px;
+    z-index: 1; /* Menyusun navbar di atas sidebar */
+    overflow: hidden;
+    display: flex; /* Gunakan display: flex pada elemen .navbar */
+    justify-content: space-between; /* Membagi navbar menjadi dua bagian */
+    align-items: center;
+    position: relative;
+}
+
+/* CSS Untuk Bagian Kiri Navbar */
+.navbar-left {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.navbar-brand {
+    margin-right: 20px;
+}
+
+/* CSS Untuk Bagian Kanan Navbar */
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-profile {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-profile li {
+    margin-left: 20px;
+    display: inline;
+}
+
+.nav-profile a {
+    text-decoration: none;
+    color: #000;
+}
+
+.logo-brand {
+    display: flex;
+    align-items: center; /* Tengahkan vertikal */
+    justify-content: center; /* Tengahkan horizontal */
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.logo-brand img {
+    margin-right: 10px; /* Beri jarak antara logo dan teks */
+}
+
+.brand-text {
+    font-size: 18px; /* Ukuran font baris pertama */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 270px;
+    height: 100vh;
+    background-color: #394867;
+    color: #fff;
+    position: fixed;
+    z-index: 2; /* Menyusun sidebar di atas navbar */
+    top: 0;
+    left: 0;
+    bottom: 0; 
+    overflow-y: auto; /* Aktifkan overflow-y agar bisa discroll vertikal */
+    max-height: 100%; /* Set tinggi maksimum sidebar sesuai tinggi viewport */
+}
+
+.sidebar.closed {
+    width: 50px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 4px 20px ;
+    border-bottom: 1px solid #444;
+}
+
+.sidebar ul li:last-child {
+    border-bottom: none;
+}
+
+.sub-nav {
+    display: none; /* Sembunyikan sub-nav secara default */
+    background-color: #394867;
+}
+
+.sub-nav.show {
+    display: block; /* Tampilkan sub-nav saat class show aktif */
+}
+
+.sub-nav a {
+    text-decoration: none;
+    border-bottom: none;
+    color: white; /* Mengatur warna teks menjadi putih */
+}
+
+.sub-nav-text i {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Toggle Button Styles */
+.toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 24px;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.nav-link {
+    text-decoration: none; 
+    color: #fff; 
+    display: flex;
+    align-items: center;
+}
+
+.nav-link:hover {
+    text-decoration: none; 
+    color: #fff; 
+}
+
+.nav-link:focus {
+    outline: none;
+}
+
+.nav-text {
+    text-decoration: none; 
+    color: #fff; 
+    display: flex;
+    align-items: center;
+}
+
+.nav-text i {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.nav-link .right {
+    margin-left: auto; /* Membuat ikon berada di sebelah kanan */
+}
+
+
+/* Content Styles */
+.content {
+    padding: 20px;
+    margin-left: 250px; /* Biarkan margin-left ini tetap pada saat sidebar terbuka atau tertutup */
+    height: 100vh;
+}
+
+
+
+/* Sidebar dan Content Styles saat sidebar tertutup */
+.closed .navbar {
+    padding: 10px; /* Padding navbar saat sidebar tertutup */
+}
+
+.closed .sidebar {
+    width: 48px;
+}
+
+.closed .toggle-btn {
+    padding-right: 10px; /* Padding kanan saat sidebar tertutup */
+}
+
+/* Tambahkan media query untuk layar berukuran lebih kecil */
+@media (max-width: 768px) {
+    /* Navbar */
+    .navbar {
+        padding: 10px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        width: 60px;
+    }
+
+    .closed .sidebar {
+        width: 48px;
+    }
+
+    .toggle-btn {
+        padding: 10px;
+    }
+
+    /* Content */
+    .content {
+        margin-left: 60px;
+    }
+
+    .closed .content {
+        margin-left: 48px;
+    }
+}
+
+/* Tambahan CSS untuk responsif */
+.container-fluid {
+    max-width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Clearfix untuk float elements */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
