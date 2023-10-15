@@ -75,6 +75,14 @@
                               <th>S</th>
                               <th>PSW1</th>
                               <th>PSW2</th>
+                              <th>PSW3</th>
+                              <th>PSW4</th>
+                              <th>TL1</th>
+                              <th>TL2</th>
+                              <th>TL3</th>
+                              <th>TL4</th>
+                              <th>JHK</th>
+                              <th>Aksi</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -90,6 +98,21 @@
                               <td></td>
                               <td></td>
                               <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td>
+                                 <button class="btn btn-icon btn-edit btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                 </button>
+                                 <button class="btn btn-icon btn-delete btn-sm">
+                                    <i class="fas fa-trash-can"></i>
+                                 </button>
+                              </td>
                            </tr>
                         </tbody>
                      </table>

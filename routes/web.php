@@ -36,7 +36,7 @@ Route::get('/createpkt', function () {
     return view('pages.admin.skptahunan.create');
 })->name('createpkt');
 
-Route::put('/updatepkt', function () {
+Route::get('/updatepkt', function () {
     return view('pages.admin.skptahunan.edit');
 })->name('updatepkt');
 
@@ -51,11 +51,16 @@ Route::get('/createrk', function () {
 Route::get('/penilaianskp', function () {
     return view('pages.admin.penilaianskp.index');
 });
+
+Route::get('/addnilaiskp', function () {
+    return view('pages.admin.penilaianskp.create');
+});
+
 Route::get('/listangkakredit', function () {
     return view('pages.admin.listangkakredit.index');
 });
 
-Route::get('/createkredit', function () {
+Route::get('/createlist', function () {
     return view('pages.admin.listangkakredit.create');
 });
 
@@ -87,8 +92,16 @@ Route::get('/ckpr', function () {
     return view('pages.admin.ckpr.index');
 });
 
+Route::get('/createckpr', function () {
+    return view('pages.admin.ckpr.create');
+});
+
 Route::get('/penilaianckpr', function () {
     return view('pages.admin.penilaianckpr.index');
+});
+
+Route::get('/addnilai', function () {
+    return view('pages.admin.penilaianckpr.create');
 });
 
 Route::get('/monitoringckp', function () {
@@ -101,6 +114,9 @@ Route::get('/createmckp', function () {
 
 Route::get('/monitoringpre', function () {
     return view('pages.admin.monitoringpre.index');
+});
+Route::get('/createpre', function () {
+    return view('pages.admin.monitoringpre.create');
 });
 
 

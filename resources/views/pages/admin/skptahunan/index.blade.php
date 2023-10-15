@@ -35,7 +35,7 @@
                   </div>
                </div>
                <div class="col-sm-6 text-right">
-                  <a href="#" type="button" class="btn add-button">+ Tambah</a>
+                  <a href="{{ url('/createpkt') }}" type="button" class="btn add-button">+ Tambah</a>
                </div>
             </div>
 

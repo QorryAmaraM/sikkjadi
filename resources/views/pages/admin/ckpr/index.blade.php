@@ -76,11 +76,21 @@
                               <th>Target Rev</th>
                               <th>Realisasi</th>
                               <th>Persen (%)</th>
+                              <th>Nilai</th>
+                              <th>Kode Butir</th>
+                              <th>Angka Kredit</th>
+                              <th>Kode</th>
+                              <th>Keterangan</th>
                               <th>Aksi</th>
                            </tr>
                         </thead>
                         <tbody>
                            <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
                               <td></td>
                               <td></td>
                               <td></td>

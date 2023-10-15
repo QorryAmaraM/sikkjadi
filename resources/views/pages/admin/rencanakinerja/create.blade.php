@@ -91,7 +91,7 @@
             <div class="row">
                <div class="col-sm-12 mt-3 text-right">
                   <button type="button" class="btn hapus-button mr-2">Hapus</button>
-                  <a href="#" type="button" class="btn save-button">Simpan</a>
+                  <a href="{{ url('/rencanakinerja') }}" type="button" class="btn save-button">Simpan</a>
                </div>
             </div>
          </div>

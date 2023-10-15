@@ -23,12 +23,20 @@
                         <input type="nip" class="form-control col-sm-10" id="nip" placeholder="12345">
                      </div>
                      <div class="form-group d-flex align-items-center">
-                        <label for="tahun" class="col-sm-2 pl-0 col-form-label">Tahun</label>
-                        <input type="tahun" class="form-control col-sm-10" id="tahun" placeholder="Pembina Tingkat">
+                        <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Tahun</label>
+                        <select class="selectpicker col-sm-10" data-width="75%" data-live-search="true" id="tahun">
+                           <option data-tokens="ketchup mustard"></option>
+                           <option data-tokens="mustard"></option>
+                           <option data-tokens="frosting"></option>
+                        </select>
                      </div>
                      <div class="form-group d-flex align-items-center">
-                        <label for="bulan" class="col-sm-2 pl-0 col-form-label">Bulan</label>
-                        <input type="bulan" class="form-control col-sm-10" id="bulan" placeholder="Pembina Tingkat">
+                        <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Bulan</label>
+                           <select class="selectpicker col-sm-10" data-width="75%" data-live-search="true" id="bulan">
+                              <option data-tokens="ketchup mustard"></option>
+                              <option data-tokens="mustard"></option>
+                              <option data-tokens="frosting"></option>
+                           </select>
                      </div>
                   </div>
                </div>

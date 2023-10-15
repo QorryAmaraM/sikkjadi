@@ -62,7 +62,7 @@
                </div>
                <div class="col-sm-6 text-right">
                   <button type="button" class="btn salin-button mr-2">Salin Rencana Kinerja</button>
-                  <a href="#" type="button" class="btn add-button">+ Tambah</a>
+                  <a href="{{ url('/createrk') }}" type="button" class="btn add-button">+ Tambah</a>
                </div>
             </div>
 
