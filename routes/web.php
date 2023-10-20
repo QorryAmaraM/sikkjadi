@@ -28,6 +28,10 @@ Route::get('/logout', function () {
     return view('auth.login');
 })->name('logout');
 
+Route::get('/forgotpw', function () {
+    return view('auth.forgot-password');
+});
+
 Route::get('/skptahunan', function () {
     return view('pages.admin.skptahunan.index');
 })->name('skptahunan');
@@ -113,7 +117,7 @@ Route::get('/createmckp', function () {
 });
 
 Route::get('/monitoringpre', function () {
-    return view('pages.admin.monitoringpre.index');
+    return view('pages.users.KF.monitoringpre.index');
 });
 Route::get('/createpre', function () {
     return view('pages.admin.monitoringpre.create');

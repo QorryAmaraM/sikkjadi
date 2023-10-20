@@ -53,7 +53,7 @@
                      </div>
                   </div>
                </div>
-               <div class="col-sm-6 text-right">
+               <div class="col-sm-6 d-flex justify-content-end align-items-center">
                   <a href="#" type="button" class="btn add-button">+ Tambah</a>
                   <button class="btn btn-icon btn-print btn-sm">
                      <i class="fas fa-print"></i>
@@ -99,7 +99,10 @@
                               <td></td>
                               <td></td>
                               <td></td>
-                              <td></td>
+                              <td>
+                                 <span class="badge badge-success">Sudah Diverifikasi</span>
+                                 <span class="badge badge-danger">Belum Diverifikasi</span>
+                              </td>
                               <td>
                                  <button class="btn btn-icon btn-edit btn-sm">
                                     <i class="fas fa-edit"></i>

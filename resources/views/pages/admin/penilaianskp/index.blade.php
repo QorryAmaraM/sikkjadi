@@ -60,14 +60,14 @@
                      </div>
                   </div>
                </div>
-               <div class="col-sm-6 text-right">
+               <div class="col-sm-6 d-flex justify-content-end align-items-center">
                   <button type="button" class="btn salin-button mr-2">Salin Rencana Kinerja</button>
                   <a href="#" type="button" class="btn add-button">+ Tambah</a>
                </div>
             </div>
 
             <div class="row">
-               <div class="col-sm-12">
+               <div class="col-sm-12" style="margin-top: -25px">
                   <div class="table-responsive">
                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                      <thead>

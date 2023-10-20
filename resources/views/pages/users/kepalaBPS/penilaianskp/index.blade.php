@@ -60,14 +60,14 @@
                      </div>
                   </div>
                </div>
-               <div class="col-sm-6 text-right">
+               <div class="col-sm-6 d-flex justify-content-end align-items-center">
                   <button type="button" class="btn salin-button mr-2">Salin Rencana Kinerja</button>
                   <a href="#" type="button" class="btn add-button">+ Tambah</a>
                </div>
             </div>
 
             <div class="row">
-               <div class="col-sm-12">
+               <div class="col-sm-12" style="margin-top: -25px">
                   <div class="table-responsive">
                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                      <thead>
@@ -79,6 +79,13 @@
                               <th rowspan="2" style="padding:0.2rem; vertical-align: middle">IKI</th>
                               <th colspan="2" style="padding:0.2rem; border-bottom: none">Target</th>
                               <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Satuan</th>
+                              <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Realisasi</th>
+                              <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kondisi</th>
+                              <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>
+                              <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI</th>
+                              <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana</th>
+                              <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian Rencana</th>
+                              <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
                               <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi</th>
                            </tr>
                            <tr>
@@ -96,6 +103,13 @@
                               <td></td>
                               <td></td>
                               <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
                               <td>
                                  <button class="btn btn-icon btn-edit btn-sm">
                                     <i class="fas fa-edit"></i>
@@ -104,6 +118,91 @@
                                     <i class="fas fa-trash-can"></i>
                                  </button>
                               </td>
+                           </tr>
+                        </tbody>
+                        <tbody>
+                           <tr>
+                              <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja Utama</td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
+                           </tr>
+                        </tbody>
+                        <tbody>
+                           <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td>
+                                 <button class="btn btn-icon btn-edit btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                 </button>
+                                 <button class="btn btn-icon btn-delete btn-sm">
+                                    <i class="fas fa-trash-can"></i>
+                                 </button>
+                              </td>
+                           </tr>
+                        </tbody>
+                        <tbody>
+                           <tr>
+                              <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja Tambahan</td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
+                           </tr>
+                           <tr>
+                              <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai SKP</td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5"></td>
+                              <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
                            </tr>
                         </tbody>
                      </table>
