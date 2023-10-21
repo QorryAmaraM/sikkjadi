@@ -1,52 +1,45 @@
-      @extends('layouts.admin')
+@extends('layouts.admin')
 
-      @section('content')
-         <!-- Begin Page Content -->
-         <div class="container-fluid">
+@section('content')
+   <!-- Begin Page Content -->
+   <div class="container-fluid">
 
-            <!-- Page Heading -->
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-               <h1 class="h3 mb-0 text-gray-800">Edit Makanan</h1>
-               <a href="{{ route('makanan.index') }}" class="btn btn-sm btn-primary shadow-sm">
-                  Back</a>
-            </div>
-            @if ($errors->any())
-               <div class="alert alert-danger">
-                  <ul>
-                     @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                     @endforeach
-                  </ul>
+      <!-- Page Heading -->
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+         <h1 class="h3 mb-0 text-black-800">Entri Angka Kredit</h1>
+      </div>
+
+      <!-- Content Row -->
+
+      <form>
+         <div class="row mb-8">
+            <div class="col-sm-12">
+               <div class="form-group">
+                  <label for="jenisfungsi">Jenis Fungsional</label>
+                     <input type="jenisfungsi" class="form-control" id="jenisfungsi" placeholder="Lorem Ipsum Dolor Sit Amet">
                </div>
-            @endif
-            <div class="card shadow">
-               <div class="card-body">
-                  <form action="{{ route('makanan.update', $item->id) }}" method="post" enctype="multipart/form-data">
-                     @method('PUT')
-                     @csrf
-                     <div class="form-group">
-                        <label for="nama">Nama</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Nama"
-                           value="{{ $item->nama }}">
-                     </div>
-                     <div class="form-group">
-                        <label for="deskripsi">Deskripsi</label>
-                        <textarea name="deskripsi" rows="5" class="d-block w-100 form-control">{{ $item->deskripsi }}</textarea>
-                     </div>
-                     <div class="form-group">
-                        <label for="image">Gambar</label>
-                        <div class="custom-file">
-                           <input type="file" class="custom-file-input" name="image"
-                              aria-describedby="inputGroupFileAddon01">
-                           <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                        </div>
-                     </div>
-                     <button type="submit" class="btn btn-primary btn-block">
-                        Update
-                     </button>
-                  </form>
+               <div class="form-group">
+                  <label for="kodebutir">Kode Butir</label>
+                     <input type="kodebutir" class="form-control" id="kodebutir" placeholder="Lorem Ipsum Dolor Sit Amet">
+               </div>
+               <div class="form-group">
+                  <label for="isibutir">Isi Butir</label>
+                     <input type="isibutir" class="form-control" id="isibutir" placeholder="Lorem Ipsum Dolor Sit Amet">
+               </div>
+               <div class="form-group">
+                  <label for="angkakredit">Angka Kredit</label>
+                     <input type="angkakredit" class="form-control" id="angkakredit" placeholder="Lorem Ipsum Dolor Sit Amet">
                </div>
             </div>
          </div>
-         <!-- /.container-fluid -->
-      @endsection
+      </form>
+      
+      <div class="row">
+         <div class="col-sm-12 mt-3 text-right">
+            <button type="button" class="btn hapus-button mr-2">Hapus</button>
+            <a href="#" type="button" class="btn save-button">Simpan</a>
+         </div>
+      </div>
+   </div>
+   <!-- /.container-fluid -->
+@endsection
