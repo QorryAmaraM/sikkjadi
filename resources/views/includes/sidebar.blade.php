@@ -41,17 +41,17 @@
                             data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                                <a class="collapse-item">
+                                <a class="collapse-item" href="{{ route('skptahunan') }}">
                                     <p class="sub-nav-text">
                                         <i class="fas fa-bookmark"></i>SKP Tahunan
                                     </p>
                                 </a>
-                                <a class="collapse-item">
+                                <a class="collapse-item" href="{{ route('rencanakinerja') }}">
                                     <p class="sub-nav-text">
                                         <i class="fas fa-bookmark"></i>Rencana Kinerja
                                     </p>
                                 </a>
-                                <a class="collapse-item">
+                                <a class="collapse-item" href="{{ route('penilaianskp') }}">
                                     <p class="sub-nav-text">
                                         <i class="fas fa-bookmark"></i>Penilaian SKP
                                     </p>
@@ -80,12 +80,12 @@
                             data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                                <a class="collapse-item">
+                                <a class="collapse-item" href="{{ route('listangkakredit') }}">
                                     <p class="sub-nav-text">
                                         <i class="fas fa-bookmark"></i>List Angka Kredit
                                     </p>
                                 </a>
-                                <a class="collapse-item">
+                                <a class="collapse-item" href="{{ route('entriangkakredit') }}">
                                     <p class="sub-nav-text">
                                         <i class="fas fa-bookmark"></i>Entri Angka Kredit
                                     </p>
@@ -112,7 +112,7 @@
                             data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                                <a class="collapse-item">
+                                <a class="collapse-item" href="{{ route('uraianakegiatan') }}">
                                     <p class="sub-nav-text">
                                         <i class="fas fa-bookmark"></i>List Uraian Kegiatan
                                     </p>
@@ -140,17 +140,17 @@
                             data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                                <a class="collapse-item">
+                                <a class="collapse-item" href="{{ route('ckpt') }}">
                                     <p class="sub-nav-text">
                                         <i class="fas fa-bookmark"></i>CKP-T
                                     </p>
                                 </a>
-                                <a class="collapse-item">
+                                <a class="collapse-item" href="{{ route('ckpr') }}">
                                     <p class="sub-nav-text">
                                         <i class="fas fa-bookmark"></i>CKP-R
                                     </p>
                                 </a>
-                                <a class="collapse-item">
+                                <a class="collapse-item" href="{{ route('penilaianckpr') }}">
                                     <p class="sub-nav-text">
                                         <i class="fas fa-bookmark"></i>Penilaian CKP-R
                                     </p>
@@ -178,12 +178,12 @@
                             data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                                <a class="collapse-item">
+                                <a class="collapse-item" href="{{ route('monitoringckp') }}">
                                     <p class="sub-nav-text">
                                         <i class="fas fa-bookmark"></i>Monitoring CKP
                                     </p>
                                 </a>
-                                <a class="collapse-item">
+                                <a class="collapse-item" href="{{ route('monitoringpre') }}">
                                     <p class="sub-nav-text">
                                         <i class="fas fa-bookmark"></i>Monitoring Presensi
                                     </p>
