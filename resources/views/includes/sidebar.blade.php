@@ -112,7 +112,7 @@
                             data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                                <a class="collapse-item" href="{{ route('uraianakegiatan') }}">
+                                <a class="collapse-item" href="{{ route('uraiankegiatan') }}">
                                     <p class="sub-nav-text">
                                         <i class="fas fa-bookmark"></i>List Uraian Kegiatan
                                     </p>

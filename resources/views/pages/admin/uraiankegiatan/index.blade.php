@@ -9,7 +9,7 @@
                <h1 class="h3 mb-0 text-black-800">List Uraian Kegiatan</h1>
             </div>
 
-            <!-- Content Row -->
+            <!-- Content Row --> 
 
             <div class="row">
                <div class="col-sm-6">
@@ -23,7 +23,7 @@
                   </div>
                </div>
                <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                  <a href="#" type="button" class="btn add-button">+ Tambah</a>
+                  <a href="/masterutaiankegiatan/uraiankegiatan/addkegiatan" type="button" class="btn add-button">+ Tambah</a>
                </div>
             </div>
 

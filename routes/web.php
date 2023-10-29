@@ -29,7 +29,7 @@ Route::get('/masterangkakredit/entriangkakredit', [MasterAngkaKredit::class, 'en
 Route::get('/masterangkakredit/entriangkakredit/createkredit', [MasterAngkaKredit::class, 'entriangkakredti_create'])->name('createeak');
 
 //Master Uraian Kredit
-Route::get('/masteruraiankegiatan/uraiankegiatan', [MasterUraianKegiatan::class, 'uraiankegiatan_index'])->name('uraianakegiatan');
+Route::get('/masteruraiankegiatan/uraiankegiatan', [MasterUraianKegiatan::class, 'uraiankegiatan_index'])->name('uraiankegiatan');
 Route::get('/masterutaiankegiatan/uraiankegiatan/addkegiatan', [MasterUraianKegiatan::class, 'uraiankegiatan_create'])->name('createuk');
 
 //CKP
