@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('target_min');
             $table->string('target_max');
             $table->string('satuan');
+            $table->timestamps();
         });
     }
 
