@@ -38,7 +38,7 @@
 
             <div class="row">
                <div class="col-sm-12 mt-2 text-right">
-                  <a href="#" type="button" class="btn add-button">+ Tambah</a>
+                  <a href="/masterangkakredit/entriangkakredit/createkredit" type="button" class="btn add-button">+ Tambah</a>
                </div>
             </div>
          </div>

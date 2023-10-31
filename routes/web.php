@@ -26,7 +26,7 @@ Route::get('/perencanaanlerja/penilaianskp/addnilai', [PerencanaanKerja::class, 
 Route::get('/masterangkakredit/listangkakredit', [MasterAngkaKredit::class, 'listangkakredit_index'])->name('listangkakredit');
 Route::get('/masterangkakredit/listangkakredit/createlist', [MasterAngkaKredit::class, 'listangkakredit_create'])->name('createlak');
 Route::get('/masterangkakredit/entriangkakredit', [MasterAngkaKredit::class, 'entriangkakredit_index'])-> name('entriangkakredit');
-Route::get('/masterangkakredit/entriangkakredit/createkredit', [MasterAngkaKredit::class, 'entriangkakredti_create'])->name('createeak');
+Route::get('/masterangkakredit/entriangkakredit/createkredit', [MasterAngkaKredit::class, 'entriangkakredit_create'])->name('createeak');
 
 //Master Uraian Kredit
 Route::get('/masteruraiankegiatan/uraiankegiatan', [MasterUraianKegiatan::class, 'uraiankegiatan_index'])->name('uraiankegiatan');
