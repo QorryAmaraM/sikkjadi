@@ -5,32 +5,49 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EntriAngkaKreditController;
+use App\Http\Controllers\ListAngkaKreditController;
+use App\Http\Controllers\ListUraianKegiatanController;
 use App\Http\Controllers\MasterAngkaKredit;
 use App\Http\Controllers\MasterUraianKegiatan;
 use App\Http\Controllers\MonitoringController;
+use App\Http\Controllers\PenilaianSKPController;
 use App\Http\Controllers\PerencanaanKerja;
+use App\Http\Controllers\RencanaKinerjaController;
+use App\Http\Controllers\SKPTahunanController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-//Perencanaan Kerja
-Route::get('/perencanaankerja/skptahunan', [PerencanaanKerja::class, 'skptahunan_index'])->name('skptahunan');
-Route::get('/perencanaankerja/spktahunan/createpkt', [PerencanaanKerja::class, 'skptahunan_create'])->name('createpkt');
-Route::get('/perencanaankerja/spktahunan/updatepkt', [PerencanaanKerja::class, 'skptahunan_update'])->name('updatepkt');
-Route::get('/perencanaankerja/rencanakinerja', [PerencanaanKerja::class, 'rencanakinerja_index'])->name('rencanakinerja');
-Route::get('/perencanaankerja/rencanakinerja/createrk', [PerencanaanKerja::class, 'rencanakinerja_create'])->name('createrk');
-Route::get('/perencanaankerja/penilaianskp', [PerencanaanKerja::class, 'penilaianskp_index'])->name('penilaianskp');
-Route::get('/perencanaanlerja/penilaianskp/addnilai', [PerencanaanKerja::class, 'penilaianskp_create'])->name('createskp');
+//SKP Tahunan
+Route::get('/perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('skptahunan');
+Route::get('/perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create'])->name('createskpt');
+Route::get('/perencanaankerja/spktahunan/edit', [SKPTahunanController::class, 'edit'])->name('editskpt');
 
-//Master Angka Kredit
-Route::get('/masterangkakredit/listangkakredit', [MasterAngkaKredit::class, 'listangkakredit_index'])->name('listangkakredit');
-Route::get('/masterangkakredit/listangkakredit/createlist', [MasterAngkaKredit::class, 'listangkakredit_create'])->name('createlak');
-Route::get('/masterangkakredit/entriangkakredit', [MasterAngkaKredit::class, 'entriangkakredit_index'])-> name('entriangkakredit');
-Route::get('/masterangkakredit/entriangkakredit/createkredit', [MasterAngkaKredit::class, 'entriangkakredit_create'])->name('createeak');
+//Rencana Kinerja
+Route::get('/perencanaankerja/rencanakinerja', [RencanaKinerjaController::class, 'index'])->name('rencanakinerja');
+Route::get('/perencanaankerja/rencanakinerja/create', [RencanaKinerjaController::class, 'create'])->name('createrk');
+Route::get('/perencanaankerja/rencanakinerja/edit', [RencanaKinerjaController::class, 'edit'])->name('editrk');
 
-//Master Uraian Kredit
-Route::get('/masteruraiankegiatan/uraiankegiatan', [MasterUraianKegiatan::class, 'uraiankegiatan_index'])->name('uraiankegiatan');
-Route::get('/masterutaiankegiatan/uraiankegiatan/addkegiatan', [MasterUraianKegiatan::class, 'uraiankegiatan_create'])->name('createuk');
+//Penilaian SKP
+Route::get('/perencanaankerja/penilaianskp', [PenilaianSKPController::class, 'index'])->name('penilaianskp');
+Route::get('/perencanaanlerja/penilaianskp/create', [PenilaianSKPController::class, 'create'])->name('createpskp');
+Route::get('/perencanaanlerja/penilaianskp/edit', [PenilaianSKPController::class, 'edit'])->name('editpskp');
+
+//List Angka Kredit
+Route::get('/masterangkakredit/listangkakredit', [ListAngkaKreditController::class, 'index'])->name('listangkakredit');
+Route::get('/masterangkakredit/listangkakredit/create', [ListAngkaKreditController::class, 'create'])->name('createlak');
+Route::get('/masterangkakredit/listangkakredit/edit', [ListAngkaKreditController::class, 'edit'])->name('editlak');
+
+//Entri Angka Kredit
+Route::get('/masterangkakredit/entriangkakredit', [EntriAngkaKreditController::class, 'index'])-> name('entriangkakredit');
+Route::get('/masterangkakredit/entriangkakredit/create', [EntriAngkaKreditController::class, 'create'])->name('createeak');
+Route::get('/masterangkakredit/entriangkakredit/edit', [EntriAngkaKreditController::class, 'create'])->name('editeak');
+
+//List Uraian Kredit
+Route::get('/masteruraiankegiatan/uraiankegiatan', [ListUraianKegiatanController::class, 'index'])->name('uraiankegiatan');
+Route::get('/masterutaiankegiatan/uraiankegiatan/create', [ListUraianKegiatanController::class, 'create'])->name('createuk');
+Route::get('/masterutaiankegiatan/uraiankegiatan/edit', [ListUraianKegiatanController::class, 'edit'])->name('edituk');
 
 //CKP
 Route::get('/ckp/ckpt', [CKPController::class, 'ckpt_index'])->name('ckpt');
