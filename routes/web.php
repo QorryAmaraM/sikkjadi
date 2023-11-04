@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\CKPController;
+use App\Http\Controllers\CKPRController;
+use App\Http\Controllers\CKPTController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -8,11 +9,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EntriAngkaKreditController;
 use App\Http\Controllers\ListAngkaKreditController;
 use App\Http\Controllers\ListUraianKegiatanController;
-use App\Http\Controllers\MasterAngkaKredit;
-use App\Http\Controllers\MasterUraianKegiatan;
-use App\Http\Controllers\MonitoringController;
+use App\Http\Controllers\MonitoringCKPController;
+use App\Http\Controllers\MonitoringPresensiController;
+use App\Http\Controllers\PenilaianCKPRController;
 use App\Http\Controllers\PenilaianSKPController;
-use App\Http\Controllers\PerencanaanKerja;
 use App\Http\Controllers\RencanaKinerjaController;
 use App\Http\Controllers\SKPTahunanController;
 
@@ -49,19 +49,30 @@ Route::get('/masteruraiankegiatan/uraiankegiatan', [ListUraianKegiatanController
 Route::get('/masterutaiankegiatan/uraiankegiatan/create', [ListUraianKegiatanController::class, 'create'])->name('createuk');
 Route::get('/masterutaiankegiatan/uraiankegiatan/edit', [ListUraianKegiatanController::class, 'edit'])->name('edituk');
 
-//CKP
-Route::get('/ckp/ckpt', [CKPController::class, 'ckpt_index'])->name('ckpt');
-Route::get('/ckp/ckpt/createckpt', [CKPController::class, 'ckpt_create'])->name('createckpt');
-Route::get('/ckp/ckpr', [CKPController::class, 'ckpr_index'])->name('ckpr');
-Route::get('/ckp/ckpr/createckpr', [CKPController::class, 'ckpr_create'])->name('createckpr');
-Route::get('/ckp/penilaianckpr', [CKPController::class, 'penilaianckpr_index'])->name('penilaianckpr');
-Route::get('/ckp/penilaianckpr/addnilai', [CKPController::class, 'penilaianckpr_create'])->name('createpckpr');
+//CKP-T
+Route::get('/ckp/ckpt', [CKPTController::class, 'index'])->name('ckpt');
+Route::get('/ckp/ckpt/create', [CKPTController::class, 'create'])->name('createckpt');
+Route::get('/ckp/ckpt/edit', [CKPTController::class, 'edit'])->name('editckpt');
 
-//Monitoring 
-Route::get('/monitoring/monitoringckp', [MonitoringController::class, 'monitoringckp_index'])->name('monitoringckp');
-Route::get('/monitoring/monitoringckp/createmckp', [MonitoringController::class, 'monitoringckp_create'])->name('createmckp');
-Route::get('/monitoring/monitoringpre', [MonitoringController::class, 'monitoringpre_index'])->name('monitoringpre');
-Route::get('/monitoring/monitorinpre/createpre', [MonitoringController::class, 'monitoringpre_create'])->name('createpre');
+//CKP-R
+Route::get('/ckp/ckpr', [CKPRController::class, 'index'])->name('ckpr');
+Route::get('/ckp/ckpr/create', [CKPRController::class, 'create'])->name('createckpr');
+Route::get('/ckp/ckpr/edit', [CKPRController::class, 'edit'])->name('editckpr');
+
+//Penilaian CKPR
+Route::get('/ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('penilaianckpr');
+Route::get('/ckp/penilaianckpr/create', [PenilaianCKPRController::class, 'create'])->name('createpckpr');
+Route::get('/ckp/penilaianckpr/edit', [PenilaianCKPRController::class, 'edit'])->name('editpckpr');
+
+//Monitoring CKP
+Route::get('/monitoring/monitoringckp', [MonitoringCKPController::class, 'index'])->name('monitoringckp');
+Route::get('/monitoring/monitoringckp/createmckp', [MonitoringCKPController::class, 'create'])->name('createmckp');
+Route::get('/monitoring/monitoringckp/editmckp', [MonitoringCKPController::class, 'edit'])->name('editmckp');
+
+//Monitoring Presensi
+Route::get('/monitoring/monitoringpre', [MonitoringPresensiController::class, 'index'])->name('monitoringpre');
+Route::get('/monitoring/monitorinpre/create', [MonitoringPresensiController::class, 'create'])->name('createpre');
+Route::get('/monitoring/monitorinpre/edit', [MonitoringPresensiController::class, 'edit'])->name('editpre');
 
 Route::get('/logout', function () {
     return view('auth.login');
