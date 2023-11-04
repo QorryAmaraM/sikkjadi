@@ -35,7 +35,7 @@
                   </div>
                </div>
                <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                  <a href="{{ url('/perencanaankerja/spktahunan/createpkt') }}" type="button" class="btn add-button">+ Tambah</a>
+                  <a href="{{ url('/perencanaankerja/spktahunan/create') }}" type="button" class="btn add-button">+ Tambah</a>
                </div>
             </div>
 

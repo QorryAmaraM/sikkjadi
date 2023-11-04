@@ -54,7 +54,7 @@
                   </div>
                </div>
                <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                  <a href="/ckp/penilaianckpr/addnilai" type="button" class="btn add-button">+ Tambah</a>
+                  <a href="/ckp/penilaianckpr/create" type="button" class="btn add-button">+ Tambah</a>
                   <button class="btn btn-icon btn-print btn-sm">
                      <i class="fas fa-print"></i>
                   </button>

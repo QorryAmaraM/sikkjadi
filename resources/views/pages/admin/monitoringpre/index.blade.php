@@ -54,7 +54,7 @@
                   </div>
                </div>
                <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                  <a href="/monitoring/monitorinpre/createpre" type="button" class="btn add-button">+ Tambah</a>
+                  <a href="/monitoring/monitorinpre/create" type="button" class="btn add-button">+ Tambah</a>
                </div>
             </div>
 

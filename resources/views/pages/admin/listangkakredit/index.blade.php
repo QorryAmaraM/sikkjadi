@@ -23,7 +23,7 @@
                   </div>
                </div>
                <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                  <a href="/masterangkakredit/listangkakredit/createlist" type="button" class="btn add-button">Urutkan</a>
+                  <a href="/masterangkakredit/listangkakredit/create" type="button" class="btn add-button">Urutkan</a>
                </div>
             </div>
 
