@@ -13,15 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('ckpts', function (Blueprint $table) {
             $table->id();
-            $table->integer('role_id');
             $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('password');
             $table->double('nip');
-            $table->string('golongan');
-            $table->string('fungsional');
+            $table->string('bulan');
+            $table->string('no');
+            $table->string('fungsi');
+            $table->string('periode');
+            $table->text('uraian_kegiatan');
+            $table->string('satuan');
+            $table->string('target');
+            $table->double('kode_butir');
+            $table->double('angka_kredit');
+            $table->double('kode');
+            $table->text('keterangan');
             $table->timestamps();
         });
     }
@@ -33,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('ckpts');
     }
 };

@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('monitoring_ckps', function (Blueprint $table) {
             $table->id();
-            $table->integer('role_id');
             $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->double('nip');
-            $table->string('golongan');
-            $table->string('fungsional');
+            $table->string('nip');
+            $table->string('tahun');
+            $table->string('bulan');
+            $table->string('no');
+            $table->string('periode');
+            $table->string('ckp');
+            $table->string('ckp_akhir');
+            $table->string('keterangan_kepala');
             $table->timestamps();
         });
     }
@@ -33,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('monitoring_ckps');
     }
 };
