@@ -94,31 +94,38 @@
                            </tr>
                       </thead>
                         <tbody>
-                           <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td>
-                                 <button class="btn btn-icon btn-edit btn-sm">
-                                    <i class="fas fa-edit"></i>
-                                 </button>
-                                 <button class="btn btn-icon btn-delete btn-sm">
-                                    <i class="fas fa-trash-can"></i>
-                                 </button>
-                              </td>
-                           </tr>
+                           @foreach ($penilaianskp as $skp)
+                              <tr>
+                                 <td>{{ $skp->jenis }}</td>
+                                 <td>{{ $skp->rencana_kinerja_atasan }}</td>
+                                 <td>{{ $skp->rencana_kinerja }}</td>
+                                 <td>{{ $skp->aspek }}</td>
+                                 <td>{{ $skp->iki }}</td>
+                                 <td>{{ $skp->target_min }}</td>
+                                 <td>{{ $skp->target_max }}</td>
+                                 <td>{{ $skp->satuan }}</td>
+                                 <td>{{ $skp->realisasi }}</td>
+                                 <td>{{ $skp->kondisi }}</td>
+                                 <td>{{ $skp->capaian_iki }}</td>
+                                 <td>{{ $skp->kategori_capaian_iki }}</td>
+                                 <td>{{ $skp->nilai_capaian_rencana }}</td>
+                                 <td>{{ $skp->kategori_capaian_rencana }}</td>
+                                 <td>{{ $skp->nilai_tertimbang }}</td>
+                                 <td>
+                                    <button class="btn btn-icon btn-edit btn-sm">
+                                       <a href="/perencanaanlerja/penilaianskp/{{ $skp->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
+                                    </button>
+                                 </td>                                 
+                                 <td>                                    
+                                    <form action="/perencanaanlerja/penilaianskp/{{ $skp->id }}" method="POST" class="delete-form">
+                                       @csrf
+                                       @method('delete')
+                                       <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
+                                    </form>
+                                 </td>
+                              </tr>
+                               
+                           @endforeach
                         </tbody>
                         <tbody>
                            <tr>
@@ -141,8 +148,10 @@
                            </tr>
                         </tbody>
                         <tbody>
+                           @foreach ($penilaianskp as $skp)
+                           
                            <tr>
-                              <td></td>
+                              <td>{{ $skp->nilai_kinerja_utama }}</td>
                               <td></td>
                               <td></td>
                               <td></td>
@@ -166,7 +175,9 @@
                                  </button>
                               </td>
                            </tr>
+                           @endforeach
                         </tbody>
+
                         <tbody>
                            <tr>
                               <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja Tambahan</td>

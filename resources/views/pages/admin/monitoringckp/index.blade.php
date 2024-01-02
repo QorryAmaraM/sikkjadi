@@ -70,21 +70,28 @@
                            </tr>
                         </thead>
                         <tbody>
+                           @foreach ($monitoringckp as $monitoringckp)
                            <tr>
                               <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
+                              <td>{{ $monitoringckp->periode }}</td>
+                              <td>{{ $monitoringckp->ckp }}</td>
+                              <td>{{ $monitoringckp->ckp_akhir }}</td>
+                              <td>{{ $monitoringckp->keterangan_kepala }}</td>
                               <td>
                                  <button class="btn btn-icon btn-edit btn-sm">
-                                    <i class="fas fa-edit"></i>
+                                    <a href="/monitoring/monitoringckp/{{ $monitoringckp->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
                                  </button>
-                                 <button class="btn btn-icon btn-delete btn-sm">
-                                    <i class="fas fa-trash-can"></i>
-                                 </button>
+                              </td>                                 
+                              <td>                                    
+                                 <form action="/monitoring/monitoringckp/{{ $monitoringckp->id }}" method="POST" class="delete-form">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
+                                 </form>
                               </td>
                            </tr>
+                               
+                           @endforeach
                         </tbody>
                      </table>
                   </div>

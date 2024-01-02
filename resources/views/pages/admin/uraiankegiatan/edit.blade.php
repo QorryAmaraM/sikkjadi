@@ -11,35 +11,42 @@
 
       <!-- Content Row -->
 
-      <form>
-            <div class="row mb-8">
-               <div class="col-sm-12">
-                  <div class="form-group">
-                     <label for="nomor">No</label>
-                        <input type="nomor" class="form-control" id="nomor" placeholder="Lorem Ipsum Dolor Sit Amet">
-                  </div>
-                  <div class="form-group">
-                     <label for="pembuat">Pembuat</label>
-                        <input type="pembuat" class="form-control" id="pembuat" placeholder="Lorem Ipsum Dolor Sit Amet">
-                  </div>
-                  <div class="form-group">
-                     <label for="fungsi">Fungsi</label>
-                        <input type="fungsi" class="form-control" id="fungsi" placeholder="Lorem Ipsum Dolor Sit Amet">
-                  </div>
-                  <div class="form-group">
-                     <label for="kegiatan">Uraian Kegiatan</label>
-                        <input type="kegiatan" class="form-control" id="kegiatan" placeholder="Lorem Ipsum Dolor Sit Amet">
-                  </div>
-               </div>
+      <form action="/masterutaiankegiatan/uraiankegiatan/{{ $uraiankegiatan->id }}" method="POST">
+         @csrf
+         @method('put')
+
+         <div class="row mb-8">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="nomor">No</label>
+                    <input type="nomor" class="form-control" id="nomor" placeholder="Lorem Ipsum Dolor Sit Amet" name="nomer" value="{{ $uraiankegiatan->nomer }}">
+                </div>
+                <div class="form-group">
+                    <label for="pembuat">Pembuat</label>
+                    <input type="pembuat" class="form-control" id="pembuat" placeholder="Lorem Ipsum Dolor Sit Amet" name="pembuat" value="{{ $uraiankegiatan->pembuat }}">
+                </div>
+                <div class="form-group">
+                    <label for="fungsi">Fungsi</label>
+                    <input type="fungsi" class="form-control" id="fungsi" placeholder="Lorem Ipsum Dolor Sit Amet" name="fungsi" value="{{ $uraiankegiatan->fungsi }}">
+                </div>
+                <div class="form-group">
+                    <label for="kegiatan">Uraian Kegiatan</label>
+                    <input type="kegiatan" class="form-control" id="kegiatan" placeholder="Lorem Ipsum Dolor Sit Amet" name="uraian_kegiatan" value="{{ $uraiankegiatan->uraian_kegiatan }}">
+                </div>
             </div>
-         </form>
+        </div>
+
+        <div class="row">
+           <div class="col-sm-12 mt-3 text-right">
+              <button type="button" class="btn hapus-button mr-2">Hapus</button>                       
+              <button type="submit" name="submit" value="Save" class="btn save-button">Simpan</button>
+           </div>
+        </div>
+
+           
+      </form>
          
-         <div class="row">
-            <div class="col-sm-12 mt-3 text-right">
-               <button type="button" class="btn hapus-button mr-2">Hapus</button>
-               <a href="#" type="button" class="btn save-button">Simpan</a>
-            </div>
-         </div>
+         
    </div>
    <!-- /.container-fluid -->
 @endsection

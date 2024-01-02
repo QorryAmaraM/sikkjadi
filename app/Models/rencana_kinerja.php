@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class rencana_kinerja extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 }

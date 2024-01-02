@@ -85,33 +85,41 @@
                            </tr>
                         </thead>
                         <tbody>
+                           @foreach ($ckpr as $ckpr)
                            <tr>
                               <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
+                              <td>{{ $ckpr->fungsi }}</td>
+                              <td>{{ $ckpr->periode }}</td>
+                              <td>{{ $ckpr->uraian_kegiatan }}</td>
+                              <td>{{ $ckpr->satuan }}</td>
+                              <td>{{ $ckpr->target }}</td>
+                              <td>{{ $ckpr->target_rev }}</td>
+                              <td>{{ $ckpr->realisasi }}</td>
+                              <td>{{ $ckpr->persen }}</td>
+                              <td>{{ $ckpr->nilai }}</td>
+                              <td>{{ $ckpr->kode_butir }}</td>
+                              <td>{{ $ckpr->angka_kredit }}</td>
+                              <td>{{ $ckpr->kode }}</td>
+                              <td>{{ $ckpr->keterangan }}</td>
                               <td>
                                  <span class="badge badge-success">Sudah Diverifikasi</span>
                                  <span class="badge badge-danger">Belum Diverifikasi</span>
                               </td>
                               <td>
                                  <button class="btn btn-icon btn-edit btn-sm">
-                                    <i class="fas fa-edit"></i>
+                                    <a href="/ckp/ckpr/{{ $ckpr->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
                                  </button>
-                                 <button class="btn btn-icon btn-delete btn-sm">
-                                    <i class="fas fa-trash-can"></i>
-                                 </button>
+                              </td>                                 
+                              <td>                                    
+                                 <form action="/ckp/ckpr/{{ $ckpr->id }}" method="POST" class="delete-form">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
+                                 </form>
                               </td>
                            </tr>
+                               
+                           @endforeach
                         </tbody>
                      </table>
                   </div>

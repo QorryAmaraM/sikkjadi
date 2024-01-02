@@ -41,20 +41,27 @@
                            </tr>
                         </thead>
                         <tbody>
+                           @foreach ($uraiankegiatan as $kegiatan)
                            <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
+                              <td>{{ $kegiatan->nomer }}</td>
+                              <td>{{ $kegiatan->pembuat }}</td>
+                              <td>{{ $kegiatan->fungsi }}</td>
+                              <td>{{ $kegiatan->uraian_kegiatan }}</td>
                               <td>
                                  <button class="btn btn-icon btn-edit btn-sm">
-                                    <i class="fas fa-edit"></i>
+                                    <a href="/masterutaiankegiatan/uraiankegiatan/{{ $kegiatan->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
                                  </button>
-                                 <button class="btn btn-icon btn-delete btn-sm">
-                                    <i class="fas fa-trash-can"></i>
-                                 </button>
+                              </td>                                 
+                              <td>                                    
+                                 <form action="/masterutaiankegiatan/uraiankegiatan/{{ $kegiatan->id }}" method="POST" class="delete-form">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
+                                 </form>
                               </td>
                            </tr>
+                               
+                           @endforeach
                         </tbody>
                      </table>
                   </div>

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class skp_tahunan extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 }

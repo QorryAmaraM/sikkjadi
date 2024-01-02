@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('skp_tahunans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('user_id');
             $table->integer('tahun');
             $table->string('periode');
             $table->string('wilayah');
@@ -23,7 +23,8 @@ return new class extends Migration
             $table->string('jabatan');
             $table->string('status');
             $table->timestamps();
-
+            
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

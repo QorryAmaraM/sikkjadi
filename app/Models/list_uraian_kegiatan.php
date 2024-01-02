@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class list_uraian_kegiatan extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 }

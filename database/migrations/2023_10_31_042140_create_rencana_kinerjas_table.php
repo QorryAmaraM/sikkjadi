@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rencana_kinerjas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->string('nama');
             $table->integer('tahun');
             $table->string('periode');
             $table->string('wilayah');

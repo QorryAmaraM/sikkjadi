@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->double('nip');
+            $table->string('tahun');
             $table->string('bulan');
             $table->string('no');
             $table->string('fungsi');

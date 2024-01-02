@@ -86,31 +86,38 @@
                            </tr>
                         </thead>
                         <tbody>
+                           @foreach ($nilaickpr as $nilaickpr)
                            <tr>
                               <td></td>
                               <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
+                              <td>{{ $nilaickpr->periode }}</td>
+                              <td>{{ $nilaickpr->uraian_kegiatan }}</td>
+                              <td>{{ $nilaickpr->satuan }}</td>
+                              <td>{{ $nilaickpr->target }}</td>
+                              <td>{{ $nilaickpr->realisasi }}</td>
+                              <td>{{ $nilaickpr->persen }}</td>
+                              <td>{{ $nilaickpr->nilai }}</td>
+                              <td>{{ $nilaickpr->kode_butir }}</td>
+                              <td>{{ $nilaickpr->angka_kredit }}</td>
+                              <td>{{ $nilaickpr->kode }}</td>
+                              <td>{{ $nilaickpr->keterangan_staff }}</td>
+                              <td>{{ $nilaickpr->keterangan_penilai }}</td>
+                              <td>{{ $nilaickpr->penilai }}</td>
                               <td>
                                  <button class="btn btn-icon btn-edit btn-sm">
-                                    <i class="fas fa-edit"></i>
+                                    <a href="/ckp/penilaianckpr/{{ $nilaickpr->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
                                  </button>
-                                 <button class="btn btn-icon btn-delete btn-sm">
-                                    <i class="fas fa-trash-can"></i>
-                                 </button>
+                              </td>                                 
+                              <td>                                    
+                                 <form action="/ckp/penilaianckpr/{{ $nilaickpr->id }}" method="POST" class="delete-form">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
+                                 </form>
                               </td>
                            </tr>
+                               
+                           @endforeach
                         </tbody>
                      </table>
                   </div>

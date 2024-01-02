@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('penilaian_ckprs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_nama')->constrained();
+            $table->string('pegawai');
             $table->string('tahun');
             $table->string('bulan');
             $table->string('no');
-            $table->string('nama_pegawai');
+            $table->string('fungsi');
             $table->text('uraian_kegiatan');
             $table->string('satuan');
             $table->string('target');
+            $table->string('target_rev');
             $table->string('realisasi');
             $table->string('persen');
             $table->double('nilai');

@@ -54,24 +54,33 @@
                               <th>Aksi</th>
                            </tr>
                         </thead>
+
                         <tbody>
-                           <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td>
-                                 <button class="btn btn-icon btn-edit btn-sm">
-                                    <i class="fas fa-edit"></i>
-                                 </button>
-                                 <button class="btn btn-icon btn-delete btn-sm">
-                                    <i class="fas fa-trash-can"></i>
-                                 </button>
-                              </td>
-                           </tr>
+                           @foreach ($skptahunan as $skp)
+                              <tr>
+                                 <td>{{ $skp->tahun }}</td>
+                                 <td>{{ $skp->periode }}</td>
+                                 <td>{{ $skp->wilayah }}</td>
+                                 <td>{{ $skp->unit_kerja }}</td>
+                                 <td>{{ $skp->jabatan }}</td>
+                                 <td>{{ $skp->status }}</td>
+                                 <td>
+                                    <button class="btn btn-icon btn-edit btn-sm">
+                                       <a href="/perencanaankerja/spktahunan/{{ $skp->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
+                                    </button>
+                                 </td>                                 
+                                 <td>                                    
+                                    <form action="/perencanaankerja/spktahunan/{{ $skp->id }}" method="POST" class="delete-form">
+                                       @csrf
+                                       @method('delete')
+                                       <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
+                                    </form>
+                                 </td>
+                              </tr>
+                               
+                           @endforeach
                         </tbody>
+
                      </table>
                   </div>
                </div>

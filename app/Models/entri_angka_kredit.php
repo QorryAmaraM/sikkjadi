@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class entri_angka_kredit extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 }

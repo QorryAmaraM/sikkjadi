@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('list_angka_kredits', function (Blueprint $table) {
             $table->id();
-            $table->double('no');
             $table->string('jenis_fungsi');
             $table->double('kode_butir');
             $table->text('isi_butir');

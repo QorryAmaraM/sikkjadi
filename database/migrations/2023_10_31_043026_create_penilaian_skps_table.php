@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('penilaian_skps', function (Blueprint $table) {
             $table->id();
-            $table->foreignid('user_nama')->constrained();
+            $table->string('nama');
             $table->double('nip');
+            $table->string('pangkat');
             $table->string('jabatan');
             $table->string('unit_kerja');
             $table->boolean('kinerja');

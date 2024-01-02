@@ -87,24 +87,31 @@
                            </tr>
                         </thead>
                         <tbody>
+                           @foreach ($rencanakinerja as $rencana)
                            <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
+                              <td>{{ $rencana->jenis }}</td>
+                              <td>{{ $rencana->rencana_kinerja_atasan }}</td>
+                              <td>{{ $rencana->rencana_kinerja }}</td>
+                              <td>{{ $rencana->aspek }}</td>
+                              <td>{{ $rencana->iki }}</td>
+                              <td>{{ $rencana->target_min }}</td>
+                              <td>{{ $rencana->target_max }}</td>
+                              <td>{{ $rencana->satuan }}</td>
                               <td>
                                  <button class="btn btn-icon btn-edit btn-sm">
-                                    <i class="fas fa-edit"></i>
+                                    <a href="/perencanaankerja/rencanakinerja/{{ $rencana->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
                                  </button>
-                                 <button class="btn btn-icon btn-delete btn-sm">
-                                    <i class="fas fa-trash-can"></i>
-                                 </button>
+                              </td>                                 
+                              <td>                                    
+                                 <form action="/perencanaankerja/rencanakinerja/{{ $rencana->id }}" method="POST" class="delete-form">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
+                                 </form>
                               </td>
                            </tr>
+                               
+                           @endforeach
                         </tbody>
                      </table>
                   </div>

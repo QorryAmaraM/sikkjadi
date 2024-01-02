@@ -43,13 +43,14 @@
                            </tr>
                         </thead>
                         <tbody>
+                           @foreach ($angkakredit as $list)
                            <tr>
                               <td></td>
+                              <td>{{ $list->jenis_fungsi }}</td>
                               <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
+                              <td>{{ $list->kode_butir }}</td>
+                              <td>{{ $list->isi_butir }}</td>
+                              <td>{{ $list->angka_kredit }}</td>
                               <td>
                                  <button class="btn btn-icon btn-edit btn-sm">
                                     <i class="fas fa-edit"></i>
@@ -59,6 +60,8 @@
                                  </button>
                               </td>
                            </tr>
+                           
+                           @endforeach
                         </tbody>
                      </table>
                   </div>

@@ -86,34 +86,41 @@
                            </tr>
                         </thead>
                         <tbody>
+                           @foreach ($monitoringpresensi as $presensi)
                            <tr>
                               <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
+                              <td>{{ $presensi->kode }}</td>
+                              <td>{{ $presensi->cp }}</td>
+                              <td>{{ $presensi->ct }}</td>
+                              <td>{{ $presensi->cb }}</td>
+                              <td>{{ $presensi->cs }}</td>
+                              <td>{{ $presensi->cm }}</td>
+                              <td>{{ $presensi->ctln }}</td>
+                              <td>{{ $presensi->s }}</td>
+                              <td>{{ $presensi->psw1 }}</td>
+                              <td>{{ $presensi->psw2 }}</td>
+                              <td>{{ $presensi->psw3 }}</td>
+                              <td>{{ $presensi->psw4 }}</td>
+                              <td>{{ $presensi->tl1 }}</td>
+                              <td>{{ $presensi->tl2 }}</td>
+                              <td>{{ $presensi->tl3 }}</td>
+                              <td>{{ $presensi->tl4 }}</td>
+                              <td>{{ $presensi->jhk }}</td>
                               <td>
                                  <button class="btn btn-icon btn-edit btn-sm">
-                                    <i class="fas fa-edit"></i>
+                                    <a href="/monitoring/monitorinpre/{{ $presensi->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
                                  </button>
-                                 <button class="btn btn-icon btn-delete btn-sm">
-                                    <i class="fas fa-trash-can"></i>
-                                 </button>
+                              </td>                                 
+                              <td>                                    
+                                 <form action="/monitoring/monitorinpre/{{ $presensi->id }}" method="POST" class="delete-form">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
+                                 </form>
                               </td>
                            </tr>
+                               
+                           @endforeach
                         </tbody>
                      </table>
                   </div>

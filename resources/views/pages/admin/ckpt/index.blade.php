@@ -82,27 +82,34 @@
                            </tr>
                         </thead>
                         <tbody>
+                           @foreach ($ckpt as $ckpt)
                            <tr>
                               <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
+                              <td>{{ $ckpt->fungsi }}</td>
+                              <td>{{ $ckpt->periode }}</td>
+                              <td>{{ $ckpt->uraian_kegiatan }}</td>
+                              <td>{{ $ckpt->satuan }}</td>
+                              <td>{{ $ckpt->target }}</td>
+                              <td>{{ $ckpt->target }}</td>
+                              <td>{{ $ckpt->kode_butir }}</td>
+                              <td>{{ $ckpt->angka_kredit }}</td>
+                              <td>{{ $ckpt->kode }}</td>
+                              <td>{{ $ckpt->keterangan }}</td>
                               <td>
                                  <button class="btn btn-icon btn-edit btn-sm">
-                                    <i class="fas fa-edit"></i>
+                                    <a href="/ckp/ckpt/{{ $ckpt->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
                                  </button>
-                                 <button class="btn btn-icon btn-delete btn-sm">
-                                    <i class="fas fa-trash-can"></i>
-                                 </button>
+                              </td>                                 
+                              <td>                                    
+                                 <form action="/ckp/ckpt/{{ $ckpt->id }}" method="POST" class="delete-form">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
+                                 </form>
                               </td>
                            </tr>
+                               
+                           @endforeach
                         </tbody>
                      </table>
                   </div>
