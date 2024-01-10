@@ -68,7 +68,8 @@ Route::put('/masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanContr
 Route::delete('/masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'destroy']);
 
 //CKP-T
-Route::get('/ckp/ckpt', [CKPTController::class, 'index'])->name('ckpt');
+Route::get('/ckp/ckpt', [CKPTController::class, 'depan'])->name('ckpt');
+Route::get('/ckp/ckpt/{nama}/index', [CKPTController::class, 'index']);
 Route::get('/ckp/ckpt/create', [CKPTController::class, 'create']);
 Route::post('/ckp/ckpt/store', [CKPTController::class, 'store']);
 Route::get('/ckp/ckpt/{id}/edit', [CKPTController::class, 'edit']);

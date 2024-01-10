@@ -9,11 +9,18 @@ use Illuminate\Http\Request;
 class CKPTController extends Controller
 {
     //Read
+    public function depan(Request $request)
+    {
+        $ckpt = ckpt::all();
+        return view('pages.admin.ckpt.depan', compact(['ckpt']));
+    }
+    
     public function index(Request $request)
     {
         $ckpt = ckpt::all();
         return view('pages.admin.ckpt.index', compact(['ckpt']));
     }
+
 
     //Cread
     public function create(Request $request)
