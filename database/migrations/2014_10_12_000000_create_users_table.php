@@ -18,7 +18,9 @@ return new class extends Migration
             $table->integer('role_id');
             $table->string('nama');
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->rememberToken();
             $table->double('nip');
             $table->string('golongan');
             $table->string('fungsional');

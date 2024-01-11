@@ -38,11 +38,13 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="p-3" style="background-color: #14274E;">
-                                                <form class="user">
+                                                <form class="user" method="POST" action="/">
+                                                    @csrf
                                                     <div class="form-group">
                                                         <label class="form-label-login" for="inputEmail">EMAIL ADDRESS</label>
                                                         <input
                                                             type="email"
+                                                            name="email"
                                                             class="form-control form-control-user"
                                                             id="exampleInputEmail"
                                                             aria-describedby="emailHelp">
@@ -51,12 +53,13 @@
                                                         <label class="form-label-login" for="inputEmail">PASSWORD</label>
                                                         <input
                                                             type="password"
+                                                            name="password"
                                                             class="form-control form-control-user"
                                                             id="exampleInputPassword">
                                                     </div>
-                                                    <a href="{{ route('dashboard') }}" class="btn btn-login">
+                                                    <button class="btn btn-login" type="submit">
                                                         LOG IN
-                                                    </a>
+                                                    </button>
                                                 </form>
                                             </div>
                                         </div>

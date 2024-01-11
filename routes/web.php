@@ -1,23 +1,23 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CKPRController;
 use App\Http\Controllers\CKPTController;
-use Illuminate\Auth\Events\Login;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EntriAngkaKreditController;
-use App\Http\Controllers\ListAngkaKreditController;
-use App\Http\Controllers\ListUraianKegiatanController;
-use App\Http\Controllers\MonitoringCKPController;
-use App\Http\Controllers\MonitoringPresensiController;
-use App\Http\Controllers\PenilaianCKPRController;
-use App\Http\Controllers\PenilaianSKPController;
-use App\Http\Controllers\RencanaKinerjaController;
 use App\Http\Controllers\SKPTahunanController;
+use App\Http\Controllers\PenilaianSKPController;
+use App\Http\Controllers\MonitoringCKPController;
+use App\Http\Controllers\PenilaianCKPRController;
+use App\Http\Controllers\RencanaKinerjaController;
+use App\Http\Controllers\ListAngkaKreditController;
+use App\Http\Controllers\EntriAngkaKreditController;
+use App\Http\Controllers\ListUraianKegiatanController;
+use App\Http\Controllers\MonitoringPresensiController;
 
-Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/', [LoginController::class, 'index'])->middleware('guest')->name('login');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
 //SKP Tahunan
 Route::get('/perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('skptahunan');
@@ -108,6 +108,6 @@ Route::get('/monitoring/monitorinpre/{id}/edit', [MonitoringPresensiController::
 Route::put('/monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'update']);
 Route::delete('/monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'destroy']);
 
-Route::get('/logout', function () {
-    return view('auth.login');
-})->name('logout');
+
+Route::post('/', [LoginController::class, 'authenticate'])->middleware('guest')->name('login');
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');

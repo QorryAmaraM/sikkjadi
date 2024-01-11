@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('list_uraian_kegiatans', function (Blueprint $table) {
             $table->id();
-            $table->integerg('no');
+            $table->integer('no');
             $table->string('pembuat');
             $table->string('fungsi');
             $table->text('uraian_kegiatan');
