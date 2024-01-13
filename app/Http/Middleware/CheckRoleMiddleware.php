@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class Admin
+class CheckRoleMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,19 +14,19 @@ class Admin
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    // CheckRoleMiddleware.php
+    
+    public function handle($request, Closure $next, $role)
     {
-        
-        if (!Auth::check()) {
-            return redirect()->route('login');
+        if (auth()->check()) {
+            $userRole = auth()->user()->role_id;
+
+            // Pemeriksaan role ID
+            if ($userRole == $role) {
+                return $next($request);
+            }
         }
 
-        if (Auth::user()->role_id == 1) {
-            return redirect()->route('dashboard');
-        }
-
-        if (Auth::user()->role_id == 2) {
-            return redirect()->route('dashboardKepalaBPS');
-        }
+        return redirect('/login')->with('error', 'Unauthorized access');
     }
 }

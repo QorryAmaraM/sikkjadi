@@ -15,9 +15,34 @@ use App\Http\Controllers\ListAngkaKreditController;
 use App\Http\Controllers\EntriAngkaKreditController;
 use App\Http\Controllers\ListUraianKegiatanController;
 use App\Http\Controllers\MonitoringPresensiController;
+use App\Http\Controllers\AuthController;
 
-Route::get('/', [LoginController::class, 'index'])->middleware('guest')->name('login');
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+// routes/web.php
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
+
+// routes/web.php
+Route::middleware(['checkRole:1'])->group(function () {
+    Route::get('/dashboard1', [DashboardController::class,'index1'])->name('dashboard1');
+});
+
+Route::middleware(['checkRole:2'])->group(function () {
+    Route::get('/dashboard2', [DashboardController::class,'index2'])->name('dashboard2');
+});
+
+Route::middleware(['checkRole:3'])->group(function () {
+    Route::get('/dashboard3', [DashboardController::class,'index3'])->name('dashboard3');
+});
+
+Route::middleware(['checkRole:4'])->group(function () {
+    Route::get('/dashboard4', [DashboardController::class,'index4'])->name('dashboard4');
+});
+
+Route::middleware(['checkRole:5'])->group(function () {
+    Route::get('/dashboard5', [DashboardController::class,'index5'])->name('dashboard5');
+});
+
 
 //SKP Tahunan
 Route::get('/perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('skptahunan');
@@ -52,7 +77,7 @@ Route::put('/masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController
 Route::delete('/masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy']);
 
 //Entri Angka Kredit
-Route::get('/masterangkakredit/entriangkakredit', [EntriAngkaKreditController::class, 'index'])-> name('entriangkakredit');
+Route::get('/masterangkakredit/entriangkakredit', [EntriAngkaKreditController::class, 'index'])->name('entriangkakredit');
 Route::get('/masterangkakredit/entriangkakredit/create', [EntriAngkaKreditController::class, 'create']);
 Route::post('/masterangkakredit/entriangkakredit/store', [EntriAngkaKreditController::class, 'store']);
 Route::get('/masterangkakredit/entriangkakredit/{id}/edit', [EntriAngkaKreditController::class, 'edit']);
@@ -109,5 +134,5 @@ Route::put('/monitoring/monitorinpre/{id}', [MonitoringPresensiController::class
 Route::delete('/monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'destroy']);
 
 
-Route::post('/', [LoginController::class, 'authenticate'])->middleware('guest')->name('login');
+//Route::post('/', [LoginController::class, 'authenticate'])->middleware('guest')->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
