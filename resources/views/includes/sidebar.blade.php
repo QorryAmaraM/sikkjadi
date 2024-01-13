@@ -15,37 +15,10 @@
     <li class="nav-item {{ request()->is('dashboard1*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('dashboard1') }}">
             <i class="fas fa-home"></i>
-            <span>DASHBOARD 1</span>
+            <span>DASHBOARD</span>
         </a>
     </li>
     
-    <li class="nav-item {{ request()->is('dashboard2*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('dashboard2') }}">
-            <i class="fas fa-home"></i>
-            <span>DASHBOARD 2</span>
-        </a>
-    </li>
-
-    <li class="nav-item {{ request()->is('dashboard3*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('dashboard3') }}">
-            <i class="fas fa-home"></i>
-            <span>DASHBOARD 3</span>
-        </a>
-    </li>
-
-    <li class="nav-item {{ request()->is('dashboard4*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('dashboard4') }}">
-            <i class="fas fa-home"></i>
-            <span>DASHBOARD 4</span>
-        </a>
-    </li>
-
-    <li class="nav-item {{ request()->is('dashboard5*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('dashboard5') }}">
-            <i class="fas fa-home"></i>
-            <span>DASHBOARD 5</span>
-        </a>
-    </li>
     {{-- perencaan kerja --}}
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"

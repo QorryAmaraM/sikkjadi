@@ -1,4 +1,4 @@
-         @extends('layouts.admin')
+         @extends('layouts.KF')
 
          @section('content')
          <!-- Begin Page Content -->
