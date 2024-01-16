@@ -12,8 +12,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item {{ request()->is('dashboard4*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('dashboard4') }}">
+    <li class="nav-item {{ request()->is('kf_dashboard*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('kf_dashboard') }}">
             <i class="fas fa-home"></i>
             <span>DASHBOARD</span>
         </a>

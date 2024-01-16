@@ -9,35 +9,37 @@ use Illuminate\Http\Request;
 
 class SKPTahunanController extends Controller
 {
+    //Admin
+
     //Read
-    public function index(Request $request)
+    public function admin_index(Request $request)
     {
         $skptahunan = skp_tahunan::all();
         return view('pages.admin.skptahunan.index',compact(['skptahunan']));
     }
 
     //Create
-    public function create(Request $request)
+    public function admin_create(Request $request)
     {
         $user = user::all();
         return view('pages.admin.skptahunan.create',compact(['user']));
     }
 
-    public function store(Request $request)
+    public function admin_store(Request $request)
     {
         skp_tahunan::create($request->except(['_token','submit']));
         return redirect('/perencanaankerja/skptahunan');
     }
 
     //Update
-    public function edit($id)
+    public function admin_edit($id)
     {
         $skptahunan = skp_tahunan::find($id);
         $user = user::all();
         return view('pages.admin.skptahunan.edit', compact(['skptahunan','user']));
     }
 
-    public function update($id, Request $request)
+    public function admin_update($id, Request $request)
     {
         $skptahunan = skp_tahunan::find($id);
         $skptahunan->update($request->except(['_token','submit']));
@@ -45,7 +47,7 @@ class SKPTahunanController extends Controller
     }
 
     //Destroy
-    public function destroy($id)
+    public function admin_destroy($id)
     {
         $skptahunan = skp_tahunan::find($id);
         $skptahunan->delete();

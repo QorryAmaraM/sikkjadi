@@ -11,7 +11,7 @@
 
         <!-- Content Row -->
         
-        <form action="/perencanaankerja/spktahunan/{{ $skptahunan->id }}" method="POST">
+        <form action="/admin-perencanaankerja/spktahunan/{{ $skptahunan->id }}" method="POST">
             @csrf
             @method('put')
             <div class="row mb-8">

@@ -6,33 +6,28 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request)
+     // DashboardController.php
+    public function admin_dashboard()
     {
         return view('pages.admin.dashboard.index');
     }
 
-    // DashboardController.php
-    public function index1()
-    {
-        return view('pages.admin.dashboard.index');
-    }
-
-    public function index2()
+    public function kepalabps_dashboard()
     {
         return view('pages.users.kepalaBPS.dashboard.index');
     }
 
-    public function index3()
+    public function kepalabu_dashboard()
     {
         return view('pages.users.kepalaBU.dashboard.index');
     }
 
-    public function index4()
+    public function kf_dashboard()
     {
         return view('pages.users.KF.dashboard.index');
     }
 
-    public function index5()
+    public function staff_dashboard()
     {
         return view('pages.users.staff.dashboard.index');
     }

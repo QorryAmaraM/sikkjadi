@@ -26,19 +26,19 @@ class AuthController extends Controller
             switch ($user->role_id) {
                         case 1:
                             Auth::login($user);
-                            return redirect()->intended('/dashboard1' . $user->role);
+                            return redirect()->intended('/admin-dashboard' . $user->role);
                         case 2:
                             Auth::login($user);
-                            return redirect()->intended('/dashboard2' . $user->role);
+                            return redirect()->intended('/kepalabps-dashboard' . $user->role);
                         case 3:
                             Auth::login($user);
-                            return redirect()->intended('/dashboard3' . $user->role);
+                            return redirect()->intended('/kepalabu-dashboard' . $user->role);
                         case 4:
                             Auth::login($user);
-                            return redirect()->intended('/dashboard4' . $user->role);
+                            return redirect()->intended('/kf-dashboard' . $user->role);
                         case 5:
                             Auth::login($user);
-                            return redirect()->intended('/dashboard5' . $user->role);
+                            return redirect()->intended('/staff-dashboard' . $user->role);
                         default:
                             return redirect('/login');
                     }

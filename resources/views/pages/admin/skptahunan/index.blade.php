@@ -35,7 +35,7 @@
                   </div>
                </div>
                <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                  <a href="{{ url('/perencanaankerja/spktahunan/create') }}" type="button" class="btn add-button">+ Tambah</a>
+                  <a href="{{ url('/admin-perencanaankerja/spktahunan/create') }}" type="button" class="btn add-button">+ Tambah</a>
                </div>
             </div>
 
@@ -66,11 +66,11 @@
                                  <td>{{ $skp->status }}</td>
                                  <td>
                                     <button class="btn btn-icon btn-edit btn-sm">
-                                       <a href="/perencanaankerja/spktahunan/{{ $skp->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
+                                       <a href="/admin-perencanaankerja/spktahunan/{{ $skp->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
                                     </button>
                                  </td>                                 
                                  <td>                                    
-                                    <form action="/perencanaankerja/spktahunan/{{ $skp->id }}" method="POST" class="delete-form">
+                                    <form action="/admin-perencanaankerja/spktahunan/{{ $skp->id }}" method="POST" class="delete-form">
                                        @csrf
                                        @method('delete')
                                        <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>

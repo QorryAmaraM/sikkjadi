@@ -21,18 +21,17 @@ Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-
 // Admin
 Route::middleware(['checkRole:1'])->group(function () {
-    Route::get('/dashboard1', [DashboardController::class, 'index1'])->name('dashboard1');
+    Route::get('/admin-dashboard', [DashboardController::class, 'admin_dashboard'])->name('admin_dashboard');
 
     //SKP Tahunan
-    Route::get('/perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('skptahunan');
-    Route::get('/perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create']);
-    Route::post('/perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'store']);
-    Route::get('/perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit']);
-    Route::put('/perencanaankerja/spktahunan/{id}', [SKPTahunanController::class, 'update']);
-    Route::delete('/perencanaankerja/spktahunan/{id}', [SKPTahunanController::class, 'destroy']);
+    Route::get('/admin-perencanaankerja/skptahunan', [SKPTahunanController::class, 'admin_index'])->name('skptahunan');
+    Route::get('/admin-perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'admin_create']);
+    Route::post('/admin-perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'admin_store']);
+    Route::get('/admin-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'admin_edit']);
+    Route::put('/admin-perencanaankerja/spktahunan/{id}', [SKPTahunanController::class, 'admin_update']);
+    Route::delete('/admin-perencanaankerja/spktahunan/{id}', [SKPTahunanController::class, 'admin_destroy']);
 
     //Rencana Kinerja
     Route::get('/perencanaankerja/rencanakinerja', [RencanaKinerjaController::class, 'index'])->name('rencanakinerja');
@@ -117,17 +116,17 @@ Route::middleware(['checkRole:1'])->group(function () {
 });
 
 Route::middleware(['checkRole:2'])->group(function () {
-    Route::get('/dashboard2', [DashboardController::class, 'index2'])->name('dashboard2');
+    Route::get('/kepalabps-dashboard', [DashboardController::class, 'kepalabps_dashboard'])->name('kepalabps_dashboard');
 });
 
 Route::middleware(['checkRole:3'])->group(function () {
-    Route::get('/dashboard3', [DashboardController::class, 'index3'])->name('dashboard3');
+    Route::get('/kepalabu-dashboard', [DashboardController::class, 'kepalabu_dashboard'])->name('kepalabu_dashboard');
 });
 
 Route::middleware(['checkRole:4'])->group(function () {
-    Route::get('/dashboard4', [DashboardController::class, 'index4'])->name('dashboard4');
+    Route::get('/kf-dashboard', [DashboardController::class, 'kf_dashboard'])->name('kf_dashboard');
 });
 
 Route::middleware(['checkRole:5'])->group(function () {
-    Route::get('/dashboard5', [DashboardController::class, 'index5'])->name('dashboard5');
+    Route::get('/staff-dashboard', [DashboardController::class, 'staff_dashboard'])->name('staff_dashboard');
 });

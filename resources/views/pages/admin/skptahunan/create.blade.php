@@ -11,7 +11,7 @@
 
         <!-- Content Row -->
 
-        <form action="/perencanaankerja/spktahunan/store" method="POST">
+        <form action="/admin-perencanaankerja/spktahunan/store" method="POST">
             @csrf
 
             <div class="row mb-8">
