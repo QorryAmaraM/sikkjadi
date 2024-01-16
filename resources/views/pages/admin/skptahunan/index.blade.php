@@ -70,7 +70,7 @@
                                     </button>
                                  </td>                                 
                                  <td>                                    
-                                    <form action="/perencanaankerja/spktahunan/{{ $skp->id }}" method="POST" class="delete-form">
+                                    <form action="/admin-perencanaankerja/spktahunan/{{ $skp->id }}" method="POST" class="delete-form">
                                        @csrf
                                        @method('delete')
                                        <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
