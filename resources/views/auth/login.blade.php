@@ -36,7 +36,7 @@
                             <div class="col-lg-12">
                                 <div class="p-3" style="background-color: #14274E;">
 
-                                    <form class="user" method="POST" action="{{ url('/login') }}">
+                                    <form class="user" method="POST" action="/login">
                                         @csrf
                                         <div class="form-group">
                                             <label class="form-label-login" for="inputEmail">EMAIL ADDRESS</label>
@@ -51,6 +51,7 @@
                                         <button class="btn btn-login" type="submit">
                                             LOG IN
                                         </button>
+
                                     </form>
 
                                 </div>
