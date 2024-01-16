@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
@@ -17,36 +18,44 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
+        
+        $user = \App\Models\User::where('email', $credentials['email'])->first();
 
-        if (Auth::attempt($credentials)) {
-            // Pengguna berhasil login
-            return $this->redirectBasedOnRole(Auth::user()->role_id);
+        if ($user && password_verify($credentials['password'], $user->password)) {
+
+            switch ($user->role_id) {
+                        case 1:
+                            Auth::login($user);
+                            return redirect()->intended('/dashboard1' . $user->role);
+                        case 2:
+                            Auth::login($user);
+                            return redirect()->intended('/dashboard2' . $user->role);
+                        case 3:
+                            Auth::login($user);
+                            return redirect()->intended('/dashboard3' . $user->role);
+                        case 4:
+                            Auth::login($user);
+                            return redirect()->intended('/dashboard4' . $user->role);
+                        case 5:
+                            Auth::login($user);
+                            return redirect()->intended('/dashboard5' . $user->role);
+                        default:
+                            return redirect('/login');
+                    }
+            
         }
 
-        // Jika login gagal
-        return redirect('/login')->with('error', 'Invalid credentials');
+        return redirect()->back()->withErrors(['login' => 'Login failed.']);
     }
-
-    private function redirectBasedOnRole($role)
+    
+    public function logout(Request $request): RedirectResponse
     {
-        switch ($role) {
-            case 1:
-                return redirect('/dashboard1');
-                break;
-            case 2:
-                return redirect('/dashboard2');
-                break;
-            case 3:
-                return redirect('/dashboard3');
-                break;
-            case 4:
-                return redirect('/dashboard4');
-                break;
-            case 5:
-                return redirect('/dashboard5');
-                break;
-            default:
-                return redirect('/login');
-        }
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

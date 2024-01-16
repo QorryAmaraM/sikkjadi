@@ -20,7 +20,7 @@
    <!-- Page Wrapper -->
    <div id="wrapper">
 
-      @include('includes.sidebar')
+      @include('includes.sidebar.adminsidebar')
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">

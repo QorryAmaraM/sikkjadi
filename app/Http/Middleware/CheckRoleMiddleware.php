@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckRoleMiddleware
 {
@@ -18,15 +19,19 @@ class CheckRoleMiddleware
     
     public function handle($request, Closure $next, $role)
     {
-        if (auth()->check()) {
-            $userRole = auth()->user()->role_id;
+        // Pastikan pengguna telah login
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
+        
+        // Periksa peran pengguna
+        $userRole = Auth::user()->role_id;
+  
 
-            // Pemeriksaan role ID
-            if ($userRole == $role) {
-                return $next($request);
-            }
+        if ($userRole != $role) {
+            abort(403, 'Unauthorized action.');
         }
 
-        return redirect('/login')->with('error', 'Unauthorized access');
+        return $next($request);
     }
 }

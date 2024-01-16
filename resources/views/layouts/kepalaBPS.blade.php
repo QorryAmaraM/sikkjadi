@@ -20,7 +20,7 @@
    <!-- Page Wrapper -->
    <div id="wrapper">
 
-      @include('includes.sidebar')
+      @include('includes.sidebar.kepalaBPSsidebar')
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
