@@ -89,7 +89,7 @@
 
                <div class="row">
                   <div class="col-sm-12 mt-3 text-right">
-                     <button type="button" class="btn hapus-button mr-2">Hapus</button>                       
+                                            
                      <button type="submit" name="submit" value="Save" class="btn save-button">Simpan</button>
                   </div>
                </div>
