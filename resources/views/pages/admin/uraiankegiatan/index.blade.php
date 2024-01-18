@@ -51,14 +51,13 @@
                                  <button class="btn btn-icon btn-edit btn-sm">
                                     <a href="/masterutaiankegiatan/uraiankegiatan/{{ $kegiatan->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
                                  </button>
-                              </td>                                 
-                              <td>                                    
                                  <form action="/masterutaiankegiatan/uraiankegiatan/{{ $kegiatan->id }}" method="POST" class="delete-form">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
                                  </form>
-                              </td>
+                              </td>                                 
+
                            </tr>
                                
                            @endforeach
