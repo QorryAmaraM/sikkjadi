@@ -7,18 +7,20 @@ use Illuminate\Http\Request;
 
 class EntriAngkaKreditController extends Controller
 {
-    public function admin_index(Request $request)
+     public function index(Request $request)
     {
-        return view('pages.admin.entriangkakredit.index');
+        return view('pages.users.kepalabps.entriangkakredit.index');
     }
 
-    public function admin_create(Request $request)
+    public function create(Request $request)
     {
-        return view('pages.admin.entriangkakredit.create');
+        return view('pages.users.kepalabps.entriangkakredit.create');
     }
 
-    public function admin_edit(Request $request)
+    public function edit(Request $request)
     {
-        return view('pages.admin.entriangkakredit.edit');
+        return view('pages.users.kepalabps.entriangkakredit.edit');
     }
+
+    
 }

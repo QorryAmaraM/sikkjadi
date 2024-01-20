@@ -4,217 +4,152 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\list_angka_kredit;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ListAngkaKreditController extends Controller
 {
-    //Admin-----------------------------------------------------------------------------------------------
     //Read
-    public function admin_index(Request $request)
+    public function index(Request $request)
     {
+        $userid = Auth::user()->id;
         $angkakredit = list_angka_kredit::all();
-        return view('pages.admin.listangkakredit.index', compact(['angkakredit']));
+        switch ($userid) {
+            case '1':
+                return view('pages.admin.listangkakredit.index', compact(['angkakredit']));
+                break;
+            case '2':
+                return view('pages.users.kepalabps.listangkakredit.index', compact(['angkakredit']));
+                break;
+            case '3':
+                return view('pages.users.kepalabu.listangkakredit.index', compact(['angkakredit']));
+                break;
+            case '4':
+                return view('pages.users.kf.listangkakredit.index', compact(['angkakredit']));
+                break;
+            case '5':
+                return view('pages.users.staf.listangkakredit.index', compact(['angkakredit']));
+                break;
+        }
     }
 
     //Create
-    public function admin_create(Request $request) 
+    public function create(Request $request) 
     {
-        return view('pages.admin.listangkakredit.create');       
+        $userid = Auth::user()->id;
+        switch ($userid) {
+            case '1':
+                return view('pages.admin.listangkakredit.create', compact(['user']));
+                break;
+            case '2':
+                return view('pages.users.kepalabps.listangkakredit.create', compact(['user']));
+                break;
+            case '3':
+                return view('pages.users.kepalabu.listangkakredit.create', compact(['user']));
+                break;
+            case '4':
+                return view('pages.users.kf.listangkakredit.create', compact(['user']));
+                break;
+            case '5':
+                return view('pages.users.staf.listangkakredit.create', compact(['user']));
+                break;
+        }       
     }
 
-    public function admin_store(Request $request)
+    public function store(Request $request)
     {
+        $userid = Auth::user()->id;
         list_angka_kredit::create($request->except(['_token','submit']));
-        return redirect('/admin-masterangkakredit/listangkakredit');
+        switch ($userid) {
+            case '1':
+                return redirect('/admin-masterangkakredit/listangkakredit');
+                break;
+            case '2':
+                return redirect('/kepalabps-masterangkakredit/listangkakredit');
+                break;
+            case '3':
+                return redirect('/kepalabu-masterangkakredit/listangkakredit');
+                break;
+            case '4':
+                return redirect('/kf-masterangkakredit/listangkakredit');
+                break;
+            case '5':
+                return redirect('/staf-masterangkakredit/listangkakredit');
+                break;
+        }
     }
 
     //Update
-    public function admin_edit($id)
+    public function edit($id)
     {
+        $userid = Auth::user()->id;
         $angkakredit = list_angka_kredit::find($id);
-        return view('pages.admin.ckpr.edit', compact(['angkakredit']));
+        switch ($userid) {
+            case '1':
+                return view('pages.admin.listangkakredit.edit', compact(['angkakredit', 'user']));
+                break;
+            case '2':
+                return view('pages.users.kepalabps.listangkakredit.edit', compact(['angkakredit', 'user']));
+                break;
+            case '3':
+                return view('pages.users.kepalabu.listangkakredit.edit', compact(['angkakredit', 'user']));
+                break;
+            case '4':
+                return view('pages.users.kf.listangkakredit.edit', compact(['angkakredit', 'user']));
+                break;
+            case '5':
+                return view('pages.users.staf.listangkakredit.edit', compact(['angkakredit', 'user']));
+                break;
+        }
     }
 
-    public function admin_update($id, Request $request)
+    public function update($id, Request $request)
     {
+        $userid = Auth::user()->id;
         $angkakredit = list_angka_kredit::find($id);
         $angkakredit->update($request->except(['_token','submit']));
-        return redirect('/admin-masterangkakredit/listangkakredit');
+        switch ($userid) {
+            case '1':
+                return redirect('/admin-masterangkakredit/listangkakredit');
+                break;
+            case '2':
+                return redirect('/kepalabps-masterangkakredit/listangkakredit');
+                break;
+            case '3':
+                return redirect('/kepalabu-masterangkakredit/listangkakredit');
+                break;
+            case '4':
+                return redirect('/kf-masterangkakredit/listangkakredit');
+                break;
+            case '5':
+                return redirect('/staf-masterangkakredit/listangkakredit');
+                break;
+        }
     }
 
     //Destroy
-    public function admin_destroy($id)
+    public function destroy($id)
     {
+        $userid = Auth::user()->id;
         $angkakredit = list_angka_kredit::find($id);
         $angkakredit->delete();
-        return redirect('/admin-masterangkakredit/listangkakredit');
+        switch ($userid) {
+            case '1':
+                return redirect('/admin-masterangkakredit/listangkakredit');
+                break;
+            case '2':
+                return redirect('/kepalabps-masterangkakredit/listangkakredit');
+                break;
+            case '3':
+                return redirect('/kepalabu-masterangkakredit/listangkakredit');
+                break;
+            case '4':
+                return redirect('/kf-masterangkakredit/listangkakredit');
+                break;
+            case '5':
+                return redirect('/staf-masterangkakredit/listangkakredit');
+                break;
+        }
     }
 
-    //Kepala BPS-----------------------------------------------------------------------------------------------
-    //Read
-    public function kepalabps_index(Request $request)
-    {
-        $angkakredit = list_angka_kredit::all();
-        return view('pages.users.kepalabps.listangkakredit.index', compact(['angkakredit']));
-    }
-
-    //Create
-    public function kepalabps_create(Request $request) 
-    {
-        return view('pages.users.kepalabps.listangkakredit.create');       
-    }
-
-    public function kepalabps_store(Request $request)
-    {
-        list_angka_kredit::create($request->except(['_token','submit']));
-        return redirect('/kepalabps-masterangkakredit/listangkakredit');
-    }
-
-    //Update
-    public function kepalabps_edit($id)
-    {
-        $angkakredit = list_angka_kredit::find($id);
-        return view('pages.users.kepalabps.ckpr.edit', compact(['angkakredit']));
-    }
-
-    public function kepalabps_update($id, Request $request)
-    {
-        $angkakredit = list_angka_kredit::find($id);
-        $angkakredit->update($request->except(['_token','submit']));
-        return redirect('/kepalabps-masterangkakredit/listangkakredit');
-    }
-
-    //Destroy
-    public function kepalabps_destroy($id)
-    {
-        $angkakredit = list_angka_kredit::find($id);
-        $angkakredit->delete();
-        return redirect('/kepalabps-masterangkakredit/listangkakredit');
-    }
-
-    //Kepala BU-----------------------------------------------------------------------------------------------
-    //Read
-    public function kepalabu_index(Request $request)
-    {
-        $angkakredit = list_angka_kredit::all();
-        return view('pages.users.kepalabu.listangkakredit.index', compact(['angkakredit']));
-    }
-
-    //Create
-    public function kepalabu_create(Request $request) 
-    {
-        return view('pages.users.kepalabu.listangkakredit.create');       
-    }
-
-    public function kepalabu_store(Request $request)
-    {
-        list_angka_kredit::create($request->except(['_token','submit']));
-        return redirect('/kepalabu-masterangkakredit/listangkakredit');
-    }
-
-    //Update
-    public function kepalabu_edit($id)
-    {
-        $angkakredit = list_angka_kredit::find($id);
-        return view('pages.users.kepalabu.ckpr.edit', compact(['angkakredit']));
-    }
-
-    public function kepalabu_update($id, Request $request)
-    {
-        $angkakredit = list_angka_kredit::find($id);
-        $angkakredit->update($request->except(['_token','submit']));
-        return redirect('/kepalabu-masterangkakredit/listangkakredit');
-    }
-
-    //Destroy
-    public function kepalabu_destroy($id)
-    {
-        $angkakredit = list_angka_kredit::find($id);
-        $angkakredit->delete();
-        return redirect('/kepalabu-masterangkakredit/listangkakredit');
-    }
-
-    //KF-----------------------------------------------------------------------------------------------
-    //Read
-    public function kf_index(Request $request)
-    {
-        $angkakredit = list_angka_kredit::all();
-        return view('pages.users.kf.listangkakredit.index', compact(['angkakredit']));
-    }
-
-    //Create
-    public function kf_create(Request $request) 
-    {
-        return view('pages.users.kf.listangkakredit.create');       
-    }
-
-    public function kf_store(Request $request)
-    {
-        list_angka_kredit::create($request->except(['_token','submit']));
-        return redirect('/kf-masterangkakredit/listangkakredit');
-    }
-
-    //Update
-    public function kf_edit($id)
-    {
-        $angkakredit = list_angka_kredit::find($id);
-        return view('pages.users.kf.ckpr.edit', compact(['angkakredit']));
-    }
-
-    public function kf_update($id, Request $request)
-    {
-        $angkakredit = list_angka_kredit::find($id);
-        $angkakredit->update($request->except(['_token','submit']));
-        return redirect('/kf-masterangkakredit/listangkakredit');
-    }
-
-    //Destroy
-    public function kf_destroy($id)
-    {
-        $angkakredit = list_angka_kredit::find($id);
-        $angkakredit->delete();
-        return redirect('/kf-masterangkakredit/listangkakredit');
-    }
-
-    //Staf-----------------------------------------------------------------------------------------------
-    //Read
-    public function staf_index(Request $request)
-    {
-        $angkakredit = list_angka_kredit::all();
-        return view('pages.users.staf.listangkakredit.index', compact(['angkakredit']));
-    }
-
-    //Create
-    public function staf_create(Request $request) 
-    {
-        return view('pages.users.staf.listangkakredit.create');       
-    }
-
-    public function staf_store(Request $request)
-    {
-        list_angka_kredit::create($request->except(['_token','submit']));
-        return redirect('/staf-masterangkakredit/listangkakredit');
-    }
-
-    //Update
-    public function staf_edit($id)
-    {
-        $angkakredit = list_angka_kredit::find($id);
-        return view('pages.users.staf.ckpr.edit', compact(['angkakredit']));
-    }
-
-    public function staf_update($id, Request $request)
-    {
-        $angkakredit = list_angka_kredit::find($id);
-        $angkakredit->update($request->except(['_token','submit']));
-        return redirect('/staf-masterangkakredit/listangkakredit');
-    }
-
-    //Destroy
-    public function staf_destroy($id)
-    {
-        $angkakredit = list_angka_kredit::find($id);
-        $angkakredit->delete();
-        return redirect('/staf-masterangkakredit/listangkakredit');
-    }
 }
