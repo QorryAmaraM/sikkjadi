@@ -9,7 +9,6 @@ use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
-    // LoginController.php
     public function showLoginForm()
     {
         return view('auth.login');

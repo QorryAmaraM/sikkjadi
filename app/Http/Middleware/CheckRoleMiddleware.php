@@ -26,7 +26,11 @@ class CheckRoleMiddleware
         
         // Periksa peran pengguna
         $userRole = Auth::user()->role_id;
-  
+        $userid = Auth::user()->id;
+        $usernama = Auth::user()->nama;
+
+        view()->share('userid', $userid);
+        view()->share('usernama', $usernama);
 
         if ($userRole != $role) {
             abort(403, 'Unauthorized action.');
