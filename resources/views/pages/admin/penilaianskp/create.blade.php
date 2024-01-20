@@ -65,7 +65,11 @@
                </div>
                <div class="form-group">
                   <label for="aspek">Aspek</label>
-                     <input type="aspek" class="form-control" id="aspek" placeholder="Lorem Ipsum Dolor Sit Amet" name="aspek">
+                     <select class="form-control" id="aspek" name="aspek">
+                        <option value="kuantitas">Kuantitas</option>
+                        <option value="kualitas">Kualitas</option>
+                        <option value="waktu">Waktu</option>
+                     </select>
                </div>
                <div class="form-group">
                   <label for="iki">IKI</label>

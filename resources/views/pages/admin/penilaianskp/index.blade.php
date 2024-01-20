@@ -62,7 +62,7 @@
                </div>
                <div class="col-sm-6 d-flex justify-content-end align-items-center">
                   <button type="button" class="btn salin-button mr-2">Salin Rencana Kinerja</button>
-                  <a href="/perencanaanlerja/penilaianskp/create" type="button" class="btn add-button">+ Tambah</a>
+                  <a href="{{ url('/admin-perencanaankerja/penilaianskp/create') }}" type="button" class="btn add-button">+ Tambah</a>
                </div>
             </div>
 
