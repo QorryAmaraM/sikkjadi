@@ -71,46 +71,6 @@
             <div class="row mb-8">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="jenisrk">Jenis</label>
-                        <input type="jenisrk" class="form-control" id="jenisrk" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="jenis">
-                    </div>
-                    <div class="form-group">
-                        <label for="rkatasan">Rencana Kinerja Atasan</label>
-                        <input type="rkatasan" class="form-control" id="rkatasan" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="rencana_kinerja_atasan">
-                    </div>
-                    <div class="form-group">
-                        <label for="rkpegawai">Rencana Kinerja</label>
-                        <input type="rkpegawai" class="form-control" id="rkpegawai"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="rencana_kinerja">
-                    </div>
-                    <div class="form-group">
-                        <label for="aspek">Aspek</label>
-                        <input type="aspek" class="form-control" id="aspek"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="aspek">
-                    </div>
-                    <div class="form-group">
-                        <label for="iki">IKI</label>
-                        <input type="iki" class="form-control" id="iki"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="iki">
-                    </div>
-                    <div class="form-group">
-                        <label for="targetmin">Target Min</label>
-                        <input type="targetmin" class="form-control" id="targetmin"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="target_min">
-                    </div>
-                    <div class="form-group">
-                        <label for="targetmix">Target Max</label>
-                        <input type="targetmix" class="form-control" id="targetmix"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="target_max">
-                    </div>
-                    <div class="form-group">
-                        <label for="satuan">Satuan</label>
-                        <input type="satuan" class="form-control" id="satuan"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="satuan">
-                    </div>
-                    <div class="form-group">
                         <label for="realisasi">Realisasi</label>
                         <input type="realisasi" class="form-control" id="realisasi"
                             placeholder="Lorem Ipsum Dolor Sit Amet" name="realisasi">
