@@ -62,7 +62,7 @@
          </div>
          <div class="col-sm-6 d-flex justify-content-end align-items-center">
             <button type="button" class="btn salin-button mr-2">Salin Rencana Kinerja</button>
-            <a href="/admin-perencanaanlerja/penilaianskp/create" type="button" class="btn add-button">+ Tambah</a>
+            <a href="/admin-perencanaankerja/penilaianskp/create" type="button" class="btn add-button">+ Tambah</a>
          </div>
       </div>
 
@@ -72,13 +72,7 @@
                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                <thead>
                      <tr>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Jenis</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aspek</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">IKI</th>
-                        <th colspan="2" style="padding:0.2rem; border-bottom: none">Target</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Satuan</th>
+                        
                         <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Realisasi</th>
                         <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kondisi</th>
                         <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>
@@ -88,22 +82,11 @@
                         <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
                         <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi</th>
                      </tr>
-                     <tr>
-                        <th style="border-top: none">Min</th>
-                        <th style="border-top: none">Max</th>
-                     </tr>
+                     
                 </thead>
                   <tbody>
                      @foreach ($penilaianskp as $skp)
-                        <tr>
-                           <td>{{ $skp->jenis }}</td>
-                           <td>{{ $skp->rencana_kinerja_atasan }}</td>
-                           <td>{{ $skp->rencana_kinerja }}</td>
-                           <td>{{ $skp->aspek }}</td>
-                           <td>{{ $skp->iki }}</td>
-                           <td>{{ $skp->target_min }}</td>
-                           <td>{{ $skp->target_max }}</td>
-                           <td>{{ $skp->satuan }}</td>
+                        <tr>                           
                            <td>{{ $skp->realisasi }}</td>
                            <td>{{ $skp->kondisi }}</td>
                            <td>{{ $skp->capaian_iki }}</td>
