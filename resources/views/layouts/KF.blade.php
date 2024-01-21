@@ -9,6 +9,8 @@
    <meta name="description" content="">
    <meta name="author" content="">
 
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
    <title>SIKK</title>
 
    @include('includes.style')
