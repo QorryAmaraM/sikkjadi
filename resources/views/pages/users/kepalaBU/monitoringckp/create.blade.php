@@ -1,4 +1,4 @@
-      @extends('layouts.kepalaBU')
+@extends('layouts.kepalabu')
 
       @section('content')
          <!-- Begin Page Content -->

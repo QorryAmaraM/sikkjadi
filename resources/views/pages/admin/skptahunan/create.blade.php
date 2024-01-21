@@ -18,12 +18,13 @@
                 <div class="col-sm-6">
                     <div class="form-group d-flex align-items-center">
                         <label for="searchSelect" class="mb-0 mr-4">Pegawai</label>
-                        <select class="selectpicker flex-grow-1" data-width="75%" data-live-search="true" id="searchSelect"
-                            name="user_id">
                             @foreach ($user as $users)
-                                <option value="{{ $users->id }}">{{ $users->nama }}</option>
+                                @if ($users->id == $userid)
+                                    <input type="nama" class="form-control col-sm-11" id="nama"
+                                        placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
+                                    <input type="hidden" name="user_id" value="{{ $userid }}">
+                                @endif
                             @endforeach
-                        </select>
                     </div>
                 </div>
             </div>
@@ -44,7 +45,8 @@
                     </div>
                     <div class="form-group">
                         <label for="unitkerja">Unit Kerja</label>
-                        <input type="unitkerja" class="form-control" id="unitkerja" placeholder="Unit Kerja" name="unit_kerja">
+                        <input type="unitkerja" class="form-control" id="unitkerja" placeholder="Unit Kerja"
+                            name="unit_kerja">
                     </div>
                     <div class="form-group">
                         <label for="jabatan">Jabatan</label>
@@ -59,7 +61,7 @@
 
             <div class="row">
                 <div class="col-sm-12 mt-3 text-right">
-                    
+
                     <button type="submit" name="submit" value="Save" class="btn save-button">Simpan</button>
                 </div>
             </div>

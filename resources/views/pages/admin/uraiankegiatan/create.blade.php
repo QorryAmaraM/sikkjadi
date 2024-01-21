@@ -10,18 +10,24 @@
         </div>
 
         <!-- Content Row -->
-
-        <form action="/masterutaiankegiatan/uraiankegiatan/store" method="POST">
+        <form action="/admin-masterutaiankegiatan/uraiankegiatan/store" method="POST">
             @csrf
             <div class="row mb-8">
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="nomor">No</label>
-                        <input type="nomor" class="form-control" id="nomor" placeholder="Lorem Ipsum Dolor Sit Amet" name="nomer">
+                        <input type="nomor" class="form-control" id="nomor" placeholder="Lorem Ipsum Dolor Sit Amet" name="no">
                     </div>
                     <div class="form-group">
                         <label for="pembuat">Pembuat</label>
-                        <input type="pembuat" class="form-control" id="pembuat" placeholder="Lorem Ipsum Dolor Sit Amet" name="pembuat">
+                        @foreach ($user as $users)
+                            @if ($users->id == $userid)
+                                <input type="pembuat" class="form-control col-sm-11" id="pembuat"
+                                    placeholder="Lorem Ipsum" name="pembuat" value="{{ $users->nama }}" disabled>
+                                <input type="hidden" name="user_id" value="{{ $userid }}">
+                                <input type="hidden" name="pembuat" value="{{ $users->nama }}">
+                            @endif
+                        @endforeach
                     </div>
                     <div class="form-group">
                         <label for="fungsi">Fungsi</label>
@@ -35,8 +41,7 @@
             </div>
 
             <div class="row">
-               <div class="col-sm-12 mt-3 text-right">
-                                         
+               <div class="col-sm-12 mt-3 text-right">                                         
                   <button type="submit" name="submit" value="Save" class="btn save-button">Simpan</button>
                </div>
             </div>

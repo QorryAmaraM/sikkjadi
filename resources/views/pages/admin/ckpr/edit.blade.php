@@ -11,7 +11,7 @@
 
         <!-- Content Row -->
 
-        <form action="/ckp/ckpr/{{ $ckpr->id }}" method="POST">\
+        <form action="/admin-ckp/ckpr/{{ $ckpr->id }}" method="POST">\
          @csrf
          @method('put')
 
@@ -19,12 +19,25 @@
             <div class="col-sm-7">
                <div class="form-group d-flex align-items-center">
                   <label for="nama" class="col-sm-2 pl-0 col-form-label">Nama</label>
-                  <input type="nama" class="form-control col-sm-10" id="nama" placeholder="Lorem Ipsum" name="nama" value="{{ $ckpr->nama }}">
-               </div>
-               <div class="form-group d-flex align-items-center">
+                  @foreach ($user as $users)
+                      @if ($users->id == $userid)
+                          <input type="nama" class="form-control col-sm-11" id="nama"
+                              placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
+                          <input type="hidden" name="user_id" value="{{ $userid }}">
+                          <input type="hidden" name="nama" value="{{ $users->nama }}">
+                      @endif
+                  @endforeach
+              </div>
+              <div class="form-group d-flex align-items-center">
                   <label for="nip" class="col-sm-2 pl-0 col-form-label">NIP</label>
-                  <input type="nip" class="form-control col-sm-10" id="nip" placeholder="12345" name="nip" value="{{ $ckpr->nip }}">
-               </div>
+                  @foreach ($user as $users)
+                      @if ($users->id == $userid)
+                          <input type="nama" class="form-control col-sm-11" id="nama"
+                              placeholder="Lorem Ipsum" name="nip" value="{{ $users->nip }}" disabled>
+                          <input type="hidden" name="nip" value="{{ $users->nip }}">
+                      @endif
+                  @endforeach
+              </div>
                <div class="form-group d-flex align-items-center">
                   <label for="tahun" class="col-sm-2 pl-0 col-form-label">Tahun</label>
                   <input type="tahun" class="form-control col-sm-10" id="tahun" placeholder="Pembina Tingkat" name="tahun" value="{{ $ckpr->tahun }}">

@@ -15,7 +15,6 @@ class REncanaKinerjaController extends Controller
     {
         $userid = Auth::user()->id;
         $rencanakinerja = rencana_kinerja::all();
-        return view('pages.users.kepalabps.rencanakinerja.index', compact(['rencanakinerja']));
         switch ($userid) {
             case '1':
                 return view('pages.admin.rencanakinerja.index', compact(['rencanakinerja']));

@@ -13,6 +13,7 @@ class DashboardController extends Controller
     {
         $user = user::all();
         $userid = Auth::user()->id;
+        dd($userid);
 
         switch ($userid) {
             case '1':
