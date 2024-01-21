@@ -14,22 +14,23 @@ class SKPTahunanController extends Controller
     public function index(Request $request)
     {
         $userid = Auth::user()->role_id;
+        $user = user::all();
         $skptahunan = skp_tahunan::all();
         switch ($userid) {
             case '1':
-                return view('pages.admin.skptahunan.index', compact(['skptahunan']));
+                return view('pages.admin.skptahunan.index', compact(['skptahunan', 'user']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.skptahunan.index', compact(['skptahunan']));
+                return view('pages.users.kepalabps.skptahunan.index', compact(['skptahunan', 'user']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.skptahunan.index', compact(['skptahunan']));
+                return view('pages.users.kepalabu.skptahunan.index', compact(['skptahunan', 'user']));
                 break;
             case '4':
-                return view('pages.users.kf.skptahunan.index', compact(['skptahunan']));
+                return view('pages.users.kf.skptahunan.index', compact(['skptahunan', 'user']));
                 break;
             case '5':
-                return view('pages.users.staf.skptahunan.index', compact(['skptahunan']));
+                return view('pages.users.staf.skptahunan.index', compact(['skptahunan', 'user']));
                 break;
         }
     }
@@ -154,5 +155,36 @@ class SKPTahunanController extends Controller
                 break;
         }
     }
+
+    public function search(Request $request)
+    {
+        $output="";
+
+        $search=skp_tahunan::where('user_id','like', '%'.$request->search.'%')->get();
+
+        foreach($search as $search)
+        {
+            $output.=
+            '<tr> 
+            
+            <td> '.$search->tahun.' </td>
+            <td> '.$search->periode.' </td>
+            <td> '.$search->wilayah.' </td>
+            <td> '.$search->unit_kerja.' </td>
+            <td> '.$search->jabatan.' </td>
+            <td> '.$search->status.' </td>
+
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('spktahunan.edit', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' ."|". '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('spktahunan.delete', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>        
+            
+            </tr>';
+
+        }
+        return response($output);
+    }
+
 }
 

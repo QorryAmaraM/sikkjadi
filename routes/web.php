@@ -27,11 +27,12 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //SKP Tahunan
     Route::get('/admin-perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('admin_skptahunan');
+    Route::get('/search', [SKPTahunanController::class, 'search']);
     Route::get('/admin-perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create']);
     Route::post('/admin-perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'store']);
-    Route::get('/admin-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit']);
+    Route::get('/admin-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit'])->name('spktahunan.edit');
     Route::put('/admin-perencanaankerja/spktahunan/{id}', [SKPTahunanController::class, 'update']);
-    Route::delete('/admin-perencanaankerja/spktahunan/{id}', [SKPTahunanController::class, 'destroy']);
+    Route::get('/admin-perencanaankerja/spktahunan/{id}', [SKPTahunanController::class, 'destroy'])->name('spktahunan.delete');
 
     //Rencana Kinerja
     Route::get('/admin-perencanaankerja/rencanakinerja', [RencanaKinerjaController::class, 'index'])->name('admin_rencanakinerja');
