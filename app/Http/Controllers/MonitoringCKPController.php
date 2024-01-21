@@ -13,7 +13,7 @@ class MonitoringCKPController extends Controller
     //Read
     public function index(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $monitoringckp = monitoring_ckp::all();
         switch ($userid) {
             case '1':
@@ -37,7 +37,7 @@ class MonitoringCKPController extends Controller
     //Create
     public function create(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $user = user::all();
         switch ($userid) {
             case '1':
@@ -60,7 +60,7 @@ class MonitoringCKPController extends Controller
 
     public function store(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         monitoring_ckp::create($request->except(['_token','submit']));
         switch ($userid) {
             case '1':
@@ -84,7 +84,7 @@ class MonitoringCKPController extends Controller
     //Update
     public function edit($id)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $monitoringckp = monitoring_ckp::find($id);
         $user = user::all();
         switch ($userid) {
@@ -108,7 +108,7 @@ class MonitoringCKPController extends Controller
 
     public function update($id, Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $monitoringckp = monitoring_ckp::find($id);
         $monitoringckp->update($request->except(['_token','submit']));
         switch ($userid) {
@@ -133,7 +133,7 @@ class MonitoringCKPController extends Controller
     //Destroy
     public function destroy($id)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $monitoringckp = monitoring_ckp::find($id);
         $monitoringckp->delete();
         switch ($userid) {

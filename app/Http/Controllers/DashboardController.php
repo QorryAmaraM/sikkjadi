@@ -12,9 +12,8 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $user = user::all();
-        $userid = Auth::user()->id;
-        dd($userid);
-
+        $userid = Auth::user()->role_id;
+        
         switch ($userid) {
             case '1':
                 return view('pages.admin.dashboard.index', compact(['user']));

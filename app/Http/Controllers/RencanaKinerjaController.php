@@ -13,7 +13,7 @@ class REncanaKinerjaController extends Controller
     //Read
     public function index(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $rencanakinerja = rencana_kinerja::all();
         switch ($userid) {
             case '1':
@@ -37,7 +37,7 @@ class REncanaKinerjaController extends Controller
     //Create
     public function create(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $user = user::all();
         switch ($userid) {
             case '1':
@@ -60,7 +60,7 @@ class REncanaKinerjaController extends Controller
 
     public function store(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         rencana_kinerja::create($request->except(['_token', 'submit']));
         switch ($userid) {
             case '1':
@@ -84,7 +84,7 @@ class REncanaKinerjaController extends Controller
     //Update
     public function edit($id)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $rencanakinerja = rencana_kinerja::find($id);
         $user = user::all();
         switch ($userid) {
@@ -108,7 +108,7 @@ class REncanaKinerjaController extends Controller
 
     public function update($id, Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $rencanakinerja = rencana_kinerja::find($id);
         $rencanakinerja->update($request->except(['_token', 'submit']));
         switch ($userid) {
@@ -133,7 +133,7 @@ class REncanaKinerjaController extends Controller
     //Destroy
     public function destroy($id)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $rencanakinerja = rencana_kinerja::find($id);
         $rencanakinerja->delete();
         switch ($userid) {

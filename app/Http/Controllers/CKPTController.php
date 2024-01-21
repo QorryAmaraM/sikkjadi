@@ -14,13 +14,13 @@ class CKPTController extends Controller
     public function depan(Request $request)
     {
         $ckpt = ckpt::all();
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         return view('pages.users.kepalabps.ckpt.depan', compact(['ckpt']));
     }
 
     public function index(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $ckpt = ckpt::all();
         switch ($userid) {
             case '1':
@@ -44,7 +44,7 @@ class CKPTController extends Controller
     //Cread
     public function create(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $user = user::all();
         switch ($userid) {
             case '1':
@@ -67,7 +67,7 @@ class CKPTController extends Controller
 
     public function store(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         ckpt::create($request->except(['_token', 'submit']));
         switch ($userid) {
             case '1':
@@ -91,7 +91,7 @@ class CKPTController extends Controller
     //Update
     public function edit($id)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $ckpt = ckpt::find($id);
         $user = user::all();
         switch ($userid) {
@@ -115,7 +115,7 @@ class CKPTController extends Controller
 
     public function update($id, Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $ckpt = ckpt::find($id);
         $ckpt->update($request->except(['_token', 'submit']));
         switch ($userid) {
@@ -140,7 +140,7 @@ class CKPTController extends Controller
     //Destroy
     public function destroy($id)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $ckpt = ckpt::find($id);
         $ckpt->delete();
         switch ($userid) {

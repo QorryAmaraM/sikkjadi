@@ -12,7 +12,7 @@ class ListAngkaKreditController extends Controller
     //Read
     public function index(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $angkakredit = list_angka_kredit::all();
         switch ($userid) {
             case '1':
@@ -36,7 +36,7 @@ class ListAngkaKreditController extends Controller
     //Create
     public function create(Request $request) 
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         switch ($userid) {
             case '1':
                 return view('pages.admin.listangkakredit.create', compact(['user']));
@@ -58,7 +58,7 @@ class ListAngkaKreditController extends Controller
 
     public function store(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         list_angka_kredit::create($request->except(['_token','submit']));
         switch ($userid) {
             case '1':
@@ -82,7 +82,7 @@ class ListAngkaKreditController extends Controller
     //Update
     public function edit($id)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $angkakredit = list_angka_kredit::find($id);
         switch ($userid) {
             case '1':
@@ -105,7 +105,7 @@ class ListAngkaKreditController extends Controller
 
     public function update($id, Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $angkakredit = list_angka_kredit::find($id);
         $angkakredit->update($request->except(['_token','submit']));
         switch ($userid) {
@@ -130,7 +130,7 @@ class ListAngkaKreditController extends Controller
     //Destroy
     public function destroy($id)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $angkakredit = list_angka_kredit::find($id);
         $angkakredit->delete();
         switch ($userid) {

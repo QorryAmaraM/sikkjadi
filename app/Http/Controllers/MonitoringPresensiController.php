@@ -13,7 +13,7 @@ class MonitoringPresensiController extends Controller
     //Read 
     public function index(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $monitoringpresensi = monitoring_presensi::all();
         switch ($userid) {
             case '1':
@@ -37,7 +37,7 @@ class MonitoringPresensiController extends Controller
     //Create
     public function create(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $user = user::all();
         switch ($userid) {
             case '1':
@@ -61,7 +61,7 @@ class MonitoringPresensiController extends Controller
 
     public function store(Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         monitoring_presensi::create($request->except(['_token', 'submit']));
         switch ($userid) {
             case '1':
@@ -85,7 +85,7 @@ class MonitoringPresensiController extends Controller
     //Update    
     public function edit($id)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $monitoringpresensi = monitoring_presensi::find($id);
         $user = user::all();
         switch ($userid) {
@@ -109,7 +109,7 @@ class MonitoringPresensiController extends Controller
 
     public function update($id, Request $request)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $monitoringpresensi = monitoring_presensi::find($id);
         $monitoringpresensi->update($request->except(['_token', 'submit']));
         switch ($userid) {
@@ -134,7 +134,7 @@ class MonitoringPresensiController extends Controller
     //Destroy
     public function destroy($id)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $monitoringpresensi = monitoring_presensi::find($id);
         $monitoringpresensi->delete();
         switch ($userid) {
