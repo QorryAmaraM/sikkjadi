@@ -75,7 +75,7 @@ Route::middleware(['checkRole:1'])->group(function () {
     Route::delete('/admin-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'destroy']);
 
     //CKP-T
-    Route::get('/admin-ckp/ckpt', [CKPTController::class, 'depan'])->name('admin_ckpt');
+    Route::get('/admin-ckp/ckpt', [CKPTController::class, 'index'])->name('admin_ckpt');
     Route::get('/admin-ckp/ckpt/{nama}/index', [CKPTController::class, 'index']);
     Route::get('/admin-ckp/ckpt/create', [CKPTController::class, 'create']);
     Route::post('/admin-ckp/ckpt/store', [CKPTController::class, 'store']);
