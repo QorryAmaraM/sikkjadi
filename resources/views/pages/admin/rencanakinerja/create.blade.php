@@ -21,32 +21,31 @@
                             @if ($users->id == $userid)
                                 <input type="nama" class="form-control col-sm-11" id="nama"
                                     placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
-                                <input type="hidden" name="user_id" value="{{ $userid }}">
-                                <input type="hidden" name="nama" value="{{ $users->nama }}">
+                                <input type="hidden" name="skp_tahunan_id" value="{{ $skptahunan->id }}">
                             @endif
                         @endforeach
-                    </div>
+                    </div>                    
+
                     <div class="form-group d-flex align-items-center">
-                        <label for="tahun" class="col-sm-1 pl-0 col-form-label">Tahun</label>
-                        <input type="tahun" class="form-control col-sm-11" id="tahun" placeholder="2023"
-                            name="tahun">
-                    </div>
-                    <div class="form-group d-flex align-items-center">
-                        <label for="periode" class="col-sm-1 pl-0 col-form-label">Periode</label>
-                        <input type="periode" class="form-control col-sm-11" id="periode"
-                            placeholder="5 Januari - 23 Desember" name="periode">
-                    </div>
-                    <div class="form-group d-flex align-items-center">
-                        <label for="wilayah" class="col-sm-1 pl-0 col-form-label">Wilayah</label>
-                        <input type="wilayah" class="form-control col-sm-11" id="wilayah" placeholder="Pusat"
-                            name="wilayah">
-                    </div>
-                    <div class="form-group d-flex align-items-center">
-                        <label for="unitkerja" class="col-sm-1 pl-0 col-form-label">Unit Kerja</label>
-                        <input type="unitkerja" class="form-control col-sm-11" id="unitkerja"
-                            placeholder="Pusat Pendidikan dan Pelatihan" name="unit_kerja">
+                        <label for="periode" class="col-sm-1 pl-0 col-form-label">Tahun</label>
+                        <input type="periode" class="form-control col-sm-11" id="tahun" value="{{ $skptahunan->tahun }}" name="tahun" disabled>
                     </div>
 
+                    <div class="form-group d-flex align-items-center">
+                        <label for="periode" class="col-sm-1 pl-0 col-form-label">Periode</label>
+                        <input type="periode" class="form-control col-sm-11" id="periode" value="{{ $skptahunan->periode }}" name="periode" disabled>
+                    </div>
+
+                    <div class="form-group d-flex align-items-center">
+                        <label for="periode" class="col-sm-1 pl-0 col-form-label">Wilayah</label>
+                        <input type="periode" class="form-control col-sm-11" id="wilayah" value="{{ $skptahunan->wilayah }}" name="wilayah" disabled>
+                    </div>                    
+
+                    <div class="form-group d-flex align-items-center">
+                        <label for="periode" class="col-sm-1 pl-0 col-form-label">Unit Kerja</label>
+                        <input type="periode" class="form-control col-sm-11" id="unit kerja" value="{{ $skptahunan->unit_kerja }}" name="unit_kerja" disabled>
+                    </div>
+                    
                     <div class="form-group d-flex align-items-center">
                         <label for="kinerja" class="col-sm-1 pl-0 col-form-label">Kinerja</label>
                         <div class="form-check form-check-inline">
@@ -60,6 +59,7 @@
                             <label class="form-check-label" for="inlineCheckbox2">Tambahan</label>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
@@ -77,8 +77,8 @@
                     </div>
                     <div class="form-group">
                         <label for="rkpegawai">Rencana Kinerja</label>
-                        <input type="rkpegawai" class="form-control" id="rkpegawai" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="rencana_kinerja">
+                        <input type="rkpegawai" class="form-control" id="rkpegawai"
+                            placeholder="Lorem Ipsum Dolor Sit Amet" name="rencana_kinerja">
                     </div>
                     <div class="form-group">
                         <label for="aspek">Aspek</label>
@@ -132,4 +132,25 @@
         }
     </script>
 
+    <script type="text/javascript">
+        $('#parameter').on('change', function() {
+
+            $value = $(this).val();
+
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('search') }}',
+                data: {
+                    'search': $value
+                },
+
+                success: function(data) {
+                    console.log(data);
+                    $('#Content').html(data);
+                }
+
+            });
+
+        })
+    </script>
 @endsection

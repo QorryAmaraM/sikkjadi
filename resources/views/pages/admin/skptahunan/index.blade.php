@@ -34,7 +34,7 @@
                                             {{ $nama }}
                                         </option>
                                         @php
-                                            $namaArray[] = $nama; 
+                                            $namaArray[] = $nama;
                                         @endphp
                                     @endif
                                 @endif
@@ -79,31 +79,29 @@
                             </tr>
                         </thead>
 
-                  <tbody>
-                     @foreach ($skptahunan as $skp)
-                        <tr>
-                           <td>{{ $skp->tahun }}</td>
-                           <td>{{ $skp->periode }}</td>
-                           <td>{{ $skp->wilayah }}</td>
-                           <td>{{ $skp->unit_kerja }}</td>
-                           <td>{{ $skp->jabatan }}</td>
-                           <td>{{ $skp->status }}</td>
-                           <td>
-                              <button class="btn btn-icon btn-edit btn-sm">
-                                 <a href="/admin-perencanaankerja/spktahunan/{{ $skp->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
-                              </button>
-                           </td>                                 
-                           <td>                                    
-                              <form action="/admin-perencanaankerja/spktahunan/{{ $skp->id }}" method="POST" class="delete-form">
-                                 @csrf
-                                 @method('delete')
-                                 <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
-                              </form>
-                           </td>                                 
-                        </tr>
-                         
-                     @endforeach
-                  </tbody>
+                        <tbody class="alldata">
+                            @foreach ($skptahunan as $skp)
+                                <tr>
+                                    <td>{{ $skp->tahun }}</td>
+                                    <td>{{ $skp->periode }}</td>
+                                    <td>{{ $skp->wilayah }}</td>
+                                    <td>{{ $skp->unit_kerja }}</td>
+                                    <td>{{ $skp->jabatan }}</td>
+                                    <td>{{ $skp->status }}</td>
+                                    <td>
+                                        <button class="btn btn-icon btn-edit btn-sm">
+                                            <a href="{{ route('spktahunan.edit', ['id' => $skp->id]) }}"
+                                                class="action-link"><i class="fas fa-edit"></i></a>
+
+                                        </button> |
+                                        <button class="btn btn-icon btn-delete btn-sm">
+                                            <a href="{{ route('spktahunan.delete', ['id' => $skp->id]) }}"
+                                                class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
 
                         <tbody id="Content" class="searchdata"> </tbody>
 
@@ -115,6 +113,8 @@
     <!-- /.container-fluid -->
 
     <!-- Script -->
+
+
     <script type="text/javascript">
         $('#search').on('change', function() {
 
@@ -130,7 +130,7 @@
 
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('search') }}',
+                url: '{{ URL::to('/admin-perencanaankerja/skptahunan/search') }}',
                 data: {
                     'search': $value
                 },

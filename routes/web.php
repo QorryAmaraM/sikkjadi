@@ -27,7 +27,7 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //SKP Tahunan
     Route::get('/admin-perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('admin_skptahunan');
-    Route::get('/search', [SKPTahunanController::class, 'search']);
+    Route::get('/admin-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search']);
     Route::get('/admin-perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create']);
     Route::post('/admin-perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'store']);
     Route::get('/admin-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit'])->name('spktahunan.edit');
@@ -36,11 +36,13 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //Rencana Kinerja
     Route::get('/admin-perencanaankerja/rencanakinerja', [RencanaKinerjaController::class, 'index'])->name('admin_rencanakinerja');
-    Route::get('/admin-perencanaankerja/rencanakinerja/create', [RencanaKinerjaController::class, 'create']);
+    Route::get('/admin-perencanaankerja/rencanakinerja/search', [RencanaKinerjaController::class, 'search']);
+    Route::get('/admin-perencanaankerja/rencanakinerja/create/index', [RencanaKinerjaController::class, 'create_index']);
+    Route::get('/admin-perencanaankerja/rencanakinerja/create/{id}', [RencanaKinerjaController::class, 'create']);
     Route::post('/admin-perencanaankerja/rencanakinerja/store', [RencanaKinerjaController::class, 'store']);
-    Route::get('/admin-perencanaankerja/rencanakinerja/{id}/edit', [RencanaKinerjaController::class, 'edit']);
+    Route::get('/admin-perencanaankerja/rencanakinerja/{id}/edit', [RencanaKinerjaController::class, 'edit'])->name('rencanakinerja.edit');
     Route::put('/admin-perencanaankerja/rencanakinerja/{id}', [RencanaKinerjaController::class, 'update']);
-    Route::delete('/admin-perencanaankerja/rencanakinerja/{id}', [RencanaKinerjaController::class, 'destroy']);
+    Route::get('/admin-perencanaankerja/rencanakinerja/{id}', [RencanaKinerjaController::class, 'destroy'])->name('rencanakinerja.delete');
 
     //Penilaian SKP
     Route::get('/admin-perencanaankerja/penilaianskp', [PenilaianSKPController::class, 'index'])->name('admin_penilaianskp');

@@ -14,45 +14,60 @@
         <form>
             <div class="row mb-8">
                 <div class="col-sm-12">
-                    <div class="form-group d-flex align-items-center">
-                        <label for="nama" class="col-sm-1 pl-0 col-form-label">Nama</label>
-                        <input type="nama" class="form-control col-sm-11" id="nama" placeholder="Lorem Ipsum">
+                    <div class="search form-group d-flex align-items-center">
+                        <label for="searchSelect" class="col-sm-1 pl-0 col-form-label">Pegawai</label>
+                        <select name="search" id="search" class="form-control">
+                            <option value="">Pilih Pegawai</option>
+                            @php
+                                $namaArray = [];
+                            @endphp
+                            @foreach ($result as $rencana_kinerja)
+                                @php
+                                    $userId = $rencana_kinerja->user_id;
+                                    $nama = '';
+                                @endphp
+                                @foreach ($user as $users)
+                                    @if ($userId == $users->id)
+                                        @php
+                                            $nama = $users->nama;
+                                        @endphp
+                                        @if (!in_array($nama, $namaArray))
+                                            <option value="{{ $userId }}">
+                                                {{ $nama }}
+                                            </option>
+                                            @php
+                                                $namaArray[] = $nama;
+                                            @endphp
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="form-group d-flex align-items-center">
+
+                    <div class="tahun form-group d-flex align-items-center">
                         <label for="tahun" class="col-sm-1 pl-0 col-form-label">Tahun</label>
-                        <input type="tahun" class="form-control col-sm-11" id="tahun" placeholder="2023">
+                        <input class="form-control col-sm-11" name="tahun" id="tahun" placeholder="Tahun">
                     </div>
-                    <div class="form-group d-flex align-items-center">
+
+                    <div class="tahun form-group d-flex align-items-center">
                         <label for="periode" class="col-sm-1 pl-0 col-form-label">Periode</label>
-                        <input type="periode" class="form-control col-sm-11" id="periode"
-                            placeholder="5 Januari - 23 Desember">
+                        <input class="form-control col-sm-11" name="periode" id="periode" placeholder="Periode">
                     </div>
-                    <div class="form-group d-flex align-items-center">
+
+                    <div class="tahun form-group d-flex align-items-center">
                         <label for="wilayah" class="col-sm-1 pl-0 col-form-label">Wilayah</label>
-                        <input type="wilayah" class="form-control col-sm-11" id="wilayah" placeholder="Pusat">
+                        <input class="form-control col-sm-11" name="wilayah" id="wilayah" placeholder="wilayah">
                     </div>
-                    <div class="form-group d-flex align-items-center">
+
+                    <div class="tahun form-group d-flex align-items-center">
                         <label for="unitkerja" class="col-sm-1 pl-0 col-form-label">Unit Kerja</label>
-                        <input type="unitkerja" class="form-control col-sm-11" id="unitkerja"
-                            placeholder="Pusat Pendidikan dan Pelatihan">
+                        <input class="form-control col-sm-11" name="unitkerja" id="unitkerja" placeholder="Unit Kerja">
                     </div>
-                    <div class="form-group d-flex align-items-center">
-                        <label for="kinerja" class="col-sm-1 pl-0 col-form-label">Kinerja</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="kjutama" value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1">Utama</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="kjtambahan" value="option2">
-                            <label class="form-check-label" for="inlineCheckbox2">Tambahan</label>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </form>
-
-        
-
 
         <div class="row">
             <div class="col-sm-6">
@@ -67,7 +82,7 @@
             </div>
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
                 <button type="button" class="btn salin-button mr-2">Salin Rencana Kinerja</button>
-                <a href="{{ url('/admin-perencanaankerja/rencanakinerja/create') }}" type="button" class="btn add-button">+
+                <a href="/admin-perencanaankerja/rencanakinerja/create/index" type="button" class="btn add-button">+
                     Tambah</a>
             </div>
         </div>
@@ -93,7 +108,7 @@
                                 <th style="border-top: none">Max</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="alldata">
                             @foreach ($rencanakinerja as $rencana)
                                 <tr>
                                     <td>{{ $rencana->jenis }}</td>
@@ -106,26 +121,125 @@
                                     <td>{{ $rencana->satuan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="/admin-perencanaankerja/rencanakinerja/{{ $rencana->id }}/edit"
-                                                class="action-link"><i class="fas fa-edit"></i>
+                                            <a href="{{ route('rencanakinerja.edit', ['id' => $rencana->id]) }}"
+                                                class="action-link"><i class="fas fa-edit"></i></a>
+
+                                        </button> |
+                                        <button class="btn btn-icon btn-delete btn-sm">
+                                            <a href="{{ route('rencanakinerja.delete', ['id' => $rencana->id]) }}"
+                                                class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
                                         </button>
                                     </td>
-                                    <td>
-                                        <form action="/admin-perencanaankerja/rencanakinerja/{{ $rencana->id }}"
-                                            method="POST" class="delete-form">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-icon btn-delete btn-sm"><i
-                                                    class="fas fa-trash-can"></i></button>
-                                        </form>
-                                    </td>
+
                                 </tr>
                             @endforeach
                         </tbody>
+
+                        <tbody id="Content" class="searchdata"></tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
     <!-- /.container-fluid -->
+
+    <!-- Script -->
+    <script type="text/javascript">
+        var savedValue = "";
+        var savedTahunValue = "";
+        var savedPeriodeValue = "";
+        var savedWilayahValue = "";
+        var savedUnitkerjaValue = "";
+
+        $('#search').on('input', function() {
+            savedValue = $(this).val();
+
+            if (savedValue) {
+                $('.alldata').hide();
+                $('.searchdata').show();
+            } else {
+                $('.alldata').show();
+                $('.searchdata').hide();
+            }
+
+            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue);
+        });
+
+        $('#tahun').on('input', function() {
+            savedTahunValue = $(this).val();
+
+            if (savedTahunValue) {
+                $('.alldata').hide();
+                $('.searchdata').show();
+            } else {
+                $('.alldata').show();
+                $('.searchdata').hide();
+            }
+
+            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue);
+        });
+
+        $('#periode').on('input', function() {
+            savedPeriodeValue = $(this).val();
+
+            if (savedPeriodeValue) {
+                $('.alldata').hide();
+                $('.searchdata').show();
+            } else {
+                $('.alldata').show();
+                $('.searchdata').hide();
+            }
+
+            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue);
+        });
+
+        $('#wilayah').on('input', function() {
+            savedWilayahValue = $(this).val();
+
+            if (savedWilayahValue) {
+                $('.alldata').hide();
+                $('.searchdata').show();
+            } else {
+                $('.alldata').show();
+                $('.searchdata').hide();
+            }
+
+            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue);
+        });
+
+        $('#unitkerja').on('input', function() {
+            savedUnitkerjaValue = $(this).val();
+
+            if (savedUnitkerjaValue) {
+                $('.alldata').hide();
+                $('.searchdata').show();
+            } else {
+                $('.alldata').show();
+                $('.searchdata').hide();
+            }
+
+            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue);
+        });
+
+
+        function handleSearch(value, tahunValue, periodeValue, wilayahValue, unitkerjaValue) {
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('/admin-perencanaankerja/rencanakinerja/search') }}',
+                data: {
+                    'search': value,
+                    'tahun': tahunValue,
+                    'periode': periodeValue,
+                    'wilayah': wilayahValue,
+                    'unitkerja': unitkerjaValue
+                },
+                success: function(data) {
+                    console.log(data);
+                    $('#Content').html(data);
+                }
+            });
+        }
+
+    </script>
+    <!-- Script -->
 @endsection
