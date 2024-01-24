@@ -15,12 +15,8 @@ return new class extends Migration
     {
         Schema::create('rencana_kinerjas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->integer('tahun');
-            $table->string('periode');
-            $table->string('wilayah');
-            $table->string('unit_kerja');
-            $table->boolean('kinerja');
+            $table->unsignedBigIntege('skp_tahunan_id');
+            $table->enum('kinerja', ['utama','tambahan']);
             $table->string('jenis');
             $table->string('rencana_kinerja_atasan');
             $table->string('rencana kinerja');
@@ -30,6 +26,8 @@ return new class extends Migration
             $table->string('target_max');
             $table->string('satuan');
             $table->timestamps();
+
+            $table->foreign('skp_tahunan_id')->references('id')->on('skp_tahunans')->onDelete('cascade');
         });
     }
 

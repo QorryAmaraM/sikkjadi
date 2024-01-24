@@ -15,20 +15,7 @@ return new class extends Migration
     {
         Schema::create('penilaian_skps', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->double('nip');
-            $table->string('pangkat');
-            $table->string('jabatan');
-            $table->string('unit_kerja');
-            $table->boolean('kinerja');
-            $table->string('jenis');
-            $table->string('rencana_kinerja_atasan');
-            $table->string('rencana_kinerja');
-            $table->string('aspek');
-            $table->string('iki');
-            $table->double('target_min');
-            $table->double('target_max');
-            $table->double('satuan');
+            $table->unsignedBigIntege('rencanakinerja_id');
             $table->string('realisasi');
             $table->string('kondisi');
             $table->double('capaian_iki');
@@ -40,6 +27,8 @@ return new class extends Migration
             $table->double('nilai_kinerja_tambahan');
             $table->double('nilai_skp');
             $table->timestamps();
+
+            $table->foreign('rencanakinerja_id')->references('id')->on('rencana_kinerjas')->onDelete('cascade');
         });
     }
 
