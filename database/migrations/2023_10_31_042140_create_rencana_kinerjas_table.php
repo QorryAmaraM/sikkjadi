@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rencana_kinerjas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigIntege('skp_tahunan_id');
+            $table->unsignedBigInteger('skp_tahunan_id');
             $table->enum('kinerja', ['utama','tambahan']);
             $table->string('jenis');
             $table->string('rencana_kinerja_atasan');

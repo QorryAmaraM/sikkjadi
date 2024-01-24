@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('penilaian_skps', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigIntege('rencanakinerja_id');
+            $table->unsignedBigInteger('rencanakinerja_id');
             $table->string('realisasi');
             $table->string('kondisi');
             $table->double('capaian_iki');
