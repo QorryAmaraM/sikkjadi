@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\penilaian_skp;
 use App\Models\user;
+use App\Models\rencana_kinerja;
+use App\Models\skp_tahunan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -14,22 +16,29 @@ class PenilaianSKPController extends Controller
     public function index(Request $request)
     {
         $userid = Auth::user()->id;
+        $user = user::all();
         $penilaianskp = penilaian_skp::all();
+        $result = rencana_kinerja::join('penilaian_skps', 'rencana_kinerjas.id', '=', 'penilaian_skps.rencanakinerja_id')
+        ->join('skp_tahunans', 'rencana_kinerjas.skp_tahunan_id', '=', 'skp_tahunans.id')
+        ->select('skp_tahunans.*','penilaian_skps.*','rencana_kinerjas.*')
+        ->get();
+
+        
         switch ($userid) {
             case '1':
-                return view('pages.admin.penilaianskp.index', compact(['penilaianskp']));
+                return view('pages.admin.penilaianskp.index', compact(['penilaianskp', 'result', 'user']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.penilaianskp.index', compact(['penilaianskp']));
+                return view('pages.users.kepalabps.penilaianskp.index', compact(['penilaianskp', 'result', 'user']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.penilaianskp.index', compact(['penilaianskp']));
+                return view('pages.users.kepalabu.penilaianskp.index', compact(['penilaianskp', 'result', 'user']));
                 break;
             case '4':
-                return view('pages.users.kf.penilaianskp.index', compact(['penilaianskp']));
+                return view('pages.users.kf.penilaianskp.index', compact(['penilaianskp', 'result', 'user']));
                 break;
             case '5':
-                return view('pages.users.staf.penilaianskp.index', compact(['penilaianskp']));
+                return view('pages.users.staf.penilaianskp.index', compact(['penilaianskp', 'result', 'user']));
                 break;
         }
     }
