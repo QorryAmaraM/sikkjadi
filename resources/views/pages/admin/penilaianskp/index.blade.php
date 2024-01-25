@@ -24,7 +24,6 @@
                             @endphp
                             @foreach ($result as $penilaian_skp)
                                 @php
-                                    $simpan = null;
                                     $userId = $penilaian_skp->user_id;
                                     $nama = '';
                                 @endphp
@@ -39,7 +38,6 @@
                                             </option>
                                             @php
                                                 $namaArray[] = $nama;
-                                                $simpan = $users->nip;
                                             @endphp
                                         @endif
                                     @endif
@@ -47,23 +45,16 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group d-flex align-items-center">
-                        <label for="nip" class="col-sm-2 pl-0 col-form-label">NIP</label>
-                        <input type="nip" class="form-control col-sm-10" id="nip" placeholder="12345" disabled>
-                    </div>
-
-                    <div class="form-group d-flex align-items-center">
-                        <label for="pangkat" class="col-sm-2 pl-0 col-form-label">Golongan</label>
-                        <input type="pangkat" class="form-control col-sm-10" id="pangkat" placeholder="Pembina Tingkat">
-                    </div>
-                    <div class="form-group d-flex align-items-center">
-                        <label for="jabatan" class="col-sm-2 pl-0 col-form-label">Fungsional</label>
-                        <input type="jabatan" class="form-control col-sm-10" id="jabatan" placeholder="Kepala">
-                    </div>
+                    
                     <div class="form-group d-flex align-items-center">
                         <label for="unitkerja" class="col-sm-2 pl-0 col-form-label">Unit Kerja</label>
                         <input type="unitkerja" class="form-control col-sm-10" id="unitkerja"
-                            placeholder="Pusat Pendidikan dan Pelatihan">
+                            placeholder="Unit Kerja">
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <label for="unitkerja" class="col-sm-2 pl-0 col-form-label">Jenis</label>
+                        <input type="unitkerja" class="form-control col-sm-10" id="unitkerja"
+                            placeholder="Jenis">
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="kinerja" class="col-sm-2 pl-0 col-form-label">Kinerja</label>
@@ -93,24 +84,22 @@
             </div>
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
                 <button type="button" class="btn salin-button mr-2">Salin Rencana Kinerja</button>
-                <a href="/admin-perencanaankerja/penilaianskp/create" type="button" class="btn add-button">+ Tambah</a>
+                <a href="/admin-perencanaankerja/penilaianskp/create/index" type="button" class="btn add-button">+ Tambah</a>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-sm-12" style="margin-top: -25px">
+            <div class="col-sm-12" >
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Realisasi</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kondisi</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian Rencana
-                                </th>
+                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian Rencana</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi</th>
                             </tr>
@@ -156,57 +145,17 @@
                                 <td style="background-color: #9ba4b5"></td>
                                 <td style="background-color: #9ba4b5"></td>
                                 <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
                                 <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
                             </tr>
                         </tbody>
                         <tbody>
-                            @foreach ($penilaianskp as $skp)
-                                <tr>
-                                    <td>{{ $skp->nilai_kinerja_utama }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <button class="btn btn-icon btn-edit btn-sm">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-icon btn-delete btn-sm">
-                                            <i class="fas fa-trash-can"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            
                         </tbody>
 
                         <tbody>
                             <tr>
                                 <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja Tambahan
                                 </td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
                                 <td style="background-color: #9ba4b5"></td>
                                 <td style="background-color: #9ba4b5"></td>
                                 <td style="background-color: #9ba4b5"></td>
@@ -225,13 +174,6 @@
                                 <td style="background-color: #9ba4b5"></td>
                                 <td style="background-color: #9ba4b5"></td>
                                 <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
                                 <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
                             </tr>
                         </tbody>
@@ -242,19 +184,4 @@
     </div>
     <!-- /.container-fluid -->
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Mendapatkan elemen input dengan ID "nip"
-            var nipInput = document.getElementById("nip");
-
-            // Mendapatkan elemen select dengan ID "search"
-            var searchSelect = document.getElementById("search");
-
-            // Menambahkan event listener untuk perubahan nilai pada elemen select
-            searchSelect.addEventListener("change", function() {
-                // Mengatur nilai input "nip" dengan nilai dari elemen select yang dipilih
-                nipInput.value = this.value;
-            });
-        });
-    </script>
 @endsection

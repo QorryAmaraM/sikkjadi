@@ -16,54 +16,85 @@
             <div class="row mb-8">
                 <div class="col-sm-12">
                     <div class="form-group d-flex align-items-center">
-                        <label for="nama" class="col-sm-1 pl-0 col-form-label">Nama</label>
+                        <label for="nama" class="col-sm-1 pl-0 col-form-label">Penilai</label>
                         @foreach ($user as $users)
                             @if ($users->id == $userid)
                                 <input type="nama" class="form-control col-sm-11" id="nama"
                                     placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
                                 <input type="hidden" name="user_id" value="{{ $userid }}">
-                                <input type="hidden" name="nama" value="{{ $users->nama }}">
                             @endif
                         @endforeach
                     </div>
                     <div class="form-group d-flex align-items-center">
-                        <label for="nip" class="col-sm-1 pl-0 col-form-label">NIP</label>
-                        @foreach ($user as $users)
-                            @if ($users->id == $userid)
-                                <input type="nama" class="form-control col-sm-11" id="nama"
-                                    placeholder="Lorem Ipsum" name="nip" value="{{ $users->nip }}" disabled>
-                                <input type="hidden" name="nip" value="{{ $users->nip }}">
+                        <label for="nama" class="col-sm-1 pl-0 col-form-label">Nama</label>
+                        @foreach ($result as $nama)
+                            @if ($nama->id == $rencanakinerja_id)
+                                @foreach ($user as $users)
+                                    @if ($users->id == $nama->user_id)
+                                        <input type="nama" class="form-control col-sm-11" id="nama"
+                                            placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
+                                        <input type="hidden" name="rencanakinerja_id" value="{{ $rencanakinerja_id }}">
+                                    @endif
+                                @endforeach
                             @endif
                         @endforeach
                     </div>
                     <div class="form-group d-flex align-items-center">
-                        <label for="pangkat" class="col-sm-1 pl-0 col-form-label">Pangkat</label>
-                        <input type="pangkat" class="form-control col-sm-10" id="pangkat" placeholder="Pembina Tingkat"
-                            name="pangkat">
+                        <label for="nama" class="col-sm-1 pl-0 col-form-label">Nip</label>
+                        @foreach ($result as $nip)
+                            @if ($nip->id == $rencanakinerja_id)
+                                @foreach ($user as $users)
+                                    @if ($users->id == $nip->user_id)
+                                        <input type="nama" class="form-control col-sm-11" id="nama"
+                                            placeholder="Lorem Ipsum" name="nama" value="{{ $users->nip }}" disabled>
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
                     </div>
                     <div class="form-group d-flex align-items-center">
-                        <label for="jabatan" class="col-sm-1 pl-0 col-form-label">Jabatan</label>
-                        <input type="jabatan" class="form-control col-sm-10" id="jabatan" placeholder="Kepala"
-                            name="jabatan">
+                        <label for="nama" class="col-sm-1 pl-0 col-form-label">Golongan</label>
+                        @foreach ($result as $golongan)
+                            @if ($golongan->id == $rencanakinerja_id)
+                                @foreach ($user as $users)
+                                    @if ($users->id == $golongan->user_id)
+                                        <input type="nama" class="form-control col-sm-11" id="nama" name="nama"
+                                            value="{{ $users->golongan }}" disabled>
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
                     </div>
                     <div class="form-group d-flex align-items-center">
-                        <label for="unitkerja" class="col-sm-1 pl-0 col-form-label">Unit Kerja</label>
-                        <input type="unitkerja" class="form-control col-sm-11" id="unitkerja"
-                            placeholder="Pusat Pendidikan dan Pelatihan" name="unit_kerja">
+                        <label for="nama" class="col-sm-1 pl-0 col-form-label">Fungsional</label>
+                        @foreach ($result as $fungsional)
+                            @if ($fungsional->id == $rencanakinerja_id)
+                                @foreach ($user as $users)
+                                    @if ($users->id == $fungsional->user_id)
+                                        <input type="nama" class="form-control col-sm-11" id="nama" name="nama"
+                                            value="{{ $users->fungsional }}" disabled>
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
                     </div>
-
                     <div class="form-group d-flex align-items-center">
-                        <label for="kinerja" class="col-sm-1 pl-0 col-form-label">Kinerja</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="kjutama" value="utama" name="kinerja"
-                                onclick="toggleCheckbox(this)">
-                            <label class="form-check-label" for="inlineCheckbox1">Utama</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="kjtambahan" value="tambahan" name="kinerja"
-                                onclick="toggleCheckbox(this)">
-                            <label class="form-check-label" for="inlineCheckbox2">Tambahan</label>
-                        </div>
+                        <label for="nama" class="col-sm-1 pl-0 col-form-label">Unit Kerja</label>
+                        @foreach ($result as $unitkerja)
+                            @if ($unitkerja->id == $rencanakinerja_id)
+                                <input type="nama" class="form-control col-sm-11" id="nama" name="nama"
+                                    value="{{ $unitkerja->unit_kerja }}" disabled>
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <label for="nama" class="col-sm-1 pl-0 col-form-label">Kinerja</label>
+                        @foreach ($result as $kinerja)
+                            @if ($kinerja->id == $rencanakinerja_id)
+                                <input type="nama" class="form-control col-sm-11" id="nama" name="nama"
+                                    value="{{ $kinerja->kinerja }}" disabled>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -72,13 +103,13 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="realisasi">Realisasi</label>
-                        <input type="realisasi" class="form-control" id="realisasi"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="realisasi">
+                        <input type="realisasi" class="form-control" id="realisasi" placeholder="Lorem Ipsum Dolor Sit Amet"
+                            name="realisasi">
                     </div>
                     <div class="form-group">
                         <label for="kondisi">Kondisi</label>
-                        <input type="kondisi" class="form-control" id="kondisi"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="kondisi">
+                        <input type="kondisi" class="form-control" id="kondisi" placeholder="Lorem Ipsum Dolor Sit Amet"
+                            name="kondisi">
                     </div>
                     <div class="form-group">
                         <label for="capaianiki">Capaian IKI</label>
@@ -133,18 +164,4 @@
 
     </div>
     <!-- /.container-fluid -->
-    <script>
-        function toggleCheckbox(checkbox) {
-            // Mendapatkan elemen checkbox yang lain
-            var otherCheckbox = (checkbox.id === 'kjutama') ? document.getElementById('kjtambahan') : document
-                .getElementById('kjutama');
-
-            // Menonaktifkan checkbox yang lain jika checkbox yang satu ditekan
-            if (checkbox.checked) {
-                otherCheckbox.disabled = true;
-            } else {
-                otherCheckbox.disabled = false;
-            }
-        }
-    </script>
 @endsection

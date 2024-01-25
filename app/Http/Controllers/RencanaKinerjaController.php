@@ -18,8 +18,7 @@ class REncanaKinerjaController extends Controller
         $rencanakinerja = rencana_kinerja::all();
         $user = user::all();
         $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*','rencana_kinerjas.*')->get();
-
-
+        
         switch ($userid) {
             case '1':
                 return view('pages.admin.rencanakinerja.index', compact(['rencanakinerja', 'result', 'user']));
@@ -186,7 +185,7 @@ class REncanaKinerjaController extends Controller
         }
     }
 
-
+    //Search
     public function search(Request $request)
     {
         $output = "";
