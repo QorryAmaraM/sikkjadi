@@ -20,9 +20,8 @@ class PenilaianSKPController extends Controller
         $penilaianskp = penilaian_skp::all();
         $result = rencana_kinerja::join('penilaian_skps', 'rencana_kinerjas.id', '=', 'penilaian_skps.rencanakinerja_id')
             ->join('skp_tahunans', 'rencana_kinerjas.skp_tahunan_id', '=', 'skp_tahunans.id')
-            ->select('skp_tahunans.*', 'penilaian_skps.*', 'rencana_kinerjas.*')
+            ->select('skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
             ->get();
-
 
         switch ($userid) {
             case '1':
@@ -49,8 +48,8 @@ class PenilaianSKPController extends Controller
         $userid = Auth::user()->role_id;
         $user = user::all();
         $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*', 'rencana_kinerjas.*')->get();
-   
-        
+
+
         switch ($userid) {
             case '1':
                 return view('pages.admin.penilaianskp.create_index', compact(['result', 'user']));
@@ -108,7 +107,7 @@ class PenilaianSKPController extends Controller
         $skp_tahunan = skp_tahunan::all();
         $rencanakinerja_id = $id;
         $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*', 'rencana_kinerjas.*')->get();
-        
+
         switch ($userid) {
             case '1':
                 return view('pages.admin.penilaianskp.create', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
@@ -223,5 +222,42 @@ class PenilaianSKPController extends Controller
                 return redirect('/staf-perencanaankerja/penilaianskp');
                 break;
         }
+    }
+
+    //Search
+    public function search(Request $request)
+    {
+        $output = "";
+
+        $result = rencana_kinerja::join('penilaian_skps', 'rencana_kinerjas.id', '=', 'penilaian_skps.rencanakinerja_id')
+            ->join('skp_tahunans', 'rencana_kinerjas.skp_tahunan_id', '=', 'skp_tahunans.id')
+            ->select('skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
+            ->where('skp_tahunans.user_id', 'like', '%'.$request->search.'%')
+            ->where('skp_tahunans.unit_kerja', 'like', '%'.$request->unitkerja.'%')
+            ->where('rencana_kinerjas.jenis', 'like', '%'.$request->jenis.'%')
+            ->where('rencana_kinerjas.kinerja', 'like', '%'.$request->kinerja.'%')
+            ->get();
+
+        foreach ($result as $result) {
+            $output .=
+                '<tr> 
+            
+            <td> ' . $result->realisasi . ' </td>
+            <td> ' . $result->kondisi . ' </td>
+            <td> ' . $result->capaian_iki . ' </td>
+            <td> ' . $result->kategori_capaian_iki . ' </td>
+            <td> ' . $result->nilai_capaian_rencana . ' </td>
+            <td> ' . $result->kategori_capaian_rencana . ' </td>
+            <td> ' . $result->nilai_tertimbang . ' </td>
+
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('rencanakinerja.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('rencanakinerja.delete', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>   
+                          
+            </tr>';
+        }
+        return response($output);
     }
 }

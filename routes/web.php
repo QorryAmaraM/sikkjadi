@@ -46,13 +46,14 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //Penilaian SKP
     Route::get('/admin-perencanaankerja/penilaianskp', [PenilaianSKPController::class, 'index'])->name('admin_penilaianskp');
+    Route::get('/admin-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search']);
     Route::get('/admin-perencanaankerja/penilaianskp/create/index', [PenilaianSKPController::class, 'create_index']);
     Route::get('/admin-perencanaankerja/penilaianskp/create/search', [PenilaianSKPController::class, 'create_search']);
     Route::get('/admin-perencanaankerja/penilaianskp/create/{id}', [PenilaianSKPController::class, 'create'])->name('penilaianskp.create');
     Route::post('/admin-perencanaankerja/penilaianskp/store', [PenilaianSKPController::class, 'store']);
-    Route::get('/admin-perencanaankerja/penilaianskp/{id}/edit', [PenilaianSKPController::class, 'edit']);
+    Route::get('/admin-perencanaankerja/penilaianskp/{id}/edit', [PenilaianSKPController::class, 'edit'])->name('penilaianskp.edit');
     Route::put('/admin-perencanaankerja/penilaianskp/{id}', [PenilaianSKPController::class, 'update']);
-    Route::delete('/admin-perencanaankerja/penilaianskp/{id}', [PenilaianSKPController::class, 'destroy']);
+    Route::get('/admin-perencanaankerja/penilaianskp/{id}', [PenilaianSKPController::class, 'destroy'])->name('penilaianskp.delete');
 
     //List Angka Kredit
     Route::get('/admin-masterangkakredit/listangkakredit', [ListAngkaKreditController::class, 'index'])->name('admin_listangkakredit');
