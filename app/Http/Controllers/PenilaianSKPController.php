@@ -156,21 +156,26 @@ class PenilaianSKPController extends Controller
         $userid = Auth::user()->id;
         $penilaianskp = penilaian_skp::find($id);
         $user = user::all();
+        $result = rencana_kinerja::join('penilaian_skps', 'rencana_kinerjas.id', '=', 'penilaian_skps.rencanakinerja_id')
+            ->join('skp_tahunans', 'rencana_kinerjas.skp_tahunan_id', '=', 'skp_tahunans.id')
+            ->select('skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
+            ->where('penilaian_skps.id', 'like', '%'.$id.'%')
+            ->get();
         switch ($userid) {
             case '1':
-                return view('pages.admin.penilaianskp.edit', compact(['penilaianskp', 'user']));
+                return view('pages.admin.penilaianskp.edit', compact(['penilaianskp', 'user','result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.penilaianskp.edit', compact(['penilaianskp', 'user']));
+                return view('pages.users.kepalabps.penilaianskp.edit', compact(['penilaianskp', 'user','result']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.penilaianskp.edit', compact(['penilaianskp', 'user']));
+                return view('pages.users.kepalabu.penilaianskp.edit', compact(['penilaianskp', 'user','result']));
                 break;
             case '4':
-                return view('pages.users.kf.penilaianskp.edit', compact(['penilaianskp', 'user']));
+                return view('pages.users.kf.penilaianskp.edit', compact(['penilaianskp', 'user','result']));
                 break;
             case '5':
-                return view('pages.users.staf.penilaianskp.edit', compact(['penilaianskp', 'user']));
+                return view('pages.users.staf.penilaianskp.edit', compact(['penilaianskp', 'user','result']));
                 break;
         }
     }
@@ -251,9 +256,9 @@ class PenilaianSKPController extends Controller
             <td> ' . $result->nilai_tertimbang . ' </td>
 
             <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
-                <a href="' . route('rencanakinerja.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                <a href="' . route('penilaianskp.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
                 </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
-                <a href="' . route('rencanakinerja.delete', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                <a href="' . route('penilaianskp.delete', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
                 </button>' . ' </td>   
                           
             </tr>';

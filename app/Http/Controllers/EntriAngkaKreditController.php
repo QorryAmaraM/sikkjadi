@@ -14,36 +14,46 @@ class EntriAngkaKreditController extends Controller
     {
         $userid = Auth::user()->role_id;
         $user = user::all();
-        $entriangkakredit = entri_angka_kredit::all();
         switch ($userid) {
             case '1':
-                return view('pages.admin.entriangkakredit.index', compact(['entriangkakredit', 'user']));
+                return view('pages.admin.entriangkakredit.index', compact(['user']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.entriangkakredit.index', compact(['entriangkakredit', 'user']));
+                return view('pages.users.kepalabps.entriangkakredit.index', compact(['user']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.entriangkakredit.index', compact(['entriangkakredit', 'user']));
+                return view('pages.users.kepalabu.entriangkakredit.index', compact(['user']));
                 break;
             case '4':
-                return view('pages.users.kf.entriangkakredit.index', compact(['entriangkakredit', 'user']));
+                return view('pages.users.kf.entriangkakredit.index', compact(['user']));
                 break;
             case '5':
-                return view('pages.users.staf.entriangkakredit.index', compact(['entriangkakredit', 'user']));
+                return view('pages.users.staf.entriangkakredit.index', compact(['user']));
                 break;
         }
-        return view('pages.users.kepalabps.entriangkakredit.index');
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
-        return view('pages.users.kepalabps.entriangkakredit.create');
+        $userid = Auth::user()->role_id;
+        entri_angka_kredit::create($request->except(['_token', 'submit']));
+        switch ($userid) {
+            case '1':
+                return view('pages.admin.entriangkakredit.index');
+                break;
+            case '2':
+                return view('pages.users.kepalabps.entriangkakredit.index');
+                break;
+            case '3':
+                return view('pages.users.kepalabu.entriangkakredit.index');
+                break;
+            case '4':
+                return view('pages.users.kf.entriangkakredit.index');
+                break;
+            case '5':
+                return view('pages.users.staf.entriangkakredit.index');
+                break;
+        }
     }
-
-    public function edit(Request $request)
-    {
-        return view('pages.users.kepalabps.entriangkakredit.edit');
-    }
-
     
 }

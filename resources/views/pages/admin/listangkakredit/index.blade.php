@@ -45,20 +45,23 @@
                         <tbody>
                            @foreach ($angkakredit as $list)
                            <tr>
-                              <td></td>
-                              <td>{{ $list->jenis_fungsi }}</td>
-                              <td></td>
+                              <td>{{ $loop->iteration }}</td>
+                              <td>{{ $list->jenis_fungsional }}</td>
+                              <td>{{ $list->nama }}</td>
                               <td>{{ $list->kode_butir }}</td>
                               <td>{{ $list->isi_butir }}</td>
                               <td>{{ $list->angka_kredit }}</td>
                               <td>
                                  <button class="btn btn-icon btn-edit btn-sm">
-                                    <i class="fas fa-edit"></i>
-                                 </button>
+                                     <a href="{{ route('listangkakredit.edit', ['id' => $list->id]) }}"
+                                         class="action-link"><i class="fas fa-edit"></i></a>
+
+                                 </button> |
                                  <button class="btn btn-icon btn-delete btn-sm">
-                                    <i class="fas fa-trash-can"></i>
+                                     <a href="{{ route('listangkakredit.delete', ['id' => $list->id]) }}"
+                                         class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
                                  </button>
-                              </td>
+                             </td>
                            </tr>
                            
                            @endforeach

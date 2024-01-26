@@ -57,19 +57,13 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //List Angka Kredit
     Route::get('/admin-masterangkakredit/listangkakredit', [ListAngkaKreditController::class, 'index'])->name('admin_listangkakredit');
-    Route::get('/admin-masterangkakredit/listangkakredit/create', [ListAngkaKreditController::class, 'create']);
-    Route::post('/admin-masterangkakredit/listangkakredit/store', [ListAngkaKreditController::class, 'post']);
-    Route::get('/admin-masterangkakredit/listangkakredit/{id}/edit', [ListAngkaKreditController::class, 'edit']);
+    Route::get('/admin-masterangkakredit/listangkakredit/{id}/edit', [ListAngkaKreditController::class, 'edit'])->name('listangkakredit.edit');
     Route::put('/admin-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'update']);
-    Route::delete('/admin-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy']);
+    Route::delete('/admin-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy'])->name('listangkakredit.delete');
 
     //Entri Angka Kredit
     Route::get('/admin-masterangkakredit/entriangkakredit', [EntriAngkaKreditController::class, 'index'])->name('admin_entriangkakredit');
-    Route::get('/admin-masterangkakredit/entriangkakredit/create', [EntriAngkaKreditController::class, 'create']);
     Route::post('/admin-masterangkakredit/entriangkakredit/store', [EntriAngkaKreditController::class, 'store']);
-    Route::get('/admin-masterangkakredit/entriangkakredit/{id}/edit', [EntriAngkaKreditController::class, 'edit']);
-    Route::put('/admin-masterangkakredit/entriangkakredit/{id}', [EntriAngkaKreditController::class, 'update']);
-    Route::delete('/admin-masterangkakredit/entriangkakredit/{id}', [EntriAngkaKreditController::class, 'destroy']);
 
     //List Uraian Kredit
     Route::get('/admin-masteruraiankegiatan/uraiankegiatan', [ListUraianKegiatanController::class, 'index'])->name('admin_uraiankegiatan');

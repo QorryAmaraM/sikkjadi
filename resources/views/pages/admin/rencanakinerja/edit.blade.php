@@ -18,59 +18,53 @@
                 <div class="col-sm-12">
                     <div class="form-group d-flex align-items-center">
                         <label for="nama" class="col-sm-1 pl-0 col-form-label">Nama</label>
-                        @foreach ($user as $users)
-                            @if ($users->id == $userid)
-                                <input type="nama" class="form-control col-sm-11" id="nama"
-                                    placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
-                                <input type="hidden" name="user_id" value="{{ $userid }}">
-                                <input type="hidden" name="nama" value="{{ $users->nama }}">
-                            @endif
+                        @foreach ($result as $result)
+                            @foreach ($user as $user)
+                                @if ($user->id == $result->user_id)
+                                    <input type="nama" class="form-control col-sm-11" value="{{ $user->nama }}" disabled>
+                                @endif
+                            @endforeach
                         @endforeach
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="tahun" class="col-sm-1 pl-0 col-form-label">Tahun</label>
-                        <input type="tahun" class="form-control col-sm-11" id="tahun" placeholder="2023"
-                            name="tahun" value="{{ $rencanakinerja->tahun }}">
+                        <input type="tahun" class="form-control col-sm-11" value="{{ $result->tahun }}" disabled>
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="periode" class="col-sm-1 pl-0 col-form-label">Periode</label>
-                        <input type="periode" class="form-control col-sm-11" id="periode"
-                            placeholder="5 Januari - 23 Desember" name="periode" value="{{ $rencanakinerja->periode }}">
+                        <input type="periode" class="form-control col-sm-11" value="{{ $result->periode }}" disabled>
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="wilayah" class="col-sm-1 pl-0 col-form-label">Wilayah</label>
-                        <input type="wilayah" class="form-control col-sm-11" id="wilayah" placeholder="Pusat"
-                            name="wilayah" value="{{ $rencanakinerja->wilayah }}">
+                        <input type="wilayah" class="form-control col-sm-11" value="{{ $result->wilayah }}" disabled>
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="unitkerja" class="col-sm-1 pl-0 col-form-label">Unit Kerja</label>
-                        <input type="unitkerja" class="form-control col-sm-11" id="unitkerja"
-                            placeholder="Pusat Pendidikan dan Pelatihan" name="unit_kerja"
-                            value="{{ $rencanakinerja->unit_kerja }}">
+                        <input type="unitkerja" class="form-control col-sm-11" value="{{ $result->unit_kerja }}" disabled>
                     </div>
 
                     <div class="form-group d-flex align-items-center">
                         <label for="kinerja" class="col-sm-1 pl-0 col-form-label">Kinerja</label>
                         @if ($rencanakinerja->kinerja == 'utama')
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="kjutama" value="utama" name="kinerja"
+                                <input class="form-check-input" type="checkbox" id="kjutama" value="utama" 
                                     onclick="toggleCheckbox(this)" checked>
                                 <label class="form-check-label" for="inlineCheckbox1">Utama</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="kjtambahan" value="tambahan"
-                                    name="kinerja" onclick="toggleCheckbox(this)" disabled>
+                                     onclick="toggleCheckbox(this)" disabled>
                                 <label class="form-check-label" for="inlineCheckbox2">Tambahan</label>
                             </div>
                         @else
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="kjutama" value="utama" name="kinerja"
+                                <input class="form-check-input" type="checkbox" id="kjutama" value="utama" 
                                     onclick="toggleCheckbox(this)" disabled>
                                 <label class="form-check-label" for="inlineCheckbox1">Utama</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="kjtambahan" value="tambahan"
-                                    name="kinerja" onclick="toggleCheckbox(this)" checked>
+                                     onclick="toggleCheckbox(this)" checked>
                                 <label class="form-check-label" for="inlineCheckbox2">Tambahan</label>
                             </div>
                         @endif
@@ -83,8 +77,8 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="jenisrk">Jenis</label>
-                        <input type="jenisrk" class="form-control" id="jenisrk"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="jenis" value="{{ $rencanakinerja->jenis }}">
+                        <input type="jenisrk" class="form-control" id="jenisrk" placeholder="Lorem Ipsum Dolor Sit Amet"
+                            name="jenis" value="{{ $rencanakinerja->jenis }}">
                     </div>
                     <div class="form-group">
                         <label for="rkatasan">Rencana Kinerja Atasan</label>
@@ -101,8 +95,7 @@
                     <div class="form-group">
                         <label for="aspek">Aspek</label>
                         <input type="aspek" class="form-control" id="aspek"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="aspek"
-                            value="{{ $rencanakinerja->aspek }}">
+                            placeholder="Lorem Ipsum Dolor Sit Amet" name="aspek" value="{{ $rencanakinerja->aspek }}">
                     </div>
                     <div class="form-group">
                         <label for="iki">IKI</label>
