@@ -43,22 +43,21 @@
                   <tbody>
                      @foreach ($uraiankegiatan as $kegiatan)
                      <tr>
-                        <td>{{ $kegiatan->no }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $kegiatan->pembuat }}</td>
                         <td>{{ $kegiatan->fungsi }}</td>
                         <td>{{ $kegiatan->uraian_kegiatan }}</td>
                         <td>
                            <button class="btn btn-icon btn-edit btn-sm">
-                              <a href="/admin-masterutaiankegiatan/uraiankegiatan/{{ $kegiatan->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
+                               <a href="{{ route('listuraiankredit.edit', ['id' => $kegiatan->id]) }}"
+                                   class="action-link"><i class="fas fa-edit"></i></a>
+
+                           </button> |
+                           <button class="btn btn-icon btn-delete btn-sm">
+                               <a href="{{ route('listuraiankredit.delete', ['id' => $kegiatan->id]) }}"
+                                   class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
                            </button>
-                        </td>                                 
-                        <td>                                    
-                           <form action="/admin-masterutaiankegiatan/uraiankegiatan/{{ $kegiatan->id }}" method="POST" class="delete-form">
-                              @csrf
-                              @method('delete')
-                              <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
-                           </form>
-                        </td>
+                       </td>
                      </tr>
                          
                      @endforeach

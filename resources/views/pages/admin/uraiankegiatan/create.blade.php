@@ -15,10 +15,6 @@
             <div class="row mb-8">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="nomor">No</label>
-                        <input type="nomor" class="form-control" id="nomor" placeholder="Lorem Ipsum Dolor Sit Amet" name="no">
-                    </div>
-                    <div class="form-group">
                         <label for="pembuat">Pembuat</label>
                         @foreach ($user as $users)
                             @if ($users->id == $userid)

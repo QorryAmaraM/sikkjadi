@@ -14,22 +14,13 @@
         <form action="/admin-masterutaiankegiatan/uraiankegiatan/{{ $uraiankegiatan->id }}" method="POST">
             @csrf
             @method('put')
-
             <div class="row mb-8">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="nomor">No</label>
-                        <input type="nomor" class="form-control" id="nomor" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="no" value="{{ $uraiankegiatan->no }}">
-                    </div>
-                    <div class="form-group">
                         <label for="pembuat">Pembuat</label>
                         @foreach ($user as $users)
-                            @if ($users->id == $userid)
-                                <input type="pembuat" class="form-control col-sm-11" id="pembuat"
-                                    placeholder="Lorem Ipsum" name="pembuat" value="{{ $users->nama }}" disabled>
-                                <input type="hidden" name="user_id" value="{{ $userid }}">
-                                <input type="hidden" name="pembuat" value="{{ $users->nama }}">
+                            @if ($users->id == $uraiankegiatan->user_id)
+                                <input type="pembuat" class="form-control col-sm-11" value="{{ $users->nama }}" disabled>
                             @endif
                         @endforeach
                     </div>

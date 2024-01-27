@@ -14,7 +14,7 @@
             <div class="col-sm-6">
                 <div class="search form-group d-flex align-items-center">
                     <label for="searchSelect" class="mb-0 mr-4">Pegawai</label>
-                    <select name="search" id="search" class="form-control">
+                    <select name="search_luar" id="search_luar" class="form-control">
                         <option value="">Pilih Pegawai</option>
                         @php
                             $namaArray = [];
@@ -47,16 +47,18 @@
 
 
         <div class="row">
+
             <div class="col-sm-6">
                 <div class="inner-form">
                     <div class="input-form">
-                        <input id="search" type="text" placeholder="Pencarian" />
+                        <input id="search" name="search" type="text" placeholder="Pencarian" />
                         <div class="input-form-append align-items-center">
                             <i class="fas fa-search"></i>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
                 <a href="{{ url('/admin-perencanaankerja/spktahunan/create') }}" type="button" class="btn add-button">+
                     Tambah</a>
@@ -116,7 +118,9 @@
 
 
     <script type="text/javascript">
-        $('#search').on('change', function() {
+        var savedValue = "";
+
+        $('#search_luar').on('change', function() {
 
             $value = $(this).val();
 

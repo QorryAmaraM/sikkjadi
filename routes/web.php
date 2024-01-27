@@ -59,7 +59,7 @@ Route::middleware(['checkRole:1'])->group(function () {
     Route::get('/admin-masterangkakredit/listangkakredit', [ListAngkaKreditController::class, 'index'])->name('admin_listangkakredit');
     Route::get('/admin-masterangkakredit/listangkakredit/{id}/edit', [ListAngkaKreditController::class, 'edit'])->name('listangkakredit.edit');
     Route::put('/admin-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'update']);
-    Route::delete('/admin-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy'])->name('listangkakredit.delete');
+    Route::get('/admin-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy'])->name('listangkakredit.delete');
 
     //Entri Angka Kredit
     Route::get('/admin-masterangkakredit/entriangkakredit', [EntriAngkaKreditController::class, 'index'])->name('admin_entriangkakredit');
@@ -69,9 +69,10 @@ Route::middleware(['checkRole:1'])->group(function () {
     Route::get('/admin-masteruraiankegiatan/uraiankegiatan', [ListUraianKegiatanController::class, 'index'])->name('admin_uraiankegiatan');
     Route::get('/admin-masterutaiankegiatan/uraiankegiatan/create', [ListUraianKegiatanController::class, 'create']);
     Route::post('/admin-masterutaiankegiatan/uraiankegiatan/store', [ListUraianKegiatanController::class, 'store']);
-    Route::get('/admin-masterutaiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit']);
+    Route::get('/admin-masterutaiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit'])->name('listuraiankredit.edit');
     Route::put('/admin-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'update']);
-    Route::delete('/admin-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'destroy']);
+    Route::delete('/admin-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'destroy'])->name('listuraiankredit.delete');
+
 
     //CKP-T
     Route::get('/admin-ckp/ckpt', [CKPTController::class, 'index'])->name('admin_ckpt');
