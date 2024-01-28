@@ -27,7 +27,15 @@
                     </div>
                     <div class="form-group">
                         <label for="fungsi">Fungsi</label>
-                        <input type="fungsi" class="form-control" id="fungsi" placeholder="Lorem Ipsum Dolor Sit Amet" name="fungsi">
+                        <select class="form-control" data-width="75%" id="fungsi" name="fungsi">
+                            <option value="">Pilih Fungsi</option>
+                            <option value="IPDS">IPDS</option>
+                            <option value="Sosial">Sosial</option>
+                            <option value="Umum">Umum</option>
+                            <option value="Distribusi">Distribusi</option>
+                            <option value="Produksi">Produksi</option>
+                            <option value="Nerwilis">Nerwilis</option>                         
+                         </select>
                     </div>
                     <div class="form-group">
                         <label for="kegiatan">Uraian Kegiatan</label>

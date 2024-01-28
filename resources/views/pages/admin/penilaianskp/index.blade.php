@@ -61,10 +61,10 @@
                         <select name="kinerja" id="kinerja" class="form-control">
                             <option value="">Kinerja</option>
                             <option value="utama">Utama</option>
-                            <option value="tambahan">Tambahan</option>                           
+                            <option value="tambahan">Tambahan</option>
                         </select>
                     </div>
-                    
+
                 </div>
             </div>
         </form>
@@ -182,7 +182,7 @@
         </div>
     </div>
     <!-- /.container-fluid -->
-    <script>        
+    <script>
         var savedValue = "";
         var savedUnitkerjaValue = "";
         var savedJenisValue = "";

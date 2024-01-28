@@ -71,17 +71,16 @@ Route::middleware(['checkRole:1'])->group(function () {
     Route::post('/admin-masterutaiankegiatan/uraiankegiatan/store', [ListUraianKegiatanController::class, 'store']);
     Route::get('/admin-masterutaiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit'])->name('listuraiankredit.edit');
     Route::put('/admin-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'update']);
-    Route::delete('/admin-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'destroy'])->name('listuraiankredit.delete');
-
+    Route::get('/admin-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'destroy'])->name('listuraiankredit.delete');
 
     //CKP-T
     Route::get('/admin-ckp/ckpt', [CKPTController::class, 'index'])->name('admin_ckpt');
-    Route::get('/admin-ckp/ckpt/{nama}/index', [CKPTController::class, 'index']);
+    Route::get('/admin-ckp/ckpt/search', [CKPTController::class, 'search']);
     Route::get('/admin-ckp/ckpt/create', [CKPTController::class, 'create']);
     Route::post('/admin-ckp/ckpt/store', [CKPTController::class, 'store']);
-    Route::get('/admin-ckp/ckpt/{id}/edit', [CKPTController::class, 'edit']);
+    Route::get('/admin-ckp/ckpt/{id}/edit', [CKPTController::class, 'edit'])->name('ckpt.edit');
     Route::put('/admin-ckp/ckpt/{id}', [CKPTController::class, 'update']);
-    Route::delete('/admin-ckp/ckpt/{id}', [CKPTController::class, 'destroy']);
+    Route::get('/admin-ckp/ckpt/{id}', [CKPTController::class, 'destroy'])->name('ckpt.delete');
 
     //CKP-R
     Route::get('/admin-ckp/ckpr', [CKPRController::class, 'index'])->name('admin_ckpr');

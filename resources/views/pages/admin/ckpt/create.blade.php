@@ -16,27 +16,25 @@
 
             <div class="row mb-8">
                 <div class="col-sm-12">
-                  <div class="form-group d-flex align-items-center">
-                     <label for="nama" class="col-sm-1 pl-0 col-form-label">Nama</label>
-                     @foreach ($user as $users)
-                         @if ($users->id == $userid)
-                             <input type="nama" class="form-control col-sm-11" id="nama"
-                                 placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
-                             <input type="hidden" name="user_id" value="{{ $userid }}">
-                             <input type="hidden" name="nama" value="{{ $users->nama }}">
-                         @endif
-                     @endforeach
-                 </div>
-                 <div class="form-group d-flex align-items-center">
-                     <label for="nip" class="col-sm-1 pl-0 col-form-label">NIP</label>
-                     @foreach ($user as $users)
-                         @if ($users->id == $userid)
-                             <input type="nama" class="form-control col-sm-11" id="nama"
-                                 placeholder="Lorem Ipsum" name="nip" value="{{ $users->nip }}" disabled>
-                             <input type="hidden" name="nip" value="{{ $users->nip }}">
-                         @endif
-                     @endforeach
-                 </div>
+                    <div class="form-group d-flex align-items-center">
+                        <label for="nama" class="col-sm-1 pl-0 col-form-label">Nama</label>
+                        @foreach ($user as $users)
+                            @if ($users->id == $userid)
+                                <input type="nama" class="form-control col-sm-11" id="nama"
+                                    placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
+                                <input type="hidden" name="user_id" value="{{ $userid }}">
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <label for="nip" class="col-sm-1 pl-0 col-form-label">NIP</label>
+                        @foreach ($user as $users)
+                            @if ($users->id == $userid)
+                                <input type="nama" class="form-control col-sm-11" id="nama"
+                                    placeholder="Lorem Ipsum" name="nip" value="{{ $users->nip }}" disabled>
+                            @endif
+                        @endforeach
+                    </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="tahun" class="col-sm-1 pl-0 col-form-label">Tahun</label>
                         <input type="tahun" class="form-control col-sm-11" id="tahun"
@@ -52,25 +50,38 @@
 
             <div class="row mb-8">
                 <div class="col-sm-12">
+
                     <div class="form-group">
-                        <label for="nomor">No</label>
-                        <input type="nomor" class="form-control" id="nomor" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="no">
+                        <label for="kegiatan">Uraian Kegiatan</label>
+                        <select class="form-control" data-width="75%" name="uraian_kegiatan_id">
+                            <option value="Semua Jenjang">Semua Jenjang</option>
+                            @foreach ($uraiankegiatan as $uraiankegiatan)
+                                <option value="{{ $uraiankegiatan->id }}">{{ $uraiankegiatan->uraian_kegiatan }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kodebutir">Kode Butir</label>
+                        <select class="form-control" data-width="75%" name="angka_kredit_id">
+                            <option value="Semua Jenjang">Semua Jenjang</option>
+                            @foreach ($angkakredit as $angkakredit)
+                                <option value="{{ $angkakredit->id }}">{{ $angkakredit->kode_butir }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="fungsi">Fungsi</label>
-                        <input type="fungsi" class="form-control" id="fungsi" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="fungsi">
+                        <label for="kode">Kode</label>
+                        <select class="form-control" data-width="75%" id="kode" name="kode">
+                            <option value="">Pilih Kode</option>
+                            <option value="utama">Utama</option>
+                            <option value="tambahan">Tambahan</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="periode">Periode</label>
                         <input type="periode" class="form-control" id="periode" placeholder="Lorem Ipsum Dolor Sit Amet"
                             name="periode">
-                    </div>
-                    <div class="form-group">
-                        <label for="kegiatan">Uraian Kegiatan</label>
-                        <input type="kegiatan" class="form-control" id="kegiatan" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="uraian_kegiatan">
                     </div>
                     <div class="form-group">
                         <label for="satuan">Satuan</label>
@@ -81,21 +92,6 @@
                         <label for="target">Target</label>
                         <input type="target" class="form-control" id="target" placeholder="Lorem Ipsum Dolor Sit Amet"
                             name="target">
-                    </div>
-                    <div class="form-group">
-                        <label for="kodebutir">Kode Butir</label>
-                        <input type="kodebutir" class="form-control" id="kodebutir" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="kode_butir">
-                    </div>
-                    <div class="form-group">
-                        <label for="angkakredit">Angka Kredit</label>
-                        <input type="angkakredit" class="form-control" id="angkakredit"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="angka_kredit">
-                    </div>
-                    <div class="form-group">
-                        <label for="kode">Kode</label>
-                        <input type="kode" class="form-control" id="kode"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="kode">
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>

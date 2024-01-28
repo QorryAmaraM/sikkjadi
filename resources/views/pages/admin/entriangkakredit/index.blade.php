@@ -16,7 +16,7 @@
                   <div class="col-sm-12"> 
                      <div class="form-group d-flex align-items-center">
                         <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Jenis Fungsional</label>
-                        <select class="selectpicker flex-grow-1" data-width="75%" name="jenis_fungsional">
+                        <select class="form-control" data-width="75%" name="jenis_fungsional">
                            <option value="Semua Jenjang">Semua Jenjang</option>
                            <option value="Admininstrator">Admininstrator</option>
                            <option value="Pengawas">Pengawas</option>

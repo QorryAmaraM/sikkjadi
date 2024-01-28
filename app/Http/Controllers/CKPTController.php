@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\ckpt;
 use App\Models\user;
+use App\Models\entri_angka_kredit;
+use App\Models\list_uraian_kegiatan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -15,6 +17,9 @@ class CKPTController extends Controller
     {
         $ckpt = ckpt::all();
         $userid = Auth::user()->role_id;
+
+
+
         return view('pages.users.kepalabps.ckpt.depan', compact(['ckpt']));
     }
 
@@ -22,9 +27,14 @@ class CKPTController extends Controller
     {
         $userid = Auth::user()->role_id;
         $ckpt = ckpt::all();
+        $user = user::all();
+        $result = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
+            ->get();
         switch ($userid) {
             case '1':
-                return view('pages.admin.ckpt.index', compact(['ckpt']));
+                return view('pages.admin.ckpt.index', compact(['user', 'ckpt', 'result']));
                 break;
             case '2':
                 return view('pages.users.kepalabps.ckpt.index', compact(['ckpt']));
@@ -41,14 +51,16 @@ class CKPTController extends Controller
         }
     }
 
-    //Cread
+    //Create
     public function create(Request $request)
     {
         $userid = Auth::user()->role_id;
+        $angkakredit = entri_angka_kredit::all();
+        $uraiankegiatan = list_uraian_kegiatan::all();
         $user = user::all();
         switch ($userid) {
             case '1':
-                return view('pages.admin.ckpt.create', compact(['user']));
+                return view('pages.admin.ckpt.create', compact(['user', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '2':
                 return view('pages.users.kepalabps.ckpt.create', compact(['user']));
@@ -94,9 +106,16 @@ class CKPTController extends Controller
         $userid = Auth::user()->role_id;
         $ckpt = ckpt::find($id);
         $user = user::all();
+        $angkakredit = entri_angka_kredit::all();
+        $uraiankegiatan = list_uraian_kegiatan::all();
+        $result = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
+            ->where('ckpts.id', 'like', '%' . $id . '%')
+            ->get();
         switch ($userid) {
             case '1':
-                return view('pages.admin.ckpt.edit', compact(['ckpt', 'user']));
+                return view('pages.admin.ckpt.edit', compact(['ckpt', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '2':
                 return view('pages.users.kepalabps.ckpt.edit', compact(['ckpt', 'user']));
@@ -160,5 +179,47 @@ class CKPTController extends Controller
                 return redirect('/staf-ckp/ckpt');
                 break;
         }
+    }
+
+    //Search
+    public function search(Request $request)
+    {
+        $output = "";
+        $iterationNumber = 1;
+
+        $result = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
+            ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
+            ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
+            ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
+            ->get();
+
+        foreach ($result as $result) {
+            $output .=
+                '<tr> 
+            
+            <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->fungsi . ' </td>
+            <td> ' . $result->uraian_kegiatan . ' </td>
+            <td> ' . $result->kode_butir . ' </td>
+            <td> ' . $result->angka_kredit . ' </td>
+            <td> ' . $result->kode . ' </td>
+            <td> ' . $result->periode . ' </td>
+            <td> ' . $result->satuan . ' </td>
+            <td> ' . $result->target . ' </td>
+            <td> ' . $result->keterangan . ' </td>
+
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('ckpt.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('ckpt.delete', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>   
+                          
+            </tr>';
+
+            $iterationNumber++;
+        }
+        return response($output);
     }
 }
