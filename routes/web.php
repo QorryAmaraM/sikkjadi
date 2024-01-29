@@ -89,15 +89,17 @@ Route::middleware(['checkRole:1'])->group(function () {
     Route::post('/admin-ckp/ckpr/store', [CKPRController::class, 'store']);
     Route::get('/admin-ckp/ckpr/{id}/edit', [CKPRController::class, 'edit'])->name('ckpr.edit');
     Route::put('/admin-ckp/ckpr/{id}', [CKPRController::class, 'update']);
-    Route::delete('/admin-ckp/ckpr/{id}', [CKPRController::class, 'destroy'])->name('ckpr.delete');
+    Route::get('/admin-ckp/ckpr/{id}', [CKPRController::class, 'destroy'])->name('ckpr.delete');
 
     //Penilaian CKPR
     Route::get('/admin-ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('admin_penilaianckpr');
-    Route::get('/admin-ckp/penilaianckpr/create', [PenilaianCKPRController::class, 'create']);
+    Route::get('/admin-ckp/penilaianckpr/search-create', [PenilaianCKPRController::class, 'search_create']);
+    Route::get('/admin-ckp/penilaianckpr/create-index', [PenilaianCKPRController::class, 'create_index']);
+    Route::get('/admin-ckp/penilaianckpr/create/{id}', [PenilaianCKPRController::class, 'create'])->name('penilaianckpr.create');
     Route::post('/admin-ckp/penilaianckpr/store', [PenilaianCKPRController::class, 'store']);
-    Route::get('/admin-ckp/penilaianckpr/{id}/edit', [PenilaianCKPRController::class, 'edit']);
+    Route::get('/admin-ckp/penilaianckpr/{id}/edit', [PenilaianCKPRController::class, 'edit'])->name('penilaianckpr.edit');
     Route::put('/admin-ckp/penilaianckpr/{id}', [PenilaianCKPRController::class, 'update']);
-    Route::delete('/admin-ckp/penilaianckpr/{id}', [PenilaianCKPRController::class, 'destroy']);
+    Route::get('/admin-ckp/penilaianckpr/{id}', [PenilaianCKPRController::class, 'destroy'])->name('penilaianckpr.delete');
 
     //Monitoring CKP
     Route::get('/admin-monitoring/monitoringckp', [MonitoringCKPController::class, 'index'])->name('admin_monitoringckp');

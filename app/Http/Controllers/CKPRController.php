@@ -96,9 +96,16 @@ class CKPRController extends Controller
         $userid = Auth::user()->role_id;
         $ckpr = ckpr::find($id);
         $user = user::all();
+        $angkakredit = entri_angka_kredit::all();
+        $uraiankegiatan = list_uraian_kegiatan::all();
+        $result = ckpr::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckprs.*')
+            ->where('ckprs.id', 'like', '%' . $id . '%')
+            ->get();
         switch ($userid) {
             case '1':
-                return view('pages.admin.ckpr.edit', compact(['ckpr', 'user']));
+                return view('pages.admin.ckpr.edit', compact(['ckpr', 'user','result', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '2':
                 return view('pages.users.kepalabps.ckpr.edit', compact(['ckpr', 'user']));

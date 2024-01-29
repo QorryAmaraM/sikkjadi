@@ -102,7 +102,7 @@
                       </div>
                   </div>
                   <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                      <a href="/admin-ckp/penilaianckpr/create" type="button" class="btn add-button">+ Tambah</a>
+                      <a href="/admin-ckp/penilaianckpr/create-index" type="button" class="btn add-button">+ Tambah</a>
                       <button class="btn btn-icon btn-print btn-sm">
                           <i class="fas fa-print"></i>
                       </button>
@@ -146,24 +146,19 @@
                                           <td>{{ $nilaickpr->kode_butir }}</td>
                                           <td>{{ $nilaickpr->angka_kredit }}</td>
                                           <td>{{ $nilaickpr->kode }}</td>
-                                          <td>{{ $nilaickpr->keterangan_staff }}</td>
+                                          <td>{{ $nilaickpr->keterangan }}</td>
                                           <td>{{ $nilaickpr->keterangan_penilai }}</td>
                                           <td>{{ $nilaickpr->penilai }}</td>
                                           <td>
-                                              <button class="btn btn-icon btn-edit btn-sm">
-                                                  <a href="/ckp/penilaianckpr/{{ $nilaickpr->id }}/edit"
-                                                      class="action-link"><i class="fas fa-edit"></i>
-                                              </button>
-                                          </td>
-                                          <td>
-                                              <form action="/ckp/penilaianckpr/{{ $nilaickpr->id }}" method="POST"
-                                                  class="delete-form">
-                                                  @csrf
-                                                  @method('delete')
-                                                  <button class="btn btn-icon btn-delete btn-sm"><i
-                                                          class="fas fa-trash-can"></i></button>
-                                              </form>
-                                          </td>
+                                             <button class="btn btn-icon btn-edit btn-sm">
+                                                 <a href="{{ route('penilaianckpr.edit', ['id' => $nilaickpr->id]) }}" class="action-link"><i
+                                                         class="fas fa-edit"></i></a>
+                                             </button>
+                                             <button class="btn btn-icon btn-delete btn-sm">
+                                                 <a href="{{ route('penilaianckpr.delete', ['id' => $nilaickpr->id]) }}"
+                                                     class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
+                                             </button>
+                                         </td>
                                       </tr>
                                   @endforeach
                               </tbody>
