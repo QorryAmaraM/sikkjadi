@@ -84,11 +84,12 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //CKP-R
     Route::get('/admin-ckp/ckpr', [CKPRController::class, 'index'])->name('admin_ckpr');
+    Route::get('/admin-ckp/ckpr/search', [CKPRController::class, 'search']);
     Route::get('/admin-ckp/ckpr/create', [CKPRController::class, 'create']);
     Route::post('/admin-ckp/ckpr/store', [CKPRController::class, 'store']);
-    Route::get('/admin-ckp/ckpr/{id}/edit', [CKPRController::class, 'edit']);
+    Route::get('/admin-ckp/ckpr/{id}/edit', [CKPRController::class, 'edit'])->name('ckpr.edit');
     Route::put('/admin-ckp/ckpr/{id}', [CKPRController::class, 'update']);
-    Route::delete('/admin-ckp/ckpr/{id}', [CKPRController::class, 'destroy']);
+    Route::delete('/admin-ckp/ckpr/{id}', [CKPRController::class, 'destroy'])->name('ckpr.delete');
 
     //Penilaian CKPR
     Route::get('/admin-ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('admin_penilaianckpr');

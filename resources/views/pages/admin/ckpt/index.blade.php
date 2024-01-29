@@ -128,9 +128,9 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="alldata">
                             @foreach ($result as $ckpt)
-                                <tr  class="alldata">
+                                <tr >
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpt->fungsi }}</td>
                                     <td>{{ $ckpt->uraian_kegiatan }}</td>
@@ -153,10 +153,9 @@
                                         </button>
                                     </td>
                                 </tr>
-
-                                <tbody id="Content" class="searchdata"></tbody>
                             @endforeach
                         </tbody>
+                        <tbody id="Content" class="searchdata"></tbody>
                     </table>
                 </div>
             </div>
@@ -175,39 +174,33 @@
             if (savedValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
-            } 
-            else if (savedTahunValue) {
+            } else if (savedTahunValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
-            }
-            else if (savedBulanValue) {
+            } else if (savedBulanValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
-            }
-             else {
+            } else {
                 $('.alldata').show();
                 $('.searchdata').hide();
             }
 
             handleSearch(savedValue, savedTahunValue, savedBulanValue);
         });
-        
+
         $('#tahun').on('input', function() {
             savedTahunValue = $(this).val();
 
             if (savedTahunValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
-            } 
-            else if (savedValue) {
+            } else if (savedValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
-            }
-            else if (savedBulanValue) {
+            } else if (savedBulanValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
-            }
-            else {
+            } else {
                 $('.alldata').show();
                 $('.searchdata').hide();
             }
@@ -221,16 +214,13 @@
             if (savedBulanValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
-            } 
-            else if (savedTahunValue) {
+            } else if (savedTahunValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
-            }
-            else if (savedValue) {
+            } else if (savedValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
-            }
-            else {
+            } else {
                 $('.alldata').show();
                 $('.searchdata').hide();
             }
@@ -253,6 +243,5 @@
                 }
             });
         }
-
     </script>
 @endsection

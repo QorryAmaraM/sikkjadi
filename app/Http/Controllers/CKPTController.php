@@ -13,16 +13,6 @@ use Illuminate\Http\Request;
 class CKPTController extends Controller
 {
     //Read
-    public function depan(Request $request)
-    {
-        $ckpt = ckpt::all();
-        $userid = Auth::user()->role_id;
-
-
-
-        return view('pages.users.kepalabps.ckpt.depan', compact(['ckpt']));
-    }
-
     public function index(Request $request)
     {
         $userid = Auth::user()->role_id;
@@ -196,6 +186,7 @@ class CKPTController extends Controller
             ->get();
 
         foreach ($result as $result) {
+
             $output .=
                 '<tr> 
             
@@ -209,7 +200,6 @@ class CKPTController extends Controller
             <td> ' . $result->satuan . ' </td>
             <td> ' . $result->target . ' </td>
             <td> ' . $result->keterangan . ' </td>
-
             <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
                 <a href="' . route('ckpt.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
                 </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">

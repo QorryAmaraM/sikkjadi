@@ -16,9 +16,14 @@ class PenilaianCKPRController extends Controller
         $userid = Auth::user()->role_id;
         $user = user::all();
         $nilaickpr = penilaian_ckpr::all();
+        $result = penilaian_ckpr::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*','ckprs.*', 'penilaian_ckprs.*')
+            ->get();
         switch ($userid) {
             case '1':
-                return view('pages.admin.penilaianckpr.index', compact(['nilaickpr', 'user']));
+                return view('pages.admin.penilaianckpr.index', compact(['nilaickpr', 'user','result']));
                 break;
             case '2':
                 return view('pages.users.kepalabps.penilaianckpr.index', compact(['nilaickpr', 'user']));

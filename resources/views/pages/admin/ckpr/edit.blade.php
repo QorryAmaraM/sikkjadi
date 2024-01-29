@@ -11,7 +11,7 @@
 
         <!-- Content Row -->
 
-        <form action="/admin-ckp/ckpr/{{ $ckpr->id }}" method="POST">\
+        <form action="/admin-ckp/ckpr/{{ $ckpr->id }}" method="POST">
          @csrf
          @method('put')
 
