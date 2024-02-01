@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('jenis_fungsional');
-            $table->double('kode_butir');
+            $table->string('kode_butir');
             $table->text('isi_butir');
-            $table->double('angka_kredit');
+            $table->string('angka_kredit');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -17,14 +17,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('skp_tahunan_id');
             $table->enum('kinerja', ['utama','tambahan']);
-            $table->string('jenis');
-            $table->string('rencana_kinerja_atasan');
-            $table->string('rencana kinerja');
-            $table->string('aspek');
+            $table->string('jenis')->nullable();
+            $table->string('rencana_kinerja_atasan')->nullable();
+            $table->string('rencana kinerja')->nullable();
+            $table->string('aspek')->nullable();
             $table->string('iki');
-            $table->string('target_min');
-            $table->string('target_max');
-            $table->string('satuan');
+            $table->string('target_min')->nullable();
+            $table->string('target_max')->nullable();
+            $table->string('satuan')->nullable();
             $table->timestamps();
 
             $table->foreign('skp_tahunan_id')->references('id')->on('skp_tahunans')->onDelete('cascade');
