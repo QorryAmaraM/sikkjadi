@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <label for="fungsi">Fungsi</label>
                         <select class="form-control" data-width="75%" id="fungsi" name="fungsi">
-                            <option value="{{ $uraiankegiatan->uraian_kegiatan }}">{{ $uraiankegiatan->uraian_kegiatan }}</option>
+                            <option value="{{ $uraiankegiatan->fungsi }}">{{ $uraiankegiatan->fungsi }}</option>
                             <option value="IPDS">IPDS</option>
                             <option value="Sosial">Sosial</option>
                             <option value="Umum">Umum</option>

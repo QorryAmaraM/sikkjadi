@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('bulan');
             $table->string('satuan');
             $table->string('target');
-            $table->string('target_rev');
+            $table->string('target_rev')->nullable();
             $table->enum('kode', ['utama','tambahan']);
             $table->text('keterangan');
             $table->timestamps();
