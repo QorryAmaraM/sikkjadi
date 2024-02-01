@@ -15,21 +15,21 @@ return new class extends Migration
     {
         Schema::create('ckpts', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->double('nip');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('Angka_kredit_id');
+            $table->unsignedBigInteger('Uraian_kegiatan_id');
             $table->string('tahun');
             $table->string('bulan');
-            $table->string('no');
-            $table->string('fungsi');
-            $table->string('periode');
-            $table->text('uraian_kegiatan');
             $table->string('satuan');
             $table->string('target');
-            $table->double('kode_butir');
-            $table->double('angka_kredit');
-            $table->double('kode');
+            $table->string('target_rev');
+            $table->enum('kode', ['utama','tambahan']);
             $table->text('keterangan');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('Angka_kredit_id')->references('id')->on('entri_angka_kredits')->onDelete('cascade');
+            $table->foreign('Uraian_kegiatan_id')->references('id')->on('list_uraian_kegiatans')->onDelete('cascade');
         });
     }
 

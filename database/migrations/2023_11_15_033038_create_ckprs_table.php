@@ -15,25 +15,14 @@ return new class extends Migration
     {
         Schema::create('ckprs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->double('nip');
-            $table->string('tahun');
-            $table->string('bulan');
-            $table->string('no');
-            $table->string('fungsi');
-            $table->string('periode');
-            $table->text('uraian_kegiatan');
-            $table->string('satuan');
-            $table->string('target');
-            $table->string('target_rev');
+            $table->unsignedBigInteger('ckpt_id');
             $table->string('realisasi');
             $table->string('persen');
             $table->double('nilai');
-            $table->double('kode_butir');
-            $table->double('angka_kredit');
-            $table->double('kode');
-            $table->text('keterangan');
+            $table->enum('status', ['0','1']);
             $table->timestamps();
+
+            $table->foreign('ckpt_id')->references('id')->on('ckpts')->onDelete('cascade');
         });
     }
 

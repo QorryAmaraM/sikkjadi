@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('monitoring_presensis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('nip');
+            $table->unsignedBigInteger('user_id');
             $table->string('tahun');
             $table->string('bulan');
             $table->string('no');
@@ -38,6 +37,8 @@ return new class extends Migration
             $table->integer('tl4');
             $table->integer('jhk');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
