@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('rencana_kinerjas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('skp_tahunan_id');
-            $table->enum('kinerja', ['utama','tambahan']);
+            $table->enum('kinerja', ['utama','tambahan'])->nullable();
             $table->string('jenis')->nullable();
             $table->string('rencana_kinerja_atasan')->nullable();
             $table->string('rencana kinerja')->nullable();
             $table->string('aspek')->nullable();
-            $table->string('iki');
+            $table->string('iki')->nullable();
             $table->string('target_min')->nullable();
             $table->string('target_max')->nullable();
             $table->string('satuan')->nullable();
