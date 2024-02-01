@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('list_uraian_kegiatans', function (Blueprint $table) {
             $table->id();
-            $table->integer('no');
+            $table->unsignedBigInteger('user_id');
             $table->string('pembuat');
             $table->string('fungsi');
             $table->text('uraian_kegiatan');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

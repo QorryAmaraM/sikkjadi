@@ -192,13 +192,14 @@ class CKPTController extends Controller
             
             <td> ' . $iterationNumber . ' </td>
             <td> ' . $result->fungsi . ' </td>
+            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
             <td> ' . $result->uraian_kegiatan . ' </td>
+            <td> ' . $result->satuan . ' </td>
+            <td> ' . $result->target . ' </td>
+            <td> ' . $result->target_rev . ' </td>
             <td> ' . $result->kode_butir . ' </td>
             <td> ' . $result->angka_kredit . ' </td>
             <td> ' . $result->kode . ' </td>
-            <td> ' . $result->periode . ' </td>
-            <td> ' . $result->satuan . ' </td>
-            <td> ' . $result->target . ' </td>
             <td> ' . $result->keterangan . ' </td>
             <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
                 <a href="' . route('ckpt.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>

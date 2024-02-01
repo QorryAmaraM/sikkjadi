@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('entri_angka_kredits', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('jenis_fungsional');
             $table->double('kode_butir');
             $table->text('isi_butir');
             $table->double('angka_kredit');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

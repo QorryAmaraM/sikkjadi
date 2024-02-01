@@ -85,7 +85,9 @@ Route::middleware(['checkRole:1'])->group(function () {
     //CKP-R
     Route::get('/admin-ckp/ckpr', [CKPRController::class, 'index'])->name('admin_ckpr');
     Route::get('/admin-ckp/ckpr/search', [CKPRController::class, 'search']);
-    Route::get('/admin-ckp/ckpr/create', [CKPRController::class, 'create']);
+    Route::get('/admin-ckp/ckpr/create/index', [CKPRController::class, 'create_index']);
+    Route::get('/admin-ckp/ckpr/create/search', [CKPRController::class, 'create_search']);
+    Route::get('/admin-ckp/ckpr/create/{id}', [CKPRController::class, 'create'])->name('ckpr.create');
     Route::post('/admin-ckp/ckpr/store', [CKPRController::class, 'store']);
     Route::get('/admin-ckp/ckpr/{id}/edit', [CKPRController::class, 'edit'])->name('ckpr.edit');
     Route::put('/admin-ckp/ckpr/{id}', [CKPRController::class, 'update']);
@@ -93,6 +95,7 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //Penilaian CKPR
     Route::get('/admin-ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('admin_penilaianckpr');
+    Route::get('/admin-ckp/penilaianckpr/saerch', [PenilaianCKPRController::class, 'search']);
     Route::get('/admin-ckp/penilaianckpr/search-create', [PenilaianCKPRController::class, 'search_create']);
     Route::get('/admin-ckp/penilaianckpr/create-index', [PenilaianCKPRController::class, 'create_index']);
     Route::get('/admin-ckp/penilaianckpr/create/{id}', [PenilaianCKPRController::class, 'create'])->name('penilaianckpr.create');
@@ -103,19 +106,21 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //Monitoring CKP
     Route::get('/admin-monitoring/monitoringckp', [MonitoringCKPController::class, 'index'])->name('admin_monitoringckp');
+    Route::get('/admin-monitoring/monitoringckp/search', [MonitoringCKPController::class, 'search']);
     Route::get('/admin-monitoring/monitoringckp/create', [MonitoringCKPController::class, 'create']);
     Route::post('/admin-monitoring/monitoringckp/store', [MonitoringCKPController::class, 'store']);
-    Route::get('/admin-monitoring/monitoringckp/{id}/edit', [MonitoringCKPController::class, 'edit']);
+    Route::get('/admin-monitoring/monitoringckp/{id}/edit', [MonitoringCKPController::class, 'edit'])->name('monitoringckp.edit');
     Route::put('/admin-monitoring/monitoringckp/{id}', [MonitoringCKPController::class, 'update']);
-    Route::delete('/admin-monitoring/monitoringckp/{id}', [MonitoringCKPController::class, 'destroy']);
+    Route::delete('/admin-monitoring/monitoringckp/{id}', [MonitoringCKPController::class, 'destroy'])->name('monitoringckp.delete');
 
     //Monitoring Presensi
     Route::get('/admin-monitoring/monitoringpre', [MonitoringPresensiController::class, 'index'])->name('admin_monitoringpre');
+    Route::get('/admin-monitoring/monitorinpre/search', [MonitoringPresensiController::class, 'search']);
     Route::get('/admin-monitoring/monitorinpre/create', [MonitoringPresensiController::class, 'create']);
     Route::post('/admin-monitoring/monitorinpre/store', [MonitoringPresensiController::class, 'store']);
-    Route::get('/admin-monitoring/monitorinpre/{id}/edit', [MonitoringPresensiController::class, 'edit']);
+    Route::get('/admin-monitoring/monitorinpre/{id}/edit', [MonitoringPresensiController::class, 'edit'])->name('monitoringpresensi.edit');
     Route::put('/admin-monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'update']);
-    Route::delete('/admin-monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'destroy']);
+    Route::delete('/admin-monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'destroy'])->name('monitoringpresensi.delete');
 });
 
 //Kepala Bps

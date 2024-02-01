@@ -54,11 +54,6 @@
             <div class="row mb-8">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="nomor">No</label>
-                        <input type="nomor" class="form-control" id="nomor" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="no" value="{{ $monitoringpresensi->no }}">
-                    </div>
-                    <div class="form-group">
                         <label for="kode">Kode</label>
                         <input type="kode" class="form-control" id="kode" placeholder="Lorem Ipsum Dolor Sit Amet"
                             name="kode" value="{{ $monitoringpresensi->kode }}">

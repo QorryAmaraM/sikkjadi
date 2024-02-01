@@ -117,13 +117,14 @@
                             <tr>
                                 <th>No</th>
                                 <th>Fungsi</th>
+                                <th>Periode</th>
                                 <th>Uraian Kegiatan</th>
+                                <th>Satuan</th>
+                                <th>Target</th>
+                                <th>Target Rev</th>
                                 <th>Kode Butir</th>
                                 <th>Angka Kredit</th>
                                 <th>Kode</th>
-                                <th>Periode</th>
-                                <th>Satuan</th>
-                                <th>Target</th>
                                 <th>Keterangan</th>
                                 <th>Aksi</th>
                             </tr>
@@ -133,13 +134,14 @@
                                 <tr >
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpt->fungsi }}</td>
+                                    <td>{{ $ckpt->tahun }} {{ $ckpt->bulan }}</td>
                                     <td>{{ $ckpt->uraian_kegiatan }}</td>
+                                    <td>{{ $ckpt->satuan }}</td>
+                                    <td>{{ $ckpt->target }}</td>
+                                    <td>{{ $ckpt->target_rev }}</td>
                                     <td>{{ $ckpt->kode_butir }}</td>
                                     <td>{{ $ckpt->angka_kredit }}</td>
                                     <td>{{ $ckpt->kode }}</td>
-                                    <td>{{ $ckpt->periode }}</td>
-                                    <td>{{ $ckpt->satuan }}</td>
-                                    <td>{{ $ckpt->target }}</td>
                                     <td>{{ $ckpt->keterangan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">

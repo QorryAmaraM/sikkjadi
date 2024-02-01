@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('penilaian_skps', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('penilai_user_id');
             $table->unsignedBigInteger('rencanakinerja_id');
             $table->string('realisasi');
             $table->string('kondisi');
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->double('nilai_skp');
             $table->timestamps();
 
+            $table->foreign('penilai_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('rencanakinerja_id')->references('id')->on('rencana_kinerjas')->onDelete('cascade');
         });
     }

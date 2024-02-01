@@ -18,9 +18,10 @@ class PenilaianCKPRController extends Controller
         $user = user::all();
         $nilaickpr = penilaian_ckpr::all();
         $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
-            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckprs.*', 'penilaian_ckprs.*')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*')
             ->get();
         switch ($userid) {
             case '1':
@@ -45,7 +46,12 @@ class PenilaianCKPRController extends Controller
     public function create_index(Request $request)
     {
         $userid = Auth::user()->role_id;
-        $ckpr = ckpr::all();
+        $ckpr = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*')
+            ->get();
+
         $user = user::all();
         switch ($userid) {
             case '1':
@@ -70,9 +76,10 @@ class PenilaianCKPRController extends Controller
     {
         $userid = Auth::user()->role_id;
         $user = user::all();
-        $result = ckpr::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+        $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
-            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckprs.*')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*')
             ->where('ckprs.id', 'like', '%' . $id . '%')
             ->get();
         switch ($userid) {
@@ -197,17 +204,67 @@ class PenilaianCKPRController extends Controller
     }
 
     //Search
+    public function search(Request $request)
+    {
+        $output = "";
+        $iterationNumber = 1;
+
+        $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*')
+            ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
+            ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
+            ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
+            ->get();
+
+        foreach ($result as $result) {
+
+            $output .=
+                '<tr> 
+            
+            <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
+            <td> ' . $result->uraian_kegiatan . ' </td>
+            <td> ' . $result->satuan . ' </td>
+            <td> ' . $result->target . ' </td>
+            <td> ' . $result->realisasi . ' </td>
+            <td> ' . $result->persen . ' </td>
+            <td> ' . $result->nilai . ' </td>
+            <td> ' . $result->kode_butir . ' </td>
+            <td> ' . $result->angka_kredit . ' </td>
+            <td> ' . $result->kode . ' </td>
+            <td> ' . $result->keterangan . ' </td>
+            <td> ' . $result->keterangan_penilai . ' </td>
+            <td> ' . $result->penilai . ' </td>
+           
+
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('penilaianckpr.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('penilaianckpr.delete', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>   
+                          
+            </tr>';
+
+            $iterationNumber++;
+        }
+        return response($output);
+    }
+
     public function search_create(Request $request)
     {
         $output = "";
         $iterationNumber = 1;
 
-        $result = ckpr::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+        $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
-            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckprs.*')
-            ->where('ckprs.user_id', 'like', '%' . $request->search . '%')
-            ->where('ckprs.tahun', 'like', '%' . $request->tahun . '%')
-            ->where('ckprs.bulan', 'like', '%' . $request->bulan . '%')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*')
+            ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
+            ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
+            ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
             ->get();
 
         foreach ($result as $result) {
@@ -228,9 +285,9 @@ class PenilaianCKPRController extends Controller
             <td> ' . $statusBadge . ' </td>
 
             <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
-                <a href="' . route('ckpr.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
-                </button>' . ' </td>   
-                          
+                <a href="' . route('penilaianckpr.create', ['id' => $result->id]) . '" type="button" class="btn add-button">+ Nilai</a>
+                </button>' . ' </td>
+                
             </tr>';
 
             $iterationNumber++;
