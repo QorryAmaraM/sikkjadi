@@ -6,7 +6,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-black-800">Capaian Kinerja Karyawan Realisasi</h1>
+            <h1 class="h3 mb-0 text-black-800">Tambah Capaian Kinerja Pegawai Realisasi</h1>
         </div>
 
         <!-- Content Row -->
@@ -14,6 +14,7 @@
         <form>
             <div class="row mb-8">
                 <div class="col-sm-7">
+
                     <div class="search form-group d-flex align-items-center">
                         <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Nama</label>
                         <select name="search" id="search" class="form-control">
@@ -21,9 +22,9 @@
                             @php
                                 $namaArray = [];
                             @endphp
-                            @foreach ($result as $ckpr)
+                            @foreach ($result as $ckpt)
                                 @php
-                                    $userId = $ckpr->user_id;
+                                    $userId = $ckpt->user_id;
                                     $nama = '';
                                 @endphp
                                 @foreach ($user as $users)
@@ -44,6 +45,7 @@
                             @endforeach
                         </select>
                     </div>
+
                     <div class="form-group d-flex align-items-center">
                         <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Tahun</label>
                         <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="tahun">
@@ -99,12 +101,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <a href="/admin-ckp/ckpr/create/index" type="button" class="btn add-button">+ Tambah</a>
-                <button class="btn btn-icon btn-print btn-sm">
-                    <i class="fas fa-print"></i>
-                </button>
-            </div>
         </div>
 
         <div class="row">
@@ -115,60 +111,40 @@
                             <tr>
                                 <th>No</th>
                                 <th>Fungsi</th>
-                                <th>Uraian Kegiatan</th>
-                                <th>Kode Butir</th>
-                                <th>Angka Kredit</th>
-                                <th>Kode</th>
                                 <th>Periode</th>
+                                <th>Uraian Kegiatan</th>
                                 <th>Satuan</th>
                                 <th>Target</th>
                                 <th>Target Rev</th>
-                                <th>Realisasi</th>
-                                <th>Persen (%)</th>
-                                <th>Nilai</th>
+                                <th>Kode Butir</th>
+                                <th>Angka Kredit</th>
+                                <th>Kode</th>
                                 <th>Keterangan</th>
-                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @foreach ($result as $ckpr)
-                                <tr>
+                            @foreach ($result as $ckpt)
+                                <tr >
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $ckpr->fungsi }}</td>
-                                    <td>{{ $ckpr->uraian_kegiatan }}</td>
-                                    <td>{{ $ckpr->kode_butir }}</td>
-                                    <td>{{ $ckpr->angka_kredit }}</td>
-                                    <td>{{ $ckpr->kode }}</td>
-                                    <td>{{ $ckpr->periode }}</td>
-                                    <td>{{ $ckpr->satuan }}</td>
-                                    <td>{{ $ckpr->target }}</td>
-                                    <td>{{ $ckpr->target_rev }}</td>
-                                    <td>{{ $ckpr->realisasi }}</td>
-                                    <td>{{ $ckpr->persen }}</td>
-                                    <td>{{ $ckpr->nilai }}</td>
-                                    <td>{{ $ckpr->keterangan }}</td>
-                                    <td>
-                                        @if ($ckpr->status == '1')
-                                            <span class="badge badge-success">Sudah Diverifikasi</span>
-                                        @else
-                                            <span class="badge badge-danger">Belum Diverifikasi</span>
-                                        @endif
-                                    </td>
+                                    <td>{{ $ckpt->fungsi }}</td>
+                                    <td>{{ $ckpt->tahun }} {{ $ckpt->bulan }}</td>
+                                    <td>{{ $ckpt->uraian_kegiatan }}</td>
+                                    <td>{{ $ckpt->satuan }}</td>
+                                    <td>{{ $ckpt->target }}</td>
+                                    <td>{{ $ckpt->target_rev }}</td>
+                                    <td>{{ $ckpt->kode_butir }}</td>
+                                    <td>{{ $ckpt->angka_kredit }}</td>
+                                    <td>{{ $ckpt->kode }}</td>
+                                    <td>{{ $ckpt->keterangan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('ckpr.edit', ['id' => $ckpr->id]) }}" class="action-link"><i
-                                                    class="fas fa-edit"></i></a>
-                                        </button>
-                                        <button class="btn btn-icon btn-delete btn-sm">
-                                            <a href="{{ route('ckpr.delete', ['id' => $ckpr->id]) }}"
-                                                class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
+                                            <a href="/admin-ckp/ckpr/create/{{ $ckpt->id }}" type="button" class="btn add-button">+ Realisasi</a>
                                         </button>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
-
                         <tbody id="Content" class="searchdata"></tbody>
                     </table>
                 </div>
@@ -176,6 +152,7 @@
         </div>
     </div>
     <!-- /.container-fluid -->
+
     <script>
         var savedValue = "";
         var savedTahunValue = "";
@@ -244,7 +221,7 @@
         function handleSearch(value, tahunvalue, bulanvalue) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-ckp/ckpr/search') }}',
+                url: '{{ URL::to('/admin-ckp/ckpr/create/search') }}',
                 data: {
                     'search': value,
                     'tahun': tahunvalue,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\monitoring_ckp;
 use App\Models\user;
+use App\Models\penilaian_ckpr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -15,9 +16,16 @@ class MonitoringCKPController extends Controller
     {
         $userid = Auth::user()->role_id;
         $monitoringckp = monitoring_ckp::all();
+        $user = user::all();
+        $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*')
+            ->get();
         switch ($userid) {
             case '1':
-                return view('pages.admin.monitoringckp.index', compact(['monitoringckp']));
+                return view('pages.admin.monitoringckp.index', compact(['monitoringckp', 'user', 'result']));
                 break;
             case '2':
                 return view('pages.users.kepalabps.monitoringckp.index', compact(['monitoringckp']));
@@ -61,7 +69,7 @@ class MonitoringCKPController extends Controller
     public function store(Request $request)
     {
         $userid = Auth::user()->role_id;
-        monitoring_ckp::create($request->except(['_token','submit']));
+        monitoring_ckp::create($request->except(['_token', 'submit']));
         switch ($userid) {
             case '1':
                 return redirect('/admin-monitoring/monitoringckp');
@@ -110,7 +118,7 @@ class MonitoringCKPController extends Controller
     {
         $userid = Auth::user()->role_id;
         $monitoringckp = monitoring_ckp::find($id);
-        $monitoringckp->update($request->except(['_token','submit']));
+        $monitoringckp->update($request->except(['_token', 'submit']));
         switch ($userid) {
             case '1':
                 return redirect('/admin-monitoring/monitoringckp');
@@ -155,5 +163,44 @@ class MonitoringCKPController extends Controller
         }
     }
 
-   
+    //Search
+    public function search(Request $request)
+    {
+        $output = "";
+        $iterationNumber = 1;
+
+        $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*')
+            ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
+            ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
+            ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
+            ->get();
+
+        foreach ($result as $result) {
+
+            $output .=
+                '<tr> 
+            
+            <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
+            <td> ' . $result->nilai . ' </td>
+            <td> ' . $result->penilai . ' </td>
+            <td> ' . $result->keterangan_penilai . ' </td>
+           
+
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('monitoringckp.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('monitoringckp.delete', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>   
+                          
+            </tr>';
+
+            $iterationNumber++;
+        }
+        return response($output);
+    }
 }

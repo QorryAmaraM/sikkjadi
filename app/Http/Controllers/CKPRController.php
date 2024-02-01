@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\ckpr;
+use App\Models\ckpt;
 use App\Models\user;
 use App\Models\entri_angka_kredit;
 use App\Models\list_uraian_kegiatan;
@@ -18,13 +19,15 @@ class CKPRController extends Controller
         $userid = Auth::user()->role_id;
         $ckpr = ckpr::all();
         $user = user::all();
-        $result = ckpr::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+        $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
-            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckprs.*')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select( 'entri_angka_kredits.*', 'list_uraian_kegiatans.*','ckpts.*', 'ckprs.*')
             ->get();
+
         switch ($userid) {
             case '1':
-                return view('pages.admin.ckpr.index', compact(['ckpr','user','result']));
+                return view('pages.admin.ckpr.index', compact(['ckpr', 'user', 'result']));
                 break;
             case '2':
                 return view('pages.users.kepalabps.ckpr.index', compact(['ckpr']));
@@ -42,15 +45,19 @@ class CKPRController extends Controller
     }
 
     //Create
-    public function create(Request $request)
+    public function create_index(Request $request)
     {
         $userid = Auth::user()->role_id;
-        $angkakredit = entri_angka_kredit::all();
-        $uraiankegiatan = list_uraian_kegiatan::all();
+        $ckpt = ckpt::all();
+        $user = user::all();
+        $result = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
+            ->get();
         $user = user::all();
         switch ($userid) {
             case '1':
-                return view('pages.admin.ckpr.create', compact(['user', 'angkakredit', 'uraiankegiatan']));
+                return view('pages.admin.ckpr.create-index', compact(['user', 'ckpt', 'result']));
                 break;
             case '2':
                 return view('pages.users.kepalabps.ckpr.create', compact(['user']));
@@ -67,10 +74,78 @@ class CKPRController extends Controller
         }
     }
 
+    public function create($id)
+    {
+        $userid = Auth::user()->role_id;
+        $result = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
+            ->where('ckpts.id', 'like', '%'.$id.'%')
+            ->get();
+        $user = user::all();
+        switch ($userid) {
+            case '1':
+                return view('pages.admin.ckpr.create', compact(['user', 'result']));
+                break;
+            case '2':
+                return view('pages.users.kepalabps.ckpr.create', compact(['user']));
+                break;
+            case '3':
+                return view('pages.users.kepalabu.ckpr.create', compact(['user']));
+                break;
+            case '4':
+                return view('pages.users.kf.ckpr.create', compact(['user']));
+                break;
+            case '5':
+                return view('pages.users.staf.ckpr.create', compact(['user']));
+                break;
+        }
+    }
+
+    public function create_search(Request $request)
+    {
+        $output = "";
+        $iterationNumber = 1;
+
+        $result = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
+            ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
+            ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
+            ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
+            ->get();
+
+        foreach ($result as $result) {
+
+            $output .=
+                '<tr> 
+            
+            <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->fungsi . ' </td>
+            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
+            <td> ' . $result->uraian_kegiatan . ' </td>
+            <td> ' . $result->satuan . ' </td>
+            <td> ' . $result->target . ' </td>
+            <td> ' . $result->target_rev . ' </td>
+            <td> ' . $result->kode_butir . ' </td>
+            <td> ' . $result->angka_kredit . ' </td>
+            <td> ' . $result->kode . ' </td>
+            <td> ' . $result->keterangan . ' </td>
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('ckpr.create', ['id' => $result->id]) . '" type="button" class="btn add-button">+ Realisasi</a>
+                </button>' . ' </td> 
+                          
+            </tr>';
+
+            $iterationNumber++;
+        }
+        return response($output);
+    }
+
     public function store(Request $request)
     {
         $userid = Auth::user()->role_id;
-        ckpr::create($request->except(['_token','submit']));
+        ckpr::create($request->except(['_token', 'submit']));
         switch ($userid) {
             case '1':
                 return redirect('/admin-ckp/ckpr');
@@ -105,7 +180,7 @@ class CKPRController extends Controller
             ->get();
         switch ($userid) {
             case '1':
-                return view('pages.admin.ckpr.edit', compact(['ckpr', 'user','result', 'angkakredit', 'uraiankegiatan']));
+                return view('pages.admin.ckpr.edit', compact(['ckpr', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '2':
                 return view('pages.users.kepalabps.ckpr.edit', compact(['ckpr', 'user']));
@@ -126,7 +201,7 @@ class CKPRController extends Controller
     {
         $userid = Auth::user()->role_id;
         $ckpr = ckpr::find($id);
-        $ckpr->update($request->except(['_token','submit']));
+        $ckpr->update($request->except(['_token', 'submit']));
         switch ($userid) {
             case '1':
                 return redirect('/admin-ckp/ckpr');
@@ -177,16 +252,17 @@ class CKPRController extends Controller
         $output = "";
         $iterationNumber = 1;
 
-        $result = ckpr::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+        $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
-            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckprs.*')
-            ->where('ckprs.user_id', 'like', '%' . $request->search . '%')
-            ->where('ckprs.tahun', 'like', '%' . $request->tahun . '%')
-            ->where('ckprs.bulan', 'like', '%' . $request->bulan . '%')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select('ckpts.*', 'entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckprs.*')
+            ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
+            ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
+            ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
             ->get();
 
         foreach ($result as $result) {
-            $statusBadge = ($result->status == '0') ? '<span class="badge badge-success">Sudah Diverifikasi</span>' : '<span class="badge badge-danger">Belum Diverifikasi</span>';
+            $statusBadge = ($result->status == '1') ? '<span class="badge badge-success">Sudah Diverifikasi</span>' : '<span class="badge badge-danger">Belum Diverifikasi</span>';
             $output .=
                 '<tr> 
             
@@ -219,4 +295,3 @@ class CKPRController extends Controller
         return response($output);
     }
 }
-
