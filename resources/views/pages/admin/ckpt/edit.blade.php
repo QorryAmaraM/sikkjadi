@@ -114,8 +114,8 @@
                             name="satuan">
                     </div>
                     <div class="form-group">
-                        <label for="target">Target</label>
-                        <input type="target" class="form-control" id="target" value="{{ $result->target }}"
+                        <label for="target">Target Revisi</label>
+                        <input type="target" class="form-control" id="target" value="{{ $result->target_rev }}"
                             name="target">
                     </div>
                     <div class="form-group">

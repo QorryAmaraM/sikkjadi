@@ -130,10 +130,12 @@ class PenilaianCKPRController extends Controller
         $userid = Auth::user()->role_id;
         $nilaickpr = penilaian_ckpr::find($id);
         $user = user::all();
-        $result = ckpr::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+        $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
-            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckprs.*')
-            ->where('ckprs.id', 'like', '%' . $id . '%')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*')
+            ->where('penilaian_ckprs.id', 'like', '%' . $id . '%')
             ->get();
         switch ($userid) {
             case '1':

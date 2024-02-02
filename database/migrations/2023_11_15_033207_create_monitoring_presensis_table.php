@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('tahun');
             $table->string('bulan');
-            $table->string('no');
             $table->double('kode');
             $table->integer('cp');
             $table->integer('ct');

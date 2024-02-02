@@ -40,12 +40,12 @@
                     <div class="form-group d-flex align-items-center">
                         <label for="tahun" class="col-sm-1 pl-0 col-form-label">Tahun</label>
                         <input type="tahun" class="form-control col-sm-11" id="tahun" value="{{ $result->tahun }}"
-                            name="tahun">
+                            name="tahun" disabled>
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="bulan" class="col-sm-1 pl-0 col-form-label">Bulan</label>
                         <input type="bulan" class="form-control col-sm-11" id="bulan" value="{{ $result->bulan }}"
-                            name="bulan">
+                            name="bulan" disabled>
                     </div>
                 </div>
             </div>
@@ -54,70 +54,46 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="kegiatan">Uraian Kegiatan</label>
-                        <select class="form-control" data-width="75%" name="uraian_kegiatan_id">
-                            <option value="{{ $result->Uraian_kegiatan_id }}">{{ $result->uraian_kegiatan }}</option>
-                            @foreach ($uraiankegiatan as $uraiankegiatan)
-                                <option value="{{ $uraiankegiatan->id }}">{{ $uraiankegiatan->uraian_kegiatan }}</option>
-                            @endforeach
-                        </select>
+                            <input type="bulan" class="form-control" value="{{ $result->uraian_kegiatan }}" disabled>
                     </div>
 
                     <div class="form-group">
                         <label for="kodebutir">Kode Butir</label>
-                        <select class="form-control" data-width="75%" name="angka_kredit_id">
-                            <option value="{{ $result->Angka_kredit_id }}">{{ $result->angka_kredit }}</option>
-                            @foreach ($angkakredit as $angkakredit)
-                                <option value="{{ $angkakredit->id }}">{{ $angkakredit->kode_butir }}</option>
-                            @endforeach
-                        </select>
+                        <input type="bulan" class="form-control" value="{{ $result->angka_kredit }}" disabled>
                     </div>
                     <div class="form-group">
                         <label for="kode">Kode</label>
-                        <select class="form-control" data-width="75%" id="kode" name="kode">
-                            <option value="{{ $result->kode }}">{{ $result->kode }}</option>
-                            <option value="utama">Utama</option>
-                            <option value="tambahan">Tambahan</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="periode">Periode</label>
-                        <input type="periode" class="form-control" id="periode" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="periode" value="{{ $ckpr->periode }}">
+                        <input type="bulan" class="form-control" value="{{ $result->kode }}" disabled>
                     </div>
                     <div class="form-group">
                         <label for="satuan">Satuan</label>
-                        <input type="satuan" class="form-control" id="satuan" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="satuan" value="{{ $ckpr->satuan }}">
+                        <input type="bulan" class="form-control" value="{{ $result->satuan }}" disabled>
                     </div>
                     <div class="form-group">
                         <label for="target">Target</label>
-                        <input type="target" class="form-control" id="target" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="target" value="{{ $ckpr->target }}">
+                        <input type="bulan" class="form-control" value="{{ $result->target }}" disabled>
                     </div>
                     <div class="form-group">
                         <label for="targetrev">Target Rev</label>
-                        <input type="targetrev" class="form-control" id="targetrev"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="target_rev" value="{{ $ckpr->target_rev }}">
+                        <input type="bulan" class="form-control" value="{{ $result->target_rev }}" disabled>
                     </div>
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan</label>
+                        <input type="bulan" class="form-control" value="{{ $result->keterangan }}" disabled>
                     <div class="form-group">
                         <label for="realisasi">Realisasi</label>
                         <input type="realisasi" class="form-control" id="realisasi"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="realisasi" value="{{ $ckpr->realisasi }}">
+                            placeholder="Lorem Ipsum Dolor Sit Amet" name="realisasi" value="{{ $result->realisasi }}">
                     </div>
                     <div class="form-group">
                         <label for="persen">Persen (%)</label>
                         <input type="persen" class="form-control" id="persen"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="persen" value="{{ $ckpr->persen }}">
+                            placeholder="Lorem Ipsum Dolor Sit Amet" name="persen" value="{{ $result->persen }}">
                     </div>
                     <div class="form-group">
                         <label for="nilai">Nilai</label>
                         <input type="nilai" class="form-control" id="nilai"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="nilai" value="{{ $ckpr->nilai }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="keterangan">Keterangan</label>
-                        <input type="keterangan" class="form-control" id="keterangan"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="keterangan" value="{{ $ckpr->keterangan }}">
+                            placeholder="Lorem Ipsum Dolor Sit Amet" name="nilai" value="{{ $result->nilai }}">
                     </div>
                 </div>
             </div>

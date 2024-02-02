@@ -111,7 +111,7 @@
                         <tbody class="alldata">
                             @foreach ($rencanakinerja as $rencana)
                                 <tr>
-                                    <td>{{ $rencana->jenis }}</td>
+                                    <td>{{ $rencana->kinerja }}</td>
                                     <td>{{ $rencana->rencana_kinerja_atasan }}</td>
                                     <td>{{ $rencana->rencana_kinerja }}</td>
                                     <td>{{ $rencana->aspek }}</td>

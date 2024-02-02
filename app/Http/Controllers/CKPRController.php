@@ -173,9 +173,10 @@ class CKPRController extends Controller
         $user = user::all();
         $angkakredit = entri_angka_kredit::all();
         $uraiankegiatan = list_uraian_kegiatan::all();
-        $result = ckpr::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+        $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
-            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckprs.*')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select( 'entri_angka_kredits.*', 'list_uraian_kegiatans.*','ckpts.*', 'ckprs.*')
             ->where('ckprs.id', 'like', '%' . $id . '%')
             ->get();
         switch ($userid) {

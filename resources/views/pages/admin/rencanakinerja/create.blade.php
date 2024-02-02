@@ -66,11 +66,6 @@
             <div class="row mb-8">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="jenisrk">Jenis</label>
-                        <input type="jenisrk" class="form-control" id="jenisrk" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="jenis">
-                    </div>
-                    <div class="form-group">
                         <label for="rkatasan">Rencana Kinerja Atasan</label>
                         <input type="rkatasan" class="form-control" id="rkatasan" placeholder="Lorem Ipsum Dolor Sit Amet"
                             name="rencana_kinerja_atasan">

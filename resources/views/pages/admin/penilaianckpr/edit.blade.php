@@ -54,10 +54,6 @@
                         <input type="kegiatan" class="form-control" value="{{ $result->kode }}" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="satuan">Periode</label>
-                        <input type="satuan" class="form-control" value="{{ $result->periode }}" disabled>
-                    </div>
-                    <div class="form-group">
                         <label for="target">Satuan</label>
                         <input type="target" class="form-control" value="{{ $result->satuan }}" disabled>
                     </div>
