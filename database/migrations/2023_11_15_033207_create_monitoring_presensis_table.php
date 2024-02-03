@@ -18,14 +18,13 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('tahun');
             $table->string('bulan');
-            $table->double('kode');
             $table->integer('cp')->nullable();
             $table->integer('ct')->nullable();
             $table->integer('cb')->nullable();
             $table->integer('cs')->nullable();
             $table->integer('cm')->nullable();
             $table->integer('ctln')->nullable();
-            $table->integer('s');
+            $table->integer('s')->nullable();
             $table->integer('psw1')->nullable();
             $table->integer('psw2')->nullable();
             $table->integer('psw3')->nullable();

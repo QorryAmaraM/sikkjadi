@@ -85,16 +85,6 @@
                         <input type="realisasi" class="form-control" id="realisasi"
                             placeholder="Lorem Ipsum Dolor Sit Amet" name="realisasi" value="{{ $result->realisasi }}">
                     </div>
-                    <div class="form-group">
-                        <label for="persen">Persen (%)</label>
-                        <input type="persen" class="form-control" id="persen"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="persen" value="{{ $result->persen }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="nilai">Nilai</label>
-                        <input type="nilai" class="form-control" id="nilai"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="nilai" value="{{ $result->nilai }}">
-                    </div>
                 </div>
             </div>
 

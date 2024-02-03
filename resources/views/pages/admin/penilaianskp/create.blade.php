@@ -21,7 +21,7 @@
                             @if ($users->id == $userid)
                                 <input type="nama" class="form-control col-sm-11" id="nama"
                                     placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
-                                <input type="hidden" name="user_id" value="{{ $userid }}">
+                                <input type="hidden" name="penilai_user_id" value="{{ $userid }}">
                             @endif
                         @endforeach
                     </div>

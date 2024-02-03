@@ -85,19 +85,23 @@
                         <input type="ketstaf" class="form-control" value="{{ $result->keterangan }}" disabled>
                     </div>
                     <div class="form-group">
+                        <label for="penilai">Penilai</label>
+                        <input type="penilai" class="form-control" id="penilai" name="penilai">
+                        <input type="hidden" class="form-control" id="status" name="status" value="1">
+                    </div>
+                    <div class="form-group">
                         <label for="ketpenilai">Keterangan Penilai</label>
                         <input type="ketpenilai" class="form-control" id="ketpenilai" name="keterangan_penilai">
                     </div>
                     <div class="form-group">
-                        <label for="penilai">Penilai</label>
-                        <input type="penilai" class="form-control" id="penilai" name="penilai">
+                        <label for="penilai">Nilai</label>
+                        <input type="penilai" class="form-control" id="nilai" name="nilai">
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12 mt-3 text-right">
-
                     <button type="submit" name="submit" value="Save" class="btn save-button">Simpan</button>
                 </div>
             </div>

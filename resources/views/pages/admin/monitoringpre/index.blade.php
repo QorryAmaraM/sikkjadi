@@ -135,7 +135,7 @@
                             @foreach ($monitoringpresensi as $presensi)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $presensi->kode }}</td>
+                                    <td>{{ $presensi->tahun }} {{ $presensi->bulan }}</td>
                                     <td>{{ $presensi->cp }}</td>
                                     <td>{{ $presensi->ct }}</td>
                                     <td>{{ $presensi->cb }}</td>

@@ -21,10 +21,10 @@ return new class extends Migration
             $table->string('tahun');
             $table->string('bulan');
             $table->string('satuan');
-            $table->string('target');
-            $table->string('target_rev')->nullable();
+            $table->integer('target');
+            $table->integer('target_rev')->nullable();
             $table->enum('kode', ['utama','tambahan']);
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

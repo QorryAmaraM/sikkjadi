@@ -139,7 +139,7 @@
                                     <td>{{ $nilaickpr->satuan }}</td>
                                     <td>{{ $nilaickpr->target }}</td>
                                     <td>{{ $nilaickpr->realisasi }}</td>
-                                    <td>{{ $nilaickpr->persen }}</td>
+                                    <td>{{ $nilaickpr->persen }} %</td>
                                     <td>{{ $nilaickpr->nilai }}</td>
                                     <td>{{ $nilaickpr->kode_butir }}</td>
                                     <td>{{ $nilaickpr->angka_kredit }}</td>

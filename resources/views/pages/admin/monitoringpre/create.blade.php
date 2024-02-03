@@ -51,11 +51,6 @@
             <div class="row mb-8">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="kode">Kode</label>
-                        <input type="kode" class="form-control" id="kode" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="kode">
-                    </div>
-                    <div class="form-group">
                         <label for="cp">CP</label>
                         <input type="cp" class="form-control" id="cp" placeholder="Lorem Ipsum Dolor Sit Amet"
                             name="cp">

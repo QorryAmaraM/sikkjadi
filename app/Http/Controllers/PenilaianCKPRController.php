@@ -7,6 +7,7 @@ use App\Models\penilaian_ckpr;
 use App\Models\user;
 use App\Models\ckpr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PenilaianCKPRController extends Controller
@@ -21,7 +22,7 @@ class PenilaianCKPRController extends Controller
             ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
-            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->get();
         switch ($userid) {
             case '1':
@@ -49,9 +50,9 @@ class PenilaianCKPRController extends Controller
         $ckpr = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
-            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*')
+            ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*','penilaian_ckprs.*', 'ckprs.*',DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->get();
-
         $user = user::all();
         switch ($userid) {
             case '1':
@@ -215,7 +216,7 @@ class PenilaianCKPRController extends Controller
             ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
-            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
             ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
             ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
@@ -232,7 +233,7 @@ class PenilaianCKPRController extends Controller
             <td> ' . $result->satuan . ' </td>
             <td> ' . $result->target . ' </td>
             <td> ' . $result->realisasi . ' </td>
-            <td> ' . $result->persen . ' </td>
+            <td> ' . $result->persen . ' % </td>
             <td> ' . $result->nilai . ' </td>
             <td> ' . $result->kode_butir . ' </td>
             <td> ' . $result->angka_kredit . ' </td>
@@ -263,25 +264,26 @@ class PenilaianCKPRController extends Controller
         $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
-            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*')
+            ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*','ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
             ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
             ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
             ->get();
 
         foreach ($result as $result) {
-            $statusBadge = ($result->status == '0') ? '<span class="badge badge-success">Sudah Diverifikasi</span>' : '<span class="badge badge-danger">Belum Diverifikasi</span>';
+            $statusBadge = ($result->status == '1') ? '<span class="badge badge-success">Sudah Diverifikasi</span>' : '<span class="badge badge-danger">Belum Diverifikasi</span>';
             $output .=
                 '<tr> 
             
             <td> ' . $iterationNumber . ' </td>
             <td> ' . $result->kode . ' </td>
-            <td> ' . $result->periode . ' </td>
+            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
             <td> ' . $result->satuan . ' </td>
             <td> ' . $result->target . ' </td>
             <td> ' . $result->target_rev . ' </td>
             <td> ' . $result->realisasi . ' </td>
-            <td> ' . $result->persen . ' </td>
+            <td> ' . $result->persen . ' % </td>
             <td> ' . $result->nilai . ' </td>
             <td> ' . $result->keterangan . ' </td>
             <td> ' . $statusBadge . ' </td>

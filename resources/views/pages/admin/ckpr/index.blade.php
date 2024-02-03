@@ -145,7 +145,7 @@
                                     <td>{{ $ckpr->target }}</td>
                                     <td>{{ $ckpr->target_rev }}</td>
                                     <td>{{ $ckpr->realisasi }}</td>
-                                    <td>{{ $ckpr->persen }}</td>
+                                    <td>{{ $ckpr->persen }} %</td>
                                     <td>{{ $ckpr->nilai }}</td>
                                     <td>{{ $ckpr->keterangan }}</td>
                                     <td>

@@ -8,7 +8,9 @@ use App\Models\ckpt;
 use App\Models\user;
 use App\Models\entri_angka_kredit;
 use App\Models\list_uraian_kegiatan;
+use App\Models\penilaian_ckpr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class CKPRController extends Controller
@@ -22,7 +24,8 @@ class CKPRController extends Controller
         $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
-            ->select( 'entri_angka_kredits.*', 'list_uraian_kegiatans.*','ckpts.*', 'ckprs.*')
+            ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->get();
 
         switch ($userid) {
@@ -80,7 +83,7 @@ class CKPRController extends Controller
         $result = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
-            ->where('ckpts.id', 'like', '%'.$id.'%')
+            ->where('ckpts.id', 'like', '%' . $id . '%')
             ->get();
         $user = user::all();
         switch ($userid) {
@@ -176,7 +179,7 @@ class CKPRController extends Controller
         $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
-            ->select( 'entri_angka_kredits.*', 'list_uraian_kegiatans.*','ckpts.*', 'ckprs.*')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*')
             ->where('ckprs.id', 'like', '%' . $id . '%')
             ->get();
         switch ($userid) {
@@ -256,7 +259,8 @@ class CKPRController extends Controller
         $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
-            ->select('ckpts.*', 'entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckprs.*')
+            ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*','penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
             ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
             ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
@@ -278,7 +282,7 @@ class CKPRController extends Controller
             <td> ' . $result->target . ' </td>
             <td> ' . $result->target_rev . ' </td>
             <td> ' . $result->realisasi . ' </td>
-            <td> ' . $result->persen . ' </td>
+            <td> ' . $result->persen . ' % </td>
             <td> ' . $result->nilai . ' </td>
             <td> ' . $result->keterangan . ' </td>
             <td> ' . $statusBadge . ' </td>

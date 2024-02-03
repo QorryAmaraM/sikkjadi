@@ -115,7 +115,11 @@
                     </div>
                     <div class="form-group">
                         <label for="target">Target Revisi</label>
-                        <input type="target" class="form-control" id="target" value="{{ $result->target_rev }}"
+                        <input type="target" class="form-control" id="target_rev" value="{{ $result->target_rev }}"
+                            name="target_rev">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="target" value="{{ $result->target }}"
                             name="target">
                     </div>
                     <div class="form-group">

@@ -21,7 +21,8 @@
                         @foreach ($result as $result)
                             @foreach ($user as $user)
                                 @if ($user->id == $result->user_id)
-                                    <input type="nama" class="form-control col-sm-11" value="{{ $user->nama }}" disabled>
+                                    <input type="nama" class="form-control col-sm-11" value="{{ $user->nama }}"
+                                        disabled>
                                 @endif
                             @endforeach
                         @endforeach
@@ -45,29 +46,14 @@
 
                     <div class="form-group d-flex align-items-center">
                         <label for="kinerja" class="col-sm-1 pl-0 col-form-label">Kinerja</label>
-                        @if ($rencanakinerja->kinerja == 'utama')
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="kjutama" value="utama" 
-                                    onclick="toggleCheckbox(this)" checked>
-                                <label class="form-check-label" for="inlineCheckbox1">Utama</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="kjtambahan" value="tambahan"
-                                     onclick="toggleCheckbox(this)" disabled>
-                                <label class="form-check-label" for="inlineCheckbox2">Tambahan</label>
-                            </div>
-                        @else
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="kjutama" value="utama" 
-                                    onclick="toggleCheckbox(this)" disabled>
-                                <label class="form-check-label" for="inlineCheckbox1">Utama</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="kjtambahan" value="tambahan"
-                                     onclick="toggleCheckbox(this)" checked>
-                                <label class="form-check-label" for="inlineCheckbox2">Tambahan</label>
-                            </div>
-                        @endif
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="kjutama" value="utama" name="kinerja" onclick="toggleCheckbox('kjutama')" <?php echo ($rencanakinerja->kinerja == 'utama') ? 'checked' : ''; ?>>
+                            <label class="form-check-label" for="inlineCheckbox1">Utama</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="kjtambahan" value="tambahan" name="kinerja" onclick="toggleCheckbox('kjtambahan')" <?php echo ($rencanakinerja->kinerja == 'tambahan') ? 'checked' : ''; ?>>
+                            <label class="form-check-label" for="inlineCheckbox2">Tambahan</label>
+                        </div>
                     </div>
 
                 </div>
@@ -76,37 +62,29 @@
             <div class="row mb-8">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="jenisrk">Jenis</label>
-                        <input type="jenisrk" class="form-control" id="jenisrk" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="jenis" value="{{ $rencanakinerja->jenis }}">
-                    </div>
-                    <div class="form-group">
                         <label for="rkatasan">Rencana Kinerja Atasan</label>
-                        <input type="rkatasan" class="form-control" id="rkatasan"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="rencana_kinerja_atasan"
-                            value="{{ $rencanakinerja->rencana_kinerja_atasan }}">
+                        <input type="rkatasan" class="form-control" id="rkatasan" placeholder="Lorem Ipsum Dolor Sit Amet"
+                            name="rencana_kinerja_atasan" value="{{ $rencanakinerja->rencana_kinerja_atasan }}">
                     </div>
                     <div class="form-group">
                         <label for="rkpegawai">Rencana Kinerja</label>
-                        <input type="rkpegawai" class="form-control" id="rkpegawai"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="rencana_kinerja"
-                            value="{{ $rencanakinerja->rencana_kinerja }}">
+                        <input type="rkpegawai" class="form-control" id="rkpegawai" placeholder="Lorem Ipsum Dolor Sit Amet"
+                            name="rencana_kinerja" value="{{ $rencanakinerja->rencana_kinerja }}">
                     </div>
                     <div class="form-group">
                         <label for="aspek">Aspek</label>
-                        <input type="aspek" class="form-control" id="aspek"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="aspek" value="{{ $rencanakinerja->aspek }}">
+                        <input type="aspek" class="form-control" id="aspek" placeholder="Lorem Ipsum Dolor Sit Amet"
+                            name="aspek" value="{{ $rencanakinerja->aspek }}">
                     </div>
                     <div class="form-group">
                         <label for="iki">IKI</label>
-                        <input type="iki" class="form-control" id="iki"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="iki" value="{{ $rencanakinerja->iki }}">
+                        <input type="iki" class="form-control" id="iki" placeholder="Lorem Ipsum Dolor Sit Amet"
+                            name="iki" value="{{ $rencanakinerja->iki }}">
                     </div>
                     <div class="form-group">
                         <label for="targetmin">Target Min</label>
-                        <input type="targetmin" class="form-control" id="targetmin"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="target_min"
-                            value="{{ $rencanakinerja->target_min }}">
+                        <input type="targetmin" class="form-control" id="targetmin" placeholder="Lorem Ipsum Dolor Sit Amet"
+                            name="target_min" value="{{ $rencanakinerja->target_min }}">
                     </div>
                     <div class="form-group">
                         <label for="targetmix">Target Max</label>
@@ -134,17 +112,21 @@
     <!-- /.container-fluid -->
 
     <script>
-        function toggleCheckbox(checkbox) {
-            // Mendapatkan elemen checkbox yang lain
-            var otherCheckbox = (checkbox.id === 'kjutama') ? document.getElementById('kjtambahan') : document
-                .getElementById('kjutama');
-
-            // Menonaktifkan checkbox yang lain jika checkbox yang satu ditekan
-            if (checkbox.checked) {
-                otherCheckbox.disabled = true;
-            } else {
-                otherCheckbox.disabled = false;
-            }
+        document.addEventListener("DOMContentLoaded", function () {
+            // Set initial state based on the value of $rencanakinerja->kinerja
+            var utamaCheckbox = document.getElementById('kjutama');
+            var tambahanCheckbox = document.getElementById('kjtambahan');
+    
+            utamaCheckbox.disabled = tambahanCheckbox.checked;
+            tambahanCheckbox.disabled = utamaCheckbox.checked;
+        });
+    
+        function toggleCheckbox(checkboxId) {
+            var checkbox = document.getElementById(checkboxId);
+            var otherCheckboxId = (checkboxId === 'kjutama') ? 'kjtambahan' : 'kjutama';
+            var otherCheckbox = document.getElementById(otherCheckboxId);
+    
+            otherCheckbox.disabled = checkbox.checked;
         }
     </script>
 @endsection

@@ -113,25 +113,26 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpr->kode }}</td>
-                                    <td>{{ $ckpr->periode }}</td>
+                                    <td>{{ $ckpr->tahun }} {{ $ckpr->bulan }}</td>
                                     <td>{{ $ckpr->satuan }}</td>
                                     <td>{{ $ckpr->target }}</td>
                                     <td>{{ $ckpr->target_rev }}</td>
                                     <td>{{ $ckpr->realisasi }}</td>
-                                    <td>{{ $ckpr->persen }}</td>
+                                    <td>{{ $ckpr->persen }} %</td>
                                     <td>{{ $ckpr->nilai }}</td>
                                     <td>{{ $ckpr->keterangan }}</td>
                                     <td>
-                                        @if ($ckpr->status == '0')
+                                        @if ($ckpr->status == '1')
                                             <span class="badge badge-success">Sudah Diverifikasi</span>
                                         @else
                                             <span class="badge badge-danger">Belum Diverifikasi</span>
                                         @endif
                                     </td>
-                                    
+
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('penilaianckpr.create', ['id' => $ckpr->id]) }}" type="button" class="btn add-button">+ Nilai</a>
+                                            <a href="{{ route('penilaianckpr.create', ['id' => $ckpr->id]) }}"
+                                                type="button" class="btn add-button">+ Nilai</a>
                                         </button>
                                     </td>
                                 </tr>

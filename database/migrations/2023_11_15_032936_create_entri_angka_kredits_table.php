@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('jenis_fungsional');
             $table->string('kode_butir');
-            $table->text('isi_butir');
+            $table->text('isi_butir')->nullable();
             $table->string('angka_kredit');
             $table->timestamps();
 

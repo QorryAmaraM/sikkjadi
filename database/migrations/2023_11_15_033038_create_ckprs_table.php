@@ -16,10 +16,7 @@ return new class extends Migration
         Schema::create('ckprs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('ckpt_id');
-            $table->string('realisasi');
-            $table->string('persen');
-            $table->double('nilai');
-            $table->enum('status', ['0','1']);
+            $table->integer('realisasi');
             $table->timestamps();
 
             $table->foreign('ckpt_id')->references('id')->on('ckpts')->onDelete('cascade');
