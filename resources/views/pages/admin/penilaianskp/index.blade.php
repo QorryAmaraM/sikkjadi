@@ -90,107 +90,134 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Jenis</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan </th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aspek</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">IKI</th>
-                                <th colspan="2" style="padding:0.2rem; border-bottom: none">Target</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Satuan</th>                            
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Realisasi</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kondisi</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian Rencana</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody class="alldata">
-                            @foreach ($result as $skp)
+                    <div style="overflow-x: auto;">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="min-width: 1500px;">
+                            <thead>
                                 <tr>
-                                    <td>{{ $skp->kinerja }}</td>
-                                    <td>{{ $skp->rencana_kinerja_atasan }}</td>
-                                    <td>{{ $skp->rencana_kinerja }}</td>
-                                    <td>{{ $skp->aspek }}</td>
-                                    <td>{{ $skp->iki }}</td>
-                                    <td>{{ $skp->target_min }}</td>
-                                    <td>{{ $skp->target_max }}</td>
-                                    <td>{{ $skp->satuan }}</td>
-                                    <td>{{ $skp->realisasi }}</td>
-                                    <td>{{ $skp->kondisi }}</td>
-                                    <td>{{ $skp->capaian_iki }}</td>
-                                    <td>{{ $skp->kategori_capaian_iki }}</td>
-                                    <td>{{ $skp->nilai_capaian_rencana }}</td>
-                                    <td>{{ $skp->kategori_capaian_rencana }}</td>
-                                    <td>{{ $skp->nilai_tertimbang }}</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('penilaianskp.edit', ['id' => $skp->id]) }}"
-                                                class="action-link"><i class="fas fa-edit"></i></a>
-
-                                        </button> |
-                                        <button class="btn btn-icon btn-delete btn-sm">
-                                            <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
-                                                class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
-                                        </button>
-                                    </td>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Jenis</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan </th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aspek</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">IKI</th>
+                                    <th colspan="2" style="padding:0.2rem; border-bottom: none">Target</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Satuan</th>                            
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Realisasi</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kondisi</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian Rencana</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-
-
-                        <tbody id="Content" class="searchdata"></tbody>
-
-
-                        <tbody>
-                            <tr>
-                                <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja Utama
-                                </td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
+                                <tr>
+                                <th style="border-top: none">Min</th>
+                                <th style="border-top: none">Max</th>
                             </tr>
-                        </tbody>
-                        <tbody>
+                            </thead>
+                            <tbody class="alldata">
+                                @foreach ($result as $skp)
+                                    <tr>
+                                        <td>{{ $skp->kinerja }}</td>
+                                        <td>{{ $skp->rencana_kinerja_atasan }}</td>
+                                        <td>{{ $skp->rencana_kinerja }}</td>
+                                        <td>{{ $skp->aspek }}</td>
+                                        <td>{{ $skp->iki }}</td>
+                                        <td>{{ $skp->target_min }}</td>
+                                        <td>{{ $skp->target_max }}</td>
+                                        <td>{{ $skp->satuan }}</td>
+                                        <td>{{ $skp->realisasi }}</td>
+                                        <td>{{ $skp->kondisi }}</td>
+                                        <td>{{ $skp->capaian_iki }}</td>
+                                        <td>{{ $skp->kategori_capaian_iki }}</td>
+                                        <td>{{ $skp->nilai_capaian_rencana }}</td>
+                                        <td>{{ $skp->kategori_capaian_rencana }}</td>
+                                        <td>{{ $skp->nilai_tertimbang }}</td>
+                                        <td>
+                                            <button class="btn btn-icon btn-edit btn-sm">
+                                                <a href="{{ route('penilaianskp.edit', ['id' => $skp->id]) }}"
+                                                    class="action-link"><i class="fas fa-edit"></i></a>
 
-                        </tbody>
+                                            </button> |
+                                            <button class="btn btn-icon btn-delete btn-sm">
+                                                <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
+                                                    class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
 
-                        <tbody>
-                            <tr>
-                                <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja Tambahan
-                                </td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
-                            </tr>
-                            <tr>
-                                <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai SKP</td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5"></td>
-                                <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                            <tbody id="Content" class="searchdata"></tbody>
+
+
+                            <tbody>
+                                <tr>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja Utama
+                                    </td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja Tambahan
+                                    </td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai SKP</td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
