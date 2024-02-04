@@ -93,6 +93,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Realisasi</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kondisi</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>

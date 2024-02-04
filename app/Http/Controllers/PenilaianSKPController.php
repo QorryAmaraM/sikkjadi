@@ -82,7 +82,7 @@ class PenilaianSKPController extends Controller
             $output .=
                 '<tr> 
             
-            <td> ' . $result->jenis . ' </td>
+            <td> ' . $result->kinerja . ' </td>
             <td> ' . $result->rencana_kinerja_atasan . ' </td>
             <td> ' . $result->rencana_kinerja . ' </td>
             <td> ' . $result->aspek . ' </td>

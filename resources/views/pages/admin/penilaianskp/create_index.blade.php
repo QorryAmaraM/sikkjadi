@@ -67,8 +67,7 @@
                         <thead>
                             <tr>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Jenis</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan
-                                </th>
+                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan </th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aspek</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">IKI</th>
@@ -84,7 +83,7 @@
                         <tbody class="alldata">
                             @foreach ($result as $rencana)
                                 <tr>
-                                    <td>{{ $rencana->jenis }}</td>
+                                    <td>{{ $rencana->kinerja }}</td>
                                     <td>{{ $rencana->rencana_kinerja_atasan }}</td>
                                     <td>{{ $rencana->rencana_kinerja }}</td>
                                     <td>{{ $rencana->aspek }}</td>
