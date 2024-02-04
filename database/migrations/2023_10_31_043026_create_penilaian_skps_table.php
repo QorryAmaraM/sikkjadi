@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('kondisi');
             $table->double('capaian_iki');
             $table->string('kategori_capaian_iki');
-            $table->double('nilai_capaaian_rencana');
+            $table->double('nilai_capaian_rencana');
             $table->string('kategori_capaian_rencana');
             $table->double('nilai_tertimbang');
             $table->double('nilai_kinerja_utama');
