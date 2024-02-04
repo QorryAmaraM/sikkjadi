@@ -107,7 +107,7 @@
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian Rencana</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi</th>
+                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi</th> 
                             </tr>
                             <tr>
                                 <th style="border-top: none">Min</th>
