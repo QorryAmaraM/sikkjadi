@@ -111,7 +111,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @foreach ($penilaianskp as $skp)
+                            @foreach ($result as $skp)
                                 <tr>
                                     <td>{{ $skp->kinerja }}</td>
                                     <td>{{ $skp->rencana_kinerja_atasan }}</td>
