@@ -89,6 +89,10 @@
                         <label for="penilai">Penilai</label>
                         <input type="penilai" class="form-control" id="penilai" name="penilai" value="{{ $nilaickpr->penilai }}">
                     </div>
+                    <div class="form-group">
+                        <label for="penilai">Nilai</label>
+                        <input type="penilai" class="form-control" id="nilai" name="nilai" value="{{ $nilaickpr->nilai }}">
+                    </div>
                 </div>
             </div>
 

@@ -39,19 +39,19 @@ class EntriAngkaKreditController extends Controller
         entri_angka_kredit::create($request->except(['_token', 'submit']));
         switch ($userid) {
             case '1':
-                return view('pages.admin.entriangkakredit.index');
+                return redirect('/admin-masterangkakredit/listangkakredit');
                 break;
             case '2':
-                return view('pages.users.kepalabps.entriangkakredit.index');
+                return redirect('/kepalabps-ckp/ckpt');
                 break;
             case '3':
-                return view('pages.users.kepalabu.entriangkakredit.index');
+                return redirect('/kepalabu-ckp/ckpt');
                 break;
             case '4':
-                return view('pages.users.kf.entriangkakredit.index');
+                return redirect('/kf-ckp/ckpt');
                 break;
             case '5':
-                return view('pages.users.staf.entriangkakredit.index');
+                return redirect('/staf-ckp/ckpt');
                 break;
         }
     }

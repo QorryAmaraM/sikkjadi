@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('cb')->nullable();
             $table->integer('cs')->nullable();
             $table->integer('cm')->nullable();
-            $table->integer('ctln')->nullable();
+            $table->integer('cltn')->nullable();
             $table->integer('s')->nullable();
             $table->integer('psw1')->nullable();
             $table->integer('psw2')->nullable();
