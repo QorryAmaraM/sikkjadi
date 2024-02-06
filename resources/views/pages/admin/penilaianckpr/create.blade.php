@@ -77,10 +77,6 @@
                         <input type="persen" class="form-control" value="{{ $result->persen }}" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="nilai">Nilai</label>
-                        <input type="nilai" class="form-control" value="{{ $result->nilai }}" disabled>
-                    </div>
-                    <div class="form-group">
                         <label for="ketstaf">Keterangan Staf</label>
                         <input type="ketstaf" class="form-control" value="{{ $result->keterangan }}" disabled>
                     </div>

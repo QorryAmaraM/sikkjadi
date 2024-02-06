@@ -51,11 +51,6 @@
                         <input class="form-control col-sm-10" name="unitkerja" id="unitkerja" placeholder="Unit Kerja">
                     </div>
 
-                    <div class="form-group d-flex align-items-center">
-                        <label for="unitkerja" class="col-sm-2 pl-0 col-form-label">Jenis</label>
-                        <input class="form-control col-sm-10" name="jenis" id="jenis" placeholder="Jenis">
-                    </div>
-
                     <div class="search form-group d-flex align-items-center">
                         <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Kinerja</label>
                         <select name="kinerja" id="kinerja" class="form-control">

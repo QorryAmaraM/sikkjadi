@@ -114,6 +114,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Nama Pegawai</th>
                                 <th>Periode</th>
                                 <th>Uraian Kegiatan</th>
                                 <th>Satuan</th>
@@ -134,6 +135,7 @@
                             @foreach ($result as $nilaickpr)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $nilaickpr->nama }}</td>
                                     <td>{{ $nilaickpr->tahun }} {{ $nilaickpr->bulan }}</td>
                                     <td>{{ $nilaickpr->uraian_kegiatan }}</td>
                                     <td>{{ $nilaickpr->satuan }}</td>

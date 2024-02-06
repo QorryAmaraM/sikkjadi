@@ -121,8 +121,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $monitoringckp->tahun }} {{ $monitoringckp->bulan }}</td>
                                     <td>{{ $monitoringckp->nilai }}</td>
-                                    <td>{{ $monitoringckp->penilai }}</td>
-                                    <td>{{ $monitoringckp->keterangan_penilai }}</td>
+                                    <td>{{ $monitoringckp->ckp_akhir }}</td>
+                                    <td>{{ $monitoringckp->keterangan_kepala }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
                                             <a href="{{ route('monitoringckp.edit', ['id' => $monitoringckp->id]) }}"

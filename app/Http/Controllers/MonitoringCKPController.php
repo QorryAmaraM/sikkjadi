@@ -21,7 +21,8 @@ class MonitoringCKPController extends Controller
             ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
-            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*')
+            ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
+            ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*' )
             ->get();
         switch ($userid) {
             case '1':
@@ -93,11 +94,19 @@ class MonitoringCKPController extends Controller
     public function edit($id)
     {
         $userid = Auth::user()->role_id;
-        $monitoringckp = monitoring_ckp::find($id);
+        $nilai_ckpr_id = $id;
+        $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
+            ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*' )
+            ->where('penilaian_ckprs.id', 'like', '%' . $id . '%')
+            ->get();
         $user = user::all();
         switch ($userid) {
             case '1':
-                return view('pages.admin.monitoringckp.edit', compact(['monitoringckp', 'user']));
+                return view('pages.admin.monitoringckp.edit', compact(['nilai_ckpr_id', 'user', 'result']));
                 break;
             case '2':
                 return view('pages.users.kepalabps.monitoringckp.edit', compact(['monitoringckp', 'user']));
@@ -117,7 +126,7 @@ class MonitoringCKPController extends Controller
     public function update($id, Request $request)
     {
         $userid = Auth::user()->role_id;
-        $monitoringckp = monitoring_ckp::find($id);
+        $monitoringckp = monitoring_ckp::where('penilaian_ckpr_id', $id)->first();
         $monitoringckp->update($request->except(['_token', 'submit']));
         switch ($userid) {
             case '1':
@@ -173,7 +182,8 @@ class MonitoringCKPController extends Controller
             ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
-            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*')
+            ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
+            ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*' )
             ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
             ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
             ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
@@ -187,8 +197,8 @@ class MonitoringCKPController extends Controller
             <td> ' . $iterationNumber . ' </td>
             <td> ' . $result->tahun . " " . $result->bulan . ' </td>
             <td> ' . $result->nilai . ' </td>
-            <td> ' . $result->penilai . ' </td>
-            <td> ' . $result->keterangan_penilai . ' </td>
+            <td> ' . $result->ckp_akhir . ' </td>
+            <td> ' . $result->keterangan_kepala . ' </td>
            
 
             <td> ' . '<button class="btn btn-icon btn-edit btn-sm">

@@ -115,17 +115,17 @@
                             <tr>
                                 <th>No</th>
                                 <th>Fungsi</th>
-                                <th>Uraian Kegiatan</th>
-                                <th>Kode Butir</th>
-                                <th>Angka Kredit</th>
-                                <th>Kode</th>
                                 <th>Periode</th>
+                                <th>Uraian Kegiatan</th>
                                 <th>Satuan</th>
                                 <th>Target</th>
                                 <th>Target Rev</th>
                                 <th>Realisasi</th>
                                 <th>Persen (%)</th>
                                 <th>Nilai</th>
+                                <th>Kode Butir</th>
+                                <th>Angka Kredit</th>
+                                <th>Kode</th>
                                 <th>Keterangan</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
@@ -136,17 +136,17 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpr->fungsi }}</td>
+                                    <td>{{ $ckpr->tahun }} {{ $ckpr->bulan }}</td>
                                     <td>{{ $ckpr->uraian_kegiatan }}</td>
-                                    <td>{{ $ckpr->kode_butir }}</td>
-                                    <td>{{ $ckpr->angka_kredit }}</td>
-                                    <td>{{ $ckpr->kode }}</td>
-                                    <td>{{ $ckpr->periode }}</td>
                                     <td>{{ $ckpr->satuan }}</td>
                                     <td>{{ $ckpr->target }}</td>
                                     <td>{{ $ckpr->target_rev }}</td>
                                     <td>{{ $ckpr->realisasi }}</td>
                                     <td>{{ $ckpr->persen }} %</td>
                                     <td>{{ $ckpr->nilai }}</td>
+                                    <td>{{ $ckpr->kode_butir }}</td>
+                                    <td>{{ $ckpr->angka_kredit }}</td>
+                                    <td>{{ $ckpr->kode }}</td>
                                     <td>{{ $ckpr->keterangan }}</td>
                                     <td>
                                         @if ($ckpr->status == '1')

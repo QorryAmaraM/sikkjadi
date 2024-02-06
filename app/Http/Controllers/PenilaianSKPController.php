@@ -239,7 +239,6 @@ class PenilaianSKPController extends Controller
             ->select('skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
             ->where('skp_tahunans.user_id', 'like', '%'.$request->search.'%')
             ->where('skp_tahunans.unit_kerja', 'like', '%'.$request->unitkerja.'%')
-            ->where('rencana_kinerjas.jenis', 'like', '%'.$request->jenis.'%')
             ->where('rencana_kinerjas.kinerja', 'like', '%'.$request->kinerja.'%')
             ->get();
 
@@ -247,6 +246,14 @@ class PenilaianSKPController extends Controller
             $output .=
                 '<tr> 
             
+            <td> ' . $result->kinerja . ' </td>
+            <td> ' . $result->rencana_kinerja_atasan . ' </td>
+            <td> ' . $result->rencana_kinerja . ' </td>
+            <td> ' . $result->aspek . ' </td>
+            <td> ' . $result->iki . ' </td>
+            <td> ' . $result->target_min . ' </td>
+            <td> ' . $result->target_max . ' </td>
+            <td> ' . $result->satuan . ' </td>
             <td> ' . $result->realisasi . ' </td>
             <td> ' . $result->kondisi . ' </td>
             <td> ' . $result->capaian_iki . ' </td>
