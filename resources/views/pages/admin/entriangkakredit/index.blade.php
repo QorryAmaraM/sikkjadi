@@ -54,11 +54,29 @@
    
                <div class="row">
                   <div class="col-sm-12 mt-3 text-right">
-                      <button type="submit" name="submit" value="Save" class="btn save-button">+ Tambah</button>
+                      <button type="submit" name="submit" value="Save" class="btn save-button" data-toggle="modal" data-target="#successModal">+ Tambah</button>
                   </div>
               </div>
             </div>
 
+            <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="successModalLabel">Data Berhasil Ditambahkan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Selamat! Data berhasil ditambahkan.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="'/admin-masterangkakredit/listangkakredit/'">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
             </form>
 
