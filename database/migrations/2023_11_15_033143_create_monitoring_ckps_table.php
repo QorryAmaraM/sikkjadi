@@ -15,16 +15,12 @@ return new class extends Migration
     {
         Schema::create('monitoring_ckps', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('nip');
-            $table->string('tahun');
-            $table->string('bulan');
-            $table->string('no');
-            $table->string('periode');
-            $table->string('ckp');
+            $table->unsignedBigInteger('penilaian_ckpr_id');
             $table->string('ckp_akhir');
             $table->string('keterangan_kepala');
             $table->timestamps();
+
+            $table->foreign('penilaian_ckpr_id')->references('id')->on('penilaian_ckprs')->onDelete('cascade');
         });
     }
 
