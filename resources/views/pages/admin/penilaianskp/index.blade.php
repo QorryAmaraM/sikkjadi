@@ -86,66 +86,71 @@
             <div class="col-sm-12">
                 <div class="table-responsive">
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="min-width: 1500px;">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
+                            style="min-width: 1500px;">
                             <thead>
                                 <tr>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Jenis</th>
-                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan </th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan
+                                    </th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aspek</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">IKI</th>
                                     <th colspan="2" style="padding:0.2rem; border-bottom: none">Target</th>
-                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Satuan</th>                            
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Satuan</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Realisasi</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kondisi</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>
-                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI</th>
-                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana</th>
-                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian Rencana</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI
+                                    </th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana
+                                    </th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian
+                                        Rencana</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi</th>
                                 </tr>
                                 <tr>
-                                <th style="border-top: none">Min</th>
-                                <th style="border-top: none">Max</th>
-                            </tr>
+                                    <th style="border-top: none">Min</th>
+                                    <th style="border-top: none">Max</th>
+                                </tr>
                             </thead>
                             <tbody class="alldata">
                                 @foreach ($result as $skp)
-                                    <tr>
-                                        <td>{{ $skp->kinerja }}</td>
-                                        <td>{{ $skp->rencana_kinerja_atasan }}</td>
-                                        <td>{{ $skp->rencana_kinerja }}</td>
-                                        <td>{{ $skp->aspek }}</td>
-                                        <td>{{ $skp->iki }}</td>
-                                        <td>{{ $skp->target_min }}</td>
-                                        <td>{{ $skp->target_max }}</td>
-                                        <td>{{ $skp->satuan }}</td>
-                                        <td>{{ $skp->realisasi }}</td>
-                                        <td>{{ $skp->kondisi }}</td>
-                                        <td>{{ $skp->capaian_iki }}</td>
-                                        <td>{{ $skp->kategori_capaian_iki }}</td>
-                                        <td>{{ $skp->nilai_capaian_rencana }}</td>
-                                        <td>{{ $skp->kategori_capaian_rencana }}</td>
-                                        <td>{{ $skp->nilai_tertimbang }}</td>
-                                        <td>
-                                            <button class="btn btn-icon btn-edit btn-sm">
-                                                <a href="{{ route('penilaianskp.edit', ['id' => $skp->id]) }}"
-                                                    class="action-link"><i class="fas fa-edit"></i></a>
+                                    @if ($skp->kinerja == 'utama')
+                                        <tr>
+                                            <td>{{ $skp->kinerja }}</td>
+                                            <td>{{ $skp->rencana_kinerja_atasan }}</td>
+                                            <td>{{ $skp->rencana_kinerja }}</td>
+                                            <td>{{ $skp->aspek }}</td>
+                                            <td>{{ $skp->iki }}</td>
+                                            <td>{{ $skp->target_min }}</td>
+                                            <td>{{ $skp->target_max }}</td>
+                                            <td>{{ $skp->satuan }}</td>
+                                            <td>{{ $skp->realisasi }}</td>
+                                            <td>{{ $skp->kondisi }}</td>
+                                            <td>{{ $skp->capaian_iki }}</td>
+                                            <td>{{ $skp->kategori_capaian_iki }}</td>
+                                            <td>{{ $skp->nilai_capaian_rencana }}</td>
+                                            <td>{{ $skp->kategori_capaian_rencana }}</td>
+                                            <td>{{ $skp->nilai_tertimbang }}</td>
+                                            <td>
+                                                <button class="btn btn-icon btn-edit btn-sm">
+                                                    <a href="{{ route('penilaianskp.edit', ['id' => $skp->id]) }}"
+                                                        class="action-link"><i class="fas fa-edit"></i></a>
 
-                                            </button> |
-                                            <button class="btn btn-icon btn-delete btn-sm">
-                                                <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
-                                                    class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                                </button> |
+                                                <button class="btn btn-icon btn-delete btn-sm">
+                                                    <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
+                                                        class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
 
-
                             <tbody id="Content" class="searchdata"></tbody>
-
 
                             <tbody>
                                 <tr>
@@ -165,16 +170,49 @@
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">{{ $nilai_kinerja_utama }}</td>
                                 </tr>
                             </tbody>
-                            <tbody>
 
-                            </tbody>
+                            <tbody class="alldata">
+                                @foreach ($result as $skp)
+                                    @if ($skp->kinerja == 'tambahan')
+                                        <tr>
+                                            <td>{{ $skp->kinerja }}</td>
+                                            <td>{{ $skp->rencana_kinerja_atasan }}</td>
+                                            <td>{{ $skp->rencana_kinerja }}</td>
+                                            <td>{{ $skp->aspek }}</td>
+                                            <td>{{ $skp->iki }}</td>
+                                            <td>{{ $skp->target_min }}</td>
+                                            <td>{{ $skp->target_max }}</td>
+                                            <td>{{ $skp->satuan }}</td>
+                                            <td>{{ $skp->realisasi }}</td>
+                                            <td>{{ $skp->kondisi }}</td>
+                                            <td>{{ $skp->capaian_iki }}</td>
+                                            <td>{{ $skp->kategori_capaian_iki }}</td>
+                                            <td>{{ $skp->nilai_capaian_rencana }}</td>
+                                            <td>{{ $skp->kategori_capaian_rencana }}</td>
+                                            <td>{{ $skp->nilai_tertimbang }}</td>
+                                            <td>
+                                                <button class="btn btn-icon btn-edit btn-sm">
+                                                    <a href="{{ route('penilaianskp.edit', ['id' => $skp->id]) }}"
+                                                        class="action-link"><i class="fas fa-edit"></i></a>
+
+                                                </button> |
+                                                <button class="btn btn-icon btn-delete btn-sm">
+                                                    <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
+                                                        class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            </tbody>                            
 
                             <tbody>
                                 <tr>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja Tambahan
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja
+                                        Tambahan
                                     </td>
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
@@ -190,7 +228,7 @@
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">{{ $nilai_kinerja_tambahan }}</td>
                                 </tr>
                                 <tr>
                                     <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai SKP</td>
@@ -208,7 +246,7 @@
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">{{ $nilai_skp }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -235,7 +273,7 @@
                 $('.searchdata').hide();
             }
 
-            handleSearch(savedValue, savedUnitkerjaValue, savedJenisValue, savedKinerjaValue);
+            handleSearch(savedValue, savedUnitkerjaValue, savedKinerjaValue);
         });
 
         $('#unitkerja').on('input', function() {
@@ -249,21 +287,7 @@
                 $('.searchdata').hide();
             }
 
-            handleSearch(savedValue, savedUnitkerjaValue, savedJenisValue, savedKinerjaValue);
-        });
-
-        $('#jenis').on('input', function() {
-            savedJenisValue = $(this).val();
-
-            if (savedJenisValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else {
-                $('.alldata').show();
-                $('.searchdata').hide();
-            }
-
-            handleSearch(savedValue, savedUnitkerjaValue, savedJenisValue, savedKinerjaValue);
+            handleSearch(savedValue, savedUnitkerjaValue, savedKinerjaValue);
         });
 
         $('#kinerja').on('input', function() {
@@ -277,10 +301,10 @@
                 $('.searchdata').hide();
             }
 
-            handleSearch(savedValue, savedUnitkerjaValue, savedJenisValue, savedKinerjaValue);
+            handleSearch(savedValue, savedUnitkerjaValue, savedKinerjaValue);
         });
 
-        function handleSearch(value, unitkerjavalue, jenisvalue, kinerjavalue) {
+        function handleSearch(value, unitkerjavalue, kinerjavalue) {
             $.ajax({
                 type: 'get',
                 url: '{{ URL::to('/admin-perencanaankerja/penilaianskp/search') }}',
