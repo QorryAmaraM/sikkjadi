@@ -110,28 +110,52 @@
                         </thead>
                         <tbody class="alldata">
                             @foreach ($rencanakinerja as $rencana)
-                                <tr>
-                                    <td>{{ $rencana->kinerja }}</td>
-                                    <td>{{ $rencana->rencana_kinerja_atasan }}</td>
-                                    <td>{{ $rencana->rencana_kinerja }}</td>
-                                    <td>{{ $rencana->aspek }}</td>
-                                    <td>{{ $rencana->iki }}</td>
-                                    <td>{{ $rencana->target_min }}</td>
-                                    <td>{{ $rencana->target_max }}</td>
-                                    <td>{{ $rencana->satuan }}</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('rencanakinerja.edit', ['id' => $rencana->id]) }}"
-                                                class="action-link"><i class="fas fa-edit"></i></a>
-
-                                        </button> |
-                                        <button class="btn btn-icon btn-delete btn-sm">
-                                            <a href="{{ route('rencanakinerja.delete', ['id' => $rencana->id]) }}"
-                                                class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
-                                        </button>
-                                    </td>
-
-                                </tr>
+                            <tr>
+                                <td rowspan="3">{{ $rencana->kinerja }}</td>
+                                <td rowspan="3">{{ $rencana->rencana_kinerja_atasan }}</td>
+                                <td rowspan="3">{{ $rencana->rencana_kinerja }}</td>
+                            
+                                <!-- Kuantitas -->
+                                <td>Kuantitas</td>
+                                <td>{{ $rencana->kuantitas_iki }}</td>
+                                <td>{{ $rencana->kuantitas_target_min }}</td>
+                                <td>{{ $rencana->kuantitas_target_max }}</td>
+                                <td>{{ $rencana->kuantitas_satuan }}</td>
+                                <td>
+                                    <button class="btn btn-icon btn-edit btn-sm">
+                                        <a href="{{ route('kuantitas.edit', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <!-- Kualitas -->
+                                <td>Kualitas</td>
+                                <td>{{ $rencana->kualitas_iki }}</td>
+                                <td>{{ $rencana->kualitas_target_min }}</td>
+                                <td>{{ $rencana->kualitas_target_max }}</td>
+                                <td>{{ $rencana->kualitas_satuan }}</td>
+                                <td>
+                                    <button class="btn btn-icon btn-edit btn-sm">
+                                        <a href="{{ route('kualitas.edit', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <!-- Waktu -->
+                                <td>Waktu</td>
+                                <td>{{ $rencana->waktu_iki }}</td>
+                                <td>{{ $rencana->waktu_target_min }}</td>
+                                <td>{{ $rencana->waktu_target_max }}</td>
+                                <td>{{ $rencana->waktu_satuan }}</td>
+                                <td>
+                                    <button class="btn btn-icon btn-edit btn-sm">
+                                        <a href="{{ route('waktu.edit', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
+                                    </button>
+                                </td>
+                            </tr>
+                            
                             @endforeach
                         </tbody>
 

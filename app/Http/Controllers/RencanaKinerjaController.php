@@ -112,7 +112,7 @@ class REncanaKinerjaController extends Controller
     }
 
     //Update
-    public function edit($id)
+    public function edit_kuantitas($id)
     {
         $userid = Auth::user()->role_id;
         $rencanakinerja = rencana_kinerja::find($id);
@@ -122,7 +122,59 @@ class REncanaKinerjaController extends Controller
         $user = user::all();
         switch ($userid) {
             case '1':
-                return view('pages.admin.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                return view('pages.admin.rencanakinerja.edit_kuantitas', compact(['rencanakinerja', 'user', 'result']));
+                break;
+            case '2':
+                return view('pages.users.kepalabps.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                break;
+            case '3':
+                return view('pages.users.kepalabu.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                break;
+            case '4':
+                return view('pages.users.kf.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                break;
+            case '5':
+                return view('pages.users.staf.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                break;
+        }
+    }
+    public function edit_kualitas($id)
+    {
+        $userid = Auth::user()->role_id;
+        $rencanakinerja = rencana_kinerja::find($id);
+        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*','rencana_kinerjas.*')
+        ->where('rencana_kinerjas.id', 'like', '%'.$id.'%')->get();
+        
+        $user = user::all();
+        switch ($userid) {
+            case '1':
+                return view('pages.admin.rencanakinerja.edit_kualitas', compact(['rencanakinerja', 'user', 'result']));
+                break;
+            case '2':
+                return view('pages.users.kepalabps.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                break;
+            case '3':
+                return view('pages.users.kepalabu.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                break;
+            case '4':
+                return view('pages.users.kf.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                break;
+            case '5':
+                return view('pages.users.staf.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                break;
+        }
+    }
+    public function edit_waktu($id)
+    {
+        $userid = Auth::user()->role_id;
+        $rencanakinerja = rencana_kinerja::find($id);
+        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*','rencana_kinerjas.*')
+        ->where('rencana_kinerjas.id', 'like', '%'.$id.'%')->get();
+        
+        $user = user::all();
+        switch ($userid) {
+            case '1':
+                return view('pages.admin.rencanakinerja.edit_waktu', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '2':
                 return view('pages.users.kepalabps.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));

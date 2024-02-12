@@ -115,36 +115,63 @@
                                     <th style="border-top: none">Max</th>
                                 </tr>
                             </thead>
-                            <tbody class="alldata">
+                            <tbody class="tabel_utama">
                                 @foreach ($result as $skp)
                                     @if ($skp->kinerja == 'utama')
                                         <tr>
-                                            <td>{{ $skp->kinerja }}</td>
-                                            <td>{{ $skp->rencana_kinerja_atasan }}</td>
-                                            <td>{{ $skp->rencana_kinerja }}</td>
-                                            <td>{{ $skp->aspek }}</td>
-                                            <td>{{ $skp->iki }}</td>
-                                            <td>{{ $skp->target_min }}</td>
-                                            <td>{{ $skp->target_max }}</td>
-                                            <td>{{ $skp->satuan }}</td>
-                                            <td>{{ $skp->realisasi }}</td>
-                                            <td>{{ $skp->kondisi }}</td>
-                                            <td>{{ $skp->capaian_iki }}</td>
-                                            <td>{{ $skp->kategori_capaian_iki }}</td>
-                                            <td>{{ $skp->nilai_capaian_rencana }}</td>
-                                            <td>{{ $skp->kategori_capaian_rencana }}</td>
-                                            <td>{{ $skp->nilai_tertimbang }}</td>
-                                            <td>
+                                            <td rowspan="3">{{ $skp->kinerja }}</td>
+                                            <td rowspan="3">{{ $skp->rencana_kinerja_atasan }}</td>
+                                            <td rowspan="3">{{ $skp->rencana_kinerja }}</td>
+
+                                            <td>Kuantitas</td>
+                                            <td>{{ $skp->kuantitas_iki }}</td>
+                                            <td>{{ $skp->kuantitas_target_min }}</td>
+                                            <td>{{ $skp->kuantitas_target_max }}</td>
+                                            <td>{{ $skp->kuantitas_satuan }}</td>
+                                            <td>{{ $skp->kuantitas_realisasi }}</td>
+                                            <td>{{ $skp->kuantitas_kondisi }}</td>
+                                            <td>{{ $skp->kuantitas_capaian_iki }}</td>
+                                            <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
+
+                                            <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
+                                            <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
+                                            <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
+                                            <td rowspan="3">
                                                 <button class="btn btn-icon btn-edit btn-sm">
                                                     <a href="{{ route('penilaianskp.edit', ['id' => $skp->id]) }}"
                                                         class="action-link"><i class="fas fa-edit"></i></a>
 
-                                                </button> |
+                                                </button>
                                                 <button class="btn btn-icon btn-delete btn-sm">
                                                     <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
-                                                        class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
+                                                        class="action-link btn-delete"><i
+                                                            class="fas fa-trash-can"></i></a>
                                                 </button>
                                             </td>
+                                        <tr>
+                                            <td>Kualitas</td>
+                                            <td>{{ $skp->kualitas_iki }}</td>
+                                            <td>{{ $skp->kualitas_target_min }}</td>
+                                            <td>{{ $skp->kualitas_target_max }}</td>
+                                            <td>{{ $skp->kualitas_satuan }}</td>
+                                            <td>{{ $skp->kualitas_realisasi }}</td>
+                                            <td>{{ $skp->kualitas_kondisi }}</td>
+                                            <td>{{ $skp->kualitas_capaian_iki }}</td>
+                                            <td>{{ $skp->kualitas_kategori_capaian_iki }}</td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td>Waktu</td>
+                                            <td>{{ $skp->waktu_iki }}</td>
+                                            <td>{{ $skp->waktu_target_min }}</td>
+                                            <td>{{ $skp->waktu_target_max }}</td>
+                                            <td>{{ $skp->waktu_satuan }}</td>
+                                            <td>{{ $skp->waktu_realisasi }}</td>
+                                            <td>{{ $skp->waktu_kondisi }}</td>
+                                            <td>{{ $skp->waktu_capaian_iki }}</td>
+                                            <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
+
                                         </tr>
                                     @endif
                                 @endforeach
@@ -152,9 +179,10 @@
 
                             <tbody id="Content" class="searchdata"></tbody>
 
-                            <tbody>
+                            <tbody class="tabel_utama">
                                 <tr>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja Utama
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja
+                                        Utama
                                     </td>
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
@@ -170,46 +198,67 @@
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">{{ $nilai_kinerja_utama }}</td>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">
+                                        {{ $nilai_kinerja_utama }}</td>
                                 </tr>
                             </tbody>
 
-                            <tbody class="alldata">
+                            <tbody class="tabel_tambahan">
                                 @foreach ($result as $skp)
                                     @if ($skp->kinerja == 'tambahan')
                                         <tr>
-                                            <td>{{ $skp->kinerja }}</td>
-                                            <td>{{ $skp->rencana_kinerja_atasan }}</td>
-                                            <td>{{ $skp->rencana_kinerja }}</td>
-                                            <td>{{ $skp->aspek }}</td>
-                                            <td>{{ $skp->iki }}</td>
-                                            <td>{{ $skp->target_min }}</td>
-                                            <td>{{ $skp->target_max }}</td>
-                                            <td>{{ $skp->satuan }}</td>
+                                            <td rowspan="3">{{ $skp->kinerja }}</td>
+                                            <td rowspan="3">{{ $skp->rencana_kinerja_atasan }}</td>
+                                            <td rowspan="3">{{ $skp->rencana_kinerja }}</td>
+
+                                            <td>Kuantitas</td>
+                                            <td>{{ $skp->kuantitas_iki }}</td>
+                                            <td>{{ $skp->kuantitas_target_min }}</td>
+                                            <td>{{ $skp->kuantitas_target_max }}</td>
+                                            <td>{{ $skp->kuantitas_satuan }}</td>
                                             <td>{{ $skp->realisasi }}</td>
                                             <td>{{ $skp->kondisi }}</td>
-                                            <td>{{ $skp->capaian_iki }}</td>
-                                            <td>{{ $skp->kategori_capaian_iki }}</td>
-                                            <td>{{ $skp->nilai_capaian_rencana }}</td>
-                                            <td>{{ $skp->kategori_capaian_rencana }}</td>
-                                            <td>{{ $skp->nilai_tertimbang }}</td>
-                                            <td>
+
+                                            <td rowspan="3">{{ $skp->capaian_iki }}</td>
+                                            <td rowspan="3">{{ $skp->kategori_capaian_iki }}</td>
+                                            <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
+                                            <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
+                                            <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
+                                            <td rowspan="3">
                                                 <button class="btn btn-icon btn-edit btn-sm">
                                                     <a href="{{ route('penilaianskp.edit', ['id' => $skp->id]) }}"
                                                         class="action-link"><i class="fas fa-edit"></i></a>
 
-                                                </button> |
+                                                </button>
                                                 <button class="btn btn-icon btn-delete btn-sm">
                                                     <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
-                                                        class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
+                                                        class="action-link btn-delete"><i
+                                                            class="fas fa-trash-can"></i></a>
                                                 </button>
                                             </td>
+                                        <tr>
+                                            <td>Kualitas</td>
+                                            <td>{{ $skp->kualitas_iki }}</td>
+                                            <td>{{ $skp->kualitas_target_min }}</td>
+                                            <td>{{ $skp->kualitas_target_max }}</td>
+                                            <td>{{ $skp->kualitas_satuan }}</td>
+                                            <td>{{ $skp->realisasi }}</td>
+                                            <td>{{ $skp->kondisi }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Waktu</td>
+                                            <td>{{ $skp->waktu_iki }}</td>
+                                            <td>{{ $skp->waktu_target_min }}</td>
+                                            <td>{{ $skp->waktu_target_max }}</td>
+                                            <td>{{ $skp->waktu_satuan }}</td>
+                                            <td>{{ $skp->realisasi }}</td>
+                                            <td>{{ $skp->kondisi }}</td>
                                         </tr>
                                     @endif
                                 @endforeach
-                            </tbody>                            
+                            </tbody>
 
-                            <tbody>
+                            <tbody class="tabel_tambahan">
                                 <tr>
                                     <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja
                                         Tambahan
@@ -228,7 +277,8 @@
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">{{ $nilai_kinerja_tambahan }}</td>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">
+                                        {{ $nilai_kinerja_tambahan }}</td>
                                 </tr>
                                 <tr>
                                     <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai SKP</td>
@@ -246,7 +296,8 @@
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
                                     <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">{{ $nilai_skp }}</td>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">
+                                        {{ $nilai_skp }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -293,12 +344,16 @@
         $('#kinerja').on('input', function() {
             savedKinerjaValue = $(this).val();
 
-            if (savedKinerjaValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
+            if (savedKinerjaValue == 'utama') {
+                $('.tabel_utama').show();
+                $('.tabel_tambahan').hide();
+            } else if (savedKinerjaValue == 'tambahan') {
+                $('.tabel_utama').hide();
+                $('.tabel_tambahan').show();
             } else {
-                $('.alldata').show();
-                $('.searchdata').hide();
+                $('.tabel_utama').show();
+                $('.tabel_tambahan').show();
+
             }
 
             handleSearch(savedValue, savedUnitkerjaValue, savedKinerjaValue);

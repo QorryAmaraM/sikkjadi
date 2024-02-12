@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
         <div class="row">
@@ -67,7 +67,8 @@
                         <thead>
                             <tr>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Jenis</th>
-                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan </th>
+                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan
+                                </th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aspek</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">IKI</th>
@@ -83,21 +84,51 @@
                         <tbody class="alldata">
                             @foreach ($result as $rencana)
                                 <tr>
-                                    <td>{{ $rencana->kinerja }}</td>
-                                    <td>{{ $rencana->rencana_kinerja_atasan }}</td>
-                                    <td>{{ $rencana->rencana_kinerja }}</td>
-                                    <td>{{ $rencana->aspek }}</td>
-                                    <td>{{ $rencana->iki }}</td>
-                                    <td>{{ $rencana->target_min }}</td>
-                                    <td>{{ $rencana->target_max }}</td>
-                                    <td>{{ $rencana->satuan }}</td>
+                                    <td rowspan="3">{{ $rencana->kinerja }}</td>
+                                    <td rowspan="3">{{ $rencana->rencana_kinerja_atasan }}</td>
+                                    <td rowspan="3">{{ $rencana->rencana_kinerja }}</td>
+
+                                    <!-- Kuantitas -->
+                                    <td>Kuantitas</td>
+                                    <td>{{ $rencana->kuantitas_iki }}</td>
+                                    <td>{{ $rencana->kuantitas_target_min }}</td>
+                                    <td>{{ $rencana->kuantitas_target_max }}</td>
+                                    <td>{{ $rencana->kuantitas_satuan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="/admin-perencanaankerja/penilaianskp/create/{{ $rencana->id }}" type="button" class="btn add-button">+ Nilai</a>
+                                            <a href="{{ route('kuantitas.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
                                         </button>
                                     </td>
-
                                 </tr>
+
+                                <tr>
+                                    <!-- Kualitas -->
+                                    <td>Kualitas</td>
+                                    <td>{{ $rencana->kualitas_iki }}</td>
+                                    <td>{{ $rencana->kualitas_target_min }}</td>
+                                    <td>{{ $rencana->kualitas_target_max }}</td>
+                                    <td>{{ $rencana->kualitas_satuan }}</td>
+                                    <td>
+                                        <button class="btn btn-icon btn-edit btn-sm">
+                                            <a href="{{ route('kualitas.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <!-- Waktu -->
+                                    <td>Waktu</td>
+                                    <td>{{ $rencana->waktu_iki }}</td>
+                                    <td>{{ $rencana->waktu_target_min }}</td>
+                                    <td>{{ $rencana->waktu_target_max }}</td>
+                                    <td>{{ $rencana->waktu_satuan }}</td>
+                                    <td>
+                                        <button class="btn btn-icon btn-edit btn-sm">
+                                            <a href="{{ route('waktu.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
                             @endforeach
                         </tbody>
 

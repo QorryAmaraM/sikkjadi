@@ -102,8 +102,12 @@
             <div class="row mb-8">
                 <div class="col-sm-12">
                     <div class="form-group">
+                        <label for="realisasi">Aspek</label>
+                        <input type="realisasi" class="form-control" value="Waktu" disabled>
+                    </div>
+                    <div class="form-group">
                         <label for="kondisi">Kondisi</label>
-                        <select class="form-control" data-width="75%" data-live-search="true" id="kondisi" name="kondisi">
+                        <select class="form-control" data-width="75%" data-live-search="true" id="waktu_kondisi" name="waktu_kondisi">
                             <option value="">Pilih Kondisi</option>
                             <option value="normal">Normal</option>
                             <option value="khusus">Khusus</option>
@@ -111,8 +115,7 @@
                     </div>
                     <div class="form-group">
                         <label for="realisasi">Realisasi</label>
-                        <input type="realisasi" class="form-control" id="realisasi" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="realisasi">
+                        <input type="realisasi" class="form-control" id="waktu_realisasi" name="waktu_realisasi">
                     </div>
                 </div>
             </div>

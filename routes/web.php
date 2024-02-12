@@ -40,7 +40,9 @@ Route::middleware(['checkRole:1'])->group(function () {
     Route::get('/admin-perencanaankerja/rencanakinerja/create/index', [RencanaKinerjaController::class, 'create_index']);
     Route::get('/admin-perencanaankerja/rencanakinerja/create/{id}', [RencanaKinerjaController::class, 'create']);
     Route::post('/admin-perencanaankerja/rencanakinerja/store', [RencanaKinerjaController::class, 'store']);
-    Route::get('/admin-perencanaankerja/rencanakinerja/{id}/edit', [RencanaKinerjaController::class, 'edit'])->name('rencanakinerja.edit');
+    Route::get('/admin-perencanaankerja/rencanakinerja/{id}/kuantitas-edit', [RencanaKinerjaController::class, 'edit_kuantitas'])->name('kuantitas.edit');
+    Route::get('/admin-perencanaankerja/rencanakinerja/{id}/kualitas-edit', [RencanaKinerjaController::class, 'edit_kualitas'])->name('kualitas.edit');
+    Route::get('/admin-perencanaankerja/rencanakinerja/{id}/waktu-edit', [RencanaKinerjaController::class, 'edit_waktu'])->name('waktu.edit');
     Route::put('/admin-perencanaankerja/rencanakinerja/{id}', [RencanaKinerjaController::class, 'update']);
     Route::get('/admin-perencanaankerja/rencanakinerja/{id}', [RencanaKinerjaController::class, 'destroy'])->name('rencanakinerja.delete');
 
@@ -49,7 +51,9 @@ Route::middleware(['checkRole:1'])->group(function () {
     Route::get('/admin-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search']);
     Route::get('/admin-perencanaankerja/penilaianskp/create/index', [PenilaianSKPController::class, 'create_index']);
     Route::get('/admin-perencanaankerja/penilaianskp/create/search', [PenilaianSKPController::class, 'create_search']);
-    Route::get('/admin-perencanaankerja/penilaianskp/create/{id}', [PenilaianSKPController::class, 'create'])->name('penilaianskp.create');
+    Route::get('/admin-perencanaankerja/penilaianskp/create/{id}/kuantitas', [PenilaianSKPController::class, 'create_kuantitas'])->name('kuantitas.create');
+    Route::get('/admin-perencanaankerja/penilaianskp/create/{id}/kualitas', [PenilaianSKPController::class, 'create_kualitas'])->name('kualitas.create');
+    Route::get('/admin-perencanaankerja/penilaianskp/create/{id}/waktu', [PenilaianSKPController::class, 'create_waktu'])->name('waktu.create');
     Route::post('/admin-perencanaankerja/penilaianskp/store', [PenilaianSKPController::class, 'store']);
     Route::get('/admin-perencanaankerja/penilaianskp/{id}/edit', [PenilaianSKPController::class, 'edit'])->name('penilaianskp.edit');
     Route::put('/admin-perencanaankerja/penilaianskp/{id}', [PenilaianSKPController::class, 'update']);
