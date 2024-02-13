@@ -10,6 +10,8 @@ use App\Models\rencana_kinerja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isNull;
+
 class PenilaianSKPController extends Controller
 {
     //Read
@@ -348,10 +350,10 @@ class PenilaianSKPController extends Controller
             $data['waktu_capaian_iki'] = $waktu_capaian_iki;
             $data['waktu_kategori_capaian_iki'] = $waktu_kategori_capaian_iki;
         }
-        
-        if ($penilaian_skp === null) {
+
+        if (isNull($penilaian_skp)) {
             penilaian_skp::create($data);
-        }        
+        }
 
         foreach ($penilaian_skp as $penilaian_skp) {
             if ($data['rencanakinerja_id'] == $penilaian_skp->rencanakinerja_id) {
