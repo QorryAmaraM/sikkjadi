@@ -20,15 +20,15 @@ return new class extends Migration
             $table->double('kuantitas_realisasi')->nullable();
             $table->enum('kuantitas_kondisi', ['normal', 'khusus'])->nullable();
             $table->double('kuantitas_capaian_iki')->nullable();
-            $table->enum('kuantitas_kategori_capaian_iki', ['sangat_baik', 'baik', 'cukup', 'kurang', 'sangat_kurang'])->nullable();
+            $table->enum('kuantitas_kategori_capaian_iki', ['sangat baik', 'baik', 'cukup', 'kurang', 'sangat kurang'])->nullable();
             $table->double('kualitas_realisasi')->nullable();
             $table->enum('kualitas_kondisi', ['normal', 'khusus'])->nullable();
             $table->double('kualitas_capaian_iki')->nullable();
-            $table->enum('kualitas_kategori_capaian_iki', ['sangat_baik', 'baik', 'cukup', 'kurang', 'sangat_kurang'])->nullable();
+            $table->enum('kualitas_kategori_capaian_iki', ['sangat baik', 'baik', 'cukup', 'kurang', 'sangat kurang'])->nullable();
             $table->double('waktu_realisasi')->nullable();
             $table->enum('waktu_kondisi', ['normal', 'khusus'])->nullable();
             $table->double('waktu_capaian_iki')->nullable();
-            $table->enum('waktu_kategori_capaian_iki', ['sangat_baik', 'baik', 'cukup', 'kurang', 'sangat_kurang'])->nullable();
+            $table->enum('waktu_kategori_capaian_iki', ['sangat baik', 'baik', 'cukup', 'kurang', 'sangat kurang'])->nullable();
             $table->double('nilai_capaian_rencana')->nullable();
             $table->string('kategori_capaian_rencana')->nullable();
             $table->double('nilai_tertimbang')->nullable();
