@@ -218,8 +218,8 @@
                                             <td>{{ $skp->kuantitas_capaian_iki }}</td>
                                             <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
 
-                                            <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
+                                            <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
                                             <td rowspan="3">
                                                 <button class="btn btn-icon btn-edit btn-sm">
