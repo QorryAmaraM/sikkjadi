@@ -350,7 +350,6 @@ class PenilaianSKPController extends Controller
             $data['waktu_capaian_iki'] = $waktu_capaian_iki;
             $data['waktu_kategori_capaian_iki'] = $waktu_kategori_capaian_iki;
         }        
-        dd($data);
 
         $penilaian = penilaian_skp::all();
 
