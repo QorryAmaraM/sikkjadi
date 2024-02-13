@@ -78,23 +78,23 @@ class PenilaianSKPController extends Controller
             if ($sangat_baik == 2 && $baik == 1 || $sangat_baik == 3 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 0 && $baik == 0 && $sangat_baik == 1) {
                 $data['kategori_capaian_rencana'] = 'sangat baik';
                 $data['nilai_capaian_rencana'] = 120;
-                $data['nilai_tertimbang'] = ((80/100) * 120) + ((20/100) * 120);
+                $data['nilai_tertimbang'] = ((80 / 100) * 120) + ((20 / 100) * 120);
             } elseif ($kurang == 0 && $sangat_kurang == 0 && $cukup == 1 || $kurang == 0 && $sangat_kurang == 0 && $baik >= 2 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 0 && $baik == 1 && $sangat_baik == 0) {
                 $data['kategori_capaian_rencana'] = 'baik';
                 $data['nilai_capaian_rencana'] = 100;
-                $data['nilai_tertimbang'] = ((80/100) * 100) + ((20/100) * 100);
+                $data['nilai_tertimbang'] = ((80 / 100) * 100) + ((20 / 100) * 100);
             } elseif ($sangat_kurang == 0 && $kurang == 1 || $sangat_kurang == 0 && $cukup >= 2 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 1 && $baik == 0 && $sangat_baik == 0) {
                 $data['kategori_capaian_rencana'] = 'cukup';
                 $data['nilai_capaian_rencana'] = 80;
-                $data['nilai_tertimbang'] = ((80/100) * 80) + ((10/100) * 80);
+                $data['nilai_tertimbang'] = ((80 / 100) * 80) + ((10 / 100) * 80);
             } elseif ($sangat_kurang == 1 || $kurang >= 2 || $sangat_kurang == 0 && $kurang == 1 && $cukup == 0 && $baik == 0 && $sangat_baik == 0) {
                 $data['kategori_capaian_rencana'] = 'kurang';
                 $data['nilai_capaian_rencana'] = 60;
-                $data['nilai_tertimbang'] = ((80/100) * 60) + ((5/100) * 60);
+                $data['nilai_tertimbang'] = ((80 / 100) * 60) + ((5 / 100) * 60);
             } elseif ($sangat_kurang >= 2 || $sangat_kurang == 1 && $kurang == 0 && $cukup == 0 && $baik == 0 && $sangat_baik == 0) {
                 $data['kategori_capaian_rencana'] = 'sangat kurang';
                 $data['nilai_capaian_rencana'] = 25;
-                $data['nilai_tertimbang'] = ((80/100) * 25) + ((1/100) * 25);
+                $data['nilai_tertimbang'] = ((80 / 100) * 25) + ((1 / 100) * 25);
             }
 
             $penilaian->update($data);
@@ -112,10 +112,10 @@ class PenilaianSKPController extends Controller
         $sum_utama = $result->where('kinerja', 'utama')->sum('nilai_tertimbang');
         $sum_tambahan = $result->where('kinerja', 'tambahan')->sum('nilai_tertimbang');
 
-        if ($jumlah_utama !== 0 && $sum_utama !==0) {
+        if ($jumlah_utama !== 0 && $sum_utama !== 0) {
             $nilai_kinerja_utama = $sum_utama / $jumlah_utama;
         }
-        if ($jumlah_tambahan !== 0 && $sum_tambahan !==0) {
+        if ($jumlah_tambahan !== 0 && $sum_tambahan !== 0) {
             $nilai_kinerja_tambahan = $sum_tambahan / $jumlah_tambahan;
         }
 
@@ -281,27 +281,27 @@ class PenilaianSKPController extends Controller
 
     public function store(Request $request)
     {
-        $penilaian_skp = penilaian_skp::all();
+
         $userid = Auth::user()->id;
         $data = $request->except(['_token', 'submit']);
         $rencana_kinerja = rencana_kinerja::find($request->rencanakinerja_id);
 
         if ($request->kuantitas_kondisi) {
             if ($request->kuantitas_kondisi == 'normal') {
-                $kuantitas_capaian_iki = ($request->kuantitas_realisasi / $rencana_kinerja->kuantitas_target_max) * 100;
+                $kuantitas_capaian_iki = round(($request->kuantitas_realisasi / $rencana_kinerja->kuantitas_target_max) * 100);
             } else if ($request->kuantitas_kondisi == 'khusus') {
-                $kuantitas_capaian_iki = (1 + (1 - $request->kuantitas_realisasi / $rencana_kinerja->kuantitas_target_max)) * 100;
+                $kuantitas_capaian_iki = round((1 + (1 - $request->kuantitas_realisasi / $rencana_kinerja->kuantitas_target_max)) * 100);
             }
 
-            if ($kuantitas_capaian_iki >= 101) {
+            if ($kuantitas_capaian_iki >= 120) {
                 $kuantitas_kategori_capaian_iki = 'sangat baik';
-            } else if ($kuantitas_capaian_iki == 100) {
+            } else if ($kuantitas_capaian_iki >= 100 && $kuantitas_capaian_iki < 120) {
                 $kuantitas_kategori_capaian_iki = 'baik';
-            } else if ($kuantitas_capaian_iki >= 80 && $kuantitas_capaian_iki <= 99) {
+            } else if ($kuantitas_capaian_iki >= 80 && $kuantitas_capaian_iki < 100) {
                 $kuantitas_kategori_capaian_iki = 'cukup';
-            } else if ($kuantitas_capaian_iki >= 60 && $kuantitas_capaian_iki <= 79) {
+            } else if ($kuantitas_capaian_iki >= 60 && $kuantitas_capaian_iki < 80) {
                 $kuantitas_kategori_capaian_iki = 'kurang';
-            } else if ($kuantitas_capaian_iki >= 0 && $kuantitas_capaian_iki <= 59) {
+            } else if ($kuantitas_capaian_iki >= 0 && $kuantitas_capaian_iki < 60) {
                 $kuantitas_kategori_capaian_iki = 'sangat kurang';
             }
 
@@ -309,20 +309,20 @@ class PenilaianSKPController extends Controller
             $data['kuantitas_kategori_capaian_iki'] = $kuantitas_kategori_capaian_iki;
         } else if ($request->kualitas_kondisi) {
             if ($request->kualitas_kondisi == 'normal') {
-                $kualitas_capaian_iki = ($request->kualitas_realisasi / $rencana_kinerja->kualitas_target_max) * 100;
+                $kualitas_capaian_iki = round(($request->kualitas_realisasi / $rencana_kinerja->kualitas_target_max) * 100);
             } else if ($request->kualitas_kondisi == 'khusus') {
-                $kualitas_capaian_iki = (1 + (1 - $request->kualitas_realisasi / $rencana_kinerja->kualitas_target_max)) * 100;
+                $kualitas_capaian_iki = round((1 + (1 - $request->kualitas_realisasi / $rencana_kinerja->kualitas_target_max)) * 100);
             }
 
-            if ($kualitas_capaian_iki >= 101) {
+            if ($kualitas_capaian_iki >= 120) {
                 $kualitas_kategori_capaian_iki = 'sangat baik';
-            } else if ($kualitas_capaian_iki == 100) {
+            } else if ($kualitas_capaian_iki >= 100 && $kualitas_capaian_iki < 120) {
                 $kualitas_kategori_capaian_iki = 'baik';
-            } else if ($kualitas_capaian_iki >= 80 && $kualitas_capaian_iki <= 99) {
+            } else if ($kualitas_capaian_iki >= 80 && $kualitas_capaian_iki < 100) {
                 $kualitas_kategori_capaian_iki = 'cukup';
-            } else if ($kualitas_capaian_iki >= 60 && $kualitas_capaian_iki <= 79) {
+            } else if ($kualitas_capaian_iki >= 60 && $kualitas_capaian_iki < 80) {
                 $kualitas_kategori_capaian_iki = 'kurang';
-            } else if ($kualitas_capaian_iki >= 0 && $kualitas_capaian_iki <= 59) {
+            } else if ($kualitas_capaian_iki >= 0 && $kualitas_capaian_iki < 60) {
                 $kualitas_kategori_capaian_iki = 'sangat kurang';
             }
 
@@ -330,36 +330,41 @@ class PenilaianSKPController extends Controller
             $data['kualitas_kategori_capaian_iki'] = $kualitas_kategori_capaian_iki;
         } else if ($request->waktu_kondisi) {
             if ($request->waktu_kondisi == 'normal') {
-                $waktu_capaian_iki = ($request->waktu_realisasi / $rencana_kinerja->waktu_target_max) * 100;
+                $waktu_capaian_iki = round(($request->waktu_realisasi / $rencana_kinerja->waktu_target_max) * 100);
             } else if ($request->waktu_kondisi == 'khusus') {
-                $waktu_capaian_iki = (1 + (1 - $request->waktu_realisasi / $rencana_kinerja->waktu_target_max)) * 100;
+                $waktu_capaian_iki = round((1 + (1 - $request->waktu_realisasi / $rencana_kinerja->waktu_target_max)) * 100);
             }
 
-            if ($waktu_capaian_iki >= 101) {
+            if ($waktu_capaian_iki >= 120) {
                 $waktu_kategori_capaian_iki = 'sangat baik';
-            } else if ($waktu_capaian_iki == 100) {
+            } else if ($waktu_capaian_iki >= 100 && $waktu_capaian_iki < 120) {
                 $waktu_kategori_capaian_iki = 'baik';
-            } else if ($waktu_capaian_iki >= 80 && $waktu_capaian_iki <= 99) {
+            } else if ($waktu_capaian_iki >= 80 && $waktu_capaian_iki < 100) {
                 $waktu_kategori_capaian_iki = 'cukup';
-            } else if ($waktu_capaian_iki >= 60 && $waktu_capaian_iki <= 79) {
+            } else if ($waktu_capaian_iki >= 60 && $waktu_capaian_iki < 80) {
                 $waktu_kategori_capaian_iki = 'kurang';
-            } else if ($waktu_capaian_iki >= 0 && $waktu_capaian_iki <= 59) {
+            } else if ($waktu_capaian_iki >= 0 && $waktu_capaian_iki < 60) {
                 $waktu_kategori_capaian_iki = 'sangat kurang';
             }
 
             $data['waktu_capaian_iki'] = $waktu_capaian_iki;
             $data['waktu_kategori_capaian_iki'] = $waktu_kategori_capaian_iki;
         }
-        if (isNull($penilaian_skp)) {
+
+        $penilaian = penilaian_skp::all();
+
+
+        if ($penilaian->isEmpty()) {
             penilaian_skp::create($data);
         }
 
-        foreach ($penilaian_skp as $penilaian_skp) {
-            if ($data['rencanakinerja_id'] == $penilaian_skp->rencanakinerja_id) {
-                $penilaian_skp->update($data);
-            } else {
-                penilaian_skp::create($data);
-            }
+        $found = $penilaian->contains('rencanakinerja_id', $data['rencanakinerja_id']);
+
+        if ($found) {
+            $penilaian_skp = $penilaian->where('rencanakinerja_id', $data['rencanakinerja_id'])->first();
+            $penilaian_skp->update($data);
+        } else {
+            penilaian_skp::create($data);
         }
 
         switch ($userid) {
