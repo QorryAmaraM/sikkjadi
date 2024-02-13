@@ -157,8 +157,6 @@
                                             <td>{{ $skp->kualitas_kondisi }}</td>
                                             <td>{{ $skp->kualitas_capaian_iki }}</td>
                                             <td>{{ $skp->kualitas_kategori_capaian_iki }}</td>
-
-
                                         </tr>
                                         <tr>
                                             <td>Waktu</td>
@@ -215,11 +213,11 @@
                                             <td>{{ $skp->kuantitas_target_min }}</td>
                                             <td>{{ $skp->kuantitas_target_max }}</td>
                                             <td>{{ $skp->kuantitas_satuan }}</td>
-                                            <td>{{ $skp->realisasi }}</td>
-                                            <td>{{ $skp->kondisi }}</td>
+                                            <td>{{ $skp->kuantitas_realisasi }}</td>
+                                            <td>{{ $skp->kuantitas_kondisi }}</td>
+                                            <td>{{ $skp->kuantitas_capaian_iki }}</td>
+                                            <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
 
-                                            <td rowspan="3">{{ $skp->capaian_iki }}</td>
-                                            <td rowspan="3">{{ $skp->kategori_capaian_iki }}</td>
                                             <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
@@ -241,8 +239,10 @@
                                             <td>{{ $skp->kualitas_target_min }}</td>
                                             <td>{{ $skp->kualitas_target_max }}</td>
                                             <td>{{ $skp->kualitas_satuan }}</td>
-                                            <td>{{ $skp->realisasi }}</td>
-                                            <td>{{ $skp->kondisi }}</td>
+                                            <td>{{ $skp->kualitas_realisasi }}</td>
+                                            <td>{{ $skp->kualitas_kondisi }}</td>
+                                            <td>{{ $skp->kualitas_capaian_iki }}</td>
+                                            <td>{{ $skp->kualitas_kategori_capaian_iki }}</td>
                                         </tr>
                                         <tr>
                                             <td>Waktu</td>
@@ -250,8 +250,11 @@
                                             <td>{{ $skp->waktu_target_min }}</td>
                                             <td>{{ $skp->waktu_target_max }}</td>
                                             <td>{{ $skp->waktu_satuan }}</td>
-                                            <td>{{ $skp->realisasi }}</td>
-                                            <td>{{ $skp->kondisi }}</td>
+                                            <td>{{ $skp->waktu_realisasi }}</td>
+                                            <td>{{ $skp->waktu_kondisi }}</td>
+                                            <td>{{ $skp->waktu_capaian_iki }}</td>
+                                            <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
+
                                         </tr>
                                     @endif
                                 @endforeach
