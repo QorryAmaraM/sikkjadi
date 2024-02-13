@@ -103,10 +103,9 @@
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI
                                     </th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian Rencana</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana
                                     </th>
-                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian
-                                        Rencana</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi</th>
                                 </tr>
@@ -133,8 +132,8 @@
                                             <td>{{ $skp->kuantitas_capaian_iki }}</td>
                                             <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
 
-                                            <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
+                                            <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
                                             <td rowspan="3">
                                                 <button class="btn btn-icon btn-edit btn-sm">

@@ -76,18 +76,23 @@ class PenilaianSKPController extends Controller
             if ($sangat_baik == 2 && $baik == 1 || $sangat_baik == 3 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 0 && $baik == 0 && $sangat_baik == 1) {
                 $data['kategori_capaian_rencana'] = 'sangat baik';
                 $data['nilai_capaian_rencana'] = 120;
+                $data['nilai_tertimbang'] = ((80/100) * 120) + ((20/100) * 120);
             } elseif ($kurang == 0 && $sangat_kurang == 0 && $cukup == 1 || $kurang == 0 && $sangat_kurang == 0 && $baik >= 2 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 0 && $baik == 1 && $sangat_baik == 0) {
                 $data['kategori_capaian_rencana'] = 'baik';
                 $data['nilai_capaian_rencana'] = 100;
+                $data['nilai_tertimbang'] = ((80/100) * 100) + ((20/100) * 100);
             } elseif ($sangat_kurang == 0 && $kurang == 1 || $sangat_kurang == 0 && $cukup >= 2 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 1 && $baik == 0 && $sangat_baik == 0) {
                 $data['kategori_capaian_rencana'] = 'cukup';
                 $data['nilai_capaian_rencana'] = 80;
+                $data['nilai_tertimbang'] = ((80/100) * 80) + ((10/100) * 80);
             } elseif ($sangat_kurang == 1 || $kurang >= 2 || $sangat_kurang == 0 && $kurang == 1 && $cukup == 0 && $baik == 0 && $sangat_baik == 0) {
                 $data['kategori_capaian_rencana'] = 'kurang';
                 $data['nilai_capaian_rencana'] = 60;
+                $data['nilai_tertimbang'] = ((80/100) * 60) + ((5/100) * 60);
             } elseif ($sangat_kurang >= 2 || $sangat_kurang == 1 && $kurang == 0 && $cukup == 0 && $baik == 0 && $sangat_baik == 0) {
                 $data['kategori_capaian_rencana'] = 'sangat kurang';
-                $data['nilai_capaian_rencana'] = 20;
+                $data['nilai_capaian_rencana'] = 25;
+                $data['nilai_tertimbang'] = ((80/100) * 25) + ((1/100) * 25);
             }
 
             $penilaian->update($data);
@@ -99,16 +104,18 @@ class PenilaianSKPController extends Controller
             ];
         }
 
+        $jumlah_utama = $result->where('kinerja', 'utama')->count();
+        $jumlah_tambahan = $result->where('kinerja', 'tambahan')->count();
 
+        $sum_utama = $result->where('kinerja', 'utama')->sum('nilai_tertimbang');
+        $sum_tambahan = $result->where('kinerja', 'tambahan')->sum('nilai_tertimbang');
 
-        // $jumlah_utama = $result->where('kinerja', 'utama')->count();
-        // $jumlah_tambahan = $result->where('kinerja', 'tambahan')->count();
-
-        // $sum_utama = $result->where('kinerja', 'utama')->sum('nilai_tertimbang');
-        // $sum_tambahan = $result->where('kinerja', 'tambahan')->sum('nilai_tertimbang');
-
-        // $nilai_kinerja_utama = $sum_utama / $jumlah_utama;
-        // $nilai_kinerja_tambahan = $sum_tambahan / $jumlah_tambahan;
+        if ($jumlah_utama !== 0 && $sum_utama !==0) {
+            $nilai_kinerja_utama = $sum_utama / $jumlah_utama;
+        }
+        if ($jumlah_tambahan !== 0 && $sum_tambahan !==0) {
+            $nilai_kinerja_tambahan = $sum_tambahan / $jumlah_tambahan;
+        }
 
         $nilai_skp = $nilai_kinerja_utama + $nilai_kinerja_tambahan;
 
