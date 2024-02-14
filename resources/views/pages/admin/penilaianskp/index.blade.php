@@ -103,7 +103,8 @@
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI
                                     </th>
-                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian Rencana</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian
+                                        Rencana</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana
                                     </th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
@@ -143,8 +144,7 @@
                                                 </button>
                                                 <button class="btn btn-icon btn-delete btn-sm">
                                                     <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
-                                                        class="action-link btn-delete"><i
-                                                            class="fas fa-trash-can"></i></a>
+                                                        class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
                                                 </button>
                                             </td>
                                         <tr>
@@ -174,7 +174,7 @@
                                 @endforeach
                             </tbody>
 
-                            <tbody id="Content" class="searchdata"></tbody>
+                            <tbody id="Utama" class="searchdata"></tbody>
 
                             <tbody class="tabel_utama">
                                 <tr>
@@ -260,6 +260,8 @@
                                 @endforeach
                             </tbody>
 
+                            <tbody id="Tambahan" class="searchdata"></tbody>
+
                             <tbody class="tabel_tambahan">
                                 <tr>
                                     <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja
@@ -282,6 +284,9 @@
                                     <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">
                                         {{ $nilai_kinerja_tambahan }}</td>
                                 </tr>
+                            </tbody>
+
+                            <tbody>
                                 <tr>
                                     <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai SKP</td>
                                     <td style="background-color: #9ba4b5"></td>
@@ -301,6 +306,7 @@
                                     <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">
                                         {{ $nilai_skp }}</td>
                                 </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -319,10 +325,12 @@
             savedValue = $(this).val();
 
             if (savedValue) {
-                $('.alldata').hide();
+                $('.tabel_utama').hide();
+                $('.tabel_tambahan').hide();
                 $('.searchdata').show();
             } else {
-                $('.alldata').show();
+                $('.tabel_utama').show();
+                $('.tabel_tambahan').show();
                 $('.searchdata').hide();
             }
 
@@ -333,10 +341,12 @@
             savedUnitkerjaValue = $(this).val();
 
             if (savedUnitkerjaValue) {
-                $('.alldata').hide();
+                $('.tabel_utama').hide();
+                $('.tabel_tambahan').hide();
                 $('.searchdata').show();
             } else {
-                $('.alldata').show();
+                $('.tabel_utama').show();
+                $('.tabel_tambahan').show();
                 $('.searchdata').hide();
             }
 
@@ -368,14 +378,15 @@
                 data: {
                     'search': value,
                     'unitkerja': unitkerjavalue,
-                    'jenis': jenisvalue,
                     'kinerja': kinerjavalue
                 },
                 success: function(data) {
                     console.log(data);
-                    $('#Content').html(data);
+                    $('#Utama').html(data);
                 }
             });
         }
     </script>
 @endsection
+
+{{-- utama<tr> --}}

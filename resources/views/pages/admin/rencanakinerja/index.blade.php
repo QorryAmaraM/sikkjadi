@@ -108,6 +108,7 @@
                                 <th style="border-top: none">Max</th>
                             </tr>
                         </thead>
+                        
                         <tbody class="alldata">
                             @foreach ($rencanakinerja as $rencana)
                             <tr>
@@ -126,6 +127,14 @@
                                         <a href="{{ route('kuantitas.edit', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
                                     </button>
                                 </td>
+
+                                <td rowspan="3">
+                                    <button class="btn btn-icon btn-edit btn-sm">
+                                        <a href="{{ route('edit', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
+                                    </button>
+                                </td>
+
+
                             </tr>
                             
                             <tr>

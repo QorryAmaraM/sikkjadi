@@ -23,8 +23,6 @@
                             @if ($users->id == $userid)
                                 <input type="nama" class="form-control col-sm-11" id="nama"
                                     placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
-                                <input type="hidden" name="user_id" value="{{ $userid }}">
-                                <input type="hidden" name="nama" value="{{ $users->nama }}">
                             @endif
                         @endforeach
                     </div>
@@ -34,7 +32,6 @@
                             @if ($users->id == $userid)
                                 <input type="nama" class="form-control col-sm-11" id="nama"
                                     placeholder="Lorem Ipsum" name="nip" value="{{ $users->nip }}" disabled>
-                                <input type="hidden" name="nip" value="{{ $users->nip }}">
                             @endif
                         @endforeach
                     </div>
@@ -53,11 +50,6 @@
 
             <div class="row mb-8">
                 <div class="col-sm-12">
-                    <div class="form-group">
-                        <label for="kode">Kode</label>
-                        <input type="kode" class="form-control" id="kode" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="kode" value="{{ $monitoringpresensi->kode }}">
-                    </div>
                     <div class="form-group">
                         <label for="cp">CP</label>
                         <input type="cp" class="form-control" id="cp" placeholder="Lorem Ipsum Dolor Sit Amet"
@@ -86,9 +78,9 @@
                     </div>
                     <div class="form-group">
                         <label for="cltn">CLTN</label>
-                        <input type="cltn" class="form-control" id="cltn"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="cltn"
-                            value="{{ $monitoringpresensi->cltn }}">
+                        <input type="cltn" class="form-control" id="ctln"
+                            placeholder="Lorem Ipsum Dolor Sit Amet" name="ctln"
+                            value="{{ $monitoringpresensi->ctln }}">
                     </div>
                     <div class="form-group">
                         <label for="s">S</label>
