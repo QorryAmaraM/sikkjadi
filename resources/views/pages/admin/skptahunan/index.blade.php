@@ -147,5 +147,24 @@
             });
 
         })
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.getElementById("search");
+
+            searchInput.addEventListener("input", function() {
+                const searchTerm = this.value.toLowerCase();
+                const itemsToSearch = document.querySelectorAll('.item-to-search');
+
+                itemsToSearch.forEach(function(item) {
+                    const text = item.textContent.toLowerCase();
+                    const parentElement = item.closest(".row");
+                    if (text.includes(searchTerm)) {
+                        parentElement.style.display = "block";
+                    } else {
+                        parentElement.style.display = "none";
+                    }
+                });
+            });
+        });
     </script>
 @endsection

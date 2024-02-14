@@ -115,7 +115,7 @@
                     </div>
                     <div class="form-group">
                         <label for="realisasi">Realisasi</label>
-                        <input type="realisasi" class="form-control" id="kualitas_realisasi" name="kualitas_realisasi">
+                        <input type="text" class="form-control" id="kualitas_realisasi" name="kualitas_realisasi" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required>
                     </div>
                 </div>
             </div>
@@ -129,5 +129,9 @@
         </form>
 
     </div>
+
+    <script>
+
+    </script>
     <!-- /.container-fluid -->
 @endsection

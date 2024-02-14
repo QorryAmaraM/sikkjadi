@@ -73,17 +73,26 @@
                           </button>
                       </div>
                       <div class="modal-body">
-                          Selamat! Data berhasil ditambahkan.
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                              onclick="'/admin-masterangkakredit/listangkakredit/'">Tutup</button>
+                          Selamat! Data berhasil ditambahkan. 
+                          Anda akan diarahkan ke halaman selanjutnya.
                       </div>
                   </div>
               </div>
           </div>
 
           </form>
+          
+          <script>
+    $(function () {
+        $('#successModal').on('show.bs.modal', function () {
+            var successModal = $(this);
+            clearTimeout(successModal.data('hideInterval'));
+            successModal.data('hideInterval', setTimeout(function () {
+                successModal.modal('hide');
+            }, 3000));
+        });
+    });
+</script>
 
           <!-- /.container-fluid -->
       @endsection
