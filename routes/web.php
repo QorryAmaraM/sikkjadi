@@ -19,6 +19,7 @@ use App\Http\Controllers\AuthController;
 // routes/web.php
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/forgot-password', [AuthController::class, 'forgotpassword']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 // Admin

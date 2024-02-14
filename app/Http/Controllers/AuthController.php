@@ -46,6 +46,11 @@ class AuthController extends Controller
 
         return redirect()->back()->withErrors(['login' => 'Login failed.']);
     }
+
+    public function forgotpassword()
+    {
+        return view('auth.forgot-password');
+    }
     
     public function logout(Request $request): RedirectResponse
     {
