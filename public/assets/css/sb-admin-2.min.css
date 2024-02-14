@@ -10222,6 +10222,19 @@ form.user .btn-user {
     color: #4e1417;
 }
 
+.btn-modal {
+    background-color: red;
+}
+
+.btn-modal a{
+    color: white; /* Warna teks putih */
+    text-decoration: none; /* Menghilangkan dekorasi teks */
+}
+
+.btn-modal:hover {
+    opacity: 0.8; /* Mengurangi opacity saat hover */
+}
+
 
 .btn-print i {
     background-color: #1A2B88;

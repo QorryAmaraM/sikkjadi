@@ -48,8 +48,7 @@
                           </div>
                           <div class="form-group d-flex align-items-center">
                               <label for="angkakredit" class="col-sm-2 pl-0 col-form-label">Angka Kredit</label>
-                              <input type="angkakredit" class="form-control col-sm-10" name="angka_kredit"
-                                  placeholder="5 Januari - 23 Desember">
+                              <input type="text" class="form-control col-sm-10" name="angka_kredit" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required>
                           </div>
                       </div>
                   </div>
@@ -73,7 +72,6 @@
                           </button>
                       </div>
                       <div class="modal-body">
-                          Selamat! Data berhasil ditambahkan. 
                           Anda akan diarahkan ke halaman selanjutnya.
                       </div>
                   </div>

@@ -88,9 +88,31 @@
 
             <div class="row">
                 <div class="col-sm-12 mt-3 text-right">
-
-                    <button type="submit" name="submit" value="Save" class="btn save-button">Simpan</button>
+                    <button type="submit" name="submit" value="Save" class="btn save-button" data-toggle="modal" data-target="#successModal">Simpan</button>
                 </div>
+            </div>
+
+            <div
+                class="modal fade"
+                id="successModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="successModalLabel"
+                aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="successModalLabel">Data Berhasil diedit
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <div class="modal-body">
+                            Anda akan diarahkan ke halaman selanjutnya.
+                        </div>
+                        </div>
+                    </div>
             </div>
         </form>
     </div>
@@ -113,5 +135,15 @@
 
             otherCheckbox.disabled = checkbox.checked;
         }
+
+        $(function () {
+                                            $('#successModal').on('show.bs.modal', function () {
+                                                var successModal = $(this);
+                                                clearTimeout(successModal.data('hideInterval'));
+                                                successModal.data('hideInterval', setTimeout(function () {
+                                                    successModal.modal('hide');
+                                                }, 5000));
+                                            });
+                                        });
     </script>
 @endsection
