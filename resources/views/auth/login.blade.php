@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <a class="small white-text" href="forgot-password.html">Forgot Password?</a>
+                    <a class="small white-text" href="/forgot-password">Forgot Password?</a>
                 </div>
             </div>
 
