@@ -227,10 +227,13 @@
                                                         class="action-link"><i class="fas fa-edit"></i></a>
 
                                                 </button>
-                                                <button class="btn btn-icon btn-delete btn-sm">
-                                                    <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
-                                                        class="action-link btn-delete"><i
-                                                            class="fas fa-trash-can"></i></a>
+                                                <button
+                                                    class="btn btn-icon btn-delete btn-sm"
+                                                    data-toggle="modal"
+                                                    data-target="#successModal">
+                                                    <a class="action-link btn-delete">
+                                                        <i class="fas fa-trash-can"></i>
+                                                    </a>
                                                 </button>
                                             </td>
                                         <tr>
@@ -256,6 +259,32 @@
                                             <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
 
                                         </tr>
+
+                                        <div
+                                            class="modal fade"
+                                            id="successModal"
+                                            tabindex="-1"
+                                            role="dialog"
+                                            aria-labelledby="successModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="successModalLabel">Yakin menghapus data?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <button class="btn btn-icon btn-modal btn-sm">
+                                                            <a
+                                                                href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
+                                                                class="action-link btn-modal">Hapus</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endif
                                 @endforeach
                             </tbody>
@@ -386,6 +415,16 @@
                 }
             });
         }
+
+        $(function () {
+        $('#successModal').on('show.bs.modal', function () {
+            var successModal = $(this);
+            clearTimeout(successModal.data('hideInterval'));
+            successModal.data('hideInterval', setTimeout(function () {
+                successModal.modal('hide');
+            }, 5000));
+        });
+    });
     </script>
 @endsection
 
