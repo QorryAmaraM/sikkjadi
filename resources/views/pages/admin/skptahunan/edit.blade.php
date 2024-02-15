@@ -42,12 +42,12 @@
             <div class="form-group">
                 <label for="tahun">Tahun</label>
                 <input
-                    type="tahun"
+                    type="text"
                     class="form-control"
                     id="tahun"
                     placeholder="YYYY"
                     name="tahun"
-                    value="{{ $skptahunan->tahun }}"></div>
+                    value="{{ $skptahunan->tahun }}" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required></div>
                 <div class="form-group">
                     <label for="periode">Periode</label>
                     <input
