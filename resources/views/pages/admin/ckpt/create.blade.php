@@ -115,7 +115,7 @@
                     </div>
                     <div class="form-group">
                         <label for="target">Target</label>
-                        <input type="target" class="form-control" id="target" name="target">
+                        <input type="text" class="form-control" id="target" name="target" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required>
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>
