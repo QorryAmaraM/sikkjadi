@@ -110,7 +110,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="kegiatan">CKPR Akhir</label>
-                                <input type="kegiatan" class="form-control" id="ckp_akhir" name="ckp_akhir" value="{{ $result->ckp_akhir }}">
+                                <input type="text" class="form-control" id="ckp_akhir" name="ckp_akhir" value="{{ $result->ckp_akhir }}" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required>
                             </div>
                             <div class="form-group">
                                 <label for="kodebutir">Keterangan Kepala</label>
