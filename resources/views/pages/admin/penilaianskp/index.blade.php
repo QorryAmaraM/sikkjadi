@@ -76,7 +76,6 @@
                 </div>
             </div>
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <button type="button" class="btn salin-button mr-2">Salin Rencana Kinerja</button>
                 <a href="/admin-perencanaankerja/penilaianskp/create/index" type="button" class="btn add-button">+
                     Tambah</a>
             </div>
