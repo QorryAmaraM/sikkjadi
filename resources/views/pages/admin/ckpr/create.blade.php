@@ -86,8 +86,8 @@
                     </div>
                     <div class="form-group">
                         <label for="realisasi">Realisasi</label>
-                        <input type="realisasi" class="form-control" id="realisasi"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="realisasi">
+                        <input type="text" class="form-control" id="realisasi"
+                         name="realisasi" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required>
                     </div>
                 </div>
             </div>
