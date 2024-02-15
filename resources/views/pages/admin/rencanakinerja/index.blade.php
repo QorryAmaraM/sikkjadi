@@ -102,6 +102,7 @@
                                 <th colspan="2" style="padding:0.2rem; border-bottom: none">Target</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Satuan</th>
                                 <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi</th>
+                                <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi RK</th>
                             </tr>
                             <tr>
                                 <th style="border-top: none">Min</th>
