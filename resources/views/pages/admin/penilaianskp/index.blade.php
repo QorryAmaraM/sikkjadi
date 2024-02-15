@@ -137,14 +137,10 @@
                                             <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
                                             <td rowspan="3">
-                                                <button class="btn btn-icon btn-edit btn-sm">
-                                                    <a href="{{ route('penilaianskp.edit', ['id' => $skp->id]) }}"
-                                                        class="action-link"><i class="fas fa-edit"></i></a>
-
-                                                </button>
                                                 <button class="btn btn-icon btn-delete btn-sm">
-                                                    <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
-                                                        class="action-link btn-delete"><i class="fas fa-trash-can"></i></a>
+                                                    <a 
+                                                        class="action-link btn-delete" data-toggle="modal"
+                                                    data-target="#successModal"><i class="fas fa-trash-can"></i></a>
                                                 </button>
                                             </td>
                                         <tr>
@@ -222,11 +218,6 @@
                                             <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
                                             <td rowspan="3">
-                                                <button class="btn btn-icon btn-edit btn-sm">
-                                                    <a href="{{ route('penilaianskp.edit', ['id' => $skp->id]) }}"
-                                                        class="action-link"><i class="fas fa-edit"></i></a>
-
-                                                </button>
                                                 <button
                                                     class="btn btn-icon btn-delete btn-sm"
                                                     data-toggle="modal"
