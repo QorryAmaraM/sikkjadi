@@ -91,7 +91,7 @@
                     </div>
                     <div class="form-group">
                         <label for="penilai">Nilai</label>
-                        <input type="penilai" class="form-control" id="nilai" name="nilai" value="{{ $nilaickpr->nilai }}">
+                        <input type="text" class="form-control" id="nilai" name="nilai" value="{{ $nilaickpr->nilai }}" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required>
                     </div>
                 </div>
             </div>
