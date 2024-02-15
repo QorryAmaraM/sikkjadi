@@ -353,22 +353,22 @@ class PenilaianSKPController extends Controller
 
         $penilaian = penilaian_skp::all();
 
-
+        $found = $penilaian->contains('rencanakinerja_id', $data['rencanakinerja_id']);
+        
         if ($penilaian->isEmpty()) {
             penilaian_skp::create($data);
-        }
-
-        $found = $penilaian->contains('rencanakinerja_id', $data['rencanakinerja_id']);
-
-        if ($found) {
+        }                
+        else if ($found) {
             $penilaian_skp = $penilaian->where('rencanakinerja_id', $data['rencanakinerja_id'])->first();
             $penilaian_skp->update($data);
-        } else {
+        } 
+        else {
             penilaian_skp::create($data);
         }
 
         switch ($userid) {
             case '1':
+                sleep(1);
                 return redirect('/admin-perencanaankerja/penilaianskp');
                 break;
             case '2':
