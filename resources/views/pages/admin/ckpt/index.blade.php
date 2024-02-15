@@ -103,7 +103,7 @@
                 </div>
                 <div class="col-sm-6 d-flex justify-content-end align-items-center">
                     <a href="/admin-ckp/ckpt/create" type="button" class="btn add-button">+ Tambah</a>
-                    <button class="btn btn-icon btn-print btn-sm">
+                    <button class="btn btn-icon btn-print btn-sm" data-toggle="modal" data-target="#printModal">
                         <i class="fas fa-print"></i>
                     </button>
                 </div>
@@ -179,6 +179,36 @@
                                                             href="{{ route('ckpt.delete', ['id' => $ckpt->id]) }}"
                                                             class="action-link btn-modal">Hapus</a>
                                                     </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="printModalLabel">Cetak CKP-T</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Form input data -->
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label for="inputData">Pejabat Penilai</label>
+                                                            <input type="text" class="form-control" id="inputData">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputData">NIP Pejabat Penilai</label>
+                                                            <input type="text" class="form-control" id="inputData">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                    <button type="button" class="btn btn-primary">Cetak</button>
                                                 </div>
                                             </div>
                                         </div>
