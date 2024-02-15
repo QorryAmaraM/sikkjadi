@@ -78,9 +78,9 @@
                     </div>
                     <div class="form-group">
                         <label for="cltn">CLTN</label>
-                        <input type="cltn" class="form-control" id="ctln"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="ctln"
-                            value="{{ $monitoringpresensi->ctln }}">
+                        <input type="cltn" class="form-control" id="cltn"
+                            placeholder="Lorem Ipsum Dolor Sit Amet" name="cltn"
+                            value="{{ $monitoringpresensi->cltn }}">
                     </div>
                     <div class="form-group">
                         <label for="s">S</label>
