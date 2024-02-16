@@ -89,16 +89,6 @@
         </form>
 
         <div class="row">
-            <div class="col-sm-6">
-                <div class="inner-form">
-                    <div class="input-form">
-                        <input id="search" type="text" placeholder="Pencarian" />
-                        <div class="input-form-append align-items-center">
-                            <i class="fas fa-search"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
                 <a href="/admin-ckp/penilaianckpr/create-index" type="button" class="btn add-button">+ Tambah</a>
                 <button class="btn btn-icon btn-print btn-sm">

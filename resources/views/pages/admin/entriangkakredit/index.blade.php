@@ -16,7 +16,7 @@
                       <div class="col-sm-12">
                           <div class="form-group d-flex align-items-center">
                               <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Jenis Fungsional</label>
-                              <select class="form-control" data-width="75%" name="jenis_fungsional">
+                              <select class="form-control" data-width="75%" name="jenis_fungsional" required>
                                   <option value="Semua Jenjang">Semua Jenjang</option>
                                   <option value="Admininstrator">Admininstrator</option>
                                   <option value="Pengawas">Pengawas</option>
@@ -40,11 +40,11 @@
                           <div class="form-group d-flex align-items-center">
                               <label for="kodebutir" class="col-sm-2 pl-0 col-form-label">Kode Butir</label>
                               <input type="kodebutir" class="form-control col-sm-10" name="kode_butir"
-                                  placeholder="Lorem Ipsum">
+                                  placeholder="Lorem Ipsum" required>
                           </div>
                           <div class="form-group d-flex align-items-center">
                               <label for="isibutir" class="col-sm-2 pl-0 col-form-label">Isi Butir</label>
-                              <input type="isibutir" class="form-control col-sm-10" name="isi_butir" placeholder="2023">
+                              <input type="isibutir" class="form-control col-sm-10" name="isi_butir" placeholder="2023" required>
                           </div>
                           <div class="form-group d-flex align-items-center">
                               <label for="angkakredit" class="col-sm-2 pl-0 col-form-label">Angka Kredit</label>

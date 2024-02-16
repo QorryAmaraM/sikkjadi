@@ -45,7 +45,7 @@
                      <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $kegiatan->pembuat }}</td>
-                        <td>{{ $kegiatan->fungsi }}</td>
+                        <td id="fungsi">{{ $kegiatan->fungsi }}</td>
                         <td>{{ $kegiatan->uraian_kegiatan }}</td>
                         <td>
                            <button class="btn btn-icon btn-edit btn-sm">
@@ -95,5 +95,33 @@
          </div>
       </div>
    </div>
+
+
+   <script>
+    // Fungsi untuk filter berdasarkan input pencarian
+    function filterTable() {
+        // Mendapatkan nilai input pencarian
+        var searchText = document.getElementById('search').value.toLowerCase();
+        
+        // Mendapatkan semua baris data pada tabel
+        var rows = document.querySelectorAll('#dataTable tbody tr');
+
+        // Melakukan iterasi pada setiap baris data
+        rows.forEach(function(row) {
+            // Mendapatkan nilai jenis fungsional dari setiap baris
+            var jenisFungsional = row.querySelector('#fungsi').textContent.toLowerCase();
+
+            // Menyembunyikan baris yang tidak sesuai dengan pencarian
+            if (jenisFungsional.includes(searchText)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    // Memanggil fungsi filter saat nilai input pencarian berubah
+    document.getElementById('search').addEventListener('input', filterTable);
+</script>
    <!-- /.container-fluid -->
 @endsection
