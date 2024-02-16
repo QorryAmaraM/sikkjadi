@@ -37,7 +37,7 @@ class grafikpenilaianckp
         // Call the static method
         $dataAkhir = self::compareDates($dataAkhir);
 
-        dd($dataAkhir);
+        // dd($dataAkhir);
 
         $tahun = array_keys($dataAkhir);
         $nilai = array_values($dataAkhir);
