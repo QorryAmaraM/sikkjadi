@@ -130,7 +130,7 @@
                                 </tr>
                             </thead>
                             <tbody class="alldata">
-                                @foreach ($result as $ckpt)
+                                @forelse ($result as $ckpt)
                                     <tr >
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $ckpt->fungsi }}</td>
@@ -213,7 +213,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
+                                    @empty
+                     <td colspan="12" class="text-center">Empty Data</td>
+                                @endforelse
                             </tbody>
                             <tbody id="Content" class="searchdata"></tbody>
                         </table>

@@ -84,7 +84,7 @@
                                     href="{{ route('spktahunan.edit', ['id' => $skp->id]) }}"
                                     class="action-link">
                                     <i class="fas fa-edit"></i>
-                                    <p>{{ $skp->id }}</p>
+                            
                                 </a>
 
                             </button>

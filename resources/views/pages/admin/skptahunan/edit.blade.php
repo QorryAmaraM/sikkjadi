@@ -47,7 +47,8 @@
                     id="tahun"
                     placeholder="YYYY"
                     name="tahun"
-                    value="{{ $skptahunan->tahun }}" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required></div>
+                    value="{{ $skptahunan->tahun }}" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required>
+                </div>
                 <div class="form-group">
                     <label for="periode">Periode</label>
                     <input
@@ -56,7 +57,8 @@
                         id="periode"
                         placeholder="Periode"
                         name="periode"
-                        value="{{ $skptahunan->periode }}"></div>
+                        value="{{ $skptahunan->periode }}">
+                    </div>
                     <div class="form-group">
                         <label for="wilayah">Wilayah</label>
                         <input
@@ -65,7 +67,8 @@
                             id="wilayah"
                             placeholder="wilayah"
                             name="wilayah"
-                            value="{{ $skptahunan->wilayah }}"></div>
+                            value="{{ $skptahunan->wilayah }}">
+                        </div>
                         <div class="form-group">
                             <label for="unitkerja">Unit Kerja</label>
                             <input
@@ -74,7 +77,8 @@
                                 id="unitkerja"
                                 placeholder="Unit Kerja"
                                 name="unit_kerja"
-                                value="{{ $skptahunan->unit_kerja }}"></div>
+                                value="{{ $skptahunan->unit_kerja }}">
+                            </div>
                             <div class="form-group">
                                 <label for="jabatan">Jabatan</label>
                                 <input
@@ -83,7 +87,8 @@
                                     id="jabatan"
                                     placeholder="Jabatan"
                                     name="jabatan"
-                                    value="{{ $skptahunan->jabatan }}"></div>
+                                    value="{{ $skptahunan->jabatan }}">
+                                </div>
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <input
@@ -92,22 +97,21 @@
                                     id="status"
                                     placeholder="Status"
                                     name="status"
-                                    value="{{ $skptahunan->status }}"></div>
+                                    value="{{ $skptahunan->status }}">
+                                </div>
                             </div>
 
-
-                            <div class="row">
-                                <div class="col-sm-12 mt-3 text-right">
-
+                            <div class="col-12 mt-3 text-right">
                                     <button
                                         type="submit"
                                         name="submit"
                                         value="Save"
                                         class="btn save-button"
                                         data-toggle="modal"
-                                        data-target="#successModal">Update</button>
-                                </div>
+                                        data-target="#successModal">Simpan</button>
                             </div>
+                    
+                    </div>
                         </form>
 
                         <div
@@ -133,9 +137,14 @@
                             </div>
                         </div>
 
-                    </form>
+            </form>
 
-                    <script>
+        
+    </div>
+
+
+
+    <script>
                         $(function () {
                             $('#successModal').on('show.bs.modal', function () {
                                 var successModal = $(this);
@@ -146,8 +155,4 @@
                             });
                         });
                     </script>
-
-                </div>
-
-                <!-- /.container-fluid -->
-                @endsection
+@endsection

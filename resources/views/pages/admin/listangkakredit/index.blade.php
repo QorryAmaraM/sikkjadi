@@ -44,7 +44,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($angkakredit as $list)
+                        @forelse ($angkakredit as $list)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $list->jenis_fungsional }}</td>
@@ -97,7 +97,9 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                        @empty
+                     <td colspan="7" class="text-center">Empty Data</td>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

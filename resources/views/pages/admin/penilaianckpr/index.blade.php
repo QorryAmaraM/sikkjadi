@@ -132,7 +132,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @foreach ($result as $nilaickpr)
+                            @forelse ($result as $nilaickpr)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $nilaickpr->nama }}</td>
@@ -188,7 +188,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                                @empty
+                            <td colspan="16" class="text-center">Empty Data</td>
+                            @endforelse
                         </tbody>
                         <tbody id="Content" class="searchdata"></tbody>
                     </table>
