@@ -27,15 +27,14 @@
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
                                                 <label for="account-nama">Nama</label>
-                                                <input type="text" class="form-control" name="name"
-                                                    value="{{ $user->nama }}" />
+                                                <input type="text" class="form-control" name="name" value="{{ $user->nama }}" disabled />
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
                                                 <label for="account-username">NIP</label>
                                                 <input type="text" class="form-control" name="username"
-                                                    value="{{ $user->nip }}" />
+                                                    value="{{ $user->nip }}" disabled/>
                                             </div>
                                         </div>
 
@@ -43,7 +42,7 @@
                                             <div class="form-group">
                                                 <label for="account-e-mail">E-mail</label>
                                                 <input type="email" class="form-control" name="email"
-                                                    value="{{ $user->email }}" />
+                                                    value="{{ $user->email }}" disabled/>
                                             </div>
                                         </div>
 
@@ -74,12 +73,8 @@
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
                                                 <label for="account-e-mail">Jabatan</label>
-                                                <input type="jabatan" class="form-control" name="jabatan" value="{{ $jabatan }}" />
+                                                <input type="jabatan" class="form-control" name="jabatan" value="{{ $jabatan }}" disabled/>
                                             </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <button type="submit" class="btn btn-primary mt-2 mr-1">Update</button>
                                         </div>
                                     </div>
                                 </form>
