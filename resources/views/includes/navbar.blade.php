@@ -10,7 +10,7 @@
         </li>
         <!-- Tautan Home -->
         <li class="nav-item">
-            <a class="nav-link" style="color: black">Home</a>
+            <a class="nav-link" href='/admin-dashboard' style="color: black">Home</a>
         </li>
     </ul>
     <!-- Topbar Navbar -->

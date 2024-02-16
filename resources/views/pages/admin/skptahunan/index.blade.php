@@ -69,7 +69,8 @@
                 </thead>
 
                 <tbody class="alldata">
-                    @foreach ($skptahunan as $skp)
+                    
+                    @forelse ($skptahunan as $skp)
                     <tr>
                         <td>{{ $skp->tahun }}</td>
                         <td>{{ $skp->periode }}</td>
@@ -83,6 +84,7 @@
                                     href="{{ route('spktahunan.edit', ['id' => $skp->id]) }}"
                                     class="action-link">
                                     <i class="fas fa-edit"></i>
+                                    <p>{{ $skp->id }}</p>
                                 </a>
 
                             </button>
@@ -91,7 +93,7 @@
                                 class="btn btn-icon btn-delete btn-sm"
                                 data-toggle="modal"
                                 data-target="#successModal">
-                                <a class="action-link btn-delete">
+                                <a  class="action-link btn-delete">
                                     <i class="fas fa-trash-can"></i>
                                 </a>
                             </button>
@@ -116,13 +118,16 @@
                                     <button class="btn btn-icon btn-modal btn-sm">
                                         <a
                                             href="{{ route('spktahunan.delete', ['id' => $skp->id]) }}"
-                                            class="action-link btn-modal">Hapus</a>
+                                            class="action-link btn-modal">Hapus {{ $skp->id }}</a>
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                
+                    @endforelse
+               
                 </tbody>
 
                 <tbody id="Content" class="searchdata"></tbody>

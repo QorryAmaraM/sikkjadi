@@ -18,7 +18,7 @@
                         <label for="pembuat">Pembuat</label>
                         @foreach ($user as $users)
                             @if ($users->id == $userid)
-                                <input type="pembuat" class="form-control col-sm-11" id="pembuat"
+                                <input type="pembuat" class="form-control col-sm-12" id="pembuat"
                                     placeholder="Lorem Ipsum" name="pembuat" value="{{ $users->nama }}" disabled>
                                 <input type="hidden" name="user_id" value="{{ $userid }}">
                                 <input type="hidden" name="pembuat" value="{{ $users->nama }}">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-group">
                         <label for="fungsi">Fungsi</label>
-                        <select class="form-control" data-width="75%" id="fungsi" name="fungsi">
+                        <select class="form-control col-sm-12" data-width="75%" id="fungsi" name="fungsi">
                             <option value="">Pilih Fungsi</option>
                             <option value="IPDS">IPDS</option>
                             <option value="Sosial">Sosial</option>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group">
                         <label for="kegiatan">Uraian Kegiatan</label>
-                        <input type="kegiatan" class="form-control" id="kegiatan" placeholder="Lorem Ipsum Dolor Sit Amet" name="uraian_kegiatan">
+                        <input type="kegiatan" class="form-control col-sm-12" id="kegiatan" placeholder="Lorem Ipsum Dolor Sit Amet" name="uraian_kegiatan">
                     </div>
                 </div>
             </div>
