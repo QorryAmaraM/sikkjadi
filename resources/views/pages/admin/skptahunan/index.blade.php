@@ -28,11 +28,16 @@
                             @endphp
                             @foreach ($user as $users)
                                 @if ($userId == $users->id)
-                                    @php $nama = $users->nama; @endphp @if (!in_array($nama, $namaArray))
+                                    @php
+                                        $nama = $users->nama;
+                                    @endphp
+                                    @if (!in_array($nama, $namaArray))
                                         <option value="{{ $userId }}">
                                             {{ $nama }}
                                         </option>
-                                        @php $namaArray[] = $nama; @endphp
+                                        @php
+                                            $namaArray[] = $nama;
+                                        @endphp
                                     @endif
                                 @endif
                             @endforeach

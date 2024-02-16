@@ -137,9 +137,8 @@
                                             <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
                                             <td rowspan="3">
                                                 <button class="btn btn-icon btn-delete btn-sm">
-                                                    <a 
-                                                        class="action-link btn-delete" data-toggle="modal"
-                                                    data-target="#successModal"><i class="fas fa-trash-can"></i></a>
+                                                    <a class="action-link btn-delete" data-toggle="modal"
+                                                        data-target="#successModal"><i class="fas fa-trash-can"></i></a>
                                                 </button>
                                             </td>
                                         <tr>
@@ -166,7 +165,7 @@
 
                                         </tr>
                                     @endif
-                                    @empty
+                                @empty
                                     <td colspan="16" class="text-center">Empty Data</td>
                                 @endforelse
                             </tbody>
@@ -219,9 +218,7 @@
                                             <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
                                             <td rowspan="3">
-                                                <button
-                                                    class="btn btn-icon btn-delete btn-sm"
-                                                    data-toggle="modal"
+                                                <button class="btn btn-icon btn-delete btn-sm" data-toggle="modal"
                                                     data-target="#successModal">
                                                     <a class="action-link btn-delete">
                                                         <i class="fas fa-trash-can"></i>
@@ -252,25 +249,21 @@
 
                                         </tr>
 
-                                        <div
-                                            class="modal fade"
-                                            id="successModal"
-                                            tabindex="-1"
-                                            role="dialog"
-                                            aria-labelledby="successModalLabel"
-                                            aria-hidden="true">
+                                        <div class="modal fade" id="successModal" tabindex="-1" role="dialog"
+                                            aria-labelledby="successModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="successModalLabel">Yakin menghapus data?</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <h5 class="modal-title" id="successModalLabel">Yakin menghapus
+                                                            data?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <button class="btn btn-icon btn-modal btn-sm">
-                                                            <a
-                                                                href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
+                                                            <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
                                                                 class="action-link btn-modal">Hapus</a>
                                                         </button>
                                                     </div>
@@ -278,8 +271,8 @@
                                             </div>
                                         </div>
                                     @endif
-                                    @empty
-                     <td colspan="16" class="text-center">Empty Data</td>
+                                @empty
+                                    <td colspan="16" class="text-center">Empty Data</td>
                                 @endforelse
                             </tbody>
 
@@ -410,15 +403,15 @@
             });
         }
 
-        $(function () {
-        $('#successModal').on('show.bs.modal', function () {
-            var successModal = $(this);
-            clearTimeout(successModal.data('hideInterval'));
-            successModal.data('hideInterval', setTimeout(function () {
-                successModal.modal('hide');
-            }, 5000));
+        $(function() {
+            $('#successModal').on('show.bs.modal', function() {
+                var successModal = $(this);
+                clearTimeout(successModal.data('hideInterval'));
+                successModal.data('hideInterval', setTimeout(function() {
+                    successModal.modal('hide');
+                }, 5000));
+            });
         });
-    });
     </script>
 @endsection
 
