@@ -19,18 +19,25 @@ class grafikpenilaianckp
         $dataAkhir = array();
 
         $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
-        ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
-        ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
-        ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
-        ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
-        ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*' )
-        ->get();
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
+            ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*')
+            ->get();
+
 
         foreach ($result as $item) {
-            $dataAkhir[$item->tahun] = $item->ckp_akhir;
+            // Menggunakan kombinasi tahun dan bulan sebagai kunci
+            $key = $item->tahun . '-' . $item->bulan;
+
+            // Menambahkan ke array $dataAkhir
+            $dataAkhir[$key] = $item->ckp_akhir;
         }
 
-        asort($dataAkhir);
+        ksort($dataAkhir);
+
+        // dd($dataAkhir);
 
         $tahun = array_keys($dataAkhir);
         $nilai = array_values($dataAkhir);
