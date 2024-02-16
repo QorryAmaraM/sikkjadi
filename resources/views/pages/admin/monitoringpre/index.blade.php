@@ -132,7 +132,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @foreach ($monitoringpresensi as $presensi)
+                            @forelse ($monitoringpresensi as $presensi)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $presensi->tahun }} {{ $presensi->bulan }}</td>
@@ -191,7 +191,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                                @empty
+                            <td colspan="16" class="text-center">Empty Data</td>
+                            @endforelse
                         </tbody>
                         <tbody id="Content" class="searchdata"></tbody>
                     </table>

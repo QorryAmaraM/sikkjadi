@@ -110,7 +110,7 @@
                         </thead>
                         
                         <tbody class="alldata">
-                            @foreach ($rencanakinerja as $rencana)
+                            @forelse ($rencanakinerja as $rencana)
                             <tr>
                                 <td rowspan="3">{{ $rencana->kinerja }}</td>
                                 <td rowspan="3">{{ $rencana->rencana_kinerja_atasan }}</td>
@@ -165,7 +165,9 @@
                                 </td>
                             </tr>
                             
-                            @endforeach
+                            @empty
+                            <td colspan="10" class="text-center">Empty Data</td>
+                            @endforelse
                         </tbody>
 
                         <tbody id="Content" class="searchdata"></tbody>

@@ -115,7 +115,7 @@
                                 </tr>
                             </thead>
                             <tbody class="tabel_utama">
-                                @foreach ($result as $skp)
+                                @forelse ($result as $skp)
                                     @if ($skp->kinerja == 'utama')
                                         <tr>
                                             <td rowspan="3">{{ $skp->kinerja }}</td>
@@ -166,7 +166,9 @@
 
                                         </tr>
                                     @endif
-                                @endforeach
+                                    @empty
+                                    <td colspan="16" class="text-center">Empty Data</td>
+                                @endforelse
                             </tbody>
 
                             <tbody id="Utama" class="searchdata"></tbody>
@@ -196,7 +198,7 @@
                             </tbody>
 
                             <tbody class="tabel_tambahan">
-                                @foreach ($result as $skp)
+                                @forelse ($result as $skp)
                                     @if ($skp->kinerja == 'tambahan')
                                         <tr>
                                             <td rowspan="3">{{ $skp->kinerja }}</td>
@@ -276,7 +278,9 @@
                                             </div>
                                         </div>
                                     @endif
-                                @endforeach
+                                    @empty
+                     <td colspan="16" class="text-center">Empty Data</td>
+                                @endforelse
                             </tbody>
 
                             <tbody id="Tambahan" class="searchdata"></tbody>

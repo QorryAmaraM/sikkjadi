@@ -41,12 +41,12 @@
                                         <div class="form-group">
                                             <label class="form-label-login" for="inputEmail">EMAIL ADDRESS</label>
                                             <input type="email" name="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp">
+                                                id="exampleInputEmail" aria-describedby="emailHelp" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label-login" for="inputEmail">PASSWORD</label>
                                             <input type="password" name="password"
-                                                class="form-control form-control-user" id="exampleInputPassword">
+                                                class="form-control form-control-user" id="exampleInputPassword" required>
                                         </div>
                                         <button class="btn btn-login" type="submit">
                                             LOG IN

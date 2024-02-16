@@ -116,7 +116,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @foreach ($result as $monitoringckp)
+                            @forelse ($result as $monitoringckp)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $monitoringckp->tahun }} {{ $monitoringckp->bulan }}</td>
@@ -162,7 +162,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                                @empty
+                        <td colspan="6" class="text-center">Empty Data</td>
+                            @endforelse
                         </tbody>
                         <tbody id="Content" class="searchdata"></tbody>
                     </table>

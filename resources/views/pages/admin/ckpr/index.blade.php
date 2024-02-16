@@ -132,7 +132,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @foreach ($result as $ckpr)
+                            @forelse ($result as $ckpr)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpr->fungsi }}</td>

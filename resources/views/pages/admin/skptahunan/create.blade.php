@@ -85,18 +85,6 @@
                                             placeholder="Status"
                                             name="status"></div>
                                     </div>
-                                    <!-- <div class="row">
-                                                <div class="col-sm-12 mt-3 text-right">
-                                                    <button
-                                                        type="submit"
-                                                        name="submit"
-                                                        value="Save"
-                                                        class="btn save-button"
-                                                        data-toggle="modal"
-                                                        data-target="#successModal">Simpan</button>
-                                                </div>
-                                            </div>
-                                    <div class="row"> -->
                                         <div class="col-12 mt-3 text-right">
 
                                             <button
