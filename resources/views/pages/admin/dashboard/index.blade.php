@@ -23,9 +23,8 @@
                     <h6 class="m-0 font-weight-bold text-primary">Grafik Penilaian CKP</h6>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-area">
-                    </div>
+                <div class="card-body">                    
+                    {!! $chartckp->container() !!}                    
                 </div>
             </div>
         </div>
@@ -38,11 +37,19 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="chart-area">
-                    </div>
+                    {!! $chartskp->container() !!}
                 </div>
             </div>
         </div>
     </div>
     <!-- /.container-fluid -->
+    <script src="{{ $chartckp->cdn() }}"></script>
+
+    {{ $chartckp->script() }}
+
+    <script src="{{ $chartskp->cdn() }}"></script>
+
+    {{ $chartskp->script() }}
+
+
 @endsection
