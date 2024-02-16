@@ -27,6 +27,7 @@ class PenilaianSKPController extends Controller
             ->select('skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
             ->get();
 
+        
         foreach ($result as $penilaian) {
             $kuantitas = $penilaian->kuantitas_kategori_capaian_iki;
             $kualitas = $penilaian->kualitas_kategori_capaian_iki;
