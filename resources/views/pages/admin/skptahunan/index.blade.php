@@ -86,7 +86,7 @@
 
                             @forelse ($skptahunan as $skp)
                                 <tr>
-                                    <td>{{ $skp->tahun }}</td>
+                                    <td id="tahun">{{ $skp->tahun }}</td>
                                     <td>{{ $skp->periode }}</td>
                                     <td>{{ $skp->wilayah }}</td>
                                     <td>{{ $skp->unit_kerja }}</td>
@@ -210,5 +210,30 @@
                 }, 5000));
             });
         });
+
+        // Fungsi untuk filter berdasarkan input pencarian
+    function filterTable() {
+        // Mendapatkan nilai input pencarian
+        var searchText = document.getElementById('search').value.toLowerCase();
+        
+        // Mendapatkan semua baris data pada tabel
+        var rows = document.querySelectorAll('#dataTable tbody tr');
+
+        // Melakukan iterasi pada setiap baris data
+        rows.forEach(function(row) {
+            // Mendapatkan nilai jenis fungsional dari setiap baris
+            var jenisFungsional = row.querySelector('#tahun').textContent.toLowerCase();
+
+            // Menyembunyikan baris yang tidak sesuai dengan pencarian
+            if (jenisFungsional.includes(searchText)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    // Memanggil fungsi filter saat nilai input pencarian berubah
+    document.getElementById('search').addEventListener('input', filterTable);
     </script>
 @endsection
