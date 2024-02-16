@@ -63,6 +63,7 @@
                         <th>Wilayah</th>
                         <th>Unit Kerja</th>
                         <th>Jabatan</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -75,6 +76,7 @@
                         <td>{{ $skp->wilayah }}</td>
                         <td>{{ $skp->unit_kerja }}</td>
                         <td>{{ $skp->jabatan }}</td>
+                        <td>{{ $skp->status }}</td>
                         <td>
                             <button class="btn btn-icon btn-edit btn-sm">
                                 <a

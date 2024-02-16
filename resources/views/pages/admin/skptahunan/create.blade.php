@@ -76,6 +76,14 @@
                                             id="jabatan"
                                             placeholder="Jabatan"
                                             name="jabatan"></div>
+                                    <div class="form-group">
+                                        <label for="status">Status</label>
+                                        <input
+                                            type="status"
+                                            class="form-control"
+                                            id="status"
+                                            placeholder="Status"
+                                            name="status"></div>
                                     </div>
 
                                     <div class="row">
@@ -90,6 +98,8 @@
                                                 data-target="#successModal">Tambah</button>
                                         </div>
                                     </div>
+
+                                    
                                 </form>
 
                             </div>
