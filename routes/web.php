@@ -21,9 +21,7 @@ Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/forgot-password', [AuthController::class, 'forgotpassword']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
-Route::get('/print', function () {
-    return view('pages/admin/print');
-});
+
 Route::get('/profile', function () {
     return view('pages/admin/profile/profile');
 });
@@ -31,6 +29,7 @@ Route::get('/profile', function () {
 // Admin
 Route::middleware(['checkRole:1'])->group(function () {
     Route::get('/admin-dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');
+    Route::get('/admin-profil', [DashboardController::class, 'profil']);
 
     //SKP Tahunan
     Route::get('/admin-perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('admin_skptahunan');

@@ -26,18 +26,18 @@ class grafikpenilaianckp
             ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*')
             ->get();
 
-
         foreach ($result as $item) {
             // Menggunakan kombinasi tahun dan bulan sebagai kunci
-            $key = $item->tahun . '-' . $item->bulan;
+            $key = $item->tahun . ' - ' . $item->bulan;
 
             // Menambahkan ke array $dataAkhir
             $dataAkhir[$key] = $item->ckp_akhir;
         }
 
-        ksort($dataAkhir);
+        // Call the static method
+        $dataAkhir = self::compareDates($dataAkhir);
 
-        // dd($dataAkhir);
+        dd($dataAkhir);
 
         $tahun = array_keys($dataAkhir);
         $nilai = array_values($dataAkhir);
@@ -46,5 +46,34 @@ class grafikpenilaianckp
             ->addData('Nilai Akhir', $nilai)
             ->setHeight(400)
             ->setXAxis($tahun);
+    }
+
+    // Define compareDates as a static method
+    protected static function compareDates($dataAkhir)
+    {
+        $months = [
+            'januari', 'februari', 'maret', 'april', 'mei', 'juni',
+            'juli', 'agustus', 'september', 'oktober', 'november', 'desember'
+        ];
+
+        uksort($dataAkhir, function ($a, $b) use ($months) {
+            $dateA = explode('-', $a);
+            $dateB = explode('-', $b);
+
+            // Membandingkan tahun
+            $yearComparison = strcmp($dateA[0], $dateB[0]);
+
+            if ($yearComparison === 0) {
+                // Jika tahun sama, bandingkan bulan berdasarkan urutan dalam array $months
+                $monthA = array_search(strtolower($dateA[1]), $months);
+                $monthB = array_search(strtolower($dateB[1]), $months);
+
+                return $monthA - $monthB;
+            }
+
+            return $yearComparison;
+        });
+
+        return $dataAkhir;
     }
 }
