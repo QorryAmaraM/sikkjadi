@@ -24,6 +24,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 Route::get('/print', function () {
     return view('pages/admin/print');
 });
+Route::get('/profile', function () {
+    return view('pages/admin/profile/profile');
+});
 
 // Admin
 Route::middleware(['checkRole:1'])->group(function () {

@@ -94,7 +94,7 @@
                 <div class="col-sm-6">
                     <div class="inner-form">
                         <div class="input-form">
-                            <input id="search" type="text" placeholder="Pencarian" />
+                            <input id="search" type="text" placeholder="Pencarian" data-live-search="true"/>
                             <div class="input-form-append align-items-center">
                                 <i class="fas fa-search"></i>
                             </div>

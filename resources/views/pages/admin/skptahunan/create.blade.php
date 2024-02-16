@@ -76,15 +76,6 @@
                                             id="jabatan"
                                             placeholder="Jabatan"
                                             name="jabatan"></div>
-                                        <div class="form-group">
-                                            <label for="status">Status</label>
-                                            <input
-                                                type="status"
-                                                class="form-control"
-                                                id="status"
-                                                placeholder="Status"
-                                                name="status"></div>
-                                        </div>
                                     </div>
 
                                     <div class="row">

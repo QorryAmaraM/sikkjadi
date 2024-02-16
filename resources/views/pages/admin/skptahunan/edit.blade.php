@@ -84,16 +84,6 @@
                                     placeholder="Jabatan"
                                     name="jabatan"
                                     value="{{ $skptahunan->jabatan }}"></div>
-                                <div class="form-group">
-                                    <label for="status">Status</label>
-                                    <input
-                                        type="status"
-                                        class="form-control"
-                                        id="status"
-                                        placeholder="Status"
-                                        name="status"
-                                        value="{{ $skptahunan->status }}"></div>
-                                </div>
                             </div>
 
                             <div class="row">
