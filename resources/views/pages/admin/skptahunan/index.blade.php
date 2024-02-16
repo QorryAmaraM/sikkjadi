@@ -18,9 +18,15 @@
                     <label for="searchSelect" class="mb-0 mr-4">Pegawai</label>
                     <select name="search_luar" id="search_luar" class="form-control">
                         <option value="">Pilih Pegawai</option>
-                        @php $namaArray = []; @endphp @foreach ($skptahunan as $skp)
-                            @php$userId = $skp->user_id;
-                            $nama = ''; @endphp @foreach ($user as $users)
+                        @php
+                            $namaArray = [];
+                        @endphp
+                        @foreach ($skptahunan as $skp)
+                            @php
+                                $userId = $skp->user_id;
+                                $nama = '';
+                            @endphp
+                            @foreach ($user as $users)
                                 @if ($userId == $users->id)
                                     @php $nama = $users->nama; @endphp @if (!in_array($nama, $namaArray))
                                         <option value="{{ $userId }}">
