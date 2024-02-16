@@ -8,11 +8,11 @@
 
     <style type="text/css" media="print">
         @page {
-            size: A4 landscape;
+            size: A4 portrait;
         }
 
         body {
-            writing-mode: tb-rl;
+            writing-mode: initial;;
         }
 
 
