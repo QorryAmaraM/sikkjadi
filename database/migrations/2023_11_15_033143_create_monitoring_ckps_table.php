@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('penilaian_ckpr_id');
             $table->string('ckp_akhir');
-            $table->string('keterangan_kepala');
+            $table->string('keterangan_kepala')->nullable();
             $table->timestamps();
 
             $table->foreign('penilaian_ckpr_id')->references('id')->on('penilaian_ckprs')->onDelete('cascade');
