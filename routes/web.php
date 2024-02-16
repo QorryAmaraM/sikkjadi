@@ -22,10 +22,6 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/forgot-password', [AuthController::class, 'forgotpassword']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-Route::get('/profile', function () {
-    return view('pages/admin/profile/profile');
-});
-
 // Admin
 Route::middleware(['checkRole:1'])->group(function () {
     Route::get('/admin-dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');

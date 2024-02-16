@@ -36,4 +36,29 @@ class DashboardController extends Controller
                 break;
         }
     }
+
+    public function profil(Request $request)
+    {   
+        $user = Auth::user();
+        $userid = Auth::user()->role_id;
+        // dd($user);
+
+        switch ($userid) {
+            case '1':
+                return view('pages.admin.profile', compact('user'));
+                break;
+            case '2':
+                return view('pages.users.kepalaBPS.dashboard.index', compact(['user']));
+                break;
+            case '3':
+                return view('pages.users.kepalaBU.dashboard.index', compact(['user']));
+                break;
+            case '4':
+                return view('pages.users.KF.dashboard.index', compact(['user']));
+                break;
+            case '5':
+                return view('pages.users.staf.dashboard.index', compact(['user']));
+                break;
+        }
+    }
 }
