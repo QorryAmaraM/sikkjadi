@@ -52,8 +52,8 @@ class grafikpenilaianckp
     protected static function compareDates($dataAkhir)
     {
         $months = [
-            'januari', 'februari', 'maret', 'april', 'mei', 'juni',
-            'juli', 'agustus', 'september', 'oktober', 'november', 'desember'
+            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
         ];
 
         uksort($dataAkhir, function ($a, $b) use ($months) {
