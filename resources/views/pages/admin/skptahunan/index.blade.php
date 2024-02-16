@@ -63,7 +63,6 @@
                         <th>Wilayah</th>
                         <th>Unit Kerja</th>
                         <th>Jabatan</th>
-                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
