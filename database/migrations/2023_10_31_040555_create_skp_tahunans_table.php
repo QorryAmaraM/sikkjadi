@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('wilayah');
             $table->string('unit_kerja');
             $table->string('jabatan');
-            $table->string('status');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
