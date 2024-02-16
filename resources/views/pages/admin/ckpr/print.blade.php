@@ -22,7 +22,7 @@
         }
     
 </style>
-    <title>Cetak CKP-T | SIKK</title>
+    <title>Cetak CKP-R | SIKK</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -61,7 +61,7 @@
             <div class="p-auto pt-3">
                 <div class="border border-dark border-1 p-2 mb-2 pb-0">
                     <b>
-                        CKP-T
+                        CKP-R
                     </b>
                 </div>
             </div>
@@ -69,22 +69,18 @@
     </header>
     <div class="form-group">
         <h5 class="text-center">
-            <b>TARGET CAPAIAN KINERJA PEGAWAI TAHUN </b>
+            <b>CAPAIAN KINERJA PEGAWAI TAHUN</b>
         </h5>
-        <p align="center"><b>TARGET CAPAIAN KINERJA PEGAWAI TAHUN </b></p>
+        <p align="center"><b>CAPAIAN KINERJA PEGAWAI TAHUN</b></p>
         <div class="card-body">
             <table>
                 <tr>
-                    <td>Satuan Organisasi</td>
-                    <td>: BPS Kota Bukittinggi</td>
-                </tr>
-                <tr>
                     <td>Nama</td>
-                    <td>: Dont Worry</td>
+                    <td>: </td>
                 </tr>
                 <tr>
                     <td>Jabatan</td>
-                    <td>: Pranata Komputer Muda</td>
+                    <td>: </td>
                 </tr>
                 <tr>
                     <td>Periode</td>
@@ -104,32 +100,30 @@
                     <thead>
                         <tr>
                             <th scope="col" class="align-middle">No</th>
-                            <!-- <th scope="col" class="align-middle">Fungsi</th> -->
-                            <th scope="col" class="align-middle">CKP</th>
                             <th scope="col" class="align-middle">Uraian Kegiatan</th>
                             <th scope="col" class="align-middle">Satuan</th>
                             <th scope="col" class="align-middle">Target</th>
                             <!-- <th scope="col" class="align-middle">Target Rev</th> -->
+                            <th scope="col" class="align-middle">Realisasi</th>
+                            <th scope="col" class="align-middle">Persen</th>
+                            <th scope="col" class="align-middle">Nilai</th>
                             <th scope="col" class="align-middle">Kode Butir</th>
                             <th scope="col" class="align-middle">Angka Kredit</th>
+                            <th scope="col" class="align-middle">Kode</th>
                             <th scope="col" class="align-middle">Keterangan</th>
                            
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">1</th>
-                            <!-- <td>IPDS</td> -->
+                        <td></td>
 
-                            <td>Januari 2023</td>
-
-                            <td>Melakukan Pengawasan Pengolahan</td>
-                            <td>SLS</td>
-                            <td>                                    100
-                                                            </td>
-                            <td>0.0.0</td>
-                            <td>0</td>
-                            <td>REGSOSEK 2022</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
 
                         </tr>
                         
@@ -138,17 +132,17 @@
                 
                 <div class="card-body">
                     <table class="table table-borderless text-center">
-                        <tr>
+                    <tr>
                             <td class="pb-5">Pegawai yang dinilai</td>
                             <td class="pb-5">Pejabat penilai</td>
                         </tr>
                         <tr>
-                            <td class="pb-0 pt-5"><u>Dont Worry</u></td>
-                            <td class="pb-0 pt-5"><u></u></td>
+                            <td class="pb-0 pt-5"><u>nama pegawai (yg login)</u></td>
+                            <td class="pb-0 pt-5"><u>nama penilai</u></td>
                         </tr>
                         <tr>
-                            <td class="pt-0">196611111993011002</td>
-                            <td class="pt-0"></td>
+                            <td class="pt-0">nip pegawai (yg login)</td>
+                            <td class="pt-0">nip penilai</td>
                         </tr>
 
                     </table>

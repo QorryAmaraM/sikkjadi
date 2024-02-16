@@ -41,7 +41,7 @@
                      </tr>
                   </thead>
                   <tbody>
-                     @foreach ($uraiankegiatan as $kegiatan)
+                     @forelse ($uraiankegiatan as $kegiatan)
                      <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $kegiatan->pembuat }}</td>
@@ -86,8 +86,9 @@
                                 </div>
                             </div>
                         </div>
-
-                     @endforeach
+                     @empty
+                     <td colspan="7" class="text-center">Empty Data</td>
+                     @endforelse
                   </tbody>
                </table>
             </div>
