@@ -5,33 +5,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <style type="text/css" media="print">
-    
-     @page  { 
-       size: A4 landscape;
-    }
-    body { 
-     writing-mode: tb-rl;
-    }
-    
-    
-    table.static {
+        @page {
+            size: A4 landscape;
+        }
+
+        body {
+            writing-mode: tb-rl;
+        }
+
+
+        table.static {
             position: relative;
             border: 1px solid #543535;
         }
-    
-</style>
+    </style>
     <title>Cetak CKP-R | SIKK</title>
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://bpskotabukittinggi.id/sanjai/template/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://bpskotabukittinggi.id/sanjai/template/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="https://bpskotabukittinggi.id/sanjai/template/dist/css/adminlte.min.css">
     <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="https://bpskotabukittinggi.id/sanjai/template/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <link rel="stylesheet"
+        href="https://bpskotabukittinggi.id/sanjai/template/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="https://bpskotabukittinggi.id/sanjai/template/plugins/toastr/toastr.min.css">
 
@@ -49,7 +52,8 @@
                 <table class="table table-borderless">
                     <tr>
                         <td rowspan="2">
-                            <img src="/assets/img/bps.png" alt="AdminLTE Logo" class="brand-image" style="opacity: .8 ;width: 50px">
+                            <img src="/assets/img/bps.png" alt="AdminLTE Logo" class="brand-image"
+                                style="opacity: .8 ;width: 50px">
                         </td>
                         <td class="pb-0 pt-2 text-blue"><b>BADAN PUSAT STATISTIK</b></td>
                     </tr>
@@ -76,15 +80,37 @@
             <table>
                 <tr>
                     <td>Nama</td>
-                    <td>: </td>
+                    <td>: {{ $user->nama }} </td>
+                </tr>
+                <tr>
+                    <td>NIP</td>
+                    <td>: {{ $user->nip }} </td>
                 </tr>
                 <tr>
                     <td>Jabatan</td>
-                    <td>: </td>
-                </tr>
-                <tr>
-                    <td>Periode</td>
-                    <td>:  </td>
+                    <td>:
+                        @switch($user->role_id)
+                            @case(1)
+                                Admin
+                            @break
+
+                            @case(2)
+                                Kepala BPS
+                            @break
+
+                            @case(3)
+                                Kepala BU
+                            @break
+
+                            @case(4)
+                                Koordinator Fungsi
+                            @break
+
+                            @case(5)
+                                Staf
+                            @break
+                        @endswitch
+                    </td>
                 </tr>
 
             </table>
@@ -111,48 +137,60 @@
                             <th scope="col" class="align-middle">Angka Kredit</th>
                             <th scope="col" class="align-middle">Kode</th>
                             <th scope="col" class="align-middle">Keterangan</th>
-                           
+
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td></td>
+                        @foreach ($result as $ckpr)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $ckpr->uraian_kegiatan }}</td>
+                                <td>{{ $ckpr->satuan }}</td>
+                                <td>
+                                    @if ($ckpr->target_rev !== null)
+                                        {{ $ckpr->target_rev }}
+                                    @else
+                                        {{ $ckpr->target }}
+                                    @endif
+                                </td>
+                                <td>{{ $ckpr->realisasi }}</td>
+                                <td>{{ $ckpr->persen }} %</td>
+                                <td>{{ $ckpr->nilai }}</td>
+                                <td>{{ $ckpr->kode_butir }}</td>
+                                <td>{{ $ckpr->angka_kredit }}</td>
+                                <td>{{ $ckpr->kode }}</td>
+                                <td>{{ $ckpr->keterangan }}</td>
 
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                            </tr>
+                        @endforeach
 
-                        </tr>
-                        
                     </tbody>
                 </table>
-                
+
                 <div class="card-body">
                     <table class="table table-borderless text-center">
-                    <tr>
+                        <tr>
                             <td class="pb-5">Pegawai yang dinilai</td>
                             <td class="pb-5">Pejabat penilai</td>
                         </tr>
                         <tr>
-                            <td class="pb-0 pt-5"><u>nama pegawai (yg login)</u></td>
-                            <td class="pb-0 pt-5"><u>nama penilai</u></td>
+                            <td class="pb-0 pt-5"><u>{{ $user->nama }}</u></td>
+                            <td class="pb-0 pt-5"><u>{{ $pejabatNama }}</u></td>
                         </tr>
                         <tr>
-                            <td class="pt-0">nip pegawai (yg login)</td>
-                            <td class="pt-0">nip penilai</td>
+                            <td class="pt-0">{{ $user->nip }}</td>
+                            <td class="pt-0">{{ $pejabatId }}</td>
                         </tr>
 
                     </table>
                 </div>
-                
+
             </div>
         </div>
 
         <footer class="container-fluid position-absolute margin-bottom-0   text-center">
-            <h6>Jl. Perwira No. 50, Belakang Balok, Bukittinggi Telp (62-752) 21521, Faks (62-752) 624629, Mailbox : bps1375@bps.go.id</h6>
+            <h6>Jl. Perwira No. 50, Belakang Balok, Bukittinggi Telp (62-752) 21521, Faks (62-752) 624629, Mailbox :
+                bps1375@bps.go.id</h6>
         </footer>
 
         <script type="text/javascript">
@@ -173,7 +211,9 @@
         <script src="https://bpskotabukittinggi.id/sanjai/template/dist/js/demo.js"></script>
         <!-- Toastr -->
         <script src="https://bpskotabukittinggi.id/sanjai/template/plugins/toastr/toastr.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
 
 
 </body>

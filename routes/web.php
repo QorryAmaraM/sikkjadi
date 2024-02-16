@@ -87,6 +87,7 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //CKP-T
     Route::get('/admin-ckp/ckpt', [CKPTController::class, 'index'])->name('admin_ckpt');
+    Route::get('/admin-ckp/ckpt/print', [CKPTController::class, 'print']);
     Route::get('/admin-ckp/ckpt/search', [CKPTController::class, 'search']);
     Route::get('/admin-ckp/ckpt/create', [CKPTController::class, 'create']);
     Route::post('/admin-ckp/ckpt/store', [CKPTController::class, 'store']);
@@ -96,6 +97,7 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //CKP-R
     Route::get('/admin-ckp/ckpr', [CKPRController::class, 'index'])->name('admin_ckpr');
+    Route::get('/admin-ckp/ckpr/print', [CKPRController::class, 'print']);
     Route::get('/admin-ckp/ckpr/search', [CKPRController::class, 'search']);
     Route::get('/admin-ckp/ckpr/create/index', [CKPRController::class, 'create_index']);
     Route::get('/admin-ckp/ckpr/create/search', [CKPRController::class, 'create_search']);

@@ -47,6 +47,39 @@ class CKPRController extends Controller
         }
     }
 
+    public function print(Request $request)
+    {
+        $user = Auth::user();
+        $userid = Auth::user()->role_id;
+        $pejabatNama = $request->input('pejabatnama');
+        $pejabatId = $request->input('pejabatid');
+
+        $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->get();
+
+        switch ($userid) {
+            case '1':
+                return view('pages.admin.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
+                break;
+            case '2':
+                return view('pages.users.kepalabps.ckpr.index', compact(['ckpr']));
+                break;
+            case '3':
+                return view('pages.users.kepalabu.ckpr.index', compact(['ckpr']));
+                break;
+            case '4':
+                return view('pages.users.kf.ckpr.index', compact(['ckpr']));
+                break;
+            case '5':
+                return view('pages.users.staf.ckpr.index', compact(['ckpr']));
+                break;
+        }
+    }
+
     //Create
     public function create_index(Request $request)
     {

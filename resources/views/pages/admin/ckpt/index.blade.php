@@ -145,9 +145,7 @@
                                         <td>{{ $ckpt->keterangan }}</td>
                                         <td>
                                             <button class="btn btn-icon btn-edit btn-sm">
-                                                <a href="{{ route('ckpt.edit', ['id' => $ckpt->id]) }}" class="action-link"><i
-                                                        class="fas fa-edit"></i></a>
-
+                                                <a href="{{ route('ckpt.edit', ['id' => $ckpt->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
                                             </button> |
                                             <button class="btn btn-icon btn-delete btn-sm">
                                                 <a 
@@ -194,21 +192,23 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
+                                                    
                                                     <!-- Form input data -->
-                                                    <form>
+                                                    <form action="/admin-ckp/ckpt/print">
                                                         <div class="form-group">
                                                             <label for="inputData">Pejabat Penilai</label>
-                                                            <input type="text" class="form-control" id="inputData">
+                                                            <input type="text" class="form-control" name="pejabatnama" id="pejabatnama">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputData">NIP Pejabat Penilai</label>
-                                                            <input type="text" class="form-control" id="inputData">
+                                                            <input type="text" class="form-control" name="pejabatid" id="pejabatid">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                            <button type="submit" name="submit" value="Save" class="btn btn-primary">Cetak</button>
                                                         </div>
                                                     </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                    <button type="button" class="btn btn-primary">Cetak</button>
+
                                                 </div>
                                             </div>
                                         </div>

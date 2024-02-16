@@ -161,33 +161,26 @@
                                                     class="fas fa-edit"></i></a>
                                         </button>
                                         <button class="btn btn-icon btn-delete btn-sm">
-                                            <a 
-                                                class="action-link btn-delete"
-                                                data-toggle="modal"
+                                            <a class="action-link btn-delete" data-toggle="modal"
                                                 data-target="#successModal"><i class="fas fa-trash-can"></i></a>
                                         </button>
                                     </td>
                                 </tr>
 
-                                <div
-                                    class="modal fade"
-                                    id="successModal"
-                                    tabindex="-1"
-                                    role="dialog"
-                                    aria-labelledby="successModalLabel"
-                                    aria-hidden="true">
+                                <div class="modal fade" id="successModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="successModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="successModalLabel">Yakin menghapus data?</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
                                                 <button class="btn btn-icon btn-modal btn-sm">
-                                                    <a
-                                                        href="{{ route('ckpr.delete', ['id' => $ckpr->id]) }}"
+                                                    <a href="{{ route('ckpr.delete', ['id' => $ckpr->id]) }}"
                                                         class="action-link btn-modal">Hapus</a>
                                                 </button>
                                             </div>
@@ -195,35 +188,37 @@
                                     </div>
                                 </div>
 
-                                <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="printModalLabel">Cetak CKP-T</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <!-- Form input data -->
-                                                    <form>
-                                                        <div class="form-group">
-                                                            <label for="inputData">Pejabat Penilai</label>
-                                                            <input type="text" class="form-control" id="inputData">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="inputData">NIP Pejabat Penilai</label>
-                                                            <input type="text" class="form-control" id="inputData">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                    <button type="button" class="btn btn-primary">Cetak</button>
-                                                </div>
+                                <div class="modal fade" id="printModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="printModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="printModalLabel">Cetak CKP-T</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Form input data -->
+                                                <form action="/admin-ckp/ckpr/print">
+                                                    <div class="form-group">
+                                                        <label for="inputData">Pejabat Penilai</label>
+                                                        <input type="text" class="form-control" name="pejabatnama" id="pejabatnama">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputData">NIP Pejabat Penilai</label>
+                                                        <input type="text" class="form-control" name="pejabatid" id="pejabatid">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                        <button type="submit" name="submit" value="Save" class="btn btn-primary">Cetak</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             @endforeach
                         </tbody>
 
@@ -315,14 +310,14 @@
             });
         }
 
-        $(function () {
-    $('#successModal').on('show.bs.modal', function () {
-        var successModal = $(this);
-        clearTimeout(successModal.data('hideInterval'));
-        successModal.data('hideInterval', setTimeout(function () {
-            successModal.modal('hide');
-        }, 5000));
-    });
-});
+        $(function() {
+            $('#successModal').on('show.bs.modal', function() {
+                var successModal = $(this);
+                clearTimeout(successModal.data('hideInterval'));
+                successModal.data('hideInterval', setTimeout(function() {
+                    successModal.modal('hide');
+                }, 5000));
+            });
+        });
     </script>
 @endsection

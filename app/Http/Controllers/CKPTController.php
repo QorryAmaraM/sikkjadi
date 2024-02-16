@@ -41,6 +41,39 @@ class CKPTController extends Controller
         }
     }
 
+    public function print(Request $request)
+    {
+        $user = Auth::user();
+        $userid = Auth::user()->role_id;
+        $pejabatNama = $request->input('pejabatnama');
+        $pejabatId = $request->input('pejabatid');
+
+        $result = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
+            ->get();
+
+        // dd($user);
+
+        switch ($userid) {
+            case '1':
+                return view('pages.admin.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
+                break;
+            case '2':
+                return view('pages.users.kepalabps.ckpt.index', compact(['ckpt']));
+                break;
+            case '3':
+                return view('pages.users.kepalabu.ckpt.index', compact(['ckpt']));
+                break;
+            case '4':
+                return view('pages.users.kf.ckpt.index', compact(['ckpt']));
+                break;
+            case '5':
+                return view('pages.users.staf.ckpt.index', compact(['ckpt']));
+                break;
+        }
+    }
+
     //Create
     public function create(Request $request)
     {
