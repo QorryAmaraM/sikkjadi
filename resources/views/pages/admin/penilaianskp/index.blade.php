@@ -67,9 +67,11 @@
         <div class="row">
             <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
                 <a href="/admin-perencanaankerja/penilaianskp/create/index" type="button" class="btn add-button">+Tambah</a>
+
                 <button class="btn btn-icon btn-print btn-sm" data-toggle="modal" data-target="#printModal">
-                        <i class="fas fa-print"></i>
-                    </button>
+                    <i class="fas fa-print"></i>
+                </button>
+
             </div>
         </div>
 
@@ -77,8 +79,7 @@
             <div class="col-sm-12">
                 <div class="table-responsive">
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
-                            style="min-width: 1500px;">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="min-width: 1500px;">
                             <thead>
                                 <tr>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Jenis</th>
@@ -94,8 +95,7 @@
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI
                                     </th>
-                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian
-                                        Rencana</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian Rencana</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana
                                     </th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
@@ -129,8 +129,7 @@
                                             <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
                                             <td rowspan="3">
                                                 <button class="btn btn-icon btn-delete btn-sm">
-                                                    <a class="action-link btn-delete" data-toggle="modal"
-                                                        data-target="#successModal"><i class="fas fa-trash-can"></i></a>
+                                                    <a class="action-link btn-delete" data-toggle="modal" data-target="#successModal"><i class="fas fa-trash-can"></i></a>
                                                 </button>
                                             </td>
                                         <tr>
@@ -210,8 +209,7 @@
                                             <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
                                             <td rowspan="3">
-                                                <button class="btn btn-icon btn-delete btn-sm" data-toggle="modal"
-                                                    data-target="#successModal">
+                                                <button class="btn btn-icon btn-delete btn-sm" data-toggle="modal" data-target="#successModal">
                                                     <a class="action-link btn-delete">
                                                         <i class="fas fa-trash-can"></i>
                                                     </a>
@@ -240,55 +238,6 @@
                                             <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
 
                                         </tr>
-
-                                        <div class="modal fade" id="successModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="successModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="successModalLabel">Yakin menghapus
-                                                            data?</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <button class="btn btn-icon btn-modal btn-sm">
-                                                            <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
-                                                                class="action-link btn-modal">Hapus</a>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="printModalLabel">Cetak Penilaian SKP</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    
-                                                    <!-- Form input data -->
-                                                    <form action="/admin-perencanaankerja/penilaianskp/print">
-                                                        <div class="form-group">
-                                                            <label for="inputTahun">Tahun</label>
-                                                            <input type="text" class="form-control" name="tahun" id="tahun" placeholder="Masukkan Tahun SKP">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" name="submit" value="Save" class="btn btn-primary">Cetak</button>
-                                                        </div>
-                                                    </form>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     @endif
                                 @empty
                                     <td colspan="16" class="text-center">Empty Data</td>
@@ -343,6 +292,54 @@
                                 </tr>
 
                             </tbody>
+
+                            <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="successModalLabel">Yakin menghapus
+                                                data?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <button class="btn btn-icon btn-modal btn-sm">
+                                                <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}" class="action-link btn-modal">Hapus</a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="printModalLabel">Cetak Penilaian SKP
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <!-- Form input data -->
+                                            <form action="/admin-perencanaankerja/penilaianskp/print">
+                                                <div class="form-group">
+                                                    <label for="inputTahun">Tahun</label>
+                                                    <input type="text" class="form-control" name="input_tahun" id="input_tahun" placeholder="Masukkan Tahun SKP">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" name="submit" value="Save" class="btn btn-primary">Cetak</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </table>
                     </div>
                 </div>

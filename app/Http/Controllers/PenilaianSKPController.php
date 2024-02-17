@@ -145,17 +145,19 @@ class PenilaianSKPController extends Controller
     {
         $user = Auth::user();
         $userid = Auth::user()->role_id;
-        $pejabatNama = $request->input('pejabatnama');
-        $pejabatId = $request->input('pejabatid');
+        $input_tahun = $request->input('input_tahun');
 
         $result = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
             ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
             ->select('skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
+            ->where('tahun', 'like', '%' . $input_tahun . '%')
             ->get();
+
+        // dd($result);
 
         switch ($userid) {
             case '1':
-                return view('pages.admin.penilaianskp.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
+                return view('pages.admin.penilaianskp.print', compact('user', 'result', 'input_tahun'));
                 break;
             case '2':
                 return view('pages.users.kepalabps.ckpt.index', compact(['ckpt']));
