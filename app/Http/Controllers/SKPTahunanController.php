@@ -161,6 +161,7 @@ class SKPTahunanController extends Controller
         $output="";
 
         $search=skp_tahunan::where('user_id','like', '%'.$request->search.'%')->get();
+        
 
         foreach($search as $search)
         {
@@ -172,7 +173,6 @@ class SKPTahunanController extends Controller
             <td> '.$search->wilayah.' </td>
             <td> '.$search->unit_kerja.' </td>
             <td> '.$search->jabatan.' </td>
-            <td> '.$search->status.' </td>
 
             <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
                 <a href="' . route('spktahunan.edit', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
@@ -181,6 +181,8 @@ class SKPTahunanController extends Controller
                 </button>' . ' </td>        
             
             </tr>';
+
+            
 
         }
         return response($output);
