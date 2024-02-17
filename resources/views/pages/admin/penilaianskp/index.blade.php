@@ -67,7 +67,9 @@
         <div class="row">
             <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
                 <a href="/admin-perencanaankerja/penilaianskp/create/index" type="button" class="btn add-button">+Tambah</a>
-                <a href="/admin-perencanaankerja/penilaianskp/print" type="button" class="btn btn-icon btn-print btn-sm fas fa-print" data-toggle="modal" data-target="#printModal"></a>
+                <button class="btn btn-icon btn-print btn-sm" data-toggle="modal" data-target="#printModal">
+                        <i class="fas fa-print"></i>
+                    </button>
             </div>
         </div>
 
@@ -273,7 +275,7 @@
                                                 <div class="modal-body">
                                                     
                                                     <!-- Form input data -->
-                                                    <form action=>
+                                                    <form action="/admin-perencanaankerja/penilaianskp/print">
                                                         <div class="form-group">
                                                             <label for="inputTahun">Tahun</label>
                                                             <input type="text" class="form-control" name="tahun" id="tahun" placeholder="Masukkan Tahun SKP">
