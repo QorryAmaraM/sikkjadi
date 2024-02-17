@@ -27,7 +27,7 @@ class PenilaianSKPController extends Controller
             ->select('skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
             ->get();
 
-        
+
         foreach ($result as $penilaian) {
             $kuantitas = $penilaian->kuantitas_kategori_capaian_iki;
             $kualitas = $penilaian->kualitas_kategori_capaian_iki;
@@ -137,6 +137,37 @@ class PenilaianSKPController extends Controller
                 break;
             case '5':
                 return view('pages.users.staf.penilaianskp.index', compact(['penilaianskp', 'result', 'user']));
+                break;
+        }
+    }
+
+    public function print(Request $request)
+    {
+        $user = Auth::user();
+        $userid = Auth::user()->role_id;
+        $pejabatNama = $request->input('pejabatnama');
+        $pejabatId = $request->input('pejabatid');
+
+        $result = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
+            ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
+            ->select('skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
+            ->get();
+
+        switch ($userid) {
+            case '1':
+                return view('pages.admin.penilaianskp.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
+                break;
+            case '2':
+                return view('pages.users.kepalabps.ckpt.index', compact(['ckpt']));
+                break;
+            case '3':
+                return view('pages.users.kepalabu.ckpt.index', compact(['ckpt']));
+                break;
+            case '4':
+                return view('pages.users.kf.ckpt.index', compact(['ckpt']));
+                break;
+            case '5':
+                return view('pages.users.staf.ckpt.index', compact(['ckpt']));
                 break;
         }
     }
@@ -355,15 +386,13 @@ class PenilaianSKPController extends Controller
         $penilaian = penilaian_skp::all();
 
         $found = $penilaian->contains('rencanakinerja_id', $data['rencanakinerja_id']);
-        
+
         if ($penilaian->isEmpty()) {
             penilaian_skp::create($data);
-        }                
-        else if ($found) {
+        } else if ($found) {
             $penilaian_skp = $penilaian->where('rencanakinerja_id', $data['rencanakinerja_id'])->first();
             $penilaian_skp->update($data);
-        } 
-        else {
+        } else {
             penilaian_skp::create($data);
         }
 
