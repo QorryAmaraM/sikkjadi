@@ -16,7 +16,7 @@
             <div class="col-sm-6">
                 <div class="search form-group d-flex align-items-center">
                     <label for="searchSelect" class="mb-0 mr-4">Pegawai</label>
-                    <select name="search_luar" id="search_luar" class="form-control">
+                    <select name="search" id="search" class="form-control">
                         <option value="">Pilih Pegawai</option>
                         @php
                             $namaArray = [];
@@ -145,10 +145,10 @@
 
     <!-- Script -->
 
-    <script type="text/javascript">
+    <script>
         var savedValue = "";
 
-        $('#search_luar').on('change', function() {
+        $('#search').on('change', function() {
 
             $value = $(this).val();
 
@@ -162,7 +162,7 @@
 
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to(' / admin - perencanaankerja / skptahunan / search ') }}',
+                url: '{{ URL::to('/admin-perencanaankerja/skptahunan/search') }}',
                 data: {
                     'search': $value
                 },
@@ -175,7 +175,9 @@
             });
 
         })
+    </script>
 
+    <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
             const searchInput = document.getElementById("search");
 
@@ -210,28 +212,28 @@
         });
 
         // Fungsi untuk filter berdasarkan input pencarian
-    function filterTable() {
-        // Mendapatkan nilai input pencarian
-        var searchText = document.getElementById('search').value.toLowerCase();
-        
-        // Mendapatkan semua baris data pada tabel
-        var rows = document.querySelectorAll('#dataTable tbody tr');
+        function filterTable() {
+            // Mendapatkan nilai input pencarian
+            var searchText = document.getElementById('search').value.toLowerCase();
 
-        // Melakukan iterasi pada setiap baris data
-        rows.forEach(function(row) {
-            // Mendapatkan nilai jenis fungsional dari setiap baris
-            var jenisFungsional = row.querySelector('#tahun').textContent.toLowerCase();
+            // Mendapatkan semua baris data pada tabel
+            var rows = document.querySelectorAll('#dataTable tbody tr');
 
-            // Menyembunyikan baris yang tidak sesuai dengan pencarian
-            if (jenisFungsional.includes(searchText)) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
-        });
-    }
+            // Melakukan iterasi pada setiap baris data
+            rows.forEach(function(row) {
+                // Mendapatkan nilai jenis fungsional dari setiap baris
+                var jenisFungsional = row.querySelector('#tahun').textContent.toLowerCase();
 
-    // Memanggil fungsi filter saat nilai input pencarian berubah
-    document.getElementById('search').addEventListener('input', filterTable);
+                // Menyembunyikan baris yang tidak sesuai dengan pencarian
+                if (jenisFungsional.includes(searchText)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Memanggil fungsi filter saat nilai input pencarian berubah
+        document.getElementById('search').addEventListener('input', filterTable);
     </script>
 @endsection
