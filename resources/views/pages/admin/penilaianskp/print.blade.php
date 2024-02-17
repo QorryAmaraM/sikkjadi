@@ -115,7 +115,7 @@
                 </tr>
                 <tr>
                     <td>Periode</td>
-                    <td>:
+                    <td>: {{ $input_tahun }} </td>
                 </tr>
 
             </table>
