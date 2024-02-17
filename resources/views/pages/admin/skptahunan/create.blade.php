@@ -43,26 +43,23 @@
                     </div>
                     <div class="form-group">
                         <label for="periode">Periode</label>
-                        <input type="periode" class="form-control" id="periode" placeholder="Periode" name="periode">
+                        <input type="periode" class="form-control" id="periode" placeholder="Periode" name="periode" required>
                     </div>
                     <div class="form-group">
                         <label for="wilayah">Wilayah</label>
-                        <input type="wilayah" class="form-control" id="wilayah" placeholder="Wilayah" name="wilayah">
+                        <input type="wilayah" class="form-control" id="wilayah" placeholder="Wilayah" name="wilayah" required>
                     </div>
                     <div class="form-group">
                         <label for="unitkerja">Unit Kerja</label>
-                        <input type="unitkerja" class="form-control" id="unitkerja" placeholder="Unit Kerja"
-                            name="unit_kerja">
+                        <input type="unitkerja" class="form-control" id="unitkerja" placeholder="Unit Kerja" name="unit_kerja" required>
                     </div>
                     <div class="form-group">
                         <label for="jabatan">Jabatan</label>
-                        <input type="jabatan" class="form-control" id="jabatan" placeholder="Jabatan" name="jabatan">
+                        <input type="jabatan" class="form-control" id="jabatan" placeholder="Jabatan" name="jabatan" required>
                     </div>
                 </div>
                 <div class="col-12 mt-3 text-right">
-
-                    <button type="submit" name="submit" value="Save" class="btn save-button" data-toggle="modal"
-                        data-target="#successModal">Simpan</button>
+                    <button type="submit" name="submit" value="Save" class="btn save-button" onclick="checkFormAndShowModal()">Simpan</button>
                 </div>
             </div>
 
@@ -100,6 +97,29 @@
                 }, 5000));
             });
         });
+
+        function checkFormAndShowModal() {
+        // Pemeriksaan apakah semua input telah diisi
+        var form = document.getElementById('myForm');
+        var allInputsFilled = true;
+
+        // Loop untuk memeriksa setiap input dalam form
+        for (var i = 0; i < form.length; i++) {
+            if (form[i].type == "text" || form[i].type == "select-one") {
+                if (form[i].value == "") {
+                    allInputsFilled = false;
+                    break;
+                }
+            }
+        }
+
+        // Jika semua input terisi, tampilkan modal
+        if (allInputsFilled) {
+            $('#successModal').modal('show');
+        } else {
+            alert("Harap isi semua data sebelum melanjutkan.");
+        }
+    }
     </script>
     <!-- /.container-fluid -->
 @endsection

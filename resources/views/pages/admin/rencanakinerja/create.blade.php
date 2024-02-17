@@ -108,7 +108,7 @@
                                                     class="form-control"
                                                     id="rkatasan"
                                                     placeholder="Lorem Ipsum Dolor Sit Amet"
-                                                    name="rencana_kinerja_atasan"></div>
+                                                    name="rencana_kinerja_atasan" required></div>
                                                 <div class="form-group">
                                                     <label for="rkpegawai">Rencana Kinerja</label>
                                                     <input
@@ -116,7 +116,7 @@
                                                         class="form-control"
                                                         id="rkpegawai"
                                                         placeholder="Lorem Ipsum Dolor Sit Amet"
-                                                        name="rencana_kinerja"></div>
+                                                        name="rencana_kinerja" required></div>
                                                 </div>
                                             </div>
 
@@ -128,7 +128,7 @@
                                                         value="Save"
                                                         class="btn save-button"
                                                         data-toggle="modal"
-                                                        data-target="#successModal">Simpan</button>
+                                                        data-target="#successModal" >Simpan</button>
                                                 </div>
                                             </div>
 

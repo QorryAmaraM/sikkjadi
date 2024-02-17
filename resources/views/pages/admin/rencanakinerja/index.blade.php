@@ -57,7 +57,7 @@
 
                     <div class="tahun form-group d-flex align-items-center">
                         <label for="wilayah" class="col-sm-1 pl-0 col-form-label">Wilayah</label>
-                        <input class="form-control col-sm-11" name="wilayah" id="wilayah" placeholder="wilayah">
+                        <input class="form-control col-sm-11" name="wilayah" id="wilayah" placeholder="Wilayah">
                     </div>
 
                     <div class="tahun form-group d-flex align-items-center">
