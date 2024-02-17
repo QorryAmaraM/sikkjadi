@@ -67,7 +67,7 @@
         <div class="row">
             <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
                 <a href="/admin-perencanaankerja/penilaianskp/create/index" type="button" class="btn add-button">+Tambah</a>
-                <a href="/admin-perencanaankerja/penilaianskp/print" type="button" class="btn btn-icon btn-print btn-sm fas fa-print" ></a>
+                <a href="/admin-perencanaankerja/penilaianskp/print" type="button" class="btn btn-icon btn-print btn-sm fas fa-print" data-toggle="modal" data-target="#printModal"></a>
             </div>
         </div>
 
@@ -260,6 +260,33 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="printModalLabel">Cetak Penilaian SKP</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    
+                                                    <!-- Form input data -->
+                                                    <form action=>
+                                                        <div class="form-group">
+                                                            <label for="inputTahun">Tahun</label>
+                                                            <input type="text" class="form-control" name="tahun" id="tahun" placeholder="Masukkan Tahun">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" name="submit" value="Save" class="btn btn-primary">Cetak</button>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     @endif
                                 @empty
                                     <td colspan="16" class="text-center">Empty Data</td>

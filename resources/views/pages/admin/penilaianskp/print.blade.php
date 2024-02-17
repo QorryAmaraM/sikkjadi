@@ -112,6 +112,8 @@
                             @break
                         @endswitch
                     </td>
+                </tr>
+                <tr>
                     <td>Periode</td>
                     <td>:
                 </tr>
