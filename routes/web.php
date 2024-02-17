@@ -42,7 +42,7 @@ Route::middleware(['checkRole:1'])->group(function () {
     Route::get('/admin-perencanaankerja/rencanakinerja/create/index', [RencanaKinerjaController::class, 'create_index']);
     Route::get('/admin-perencanaankerja/rencanakinerja/create/{id}', [RencanaKinerjaController::class, 'create']);
     Route::post('/admin-perencanaankerja/rencanakinerja/store', [RencanaKinerjaController::class, 'store']);
-    Route::get('/admin-perencanaankerja/rencanakinerja/{id}/edit', [RencanaKinerjaController::class, 'edit'])->name('edit');
+    Route::get('/admin-perencanaankerja/rencanakinerja/{id}/edit', [RencanaKinerjaController::class, 'edit'])->name('rencanakinerja.edit');
     Route::get('/admin-perencanaankerja/rencanakinerja/{id}/kuantitas-edit', [RencanaKinerjaController::class, 'edit_kuantitas'])->name('kuantitas.edit');
     Route::get('/admin-perencanaankerja/rencanakinerja/{id}/kualitas-edit', [RencanaKinerjaController::class, 'edit_kualitas'])->name('kualitas.edit');
     Route::get('/admin-perencanaankerja/rencanakinerja/{id}/waktu-edit', [RencanaKinerjaController::class, 'edit_waktu'])->name('waktu.edit');
