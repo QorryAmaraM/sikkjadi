@@ -155,6 +155,26 @@
                                             <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
 
                                         </tr>
+
+                                        <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="successModalLabel">Yakin menghapus
+                                                            data?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <button class="btn btn-icon btn-modal btn-sm">
+                                                            <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}" class="action-link btn-modal">Hapus</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     @endif
                                 @empty
                                     <td colspan="16" class="text-center">Empty Data</td>
@@ -236,8 +256,26 @@
                                             <td>{{ $skp->waktu_kondisi }}</td>
                                             <td>{{ $skp->waktu_capaian_iki }}</td>
                                             <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
-
                                         </tr>
+
+                                        <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="successModalLabel">Yakin menghapus
+                                                            data?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <button class="btn btn-icon btn-modal btn-sm">
+                                                            <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}" class="action-link btn-modal">Hapus</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endif
                                 @empty
                                     <td colspan="16" class="text-center">Empty Data</td>
@@ -293,25 +331,6 @@
 
                             </tbody>
 
-                            <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="successModalLabel">Yakin menghapus
-                                                data?</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <button class="btn btn-icon btn-modal btn-sm">
-                                                <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}" class="action-link btn-modal">Hapus</a>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -323,7 +342,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            
+
 
                                             <!-- Form input data -->
                                             <form action="/admin-perencanaankerja/penilaianskp/print">
