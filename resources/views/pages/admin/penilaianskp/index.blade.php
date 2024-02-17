@@ -276,7 +276,7 @@
                                                     <form action=>
                                                         <div class="form-group">
                                                             <label for="inputTahun">Tahun</label>
-                                                            <input type="text" class="form-control" name="tahun" id="tahun" placeholder="Masukkan Tahun">
+                                                            <input type="text" class="form-control" name="tahun" id="tahun" placeholder="Masukkan Tahun SKP">
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="submit" name="submit" value="Save" class="btn btn-primary">Cetak</button>
