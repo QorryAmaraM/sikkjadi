@@ -40,11 +40,11 @@
                           <div class="form-group d-flex align-items-center">
                               <label for="kodebutir" class="col-sm-2 pl-0 col-form-label">Kode Butir</label>
                               <input type="kodebutir" class="form-control col-sm-10" name="kode_butir"
-                                  placeholder="Lorem Ipsum" required>
+                                  placeholder="Kode Butir" required>
                           </div>
                           <div class="form-group d-flex align-items-center">
                               <label for="isibutir" class="col-sm-2 pl-0 col-form-label">Isi Butir</label>
-                              <input type="isibutir" class="form-control col-sm-10" name="isi_butir" placeholder="2023" required>
+                              <input type="isibutir" class="form-control col-sm-10" name="isi_butir" placeholder="Isi Butir" required>
                           </div>
                           <div class="form-group d-flex align-items-center">
                               <label for="angkakredit" class="col-sm-2 pl-0 col-form-label">Angka Kredit</label>

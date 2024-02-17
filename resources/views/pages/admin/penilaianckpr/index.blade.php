@@ -89,7 +89,7 @@
         </form>
 
         <div class="row">
-            <div class="col-sm-6 d-flex justify-content-end align-items-center">
+            <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
                 <a href="/admin-ckp/penilaianckpr/create-index" type="button" class="btn add-button">+ Tambah</a>
                 <button class="btn btn-icon btn-print btn-sm">
                     <i class="fas fa-print"></i>
