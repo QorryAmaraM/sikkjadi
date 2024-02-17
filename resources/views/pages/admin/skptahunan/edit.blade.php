@@ -8,12 +8,12 @@
 <!-- Page Heading -->
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-black-800">Perencanaan Kinerja Tahunan</h1>
+    <h1 class="h3 mb-0 text-black-800">Edit SKP Tahunan</h1>
 </div>
 
 <!-- Content Row -->
 
-<form
+<form id="myForm"
     action="/admin-perencanaankerja/spktahunan/{{ $skptahunan->id }}"
     method="POST">
     @csrf @method('put')
@@ -57,7 +57,7 @@
                         id="periode"
                         placeholder="Periode"
                         name="periode"
-                        value="{{ $skptahunan->periode }}">
+                        value="{{ $skptahunan->periode }}" required>
                     </div>
                     <div class="form-group">
                         <label for="wilayah">Wilayah</label>
@@ -67,7 +67,7 @@
                             id="wilayah"
                             placeholder="wilayah"
                             name="wilayah"
-                            value="{{ $skptahunan->wilayah }}">
+                            value="{{ $skptahunan->wilayah }}" required>
                         </div>
                         <div class="form-group">
                             <label for="unitkerja">Unit Kerja</label>
@@ -77,7 +77,7 @@
                                 id="unitkerja"
                                 placeholder="Unit Kerja"
                                 name="unit_kerja"
-                                value="{{ $skptahunan->unit_kerja }}">
+                                value="{{ $skptahunan->unit_kerja }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="jabatan">Jabatan</label>
@@ -87,55 +87,20 @@
                                     id="jabatan"
                                     placeholder="Jabatan"
                                     name="jabatan"
-                                    value="{{ $skptahunan->jabatan }}">
+                                    value="{{ $skptahunan->jabatan }}" required>
                                 </div>
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <input
-                                    type="status"
-                                    class="form-control"
-                                    id="status"
-                                    placeholder="Status"
-                                    name="status"
-                                    value="{{ $skptahunan->status }}">
-                                </div>
-                            </div>
 
                             <div class="col-12 mt-3 text-right">
                                     <button
                                         type="submit"
                                         name="submit"
                                         value="Save"
-                                        class="btn save-button"
-                                        data-toggle="modal"
-                                        data-target="#successModal">Simpan</button>
+                                        class="btn save-button" onclick="checkFormAndShowModal()"
+                                        >Simpan</button>
                             </div>
                     
                     </div>
                         </form>
-
-                        <div
-                            class="modal fade"
-                            id="successModal"
-                            tabindex="-1"
-                            role="dialog"
-                            aria-labelledby="successModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="successModalLabel">Data Berhasil diedit
-                                        </h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Selamat! Data berhasil diedit. Anda akan diarahkan ke halaman selanjutnya.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
             </form>
 
@@ -144,15 +109,46 @@
 
 
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-                        $(function () {
-                            $('#successModal').on('show.bs.modal', function () {
-                                var successModal = $(this);
-                                clearTimeout(successModal.data('hideInterval'));
-                                successModal.data('hideInterval', setTimeout(function () {
-                                    successModal.modal('hide');
-                                }, 3000));
-                            });
-                        });
-                    </script>
+        function checkFormAndShowModal() {
+    var form = document.getElementById('myForm');
+    var allInputsFilled = true;
+
+    // Loop untuk memeriksa setiap input dalam form
+    for (var i = 0; i < form.length; i++) {
+        if (form[i].type == "text" || form[i].type == "select-one") {
+            if (form[i].value == "") {
+                allInputsFilled = false;
+                break;
+            }
+        }
+    }
+
+    // Jika semua input terisi, tampilkan modal
+    if (allInputsFilled) {
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Data berhasil diedit!",
+            showConfirmButton: false,
+            timer: 10000
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                $('#successModal').modal('show');
+            }
+        });
+    } else {
+        // Tampilkan peringatan SweetAlert jika tidak semua data terisi
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harap isi semua data sebelum melanjutkan.',
+        });
+    }
+}
+
+    </script>
+
+
 @endsection

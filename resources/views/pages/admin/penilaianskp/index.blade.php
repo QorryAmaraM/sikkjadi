@@ -361,6 +361,10 @@
                             </div>
 
                         </table>
+
+                        <div class="d-flex justify-content-center">
+                    {{ $result->links('vendor.pagination.bootstrap-4') }}
+            </div>
                     </div>
                 </div>
             </div>

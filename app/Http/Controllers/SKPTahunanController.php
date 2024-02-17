@@ -15,7 +15,8 @@ class SKPTahunanController extends Controller
     {
         $userid = Auth::user()->role_id;
         $user = user::all();
-        $skptahunan = skp_tahunan::all();
+        $skptahunan = skp_tahunan::paginate(5);
+       
         switch ($userid) {
             case '1':
                 return view('pages.admin.skptahunan.index', compact(['skptahunan', 'user']));

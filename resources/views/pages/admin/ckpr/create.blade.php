@@ -6,12 +6,12 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-black-800">Capaian Kinerja Karyawan Realisasi</h1>
+            <h1 class="h3 mb-0 text-black-800">Form Realisasi Capaian Kinerja Karyawan Target</h1>
         </div>
 
         <!-- Content Row -->
 
-        <form action="/admin-ckp/ckpr/store" method="POST">
+        <form id="myForm" action="/admin-ckp/ckpr/store" method="POST">
             @csrf
 
             <div class="row mb-8">
@@ -94,41 +94,48 @@
 
             <div class="row">
                 <div class="col-sm-12 mt-3 text-right">
-                    <button type="submit" name="submit" value="Save" class="btn save-button" data-toggle="modal" data-target="#successModal">Simpan</button>
+                     <button type="submit" name="submit" value="Save" class="btn save-button">Simpan</button>
                 </div>
             </div>
-            <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="successModalLabel">Data Berhasil Ditambah</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
-                      </div>
-                      <div class="modal-body">
-                          Anda akan diarahkan ke halaman selanjutnya.
-                      </div>
-                  </div>
-              </div>
-          </div>
 
 
         </form>
-    </div>
+        </div>
 
-    <script>
-    $(function () {
-        $('#successModal').on('show.bs.modal', function () {
-            var successModal = $(this);
-            clearTimeout(successModal.data('hideInterval'));
-            successModal.data('hideInterval', setTimeout(function () {
-                successModal.modal('hide');
-            }, 3000));
-        });
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Mencegah form melakukan submit langsung
+        checkFormAndSubmit();
     });
+
+    function checkFormAndSubmit() {
+        var realisasiInput = document.getElementById('realisasi').value;
+        var form = this; // Mengacu pada form
+
+        // Cek apakah input realisasi terisi
+        if (realisasiInput !== "") {
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Data berhasil ditambah!",
+                showConfirmButton: false,
+                timer: 10000
+            }).then((result) => {
+                form.submit(); // Submit form setelah SweetAlert ditutup
+            });
+        } else {
+            // Tampilkan peringatan SweetAlert jika realisasi tidak terisi
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Harap isi data realisasi sebelum melanjutkan.',
+            });
+        }
+    }
 </script>
+
+
     <!-- /.container-fluid -->
     
 @endsection

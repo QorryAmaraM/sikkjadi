@@ -21,7 +21,7 @@ class CKPTController extends Controller
         $result = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
-            ->get();
+            ->paginate(5);
         switch ($userid) {
             case '1':
                 return view('pages.admin.ckpt.index', compact(['user', 'ckpt', 'result']));

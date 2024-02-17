@@ -23,7 +23,7 @@ class MonitoringCKPController extends Controller
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
             ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*' )
-            ->get();
+            ->paginate(5);
         switch ($userid) {
             case '1':
                 return view('pages.admin.monitoringckp.index', compact(['monitoringckp', 'user', 'result']));

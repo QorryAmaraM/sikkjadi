@@ -8,12 +8,12 @@
 <!-- Page Heading -->
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-black-800">Rencana Kinerja</h1>
+    <h1 class="h3 mb-0 text-black-800">Tambah Rencana Kinerja</h1>
 </div>
 
 <!-- Content Row -->
 
-<form action="/admin-perencanaankerja/rencanakinerja/store" method="POST">
+<form id="myForm" action="/admin-perencanaankerja/rencanakinerja/store" method="POST">
     @csrf
     <div class="row mb-8">
         <div class="col-sm-12">
@@ -81,7 +81,7 @@
                                                 id="kjutama"
                                                 value="utama"
                                                 name="kinerja"
-                                                onclick="toggleCheckbox('kjutama')">
+                                                onclick="toggleCheckbox('kjutama')" required>
                                                 <label class="form-check-label" for="inlineCheckbox1">Utama</label>
                                             </div>
                                             <div class="form-check form-check-inline">
@@ -91,7 +91,7 @@
                                                     id="kjtambahan"
                                                     value="tambahan"
                                                     name="kinerja"
-                                                    onclick="toggleCheckbox('kjtambahan')">
+                                                    onclick="toggleCheckbox('kjtambahan')" required>
                                                     <label class="form-check-label" for="inlineCheckbox2">Tambahan</label>
                                                 </div>
                                             </div>
@@ -127,77 +127,84 @@
                                                         name="submit"
                                                         value="Save"
                                                         class="btn save-button"
-                                                        data-toggle="modal"
-                                                        data-target="#successModal" >Simpan</button>
-                                                </div>
-                                            </div>
-
-                                            <div
-                                                class="modal fade"
-                                                id="successModal"
-                                                tabindex="-1"
-                                                role="dialog"
-                                                aria-labelledby="successModalLabel"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="successModalLabel">Data Berhasil Ditambah!</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            Anda akan diarahkan ke halaman selanjutnya.
-                                                        </div>
-                                                    </div>
+                                                        onclick="checkFormAndShowModal()" >Simpan</button>
                                                 </div>
                                             </div>
                                         </form>
 
                                     </div>
                                     <!-- /.container-fluid -->
-                                    <script>
-                                        function toggleCheckbox(checkboxId) {
-                                            var checkbox = document.getElementById(checkboxId);
-                                            var otherCheckboxId = (checkboxId === 'kjutama')
-                                                ? 'kjtambahan'
-                                                : 'kjutama';
-                                            var otherCheckbox = document.getElementById(otherCheckboxId);
+<script>
+    function toggleCheckbox(checkboxId) {
+        var checkbox = document.getElementById(checkboxId);
+        var otherCheckboxId = (checkboxId === 'kjutama')
+            ? 'kjtambahan'
+            : 'kjutama';
+        var otherCheckbox = document.getElementById(otherCheckboxId);
 
-                                            otherCheckbox.disabled = checkbox.checked;
-                                        }
-                                    </script>
+        otherCheckbox.disabled = checkbox.checked;
+    }
+</script>
 
-                                    <script type="text/javascript">
-                                        $('#parameter').on('change', function () {
+<script type="text/javascript">
+    $('#parameter').on('change', function () {
 
-                                            $value = $(this).val();
+        $value = $(this).val();
 
-                                            $.ajax({
-                                                type: 'get',
-                                                url: '{{ URL::to(' search ') }}',
-                                                data: {
-                                                    'search': $value
-                                                },
+        $.ajax({
+            type: 'get',
+            url: '{{ URL::to(' search ') }}',
+            data: {
+                'search': $value
+            },
 
-                                                success: function (data) {
-                                                    console.log(data);
-                                                    $('#Content').html(data);
-                                                }
+            success: function (data) {
+                console.log(data);
+                $('#Content').html(data);
+            }
 
-                                            });
+        });
 
-                                        })
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function checkFormAndShowModal() {
+    var form = document.getElementById('myForm');
+    var allInputsFilled = true;
 
-                                        $(function () {
-                                            $('#successModal').on('show.bs.modal', function () {
-                                                var successModal = $(this);
-                                                clearTimeout(successModal.data('hideInterval'));
-                                                successModal.data('hideInterval', setTimeout(function () {
-                                                    successModal.modal('hide');
-                                                }, 5000));
-                                            });
-                                        });
-                                    </script>
-                                    @endsection
+    // Loop untuk memeriksa setiap input dalam form
+    for (var i = 0; i < form.length; i++) {
+        if (form[i].type == "text" || form[i].type == "select-one") {
+            if (form[i].value == "") {
+                allInputsFilled = false;
+                break;
+            }
+        }
+    }
+
+    // Jika semua input terisi, tampilkan modal
+    if (allInputsFilled) {
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Data berhasil ditambah!",
+            showConfirmButton: false,
+            timer: 10000
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                $('#successModal').modal('show');
+            }
+        });
+    } else {
+        // Tampilkan peringatan SweetAlert jika tidak semua data terisi
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harap isi semua data sebelum melanjutkan.',
+        });
+    }
+}
+
+    </script>
+@endsection

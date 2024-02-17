@@ -15,7 +15,7 @@ class REncanaKinerjaController extends Controller
     public function index(Request $request)
     {
         $userid = Auth::user()->role_id;
-        $rencanakinerja = rencana_kinerja::all();
+        $rencanakinerja = rencana_kinerja::paginate(5);
         $user = user::all();
         $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*','rencana_kinerjas.*')->get();
         

@@ -1860,7 +1860,7 @@ select.form-control:focus::-ms-value {
 }
 
 label[for="searchSelect"] {
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 select.form-control[multiple],
@@ -2260,7 +2260,6 @@ fieldset:disabled a.btn {
 .btn-primary:hover {
     color: #fff;
     background-color: #1a2b88;
-    
 }
 .btn-primary.focus,
 .btn-primary:focus {
@@ -2817,7 +2816,7 @@ fieldset:disabled a.btn {
     margin-top: 0.5rem;
 }
 
-.btn-login{
+.btn-login {
     display: block;
     width: 20%;
     margin: 0 auto;
@@ -2827,7 +2826,7 @@ fieldset:disabled a.btn {
     font-weight: 700;
 }
 
-.btn-reset-link{
+.btn-reset-link {
     display: block;
     width: 40%;
     margin: 0 auto;
@@ -3198,7 +3197,7 @@ input[type="submit"].btn-block {
 }
 
 .custom-select.user-dropdown {
-    background-color: #9BA4B4;
+    background-color: #9ba4b4;
     color: #000;
     border-radius: 15px;
     font-size: 14px;
@@ -4672,7 +4671,7 @@ a.badge-secondary:focus {
 }
 .badge-success {
     color: #000;
-    background-color: #39EC81;
+    background-color: #39ec81;
 }
 a.badge-success:focus,
 a.badge-success:hover {
@@ -4714,7 +4713,7 @@ a.badge-warning:focus {
 }
 .badge-danger {
     color: #000;
-    background-color: #FF0C0C;
+    background-color: #ff0c0c;
 }
 a.badge-danger:focus,
 a.badge-danger:hover {
@@ -9670,7 +9669,6 @@ a:focus {
     border: none; /* Menghapus border tombol */
     background: transparent; /* Menghapus latar belakang tombol (jika ada) */
     padding: 0; /* Menghapus padding tombol (jika ada) */
-
 }
 
 .sidebar .sidebar-brand {
@@ -10072,23 +10070,23 @@ form.user .btn-user {
     padding: 0.75rem 1rem;
 }
 
-.user-reset{
+.user-reset {
     margin-top: 2rem;
 }
-.form-label-login{
+.form-label-login {
     color: #fff;
 }
 
-.text-center.judul{
+.text-center.judul {
     color: #fff;
     margin-bottom: 1.5rem;
 }
 
-.text-center.back{
+.text-center.back {
     margin: 7px 0px 0px 0px;
 }
 
-.sub-judul{
+.sub-judul {
     color: #fff;
     font-size: 15px;
 }
@@ -10235,7 +10233,7 @@ form.user .btn-user {
     background-color: red;
 }
 
-.btn-modal a{
+.btn-modal a {
     color: white; /* Warna teks putih */
     text-decoration: none; /* Menghilangkan dekorasi teks */
 }
@@ -10244,8 +10242,8 @@ form.user .btn-user {
     opacity: 0.8; /* Mengurangi opacity saat hover */
 }
 
-.btn-print{
-    background-color: #1A2B88;
+.btn-print {
+    background-color: #1a2b88;
     border: none; /* Menghapus border tombol jika diperlukan */
     padding: 5px 15px; /* Sesuaikan padding sesuai kebutuhan Anda */
     border-radius: 15rem; /* Membuat tombol berbentuk lingkaran */
@@ -10255,9 +10253,49 @@ form.user .btn-user {
     margin-left: 6px;
 }
 
+.pagination {
+    justify-content: center; /* Tengah kan paginasi */
+}
+.pagination li {
+    margin: 0 2px; /* Tambahkan margin kecil antar item */
+}
+.pagination .page-link {
+    color: #007bff; /* Warna untuk link */
+    background-color: #fff; /* Warna background */
+    border: 1px solid #dee2e6; /* Border */
+}
+.pagination .page-link:hover {
+    color: #0056b3; /* Warna saat hover */
+}
 
+.d-flex.justify-content-center nav {
+    display: inline-block; /* Membuat paginasi menjadi inline-block */
+}
 
-.login-logo{
+.page-item {
+    margin: 0 2px; /* Menambahkan margin kecil antar item */
+}
+
+.page-item.active .page-link {
+    background-color: #007bff; /* Warna background untuk item aktif */
+    border-color: #007bff; /* Warna border untuk item aktif */
+    color: white; /* Warna teks untuk item aktif */
+}
+
+.page-link {
+    color: #007bff; /* Warna teks untuk link */
+    background-color: #fff; /* Warna background untuk link */
+    border: 1px solid #dee2e6; /* Warna border untuk link */
+}
+
+.page-link:hover {
+    color: #0056b3; /* Warna teks saat hover */
+    text-decoration: none; /* Menghilangkan underline saat hover */
+    background-color: #e9ecef; /* Warna background saat hover */
+    border-color: #dee2e6; /* Warna border saat hover */
+}
+
+.login-logo {
     color: #fff;
 }
 
@@ -10265,7 +10303,7 @@ form.user .btn-user {
     color: white;
 }
 
-.small .white-text .reset{
+.small .white-text .reset {
     margin-top: 5px;
 }
 
@@ -10565,4 +10603,30 @@ footer.sticky-footer .copyright {
 }
 body.sidebar-toggled footer.sticky-footer {
     width: 100%;
+}
+
+.alert-danger {
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.5s;
+}
+
+.alert-danger i {
+    margin-right: 10px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-size-custom {
+    max-height: 30%; /* Atur lebar maksimum sesuai keinginan */
 }

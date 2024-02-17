@@ -20,12 +20,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 d-flex justify-content-end align-items-center">
-            <a
-                href="/masterangkakredit/listangkakredit/create"
-                type="button"
-                class="btn add-button">Urutkan</a>
-        </div>
     </div>
 
     <div class="row">
@@ -102,6 +96,10 @@
                         @endforelse
                     </tbody>
                 </table>
+
+                <div class="d-flex justify-content-center">
+                    {{ $angkakredit->links('vendor.pagination.bootstrap-4') }}
+            </div>
             </div>
         </div>
     </div>

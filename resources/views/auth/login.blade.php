@@ -54,6 +54,13 @@
 
                                     </form>
 
+                                    @if ($errors->any())
+    <div class="alert alert-danger" role="alert">
+        <i class="fas fa-exclamation-triangle"></i> <!-- Ikon -->
+        <span class="ml-2">{{ $errors->first('login') }}</span>
+    </div>
+@endif
+
                                 </div>
                             </div>
                         </div>

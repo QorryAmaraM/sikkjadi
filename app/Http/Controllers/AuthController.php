@@ -44,7 +44,8 @@ class AuthController extends Controller
             
         }
 
-        return redirect()->back()->withErrors(['login' => 'Login failed.']);
+        return redirect()->back()->withInput($request->only('email', 'password'))
+                             ->withErrors(['login' => 'Email or password is incorrect.']);
     }
 
     public function forgotpassword()

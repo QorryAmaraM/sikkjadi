@@ -14,7 +14,8 @@ class ListAngkaKreditController extends Controller
     public function index(Request $request)
     {
         $userid = Auth::user()->role_id;
-        $angkakredit = entri_angka_kredit::join('users', 'entri_angka_kredits.user_id', '=', 'users.id')->select('users.*','entri_angka_kredits.*')->get();
+        
+        $angkakredit = entri_angka_kredit::join('users', 'entri_angka_kredits.user_id', '=', 'users.id')->select('users.*','entri_angka_kredits.*')->paginate(5);
 
         switch ($userid) {
             case '1':

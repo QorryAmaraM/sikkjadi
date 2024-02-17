@@ -14,7 +14,7 @@ class MonitoringPresensiController extends Controller
     public function index(Request $request)
     {
         $userid = Auth::user()->role_id;
-        $monitoringpresensi = monitoring_presensi::all();
+        $monitoringpresensi = monitoring_presensi::paginate(5);
         $user = user::all();
         switch ($userid) {
             case '1':

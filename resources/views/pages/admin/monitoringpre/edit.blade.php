@@ -6,7 +6,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-black-800">Monitoring Presensi</h1>
+            <h1 class="h3 mb-0 text-black-800">Edit Monitoring Presensi</h1>
         </div>
 
         <!-- Content Row -->

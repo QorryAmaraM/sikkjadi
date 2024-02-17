@@ -188,6 +188,10 @@
                         </tbody>
                         <tbody id="Content" class="searchdata"></tbody>
                     </table>
+
+                    <div class="d-flex justify-content-center">
+                    {{ $monitoringpresensi->links('vendor.pagination.bootstrap-4') }}
+            </div>
                 </div>
             </div>
         </div>

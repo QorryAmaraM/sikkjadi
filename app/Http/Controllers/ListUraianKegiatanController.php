@@ -14,7 +14,7 @@ class ListUraianKegiatanController extends Controller
     public function index(Request $request)
     {
         $userid = Auth::user()->role_id;
-        $uraiankegiatan = list_uraian_kegiatan::all();
+        $uraiankegiatan = list_uraian_kegiatan::paginate(5);
         switch ($userid) {
             case '1':
                 return view('pages.admin.uraiankegiatan.index', compact(['uraiankegiatan']));

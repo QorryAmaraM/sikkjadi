@@ -2,20 +2,14 @@
 
 @section('content')
     <!-- Begin Page Content -->
-
-    <div class = "container-fluid">
-
+    <div class="container-fluid">
         <!-- Page Heading -->
-
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-black-800">Perencanaan Kinerja Tahunan</h1>
+            <h1 class="h3 mb-0 text-black-800">Tambah Perencanaan Kinerja Tahunan</h1>
         </div>
-
         <!-- Content Row -->
-
-        <form action="/admin-perencanaankerja/spktahunan/store" method="POST">
+        <form id="myForm" action="/admin-perencanaankerja/spktahunan/store" method="POST">
             @csrf
-
             <div class="row mb-8">
                 <div class="col-sm-6">
                     <div class="form-group d-flex align-items-center">
@@ -31,7 +25,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row mb-8 mt-3">
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -62,64 +55,48 @@
                     <button type="submit" name="submit" value="Save" class="btn save-button" onclick="checkFormAndShowModal()">Simpan</button>
                 </div>
             </div>
-
-
         </form>
-
     </div>
 
-    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="successModalLabel">Data Berhasil Ditambah!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Anda akan diarahkan ke halaman selanjutnya.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    </form>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $(function() {
-            $('#successModal').on('show.bs.modal', function() {
-                var successModal = $(this);
-                clearTimeout(successModal.data('hideInterval'));
-                successModal.data('hideInterval', setTimeout(function() {
-                    successModal.modal('hide');
-                }, 5000));
-            });
-        });
-
         function checkFormAndShowModal() {
-        // Pemeriksaan apakah semua input telah diisi
-        var form = document.getElementById('myForm');
-        var allInputsFilled = true;
+    var form = document.getElementById('myForm');
+    var allInputsFilled = true;
 
-        // Loop untuk memeriksa setiap input dalam form
-        for (var i = 0; i < form.length; i++) {
-            if (form[i].type == "text" || form[i].type == "select-one") {
-                if (form[i].value == "") {
-                    allInputsFilled = false;
-                    break;
-                }
+    // Loop untuk memeriksa setiap input dalam form
+    for (var i = 0; i < form.length; i++) {
+        if (form[i].type == "text" || form[i].type == "select-one") {
+            if (form[i].value == "") {
+                allInputsFilled = false;
+                break;
             }
         }
-
-        // Jika semua input terisi, tampilkan modal
-        if (allInputsFilled) {
-            $('#successModal').modal('show');
-        } else {
-            alert("Harap isi semua data sebelum melanjutkan.");
-        }
     }
+
+    // Jika semua input terisi, tampilkan modal
+    if (allInputsFilled) {
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Data berhasil ditambah!",
+            showConfirmButton: false,
+            timer: 10000
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                $('#successModal').modal('show');
+            }
+        });
+    } else {
+        // Tampilkan peringatan SweetAlert jika tidak semua data terisi
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harap isi semua data sebelum melanjutkan.',
+        });
+    }
+}
+
     </script>
     <!-- /.container-fluid -->
 @endsection

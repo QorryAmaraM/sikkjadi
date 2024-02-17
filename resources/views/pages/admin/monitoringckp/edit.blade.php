@@ -6,13 +6,13 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-black-800">Monitoring CKP</h1>
+            <h1 class="h3 mb-0 text-black-800">Edit CKP Akhir</h1>
         </div>
 
         <!-- Content Row -->
         @foreach ($result as $result)
             @if ($result->penilaian_ckpr_id == null)
-                <form action="/admin-monitoring/monitoringckp/store" method="POST">
+                <form id="myForm" action="/admin-monitoring/monitoringckp/store" method="POST">
                     @csrf
                     <div class="row mb-8">
                         <div class="col-sm-12">
@@ -69,7 +69,7 @@
 
                 </form>
             @else
-                <form action="/admin-monitoring/monitoringckp/{{ $nilai_ckpr_id }}" method="POST">
+                <form id="myForm" action="/admin-monitoring/monitoringckp/{{ $nilai_ckpr_id }}" method="POST">
                     @csrf
                     @method('put')
                     <div class="row mb-8">
@@ -121,42 +121,54 @@
 
                     <div class="row">
                         <div class="col-sm-12 mt-3 text-right">
-                            <button type="submit" name="submit" value="Save" class="btn save-button" data-toggle="modal" data-target="#successModal">Simpan</button>
+                            <button type="submit" name="submit" value="Save" class="btn save-button" onclick="checkFormAndShowModal()">Simpan</button>
                         </div>
                     </div>
 
-                    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="successModalLabel">Data Berhasil Ditambah</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Anda akan diarahkan ke halaman selanjutnya.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
 
                 </form>
             @endif
         @endforeach
 
-        <script>
-    $(function () {
-        $('#successModal').on('show.bs.modal', function () {
-            var successModal = $(this);
-            clearTimeout(successModal.data('hideInterval'));
-            successModal.data('hideInterval', setTimeout(function () {
-                successModal.modal('hide');
-            }, 3000));
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function checkFormAndShowModal() {
+    var form = document.getElementById('myForm');
+    var allInputsFilled = true;
+
+    // Loop untuk memeriksa setiap input dalam form
+    for (var i = 0; i < form.length; i++) {
+        if (form[i].type == "text" || form[i].type == "select-one") {
+            if (form[i].value == "") {
+                allInputsFilled = false;
+                break;
+            }
+        }
+    }
+
+    // Jika semua input terisi, tampilkan modal
+    if (allInputsFilled) {
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Data berhasil diedit!",
+            showConfirmButton: false,
+            timer: 5000
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                $('#successModal').modal('show');
+            }
         });
-    });
-</script>
+    } else {
+        // Tampilkan peringatan SweetAlert jika tidak semua data terisi
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harap isi semua data sebelum melanjutkan.',
+        });
+    }
+}
+
+    </script>
         <!-- /.container-fluid -->
     @endsection

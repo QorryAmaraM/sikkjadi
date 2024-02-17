@@ -11,7 +11,7 @@
 
         <!-- Content Row -->
 
-        <form action="/admin-ckp/ckpr/{{ $ckpr->id }}" method="POST">
+        <form id="myForm"action="/admin-ckp/ckpr/{{ $ckpr->id }}" method="POST">
             @csrf
             @method('put')
 
@@ -80,51 +80,66 @@
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>
                         <input type="bulan" class="form-control" value="{{ $result->keterangan }}" disabled>
+                    </div>
                     <div class="form-group">
                         <label for="realisasi">Realisasi</label>
                         <input type="realisasi" class="form-control" id="realisasi"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="realisasi" value="{{ $result->realisasi }}">
+                            placeholder="Lorem Ipsum Dolor Sit Amet" name="realisasi" value="{{ $result->realisasi }}" required>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12 mt-3 text-right">
-                    <button type="submit" name="submit" value="Save" class="btn save-button" data-toggle="modal" data-target="#successModal">Update</button>
+                    <button type="submit" name="submit" value="Save" class="btn save-button" onclick="checkFormAndShowModal()">Update</button>
                 </div>
             </div>
 
-            <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="successModalLabel">Data Berhasil Diedit</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
-                      </div>
-                      <div class="modal-body">
-                          Anda akan diarahkan ke halaman selanjutnya.
-                      </div>
-                  </div>
-              </div>
-          </div>
+    
 
         </form>
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-    $(function () {
-        $('#successModal').on('show.bs.modal', function () {
-            var successModal = $(this);
-            clearTimeout(successModal.data('hideInterval'));
-            successModal.data('hideInterval', setTimeout(function () {
-                successModal.modal('hide');
-            }, 3000));
+        function checkFormAndShowModal() {
+    var form = document.getElementById('myForm');
+    var allInputsFilled = true;
+
+    // Loop untuk memeriksa setiap input dalam form
+    for (var i = 0; i < form.length; i++) {
+        if (form[i].type == "text" || form[i].type == "select-one") {
+            if (form[i].value == "") {
+                allInputsFilled = false;
+                break;
+            }
+        }
+    }
+
+    // Jika semua input terisi, tampilkan modal
+    if (allInputsFilled) {
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Data berhasil diedit!",
+            showConfirmButton: false,
+            timer: 5000
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                $('#successModal').modal('show');
+            }
         });
-    });
-</script>
+    } else {
+        // Tampilkan peringatan SweetAlert jika tidak semua data terisi
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harap isi semua data sebelum melanjutkan.',
+        });
+    }
+}
+
+    </script>
     <!-- /.container-fluid -->
 @endsection

@@ -3,7 +3,7 @@
 @section('content')
     <!-- Begin Page Content -->
 
-    <div class = "container-fluid">
+    <div class="container-fluid">
 
         <!-- Page Heading -->
 
@@ -16,7 +16,7 @@
             <div class="col-sm-6">
                 <div class="search form-group d-flex align-items-center">
                     <label for="searchSelect" class="mb-0 mr-4">Pegawai</label>
-                    <select name="search" id="search" class="form-control">
+                    <select name="searchSelect" id="searchSelect" class="form-control">
                         <option value="">Pilih Pegawai</option>
                         @php
                             $namaArray = [];
@@ -61,8 +61,8 @@
             </div>
 
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <a href="{{ url('/admin-perencanaankerja/spktahunan/create') }}" type="button" class="btn add-button">+
-                    Tambah</a>
+                <a href="{{ url('/admin-perencanaankerja/spktahunan/create') }}" type="button"
+                    class="btn add-button">+ Tambah</a>
             </div>
         </div>
 
@@ -85,11 +85,11 @@
 
                             @forelse ($skptahunan as $skp)
                                 <tr>
-                                    <td id="tahun">{{ $skp->tahun }}</td>
-                                    <td>{{ $skp->periode }}</td>
-                                    <td>{{ $skp->wilayah }}</td>
-                                    <td>{{ $skp->unit_kerja }}</td>
-                                    <td>{{ $skp->jabatan }}</td>
+                                    <td class="searchable tahun">{{ $skp->tahun }}</td>
+                                    <td class="searchable">{{ $skp->periode }}</td>
+                                    <td class="searchable">{{ $skp->wilayah }}</td>
+                                    <td class="searchable">{{ $skp->unit_kerja }}</td>
+                                    <td class="searchable">{{ $skp->jabatan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
                                             <a href="{{ route('spktahunan.edit', ['id' => $skp->id]) }}"
@@ -121,14 +121,14 @@
                                             <div class="modal-body">
                                                 <button class="btn btn-icon btn-modal btn-sm">
                                                     <a href="{{ route('spktahunan.delete', ['id' => $skp->id]) }}"
-                                                        class="action-link btn-modal">Hapus {{ $skp->id }}</a>
+                                                        class="action-link btn-modal">Hapus</a>
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             @empty
-                                <td colspan="7" class="text-center">Empty Data</td>
+                                <td colspan="6" class="text-center">Empty Data</td>
                             @endforelse
 
                         </tbody>
@@ -136,9 +136,13 @@
                         <tbody id="Content" class="searchdata"></tbody>
 
                     </table>
+                    <div class="d-flex justify-content-center">
+                        {{ $skptahunan->links('vendor.pagination.bootstrap-4') }}
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- /.container-fluid -->
@@ -146,58 +150,28 @@
     <!-- Script -->
 
     <script>
-        var savedValue = "";
+        $(document).ready(function() {
+            $('#search').on('input', function() {
+                var searchText = $(this).val().toLowerCase(); // Mendapatkan teks pencarian
+                var selectedOption = $('#searchSelect').val(); // Mendapatkan nilai yang dipilih dari dropdown
 
-        $('#search').on('change', function() {
+                // Menyembunyikan semua baris data
+                $('.alldata tr').hide();
 
-            $value = $(this).val();
-
-            if ($value) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else {
-                $('.alldata').show();
-                $('.searchdata').hide();
-            }
-
-            $.ajax({
-                type: 'get',
-                url: '{{ URL::to('/admin-perencanaankerja/skptahunan/search') }}',
-                data: {
-                    'search': $value
-                },
-
-                success: function(data) {
-                    console.log(data);
-                    $('#Content').html(data);
-                }
-
-            });
-
-        })
-    </script>
-
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
-            const searchInput = document.getElementById("search");
-
-            searchInput.addEventListener("input", function() {
-                const searchTerm = this
-                    .value
-                    .toLowerCase();
-                const itemsToSearch = document.querySelectorAll('.item-to-search');
-
-                itemsToSearch.forEach(function(item) {
-                    const text = item
-                        .textContent
-                        .toLowerCase();
-                    const parentElement = item.closest(".row");
-                    if (text.includes(searchTerm)) {
-                        parentElement.style.display = "block";
-                    } else {
-                        parentElement.style.display = "none";
+                // Menampilkan baris data yang sesuai dengan kriteria pencarian
+                $('.alldata tr').each(function() {
+                    var rowData = $(this).text().toLowerCase(); // Mendapatkan teks pada baris
+                    if (selectedOption == '' || $(this).find('.user_id').text() == selectedOption) { // Memeriksa apakah baris sesuai dengan opsi dropdown
+                        if (rowData.includes(searchText)) { // Memeriksa apakah teks pencarian cocok dengan data pada baris
+                            $(this).show(); // Menampilkan baris data jika cocok
+                        }
                     }
                 });
+            });
+
+            // Mengatur ulang pencarian saat opsi dropdown berubah
+            $('#searchSelect').on('change', function() {
+                $('#search').trigger('input'); // Memicu kembali peristiwa input untuk memperbarui hasil pencarian
             });
         });
 
@@ -210,30 +184,5 @@
                 }, 5000));
             });
         });
-
-        // Fungsi untuk filter berdasarkan input pencarian
-        function filterTable() {
-            // Mendapatkan nilai input pencarian
-            var searchText = document.getElementById('search').value.toLowerCase();
-
-            // Mendapatkan semua baris data pada tabel
-            var rows = document.querySelectorAll('#dataTable tbody tr');
-
-            // Melakukan iterasi pada setiap baris data
-            rows.forEach(function(row) {
-                // Mendapatkan nilai jenis fungsional dari setiap baris
-                var jenisFungsional = row.querySelector('#tahun').textContent.toLowerCase();
-
-                // Menyembunyikan baris yang tidak sesuai dengan pencarian
-                if (jenisFungsional.includes(searchText)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-
-        // Memanggil fungsi filter saat nilai input pencarian berubah
-        document.getElementById('search').addEventListener('input', filterTable);
     </script>
 @endsection

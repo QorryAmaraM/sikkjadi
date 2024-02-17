@@ -17,6 +17,7 @@ class PenilaianSKPController extends Controller
     //Read
     public function index(Request $request)
     {
+
         $nilai_kinerja_utama = 0;
         $nilai_kinerja_tambahan = 0;
         $simpan = [];
@@ -25,7 +26,7 @@ class PenilaianSKPController extends Controller
         $result = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
             ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
             ->select('skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
-            ->get();
+            ->paginate(2);
 
 
         foreach ($result as $penilaian) {

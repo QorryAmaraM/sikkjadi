@@ -6,17 +6,15 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-black-800">Selamat Datang di Sistem Informasi Kinerja Karyawan BPS Admin
-            </h1>
-        </div>
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
             @foreach ($user as $users)
                 @if ($users->id == $userid)
-                    <h1 class="h3 mb-0 text-black-800">{{ $users->nama }}</h1>
+                <h1 class="h3 mb-0 text-black-800">Selamat Datang di Sistem Informasi Kinerja Karyawan BPS Admin {{ $users->nama }}</h1>
                 @endif
             @endforeach
+            </h1>
         </div>
-        <div class="col-xl-8 col-lg-7">
+        
+        <div class="col-xl-8 col-lg-7 mx-auto">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -29,7 +27,7 @@
             </div>
         </div>
 
-        <div class="col-xl-8 col-lg-7">
+        <div class="col-xl-8 col-lg-7 mx-auto">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
