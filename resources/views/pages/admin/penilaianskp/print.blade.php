@@ -12,7 +12,8 @@
         }
 
         body {
-            writing-mode: initial;;
+            writing-mode: initial;
+            ;
         }
 
 
@@ -127,6 +128,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Periode</th>
                             <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Jenis</th>
                             <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan
                             </th>
@@ -145,7 +147,6 @@
                             <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana
                             </th>
                             <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
-                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi</th>
                         </tr>
                         <tr>
                             <th style="border-top: none">Min</th>
@@ -156,6 +157,7 @@
                         @forelse ($result as $skp)
                             @if ($skp->kinerja == 'utama')
                                 <tr>
+                                    <td rowspan="3">{{ $skp->tahun }}</td>
                                     <td rowspan="3">{{ $skp->kinerja }}</td>
                                     <td rowspan="3">{{ $skp->rencana_kinerja_atasan }}</td>
                                     <td rowspan="3">{{ $skp->rencana_kinerja }}</td>
@@ -173,12 +175,6 @@
                                     <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
                                     <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                     <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
-                                    <td rowspan="3">
-                                        <button class="btn btn-icon btn-delete btn-sm">
-                                            <a class="action-link btn-delete" data-toggle="modal"
-                                                data-target="#successModal"><i class="fas fa-trash-can"></i></a>
-                                        </button>
-                                    </td>
                                 <tr>
                                     <td>Kualitas</td>
                                     <td>{{ $skp->kualitas_iki }}</td>
@@ -208,161 +204,59 @@
                         @endforelse
                     </tbody>
 
-                    <tbody id="Utama" class="searchdata"></tbody>
-
-                            <tbody class="tabel_utama">
+                    <tbody class="tabel_tambahan">
+                        @forelse ($result as $skp)
+                            @if ($skp->kinerja == 'tambahan')
                                 <tr>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja
-                                        Utama
-                                    </td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">
-                                        {{ $nilai_kinerja_utama }}</td>
+                                    <td rowspan="3">{{ $skp->tahun }}</td>
+                                    <td rowspan="3">{{ $skp->kinerja }}</td>
+                                    <td rowspan="3">{{ $skp->rencana_kinerja_atasan }}</td>
+                                    <td rowspan="3">{{ $skp->rencana_kinerja }}</td>
+
+                                    <td>Kuantitas</td>
+                                    <td>{{ $skp->kuantitas_iki }}</td>
+                                    <td>{{ $skp->kuantitas_target_min }}</td>
+                                    <td>{{ $skp->kuantitas_target_max }}</td>
+                                    <td>{{ $skp->kuantitas_satuan }}</td>
+                                    <td>{{ $skp->kuantitas_realisasi }}</td>
+                                    <td>{{ $skp->kuantitas_kondisi }}</td>
+                                    <td>{{ $skp->kuantitas_capaian_iki }}</td>
+                                    <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
+
+                                    <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
+                                    <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
+                                    <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
+                                <tr>
+                                    <td>Kualitas</td>
+                                    <td>{{ $skp->kualitas_iki }}</td>
+                                    <td>{{ $skp->kualitas_target_min }}</td>
+                                    <td>{{ $skp->kualitas_target_max }}</td>
+                                    <td>{{ $skp->kualitas_satuan }}</td>
+                                    <td>{{ $skp->kualitas_realisasi }}</td>
+                                    <td>{{ $skp->kualitas_kondisi }}</td>
+                                    <td>{{ $skp->kualitas_capaian_iki }}</td>
+                                    <td>{{ $skp->kualitas_kategori_capaian_iki }}</td>
                                 </tr>
-                            </tbody>
-
-                            <tbody class="tabel_tambahan">
-                                @forelse ($result as $skp)
-                                    @if ($skp->kinerja == 'tambahan')
-                                        <tr>
-                                            <td rowspan="3">{{ $skp->kinerja }}</td>
-                                            <td rowspan="3">{{ $skp->rencana_kinerja_atasan }}</td>
-                                            <td rowspan="3">{{ $skp->rencana_kinerja }}</td>
-
-                                            <td>Kuantitas</td>
-                                            <td>{{ $skp->kuantitas_iki }}</td>
-                                            <td>{{ $skp->kuantitas_target_min }}</td>
-                                            <td>{{ $skp->kuantitas_target_max }}</td>
-                                            <td>{{ $skp->kuantitas_satuan }}</td>
-                                            <td>{{ $skp->kuantitas_realisasi }}</td>
-                                            <td>{{ $skp->kuantitas_kondisi }}</td>
-                                            <td>{{ $skp->kuantitas_capaian_iki }}</td>
-                                            <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
-
-                                            <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
-                                            <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
-                                            <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
-                                            <td rowspan="3">
-                                                <button class="btn btn-icon btn-delete btn-sm" data-toggle="modal"
-                                                    data-target="#successModal">
-                                                    <a class="action-link btn-delete">
-                                                        <i class="fas fa-trash-can"></i>
-                                                    </a>
-                                                </button>
-                                            </td>
-                                        <tr>
-                                            <td>Kualitas</td>
-                                            <td>{{ $skp->kualitas_iki }}</td>
-                                            <td>{{ $skp->kualitas_target_min }}</td>
-                                            <td>{{ $skp->kualitas_target_max }}</td>
-                                            <td>{{ $skp->kualitas_satuan }}</td>
-                                            <td>{{ $skp->kualitas_realisasi }}</td>
-                                            <td>{{ $skp->kualitas_kondisi }}</td>
-                                            <td>{{ $skp->kualitas_capaian_iki }}</td>
-                                            <td>{{ $skp->kualitas_kategori_capaian_iki }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Waktu</td>
-                                            <td>{{ $skp->waktu_iki }}</td>
-                                            <td>{{ $skp->waktu_target_min }}</td>
-                                            <td>{{ $skp->waktu_target_max }}</td>
-                                            <td>{{ $skp->waktu_satuan }}</td>
-                                            <td>{{ $skp->waktu_realisasi }}</td>
-                                            <td>{{ $skp->waktu_kondisi }}</td>
-                                            <td>{{ $skp->waktu_capaian_iki }}</td>
-                                            <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
-
-                                        </tr>
-
-                                        <div class="modal fade" id="successModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="successModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="successModalLabel">Yakin menghapus
-                                                            data?</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <button class="btn btn-icon btn-modal btn-sm">
-                                                            <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}"
-                                                                class="action-link btn-modal">Hapus</a>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @empty
-                                    <td colspan="16" class="text-center">Empty Data</td>
-                                @endforelse
-                            </tbody>
-
-                            <tbody id="Tambahan" class="searchdata"></tbody>
-
-                            <tbody class="tabel_tambahan">
                                 <tr>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja
-                                        Tambahan
-                                    </td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">
-                                        {{ $nilai_kinerja_tambahan }}</td>
-                                </tr>
-                            </tbody>
+                                    <td>Waktu</td>
+                                    <td>{{ $skp->waktu_iki }}</td>
+                                    <td>{{ $skp->waktu_target_min }}</td>
+                                    <td>{{ $skp->waktu_target_max }}</td>
+                                    <td>{{ $skp->waktu_satuan }}</td>
+                                    <td>{{ $skp->waktu_realisasi }}</td>
+                                    <td>{{ $skp->waktu_kondisi }}</td>
+                                    <td>{{ $skp->waktu_capaian_iki }}</td>
+                                    <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
 
-                            <tbody>
-                                <tr>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai SKP</td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5"></td>
-                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">
-                                        {{ $nilai_skp }}</td>
                                 </tr>
 
-                            </tbody>
-        </table>
+                                
+                            @endif
+                        @empty
+                            <td colspan="16" class="text-center">Empty Data</td>
+                        @endforelse
+                    </tbody>
+                </table>
 
                 <div class="card-body">
                     <table class="table table-borderless text-center">

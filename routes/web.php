@@ -51,6 +51,7 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //Penilaian SKP
     Route::get('/admin-perencanaankerja/penilaianskp', [PenilaianSKPController::class, 'index'])->name('admin_penilaianskp');
+    Route::get('/admin-perencanaankerja/penilaianskp/print', [PenilaianSKPController::class, 'print']);
     Route::get('/admin-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search']);
     Route::get('/admin-perencanaankerja/penilaianskp/create/index', [PenilaianSKPController::class, 'create_index']);
     Route::get('/admin-perencanaankerja/penilaianskp/create/search', [PenilaianSKPController::class, 'create_search']);
