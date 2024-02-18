@@ -14,8 +14,8 @@ class ListAngkaKreditController extends Controller
     public function index(Request $request)
     {
         $userid = Auth::user()->role_id;
-        
-        $angkakredit = entri_angka_kredit::join('users', 'entri_angka_kredits.user_id', '=', 'users.id')->select('users.*','entri_angka_kredits.*')->paginate(5);
+
+        $angkakredit = entri_angka_kredit::join('users', 'entri_angka_kredits.user_id', '=', 'users.id')->select('users.*', 'entri_angka_kredits.*')->paginate(5);
 
         switch ($userid) {
             case '1':
@@ -64,10 +64,10 @@ class ListAngkaKreditController extends Controller
     {
         $userid = Auth::user()->role_id;
         $angkakredit = entri_angka_kredit::find($id);
-        $angkakredit->update($request->except(['_token','submit']));
+        $angkakredit->update($request->except(['_token', 'submit']));
         switch ($userid) {
             case '1':
-                return redirect('/admin-masterangkakredit/listangkakredit'); 
+                return redirect('/admin-masterangkakredit/listangkakredit');
                 break;
             case '2':
                 return redirect('/kepalabps-masterangkakredit/listangkakredit');
@@ -109,4 +109,44 @@ class ListAngkaKreditController extends Controller
         }
     }
 
+    //Search
+    public function search(Request $request)
+    {
+        $output = "";
+        $iterationNumber = 1;
+        $searchTerm = $request->data;
+
+        $result = entri_angka_kredit::join('users', 'entri_angka_kredits.user_id', '=', 'users.id')
+            ->select('users.*', 'entri_angka_kredits.*')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('entri_angka_kredits.jenis_fungsional', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('entri_angka_kredits.kode_butir', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('entri_angka_kredits.isi_butir', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('users.nama', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('entri_angka_kredits.angka_kredit', 'like', '%' . $searchTerm . '%');
+            })
+            ->get();
+
+        foreach ($result as $result) {
+            $output .=
+                '<tr> 
+            
+            <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->jenis_fungsional . ' </td>
+            <td> ' . $result->nama . ' </td>
+            <td> ' . $result->kode_butir . ' </td>
+            <td> ' . $result->isi_butir . ' </td>
+            <td> ' . $result->angka_kredit . ' </td>
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('listangkakredit.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('listangkakredit.delete', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>   
+                          
+            </tr>';
+
+            $iterationNumber++;
+        }
+        return response($output);
+    }
 }

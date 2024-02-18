@@ -70,6 +70,7 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //List Angka Kredit
     Route::get('/admin-masterangkakredit/listangkakredit', [ListAngkaKreditController::class, 'index'])->name('admin_listangkakredit');
+    Route::get('/admin-masterangkakredit/listangkakredit/search', [ListAngkaKreditController::class, 'search']);
     Route::get('/admin-masterangkakredit/listangkakredit/{id}/edit', [ListAngkaKreditController::class, 'edit'])->name('listangkakredit.edit');
     Route::put('/admin-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'update']);
     Route::get('/admin-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy'])->name('listangkakredit.delete');
@@ -80,6 +81,7 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //List Uraian Kredit
     Route::get('/admin-masteruraiankegiatan/uraiankegiatan', [ListUraianKegiatanController::class, 'index'])->name('admin_uraiankegiatan');
+    Route::get('/admin-masterutaiankegiatan/uraiankegiatan/search', [ListUraianKegiatanController::class, 'search']);
     Route::get('/admin-masterutaiankegiatan/uraiankegiatan/create', [ListUraianKegiatanController::class, 'create']);
     Route::post('/admin-masterutaiankegiatan/uraiankegiatan/store', [ListUraianKegiatanController::class, 'store']);
     Route::get('/admin-masterutaiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit'])->name('listuraiankredit.edit');
