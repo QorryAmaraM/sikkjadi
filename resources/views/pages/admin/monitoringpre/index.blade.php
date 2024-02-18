@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Tahun</label>
-                        <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="tahun">
+                        <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="tahun" name="tahun">
                             <option value="">Pilih tahun</option>
                             <option value="2024">2024</option>
                             <option value="2023">2023</option>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Bulan</label>
-                        <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="bulan">
+                        <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="bulan" name="tahun">
                             <option value="">Pilih Bulan</option>
                             <option value="Januari">Januari</option>
                             <option value="Februari">Februari</option>

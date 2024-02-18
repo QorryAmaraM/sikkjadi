@@ -15,8 +15,7 @@
 
 </head>
 
-<body class="bg-gradient-primary"
-    style="background-color: #394867; height: 100svh; display: flex; align-items: center;">
+<body class="bg-gradient-primary" style="background-color: #394867; height: 100svh; display: flex; align-items: center;">
 
     <div class="container">
 
@@ -36,17 +35,22 @@
                             <div class="col-lg-12">
                                 <div class="p-3" style="background-color: #14274E;">
 
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger" role="alert">
+                                            <i class="fas fa-exclamation-triangle"></i> <!-- Ikon -->
+                                            <span class="ml-2">{{ $errors->first('login') }}</span>
+                                        </div>
+                                    @endif
+
                                     <form class="user" method="POST" action="/login">
                                         @csrf
                                         <div class="form-group">
                                             <label class="form-label-login" for="inputEmail">EMAIL ADDRESS</label>
-                                            <input type="email" name="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp" required>
+                                            <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label-login" for="inputEmail">PASSWORD</label>
-                                            <input type="password" name="password"
-                                                class="form-control form-control-user" id="exampleInputPassword" required>
+                                            <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" required>
                                         </div>
                                         <button class="btn btn-login" type="submit">
                                             LOG IN
@@ -54,12 +58,7 @@
 
                                     </form>
 
-                                    @if ($errors->any())
-    <div class="alert alert-danger" role="alert">
-        <i class="fas fa-exclamation-triangle"></i> <!-- Ikon -->
-        <span class="ml-2">{{ $errors->first('login') }}</span>
-    </div>
-@endif
+                                    
 
                                 </div>
                             </div>

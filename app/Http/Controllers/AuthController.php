@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
@@ -16,51 +18,53 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-        
-        $user = \App\Models\User::where('email', $credentials['email'])->first();
+        $user = User::where('email', $request->email)->first();
 
-        if ($user && password_verify($credentials['password'], $user->password)) {
+        if ($user && Hash::check($request->password, $user->password)) {
+
+            $middlewareCheckRole = 'checkRole:' . $user->role_id;
+            $this->middleware($middlewareCheckRole);
 
             switch ($user->role_id) {
-                        case 1:
-                            Auth::login($user);
-                            return redirect()->intended('/admin-dashboard' . $user->role);
-                        case 2:
-                            Auth::login($user);
-                            return redirect()->intended('/kepalabps-dashboard' . $user->role);
-                        case 3:
-                            Auth::login($user);
-                            return redirect()->intended('/kepalabu-dashboard' . $user->role);
-                        case 4:
-                            Auth::login($user);
-                            return redirect()->intended('/kf-dashboard' . $user->role);
-                        case 5:
-                            Auth::login($user);
-                            return redirect()->intended('/staff-dashboard' . $user->role);
-                        default:
-                            return redirect('/login');
-                    }
-            
+                case 1:
+                    Auth::login($user);
+                    return redirect()->intended('/admin-dashboard' . $user->role);
+                case 2:
+                    Auth::login($user);
+                    return redirect()->intended('/kepalabps-dashboard' . $user->role);
+                case 3:
+                    Auth::login($user);
+                    return redirect()->intended('/kepalabu-dashboard' . $user->role);
+                case 4:
+                    Auth::login($user);
+                    return redirect()->intended('/kf-dashboard' . $user->role);
+                case 5:
+                    Auth::login($user);
+                    return redirect()->intended('/staff-dashboard' . $user->role);
+                default:
+                    return redirect('/login');
+            }
         }
 
         return redirect()->back()->withInput($request->only('email', 'password'))
-                             ->withErrors(['login' => 'Email or password is incorrect.']);
+            ->withErrors(['login' => 'Email or password is incorrect!']);
     }
-
     public function forgotpassword()
     {
         return view('auth.forgot-password');
     }
-    
+
     public function logout(Request $request): RedirectResponse
-    {
-        Auth::logout();
+{
+    Auth::logout();
 
-        $request->session()->invalidate();
+    $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+    $request->session()->regenerateToken();
 
-        return redirect('/');
-    }
+    return redirect('/')->header('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0')
+                        ->header('Pragma', 'no-cache')
+                        ->header('Expires', 'Sat, 01 Jan 2000 00:00:00 GMT');
+}
+
 }

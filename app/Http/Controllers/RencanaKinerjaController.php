@@ -278,8 +278,7 @@ class REncanaKinerjaController extends Controller
         ->where('skp_tahunans.periode', 'like', '%'.$request->periode.'%')
         ->where('skp_tahunans.wilayah', 'like', '%'.$request->wilayah.'%')
         ->where('skp_tahunans.unit_kerja', 'like', '%'.$request->unitkerja.'%')           
-        ->get();
-        
+        ->get();       
 
         foreach ($result as $result) {
             $output .=
@@ -299,7 +298,7 @@ class REncanaKinerjaController extends Controller
                 </button>' .  ' </td>
 
             <td rowspan="3"> ' . '<button class="btn btn-icon btn-edit btn-sm">
-                <a href="' . route('edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                <a href="' . route('rencanakinerja.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
                 </button>' .  ' </td>
                           
             </tr>'.
@@ -329,8 +328,6 @@ class REncanaKinerjaController extends Controller
                 </button>' .  ' </td>
                           
             </tr>';
-
-            
         }
         return response($output);
     }

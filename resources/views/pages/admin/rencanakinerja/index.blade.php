@@ -179,7 +179,7 @@
     <!-- /.container-fluid -->
 
     <!-- Script -->
-    <script type="text/javascript">
+    <script>
         var savedValue = "";
         var savedTahunValue = "";
         var savedPeriodeValue = "";
@@ -275,6 +275,7 @@
             });
         }
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
