@@ -40,18 +40,15 @@
                                             <div class="p-3" style="background-color: #14274E;">
                                                 <h4 class="text-center judul">Forgot Your Password</h4>
                                                 <h5 class="sub-judul">Please enter the email address you'd like your password reset information sent to</h5> 
-                                                <form class="user-reset">
+                                                <form class="user-reset" action="{{ route('password.email') }}" method="POST">
+                                                    @csrf
                                                     <div class="form-group">
                                                         <label class="form-label-login" for="inputEmail">Enter Email Address</label>
-                                                        <input
-                                                            type="email"
-                                                            class="form-control form-control-user"
-                                                            id="exampleInputEmail"
-                                                            aria-describedby="emailHelp">
+                                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email" aria-describedby="emailHelp">
                                                     </div>
-                                                    <a href="index.html" class="btn btn-reset-link">
+                                                    <button type="submit" class="btn btn-reset-link">
                                                         Request Reset Link
-                                                    </a>
+                                                    </button>
                                                 </form>
                                                 <div class="text-center back">
                                                     <a class="small white-text reset" href="{{ route('login') }}">Back To Login</a>

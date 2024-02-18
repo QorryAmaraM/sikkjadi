@@ -1814,6 +1814,7 @@ select.form-control:focus::-ms-value {
     margin-bottom: 0;
     font-size: inherit;
     line-height: 1.5;
+    color:#fff;
 }
 .col-form-label-lg {
     padding-top: calc(0.5rem + 1px);
@@ -2819,6 +2820,16 @@ fieldset:disabled a.btn {
 .btn-login {
     display: block;
     width: 20%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 20px;
+    color: #000;
+    font-weight: 700;
+}
+
+.btn-fgpw {
+    display: block;
+    width: 60%;
     margin: 0 auto;
     background-color: #fff;
     border-radius: 20px;

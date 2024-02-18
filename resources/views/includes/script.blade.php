@@ -21,6 +21,24 @@
 
 
 <script>
+
+$(document).ready(function() {
+    $('#reset-button').click(function() {
+        $.ajax({
+            type: "POST",
+            url: $('#reset-form').attr('action'),
+            data: $('#reset-form').serialize(),
+            success: function(response) {
+                // Tambahkan logika di sini untuk menangani respons dari server
+                console.log(response);
+            },
+            error: function(error) {
+                // Tambahkan logika di sini untuk menangani kesalahan
+                console.log(error);
+            }
+        });
+    });
+});
     $(document).ready(function () {
         // Panggil fungsi .selectpicker() pada elemen select
         $('#searchSelect').selectpicker();
