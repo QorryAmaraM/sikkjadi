@@ -23,7 +23,7 @@
                                 <!--/ header media -->
 
                                 <!-- form -->
-                                <form class="validate-form mt-2" action="/admin-monitoring/monitoringuser/store" method="POST">
+                                <form id="myForm" class="validate-form mt-2" action="/admin-monitoring/monitoringuser/store" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-12 col-sm-6">
@@ -42,44 +42,44 @@
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
                                                 <label for="account-username">Nama</label>
-                                                <input type="nama" class="form-control" name="nama" id="nama" />
+                                                <input type="nama" class="form-control" name="nama" id="nama" required />
                                             </div>
                                         </div>
 
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
                                                 <label for="account-e-mail">NIP</label>
-                                                <input type="nip" class="form-control" name="nip" id="nip" />
+                                                <input type="nip" class="form-control" name="nip" id="nip" required/>
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
                                                 <label for="account-e-mail">Email</label>
-                                                <input type="email" class="form-control" name="email" id="email" />
+                                                <input type="email" class="form-control" name="email" id="email" required/>
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
                                                 <label for="account-e-mail">Password</label>
-                                                <input type="password" class="form-control" name="password" id="password" />
+                                                <input type="password" class="form-control" name="password" id="password" required />
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
                                                 <label for="account-e-mail">Golongan</label>
-                                                <input type="golongan" class="form-control" name="golongan" id="golongan" />
+                                                <input type="golongan" class="form-control" name="golongan" id="golongan" required />
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
                                                 <label for="account-e-mail">Fungsional</label>
-                                                <input type="fungsional" class="form-control" name="fungsional" id="fungsional" />
+                                                <input type="fungsional" class="form-control" name="fungsional" id="fungsional" required/>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-12 text-right">
-                                        <button type="submit" name="submit" value="Save" class="btn btn-primary mt-2 mr-1">Simpan</button>
+                                        <button type="submit" name="submit" value="Save" class="btn btn-primary mt-2 mr-1" onclick="checkFormAndShowModal()">Simpan</button>
                                     </div>
                                 </form>
                                 <!--/ form -->
@@ -99,5 +99,46 @@
         <!-- / account setting page -->
 
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function checkFormAndShowModal() {
+    var form = document.getElementById('myForm');
+    var allInputsFilled = true;
+
+    // Loop untuk memeriksa setiap input dalam form
+    for (var i = 0; i < form.length; i++) {
+        if (form[i].type == "text" || form[i].type == "select-one") {
+            if (form[i].value == "") {
+                allInputsFilled = false;
+                break;
+            }
+        }
+    }
+
+    // Jika semua input terisi, tampilkan modal
+    if (allInputsFilled) {
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Data berhasil ditambah!",
+            showConfirmButton: false,
+            timer: 10000
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                $('#successModal').modal('show');
+            }
+        });
+    } else {
+        // Tampilkan peringatan SweetAlert jika tidak semua data terisi
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harap isi semua data sebelum melanjutkan.',
+        });
+    }
+}
+
+    </script>
 @endsection
 <!-- /.container-fluid -->

@@ -84,6 +84,7 @@
                                         <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('monitoringuser.delete', ['id' => $data->id]) }}">
                                             <i class="fas fa-trash-can"></i>
                                         </button>
+                                        
                                     </td>
                                 </tr>
                             @endforeach
