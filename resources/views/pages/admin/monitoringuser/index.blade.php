@@ -1,111 +1,129 @@
-@extends('layouts.admin') @section('content')
-<!-- Begin Page Content -->
-<div class="container-fluid">
+@extends('layouts.admin')
 
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-black-800">Monitoring User</h1>
-    </div>
+@section('content')
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
-    <!-- Content Row -->
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-black-800">Monitoring User</h1>
+        </div>
 
-    <div class="row">
-         <div class="col-sm-6">
-            <div class="inner-form">
-               <div class="input-form">
-                  <input id="search" type="text" placeholder="Pencarian"/>
-                     <div class="input-form-append align-items-center">
-                        <i class="fas fa-search"></i>
-                     </div>
-               </div>
+        <!-- Content Row -->
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="inner-form">
+                    <div class="input-form">
+                        <input id="search" type="text" placeholder="Pencarian" />
+                        <div class="input-form-append align-items-center">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-         <div class="col-sm-6 d-flex justify-content-end align-items-center">
-            <a href="" type="button" class="btn add-button">+ Tambah</a>
-         </div>
-      </div>
+            <div class="col-sm-6 d-flex justify-content-end align-items-center">
+                <a href="/admin-monitoring/monitoringuser/create" type="button" class="btn add-button">+ Tambah</a>
+            </div>
+        </div>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    
-                    <thead>
-                        <tr>
-                            <th>Role ID</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>NIP</th>
-                            <th>Golongan</th>
-                            <th>Fungsional</th>
-                            <th>Jabatan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                  
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <button class="btn btn-icon btn-edit btn-sm">
-                                    <a
-                                        href=""
-                                        class="action-link">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>NIP</th>
+                                <th>Golongan</th>
+                                <th>Fungsional</th>
+                                <th>Jabatan</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($user as $data)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $data->nama }}</td>
+                                    <td>{{ $data->email }}</td>
+                                    <td>{{ $data->nip }}</td>
+                                    <td>{{ $data->golongan }}</td>
+                                    <td>{{ $data->fungsional }}</td>
+                                    <td>
+                                        @switch($data->role_id)
+                                            @case(1)
+                                                Admin
+                                            @break
 
-                                </button>
-                                |
-                                <button
-                                    class="btn btn-icon btn-delete btn-sm"
-                                    data-delete-url="">
-                                        <i class="fas fa-trash-can"></i>
-                                    </a>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                            @case(2)
+                                                Kepala BPS
+                                            @break
 
-            
+                                            @case(3)
+                                                Kepala BU
+                                            @break
+
+                                            @case(4)
+                                                Koordinator Fungsi
+                                            @break
+
+                                            @case(5)
+                                                Staf
+                                            @break
+                                        @endswitch
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-icon btn-edit btn-sm">
+                                            <a href="{{ route('monitoringuser.edit', ['id' => $data->id]) }}" class="action-link">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </button>|
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('monitoringuser.delete', ['id' => $data->id]) }}">
+                                            <i class="fas fa-trash-can"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+
+
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    // Fungsi untuk filter berdasarkan input pencarian
-    function filterTable() {
-        // Mendapatkan nilai input pencarian
-        var searchText = document.getElementById('search').value.toLowerCase();
-        
-        // Mendapatkan semua baris data pada tabel
-        var rows = document.querySelectorAll('#dataTable tbody tr');
+    <script>
+        // Fungsi untuk filter berdasarkan input pencarian
+        function filterTable() {
+            // Mendapatkan nilai input pencarian
+            var searchText = document.getElementById('search').value.toLowerCase();
 
-        // Melakukan iterasi pada setiap baris data
-        rows.forEach(function(row) {
-            // Mendapatkan nilai jenis fungsional dari setiap baris
-            var jenisFungsional = row.querySelector('#jenis_fungsional').textContent.toLowerCase();
+            // Mendapatkan semua baris data pada tabel
+            var rows = document.querySelectorAll('#dataTable tbody tr');
 
-            // Menyembunyikan baris yang tidak sesuai dengan pencarian
-            if (jenisFungsional.includes(searchText)) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
-        });
-    }
+            // Melakukan iterasi pada setiap baris data
+            rows.forEach(function(row) {
+                // Mendapatkan nilai jenis fungsional dari setiap baris
+                var jenisFungsional = row.querySelector('#jenis_fungsional').textContent.toLowerCase();
 
-    // Memanggil fungsi filter saat nilai input pencarian berubah
-    document.getElementById('search').addEventListener('input', filterTable);
-</script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                // Menyembunyikan baris yang tidak sesuai dengan pencarian
+                if (jenisFungsional.includes(searchText)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Memanggil fungsi filter saat nilai input pencarian berubah
+        document.getElementById('search').addEventListener('input', filterTable);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             // Event delegation untuk tombol hapus
@@ -129,5 +147,5 @@
         });
     </script>
 
-<!-- /.container-fluid -->
+    <!-- /.container-fluid -->
 @endsection
