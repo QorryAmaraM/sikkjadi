@@ -23,7 +23,7 @@
                                 @if ($users->id == $result->user_id)
                                     <input type="nama" class="form-control col-sm-11" id="nama"
                                         placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
-                                    <input type="hidden" name="ckpr_id" value="{{ $result->id }}">
+                                    <input type="hidden" name="ckpr_id" value="{{ $result->id }}" disabled>
                                 @endif
                             @endforeach
                         @endforeach
