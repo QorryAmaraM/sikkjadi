@@ -1814,7 +1814,15 @@ select.form-control:focus::-ms-value {
     margin-bottom: 0;
     font-size: inherit;
     line-height: 1.5;
-    color:#fff;
+}
+
+.label-fgpw {
+    padding-top: calc(0.375rem + 1px);
+    padding-bottom: calc(0.375rem + 1px);
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.5;
+    color: #fff;
 }
 .col-form-label-lg {
     padding-top: calc(0.5rem + 1px);
