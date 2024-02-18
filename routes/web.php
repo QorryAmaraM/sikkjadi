@@ -22,6 +22,15 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/forgot-password', [AuthController::class, 'forgotpassword']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
+Route::get('/users', function () {
+    return view('pages/admin/monitoringuser/index');
+});
+Route::get('/createusers', function () {
+    return view('pages/admin/monitoringuser/create');
+});
+Route::get('/editusers', function () {
+    return view('pages/admin/monitoringuser/edit');
+});
 // Admin
 Route::middleware(['checkRole:1'])->group(function () {
     Route::get('/admin-dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');

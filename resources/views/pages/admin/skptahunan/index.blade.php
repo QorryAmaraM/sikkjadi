@@ -222,7 +222,7 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <script>
         $(document).ready(function() {
             // Event delegation untuk tombol hapus
@@ -245,4 +245,32 @@
             });
         });
     </script>
+
+<script>
+        $(document).ready(function() {
+            $('#search').on('input', function() {
+                var searchText = $(this).val().toLowerCase(); // Mendapatkan teks pencarian
+                var selectedOption = $('#searchSelect').val(); // Mendapatkan nilai yang dipilih dari dropdown
+
+                // Menyembunyikan semua baris data
+                $('.alldata tr').hide();
+
+                // Menampilkan baris data yang sesuai dengan kriteria pencarian
+                $('.alldata tr').each(function() {
+                    var rowData = $(this).text().toLowerCase(); // Mendapatkan teks pada baris
+                    if (selectedOption == '' || $(this).find('.user_id').text() == selectedOption) { // Memeriksa apakah baris sesuai dengan opsi dropdown
+                        if (rowData.includes(searchText)) { // Memeriksa apakah teks pencarian cocok dengan data pada baris
+                            $(this).show(); // Menampilkan baris data jika cocok
+                        }
+                    }
+                });
+            });
+
+            // Mengatur ulang pencarian saat opsi dropdown berubah
+            $('#searchSelect').on('change', function() {
+                $('#search').trigger('input'); // Memicu kembali peristiwa input untuk memperbarui hasil pencarian
+            });
+        });
+    </script>
+    
 @endsection

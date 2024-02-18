@@ -140,6 +140,11 @@
                         <i class="fas fa-bookmark"></i>Monitoring Presensi
                     </p>
                 </a>
+                <a class="collapse-item" href="">
+                    <p class="sub-nav-text">
+                        <i class="fas fa-bookmark"></i>Monitoring User
+                    </p>
+                </a>
             </div>
         </div>
     </li>
