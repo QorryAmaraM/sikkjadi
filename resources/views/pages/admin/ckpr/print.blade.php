@@ -198,7 +198,7 @@
             </div>
         </div>
 
-        <footer class="container-fluid position-absolute bottom-0 text-center">
+        <footer class="container-fluid bottom-0 text-center">
             <h6>Jl. Perwira No. 50, Belakang Balok, Bukittinggi Telp (62-752) 21521, Faks (62-752) 624629, Mailbox : bps1375@bps.go.id</h6>
         </footer>
 
