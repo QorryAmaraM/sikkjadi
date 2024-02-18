@@ -55,16 +55,13 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request): RedirectResponse
-{
-    Auth::logout();
+    {
+        Auth::logout();
 
-    $request->session()->invalidate();
+        $request->session()->invalidate();
 
-    $request->session()->regenerateToken();
+        $request->session()->regenerateToken();
 
-    return redirect('/')->header('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0')
-                        ->header('Pragma', 'no-cache')
-                        ->header('Expires', 'Sat, 01 Jan 2000 00:00:00 GMT');
-}
-
+        return redirect('/');
+    }
 }
