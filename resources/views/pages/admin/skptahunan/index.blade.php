@@ -16,7 +16,7 @@
             <div class="col-sm-6">
                 <div class="search form-group d-flex align-items-center">
                     <label for="searchSelect" class="mb-0 mr-4">Pegawai</label>
-                    <select name="searchSelect" id="searchSelect" class="form-control">
+                    <select name="search" id="search" class="form-control">
                         <option value="">Pilih Pegawai</option>
                         @php
                             $namaArray = [];
