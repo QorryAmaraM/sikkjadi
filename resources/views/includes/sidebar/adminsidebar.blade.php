@@ -140,7 +140,7 @@
                         <i class="fas fa-bookmark"></i>Monitoring Presensi
                     </p>
                 </a>
-                <a class="collapse-item" href="">
+                <a class="collapse-item" href="{{ route('admin_monitoringuser') }}">
                     <p class="sub-nav-text">
                         <i class="fas fa-bookmark"></i>Monitoring User
                     </p>

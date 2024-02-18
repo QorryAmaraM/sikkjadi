@@ -8,12 +8,12 @@ use App\Http\Controllers\SKPTahunanController;
 use App\Http\Controllers\PenilaianSKPController;
 use App\Http\Controllers\MonitoringCKPController;
 use App\Http\Controllers\PenilaianCKPRController;
+use App\Http\Controllers\MonitoringUserController;
 use App\Http\Controllers\RencanaKinerjaController;
 use App\Http\Controllers\ListAngkaKreditController;
 use App\Http\Controllers\EntriAngkaKreditController;
 use App\Http\Controllers\ListUraianKegiatanController;
 use App\Http\Controllers\MonitoringPresensiController;
-use App\Http\Controllers\AuthController;
 
 // routes/web.php
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
@@ -34,6 +34,7 @@ Route::get('/createusers', function () {
 Route::get('/editusers', function () {
     return view('pages/admin/monitoringuser/edit');
 });
+
 // Admin
 Route::middleware(['checkRole:1'])->group(function () {
     Route::get('/admin-dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');
@@ -143,6 +144,16 @@ Route::middleware(['checkRole:1'])->group(function () {
     Route::get('/admin-monitoring/monitorinpre/{id}/edit', [MonitoringPresensiController::class, 'edit'])->name('monitoringpresensi.edit');
     Route::put('/admin-monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'update']);
     Route::get('/admin-monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'destroy'])->name('monitoringpresensi.delete');
+
+    //Monitoring User
+    Route::get('/admin-monitoring/monitoringuser', [MonitoringUserController::class, 'index'])->name('admin_monitoringuser');
+    Route::get('/admin-monitoring/monitoringuser/create', [MonitoringUserController::class, 'create']);
+    Route::post('/admin-monitoring/monitoringuser/store', [MonitoringUserController::class, 'store']);
+    Route::get('/admin-monitoring/monitoringuser/{id}/edit', [MonitoringUserController::class, 'edit'])->name('monitoringuser.edit');
+    Route::put('/admin-monitoring/monitoringuser/{id}', [MonitoringUserController::class, 'update']);
+    Route::get('/admin-monitoring/monitoringuser/{id}', [MonitoringUserController::class, 'destroy'])->name('monitoringuser.delete');
+
+    
 });
 
 //Kepala Bps
