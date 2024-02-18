@@ -16,7 +16,7 @@
             <div class="col-sm-6">
                 <div class="search form-group d-flex align-items-center">
                     <label for="searchSelect" class="mb-0 mr-4">Pegawai</label>
-                    <select name="search" id="search" class="form-control">
+                    <select name="searchpegawai" id="searchpegawai" class="form-control">
                         <option value="">Pilih Pegawai</option>
                         @php
                             $namaArray = [];
@@ -44,25 +44,26 @@
                         @endforeach
                     </select>
                 </div>
+                                
+                
             </div>
         </div>
 
         <div class="row">
-
             <div class="col-sm-6">
                 <div class="inner-form">
                     <div class="input-form">
-                        <input id="search" name="search" type="text" placeholder="Pencarian" />
+                        <input id="search" name="search" placeholder="Pencarian" />
                         <div class="input-form-append align-items-center">
                             <i class="fas fa-search"></i>
                         </div>
                     </div>
                 </div>
             </div>
+            
 
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <a href="{{ url('/admin-perencanaankerja/spktahunan/create') }}" type="button"
-                    class="btn add-button">+ Tambah</a>
+                <a href="{{ url('/admin-perencanaankerja/spktahunan/create') }}" type="button" class="btn add-button">+ Tambah</a>
             </div>
         </div>
 
@@ -92,13 +93,11 @@
                                     <td class="searchable">{{ $skp->jabatan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('spktahunan.edit', ['id' => $skp->id]) }}"
-                                                class="action-link">
+                                            <a href="{{ route('spktahunan.edit', ['id' => $skp->id]) }}" class="action-link">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
-                                        </button>
-                                        |
+                                        </button>|
                                         <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('spktahunan.delete', ['id' => $skp->id]) }}">
                                             <i class="fas fa-trash-can"></i>
                                         </button>
@@ -113,15 +112,15 @@
                         <tbody id="Content" class="searchdata"></tbody>
 
                     </table>
-                    
+
                 </div>
                 <div class="d-flex justify-content-center">
-                        {{ $skptahunan->links('vendor.pagination.bootstrap-4') }}
-                    </div>
+                    {{ $skptahunan->links('vendor.pagination.bootstrap-4') }}
+                </div>
             </div>
-            
+
         </div>
-        
+
 
     </div>
 
@@ -130,13 +129,14 @@
     <!-- Script -->
 
     <script>
-        var savedValue = "";
+        var valuepegawai = "";
+        var savedValue2 = "";
 
-        $('#search').on('change', function() {
+        $('#searchpegawai').on('input', function() {
 
-            $value = $(this).val();
+            $valuepegawai = $(this).val();
 
-            if ($value) {
+            if ($valuepegawai) {
                 $('.alldata').hide();
                 $('.searchdata').show();
             } else {
@@ -144,11 +144,31 @@
                 $('.searchdata').hide();
             }
 
+            handleSearch(valuepegawai, savedValue2);
+        });
+
+        $('#search').on('input', function() {
+
+            $savedValue2 = $(this).val();
+
+            if ($savedValue2) {
+                $('.alldata').hide();
+                $('.searchdata').show();
+            } else {
+                $('.alldata').show();
+                $('.searchdata').hide();
+            }
+
+            handleSearch(valuepegawai, savedValue2);
+        });
+
+        function handleSearch(valuepegawai, savedValue2) {
             $.ajax({
                 type: 'get',
                 url: '{{ URL::to('/admin-perencanaankerja/skptahunan/search') }}',
                 data: {
-                    'search': $value
+                    'searchpegawai': $valuepegawai,
+                    'search': $savedValue2
                 },
 
                 success: function(data) {
@@ -157,68 +177,7 @@
                 }
 
             });
-
-        })
-    </script>
-
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
-            const searchInput = document.getElementById("search");
-
-            searchInput.addEventListener("input", function() {
-                const searchTerm = this
-                    .value
-                    .toLowerCase();
-                const itemsToSearch = document.querySelectorAll('.item-to-search');
-
-                itemsToSearch.forEach(function(item) {
-                    const text = item
-                        .textContent
-                        .toLowerCase();
-                    const parentElement = item.closest(".row");
-                    if (text.includes(searchTerm)) {
-                        parentElement.style.display = "block";
-                    } else {
-                        parentElement.style.display = "none";
-                    }
-                });
-            });
-        });
-
-        $(function() {
-            $('#successModal').on('show.bs.modal', function() {
-                var successModal = $(this);
-                clearTimeout(successModal.data('hideInterval'));
-                successModal.data('hideInterval', setTimeout(function() {
-                    successModal.modal('hide');
-                }, 5000));
-            });
-        });
-
-        // Fungsi untuk filter berdasarkan input pencarian
-        function filterTable() {
-            // Mendapatkan nilai input pencarian
-            var searchText = document.getElementById('search').value.toLowerCase();
-
-            // Mendapatkan semua baris data pada tabel
-            var rows = document.querySelectorAll('#dataTable tbody tr');
-
-            // Melakukan iterasi pada setiap baris data
-            rows.forEach(function(row) {
-                // Mendapatkan nilai jenis fungsional dari setiap baris
-                var jenisFungsional = row.querySelector('#tahun').textContent.toLowerCase();
-
-                // Menyembunyikan baris yang tidak sesuai dengan pencarian
-                if (jenisFungsional.includes(searchText)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
         }
-
-        // Memanggil fungsi filter saat nilai input pencarian berubah
-        document.getElementById('search').addEventListener('input', filterTable);
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -245,32 +204,4 @@
             });
         });
     </script>
-
-<script>
-        $(document).ready(function() {
-            $('#search').on('input', function() {
-                var searchText = $(this).val().toLowerCase(); // Mendapatkan teks pencarian
-                var selectedOption = $('#searchSelect').val(); // Mendapatkan nilai yang dipilih dari dropdown
-
-                // Menyembunyikan semua baris data
-                $('.alldata tr').hide();
-
-                // Menampilkan baris data yang sesuai dengan kriteria pencarian
-                $('.alldata tr').each(function() {
-                    var rowData = $(this).text().toLowerCase(); // Mendapatkan teks pada baris
-                    if (selectedOption == '' || $(this).find('.user_id').text() == selectedOption) { // Memeriksa apakah baris sesuai dengan opsi dropdown
-                        if (rowData.includes(searchText)) { // Memeriksa apakah teks pencarian cocok dengan data pada baris
-                            $(this).show(); // Menampilkan baris data jika cocok
-                        }
-                    }
-                });
-            });
-
-            // Mengatur ulang pencarian saat opsi dropdown berubah
-            $('#searchSelect').on('change', function() {
-                $('#search').trigger('input'); // Memicu kembali peristiwa input untuk memperbarui hasil pencarian
-            });
-        });
-    </script>
-    
 @endsection

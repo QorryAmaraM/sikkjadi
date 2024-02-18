@@ -17,8 +17,8 @@ class REncanaKinerjaController extends Controller
         $userid = Auth::user()->role_id;
         $rencanakinerja = rencana_kinerja::paginate(5);
         $user = user::all();
-        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*','rencana_kinerjas.*')->get();
-        
+        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*', 'rencana_kinerjas.*')->get();
+
         switch ($userid) {
             case '1':
                 return view('pages.admin.rencanakinerja.index', compact(['rencanakinerja', 'result', 'user']));
@@ -116,9 +116,9 @@ class REncanaKinerjaController extends Controller
     {
         $userid = Auth::user()->role_id;
         $rencanakinerja = rencana_kinerja::find($id);
-        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*','rencana_kinerjas.*')
-        ->where('rencana_kinerjas.id', 'like', '%'.$id.'%')->get();
-        
+        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*', 'rencana_kinerjas.*')
+            ->where('rencana_kinerjas.id', 'like', '%' . $id . '%')->get();
+
         $user = user::all();
         switch ($userid) {
             case '1':
@@ -142,9 +142,9 @@ class REncanaKinerjaController extends Controller
     {
         $userid = Auth::user()->role_id;
         $rencanakinerja = rencana_kinerja::find($id);
-        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*','rencana_kinerjas.*')
-        ->where('rencana_kinerjas.id', 'like', '%'.$id.'%')->get();
-        
+        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*', 'rencana_kinerjas.*')
+            ->where('rencana_kinerjas.id', 'like', '%' . $id . '%')->get();
+
         $user = user::all();
         switch ($userid) {
             case '1':
@@ -168,9 +168,9 @@ class REncanaKinerjaController extends Controller
     {
         $userid = Auth::user()->role_id;
         $rencanakinerja = rencana_kinerja::find($id);
-        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*','rencana_kinerjas.*')
-        ->where('rencana_kinerjas.id', 'like', '%'.$id.'%')->get();
-        
+        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*', 'rencana_kinerjas.*')
+            ->where('rencana_kinerjas.id', 'like', '%' . $id . '%')->get();
+
         $user = user::all();
         switch ($userid) {
             case '1':
@@ -194,9 +194,9 @@ class REncanaKinerjaController extends Controller
     {
         $userid = Auth::user()->role_id;
         $rencanakinerja = rencana_kinerja::find($id);
-        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*','rencana_kinerjas.*')
-        ->where('rencana_kinerjas.id', 'like', '%'.$id.'%')->get();
-        
+        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*', 'rencana_kinerjas.*')
+            ->where('rencana_kinerjas.id', 'like', '%' . $id . '%')->get();
+
         $user = user::all();
         switch ($userid) {
             case '1':
@@ -272,13 +272,13 @@ class REncanaKinerjaController extends Controller
         $output = "";
 
         $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')
-        ->select('skp_tahunans.*','rencana_kinerjas.*')
-        ->where('skp_tahunans.user_id', 'like', '%'.$request->search.'%')
-        ->where('skp_tahunans.tahun', 'like', '%'.$request->tahun.'%')
-        ->where('skp_tahunans.periode', 'like', '%'.$request->periode.'%')
-        ->where('skp_tahunans.wilayah', 'like', '%'.$request->wilayah.'%')
-        ->where('skp_tahunans.unit_kerja', 'like', '%'.$request->unitkerja.'%')           
-        ->get();       
+            ->select('skp_tahunans.*', 'rencana_kinerjas.*')
+            ->where('skp_tahunans.user_id', 'like', '%' . $request->search . '%')
+            ->where('skp_tahunans.tahun', 'like', '%' . $request->tahun . '%')
+            ->where('skp_tahunans.periode', 'like', '%' . $request->periode . '%')
+            ->where('skp_tahunans.wilayah', 'like', '%' . $request->wilayah . '%')
+            ->where('skp_tahunans.unit_kerja', 'like', '%' . $request->unitkerja . '%')
+            ->get();
 
         foreach ($result as $result) {
             $output .=
@@ -301,7 +301,7 @@ class REncanaKinerjaController extends Controller
                 <a href="' . route('rencanakinerja.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
                 </button>' .  ' </td>
                           
-            </tr>'.
+            </tr>' .
 
                 '<tr> 
             <td > ' . 'Kualitas' . ' </td>            
@@ -314,7 +314,7 @@ class REncanaKinerjaController extends Controller
                 <a href="' . route('kualitas.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
                 </button>' .  ' </td>
                           
-            </tr>'.
+            </tr>' .
 
                 '<tr> 
             <td > ' . 'Kualitas' . ' </td>            
