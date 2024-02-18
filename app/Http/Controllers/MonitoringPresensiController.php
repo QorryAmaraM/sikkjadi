@@ -174,7 +174,7 @@ class MonitoringPresensiController extends Controller
                 '<tr> 
             
             <td> ' . $iterationNumber . ' </td>
-            <td> ' . $result->kode . ' </td>
+            <td> ' . $result->tahun .' '. $result->bulan . ' </td>
             <td> ' . $result->cp . ' </td>
             <td> ' . $result->ct . ' </td>
             <td> ' . $result->cb . ' </td>
