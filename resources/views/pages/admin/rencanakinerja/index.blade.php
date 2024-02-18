@@ -16,7 +16,7 @@
                 <div class="col-sm-12">
                     <div class="search form-group d-flex align-items-center">
                         <label for="searchSelect" class="col-sm-1 pl-0 col-form-label">Pegawai</label>
-                        <select name="search" id="search" class="form-control">
+                        <select name="searchbox" id="searchbox" class="form-control">
                             <option value="">Pilih Pegawai</option>
                             @php
                                 $namaArray = [];
@@ -70,7 +70,18 @@
         </form>
 
         <div class="row">
-            <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
+            <div class="col-sm-6">
+                <div class="inner-form">
+                    <div class="input-form">
+                        <input id="search" name="search" placeholder="Pencarian" />
+                        <div class="input-form-append align-items-center">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>     
+            
+            <div class="col-sm-6 d-flex justify-content-end align-items-center mb-2">
                 <a href="/admin-perencanaankerja/rencanakinerja/create/index" type="button" class="btn add-button">+
                     Tambah</a>
             </div>
@@ -180,6 +191,7 @@
 
     <!-- Script -->
     <script>
+        var savedData = "";
         var savedValue = "";
         var savedTahunValue = "";
         var savedPeriodeValue = "";
@@ -187,6 +199,20 @@
         var savedUnitkerjaValue = "";
 
         $('#search').on('input', function() {
+            savedData = $(this).val();
+
+            if (savedData) {
+                $('.alldata').hide();
+                $('.searchdata').show();
+            } else {
+                $('.alldata').show();
+                $('.searchdata').hide();
+            }
+
+            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue, savedData);
+        });
+
+        $('#searchbox').on('input', function() {
             savedValue = $(this).val();
 
             if (savedValue) {
@@ -197,7 +223,7 @@
                 $('.searchdata').hide();
             }
 
-            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue);
+            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue, savedData);
         });
 
         $('#tahun').on('input', function() {
@@ -211,7 +237,7 @@
                 $('.searchdata').hide();
             }
 
-            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue);
+            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue, savedData);
         });
 
         $('#periode').on('input', function() {
@@ -225,7 +251,7 @@
                 $('.searchdata').hide();
             }
 
-            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue);
+            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue, savedData);
         });
 
         $('#wilayah').on('input', function() {
@@ -239,7 +265,7 @@
                 $('.searchdata').hide();
             }
 
-            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue);
+            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue, savedData);
         });
 
         $('#unitkerja').on('input', function() {
@@ -253,11 +279,11 @@
                 $('.searchdata').hide();
             }
 
-            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue);
+            handleSearch(savedValue, savedTahunValue, savedPeriodeValue, savedWilayahValue, savedUnitkerjaValue, savedData);
         });
 
 
-        function handleSearch(value, tahunValue, periodeValue, wilayahValue, unitkerjaValue) {
+        function handleSearch(value, tahunValue, periodeValue, wilayahValue, unitkerjaValue, Data) {
             $.ajax({
                 type: 'get',
                 url: '{{ URL::to('/admin-perencanaankerja/rencanakinerja/search') }}',
@@ -266,7 +292,8 @@
                     'tahun': tahunValue,
                     'periode': periodeValue,
                     'wilayah': wilayahValue,
-                    'unitkerja': unitkerjaValue
+                    'unitkerja': unitkerjaValue,
+                    'data': Data
                 },
                 success: function(data) {
                     console.log(data);

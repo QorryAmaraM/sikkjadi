@@ -59,8 +59,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
+            </div>           
 
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
                 <a href="{{ url('/admin-perencanaankerja/spktahunan/create') }}" type="button" class="btn add-button">+ Tambah</a>
@@ -134,9 +133,9 @@
 
         $('#searchpegawai').on('input', function() {
 
-            $valuepegawai = $(this).val();
+            valuepegawai = $(this).val();
 
-            if ($valuepegawai) {
+            if (valuepegawai) {
                 $('.alldata').hide();
                 $('.searchdata').show();
             } else {
@@ -149,9 +148,9 @@
 
         $('#search').on('input', function() {
 
-            $savedValue2 = $(this).val();
+            savedValue2 = $(this).val();
 
-            if ($savedValue2) {
+            if (savedValue2) {
                 $('.alldata').hide();
                 $('.searchdata').show();
             } else {
@@ -167,8 +166,8 @@
                 type: 'get',
                 url: '{{ URL::to('/admin-perencanaankerja/skptahunan/search') }}',
                 data: {
-                    'searchpegawai': $valuepegawai,
-                    'search': $savedValue2
+                    'searchpegawai': valuepegawai,
+                    'search': savedValue2
                 },
 
                 success: function(data) {

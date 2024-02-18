@@ -270,6 +270,7 @@ class REncanaKinerjaController extends Controller
     public function search(Request $request)
     {
         $output = "";
+        $searchTerm = $request->data;
 
         $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')
             ->select('skp_tahunans.*', 'rencana_kinerjas.*')
@@ -278,6 +279,23 @@ class REncanaKinerjaController extends Controller
             ->where('skp_tahunans.periode', 'like', '%' . $request->periode . '%')
             ->where('skp_tahunans.wilayah', 'like', '%' . $request->wilayah . '%')
             ->where('skp_tahunans.unit_kerja', 'like', '%' . $request->unitkerja . '%')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('rencana_kinerjas.kinerja', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.rencana_kinerja_atasan', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.rencana_kinerja', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kuantitas_iki', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kuantitas_target_min', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kuantitas_target_max', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kuantitas_satuan', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kualitas_iki', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kualitas_target_min', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kualitas_target_max', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kualitas_satuan', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.waktu_iki', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.waktu_target_min', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.waktu_target_max', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.waktu_satuan', 'like', '%' . $searchTerm . '%');
+            })
             ->get();
 
         foreach ($result as $result) {
