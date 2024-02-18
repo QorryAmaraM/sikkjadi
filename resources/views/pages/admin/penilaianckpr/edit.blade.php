@@ -106,44 +106,35 @@
         </form>
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        function checkFormAndShowModal() {
+        <script>
+    function checkFormAndShowModal() {
     var form = document.getElementById('myForm');
-    var allInputsFilled = true;
+    var penilai = document.getElementById('penilai').value.trim();
+    var nilai = document.getElementById('nilai').value.trim();
 
-    // Loop untuk memeriksa setiap input dalam form
-    for (var i = 0; i < form.length; i++) {
-        if (form[i].type == "text" || form[i].type == "select-one") {
-            if (form[i].value == "") {
-                allInputsFilled = false;
-                break;
-            }
-        }
-    }
-
-    // Jika semua input terisi, tampilkan modal
-    if (allInputsFilled) {
+    // Jika input penilai dan nilai terisi, tampilkan modal sukses
+    if (penilai !== "" && nilai !== "") {
         Swal.fire({
             position: "top-center",
             icon: "success",
             title: "Data berhasil diedit!",
             showConfirmButton: false,
-            timer: 5000
+            timer: 10000
         }).then((result) => {
             if (result.dismiss === Swal.DismissReason.timer) {
                 $('#successModal').modal('show');
             }
         });
-    } else {
-        // Tampilkan peringatan SweetAlert jika tidak semua data terisi
+    } else if (penilai === "" || nilai === "") {
+        // Jika salah satu atau kedua input penilai dan nilai tidak terisi, tampilkan modal error
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Harap isi semua data sebelum melanjutkan.',
+            text: 'Harap isi data sebelum melanjutkan.',
         });
-    }
+    } 
 }
+</script>
 
-    </script>
         <!-- /.container-fluid -->
     @endsection

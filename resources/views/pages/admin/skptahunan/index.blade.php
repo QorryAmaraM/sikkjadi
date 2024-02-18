@@ -99,34 +99,11 @@
 
                                         </button>
                                         |
-                                        <button class="btn btn-icon btn-delete btn-sm" data-toggle="modal"
-                                            data-target="#successModal">
-                                            <a class="action-link btn-delete">
-                                                <i class="fas fa-trash-can"></i>
-                                            </a>
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('spktahunan.delete', ['id' => $skp->id]) }}">
+                                            <i class="fas fa-trash-can"></i>
                                         </button>
                                     </td>
                                 </tr>
-                                <div class="modal fade" id="successModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="successModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="successModalLabel">Yakin menghapus data?</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <button class="btn btn-icon btn-modal btn-sm">
-                                                    <a href="{{ route('spktahunan.delete', ['id' => $skp->id]) }}"
-                                                        class="action-link btn-modal">Hapus</a>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             @empty
                                 <td colspan="6" class="text-center">Empty Data</td>
                             @endforelse
@@ -136,12 +113,15 @@
                         <tbody id="Content" class="searchdata"></tbody>
 
                     </table>
-                    <div class="d-flex justify-content-center">
+                    
+                </div>
+                <div class="d-flex justify-content-center">
                         {{ $skptahunan->links('vendor.pagination.bootstrap-4') }}
                     </div>
-                </div>
             </div>
+            
         </div>
+        
 
     </div>
 
@@ -150,28 +130,58 @@
     <!-- Script -->
 
     <script>
-        $(document).ready(function() {
-            $('#search').on('input', function() {
-                var searchText = $(this).val().toLowerCase(); // Mendapatkan teks pencarian
-                var selectedOption = $('#searchSelect').val(); // Mendapatkan nilai yang dipilih dari dropdown
+        var savedValue = "";
 
-                // Menyembunyikan semua baris data
-                $('.alldata tr').hide();
+        $('#search').on('change', function() {
 
-                // Menampilkan baris data yang sesuai dengan kriteria pencarian
-                $('.alldata tr').each(function() {
-                    var rowData = $(this).text().toLowerCase(); // Mendapatkan teks pada baris
-                    if (selectedOption == '' || $(this).find('.user_id').text() == selectedOption) { // Memeriksa apakah baris sesuai dengan opsi dropdown
-                        if (rowData.includes(searchText)) { // Memeriksa apakah teks pencarian cocok dengan data pada baris
-                            $(this).show(); // Menampilkan baris data jika cocok
-                        }
-                    }
-                });
+            $value = $(this).val();
+
+            if ($value) {
+                $('.alldata').hide();
+                $('.searchdata').show();
+            } else {
+                $('.alldata').show();
+                $('.searchdata').hide();
+            }
+
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('/admin-perencanaankerja/skptahunan/search') }}',
+                data: {
+                    'search': $value
+                },
+
+                success: function(data) {
+                    console.log(data);
+                    $('#Content').html(data);
+                }
+
             });
 
-            // Mengatur ulang pencarian saat opsi dropdown berubah
-            $('#searchSelect').on('change', function() {
-                $('#search').trigger('input'); // Memicu kembali peristiwa input untuk memperbarui hasil pencarian
+        })
+    </script>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.getElementById("search");
+
+            searchInput.addEventListener("input", function() {
+                const searchTerm = this
+                    .value
+                    .toLowerCase();
+                const itemsToSearch = document.querySelectorAll('.item-to-search');
+
+                itemsToSearch.forEach(function(item) {
+                    const text = item
+                        .textContent
+                        .toLowerCase();
+                    const parentElement = item.closest(".row");
+                    if (text.includes(searchTerm)) {
+                        parentElement.style.display = "block";
+                    } else {
+                        parentElement.style.display = "none";
+                    }
+                });
             });
         });
 
@@ -182,6 +192,56 @@
                 successModal.data('hideInterval', setTimeout(function() {
                     successModal.modal('hide');
                 }, 5000));
+            });
+        });
+
+        // Fungsi untuk filter berdasarkan input pencarian
+        function filterTable() {
+            // Mendapatkan nilai input pencarian
+            var searchText = document.getElementById('search').value.toLowerCase();
+
+            // Mendapatkan semua baris data pada tabel
+            var rows = document.querySelectorAll('#dataTable tbody tr');
+
+            // Melakukan iterasi pada setiap baris data
+            rows.forEach(function(row) {
+                // Mendapatkan nilai jenis fungsional dari setiap baris
+                var jenisFungsional = row.querySelector('#tahun').textContent.toLowerCase();
+
+                // Menyembunyikan baris yang tidak sesuai dengan pencarian
+                if (jenisFungsional.includes(searchText)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Memanggil fungsi filter saat nilai input pencarian berubah
+        document.getElementById('search').addEventListener('input', filterTable);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Event delegation untuk tombol hapus
+            $(document).on('click', '.btn-delete', function() {
+                var deleteUrl = $(this).data('delete-url');
+
+                Swal.fire({
+                    title: "Anda Yakin?",
+                    text: "Anda tidak akan dapat mengembalikannya!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, Hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = deleteUrl; // Redirect ke URL penghapusan
+                    }
+                });
             });
         });
     </script>

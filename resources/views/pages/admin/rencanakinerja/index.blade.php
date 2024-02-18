@@ -47,7 +47,7 @@
 
                     <div class="tahun form-group d-flex align-items-center">
                         <label for="tahun" class="col-sm-1 pl-0 col-form-label">Tahun</label>
-                        <input class="form-control col-sm-11" name="tahun" id="tahun" placeholder="Tahun">
+                        <input class="form-control col-sm-11" name="tahun" id="tahun" placeholder="YYYY" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
                     </div>
 
                     <div class="tahun form-group d-flex align-items-center">
@@ -123,8 +123,8 @@
                                         <button class="btn btn-icon btn-edit btn-sm">
                                             <a href="{{ route('rencanakinerja.edit', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
                                         </button>
-                                        <button class="btn btn-icon btn-delete btn-sm">
-                                            <a href="{{ route('rencanakinerja.delete', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-trash-can"></i></a>
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('rencanakinerja.delete', ['id' => $rencana->id]) }}">
+                                            <i class="fas fa-trash-can"></i></a>
                                         </button>
                                     </td>
 
@@ -274,6 +274,29 @@
                 }
             });
         }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            // Event delegation untuk tombol hapus
+            $(document).on('click', '.btn-delete', function() {
+                var deleteUrl = $(this).data('delete-url');
+
+                Swal.fire({
+                    title: "Anda Yakin?",
+                    text: "Anda tidak akan dapat mengembalikannya!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, Hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = deleteUrl; // Redirect ke URL penghapusan
+                    }
+                });
+            });
+        });
     </script>
     <!-- Script -->
 @endsection

@@ -26,7 +26,7 @@ class PenilaianSKPController extends Controller
         $result = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
             ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
             ->select('skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
-            ->paginate(2);
+            ->paginate(3);
 
 
         foreach ($result as $penilaian) {

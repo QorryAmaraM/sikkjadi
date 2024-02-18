@@ -20,6 +20,16 @@
             position: relative;
             border: 1px solid #543535;
         }
+
+        footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #f5f5f5; /* Tambahkan warna latar belakang footer sesuai kebutuhan */
+    padding: 10px 0; /* Tambahkan padding sesuai kebutuhan */
+    text-align: center;
+}
     </style>
     <title>Cetak CKP-R | SIKK</title>
     <!-- Google Font: Source Sans Pro -->
@@ -188,19 +198,13 @@
             </div>
         </div>
 
-        <footer class="container-fluid position-absolute margin-bottom-0   text-center">
-            <h6>Jl. Perwira No. 50, Belakang Balok, Bukittinggi Telp (62-752) 21521, Faks (62-752) 624629, Mailbox :
-                bps1375@bps.go.id</h6>
+        <footer class="container-fluid position-absolute bottom-0 text-center">
+            <h6>Jl. Perwira No. 50, Belakang Balok, Bukittinggi Telp (62-752) 21521, Faks (62-752) 624629, Mailbox : bps1375@bps.go.id</h6>
         </footer>
 
         <script type="text/javascript">
             window.print();
         </script>
-
-
-
-
-
         <!-- jQuery -->
         <script src="https://bpskotabukittinggi.id/sanjai/template/plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->

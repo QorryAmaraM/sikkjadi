@@ -84,7 +84,7 @@
                     <div class="form-group">
                         <label for="realisasi">Realisasi</label>
                         <input type="realisasi" class="form-control" id="realisasi"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="realisasi" value="{{ $result->realisasi }}" required>
+                        placeholder="Masukkan Angka" name="realisasi" value="{{ $result->realisasi }}" required onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
                     </div>
                 </div>
             </div>
@@ -105,37 +105,28 @@
     <script>
         function checkFormAndShowModal() {
     var form = document.getElementById('myForm');
-    var allInputsFilled = true;
+    var realisasiInput = document.getElementById('realisasi');
+    var realisasiValue = realisasiInput.value.trim(); // Menghapus spasi di awal dan akhir
 
-    // Loop untuk memeriksa setiap input dalam form
-    for (var i = 0; i < form.length; i++) {
-        if (form[i].type == "text" || form[i].type == "select-one") {
-            if (form[i].value == "") {
-                allInputsFilled = false;
-                break;
-            }
-        }
-    }
-
-    // Jika semua input terisi, tampilkan modal
-    if (allInputsFilled) {
+    // Jika input realisasi sudah diisi
+    if (realisasiValue !== "") {
         Swal.fire({
             position: "top-center",
             icon: "success",
             title: "Data berhasil diedit!",
             showConfirmButton: false,
-            timer: 5000
+            timer: 10000
         }).then((result) => {
             if (result.dismiss === Swal.DismissReason.timer) {
                 $('#successModal').modal('show');
             }
         });
     } else {
-        // Tampilkan peringatan SweetAlert jika tidak semua data terisi
+        // Tampilkan modal error jika input realisasi tidak diisi
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Harap isi semua data sebelum melanjutkan.',
+            text: 'Harap isi input Realisasi sebelum melanjutkan.',
         });
     }
 }

@@ -98,7 +98,7 @@
 
             <div class="row">
                 <div class="col-sm-12 mt-3 text-right">
-                <button type="submit" name="submit" value="Save" class="btn save-button">Simpan</button>
+                <button type="submit" name="submit" value="Save" class="btn save-button" onclick="checkFormAndShowModal()">Simpan</button>
 
                 </div>
             </div>
@@ -108,44 +108,34 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-    document.getElementById('myForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Mencegah form melakukan submit langsung
-        checkRequiredFieldsAndSubmit(this);
-    });
+        <script>
+    function checkFormAndShowModal() {
+    var form = document.getElementById('myForm');
+    var penilai = document.getElementById('penilai').value.trim();
+    var nilai = document.getElementById('nilai').value.trim();
 
-    function checkRequiredFieldsAndSubmit(form) {
-        var requiredInputs = form.querySelectorAll('input[required]');
-        var allInputsFilled = true;
-
-        // Loop untuk memeriksa setiap input yang required dalam form
-        for (var i = 0; i < requiredInputs.length; i++) {
-            if (requiredInputs[i].value == "") {
-                allInputsFilled = false;
-                break;
+    // Jika input penilai dan nilai terisi, tampilkan modal sukses
+    if (penilai !== "" && nilai !== "") {
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Data berhasil ditambah!",
+            showConfirmButton: false,
+            timer: 10000
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                $('#successModal').modal('show');
             }
-        }
-
-        // Jika semua input required terisi, tampilkan modal sukses dan submit form
-        if (allInputsFilled) {
-            Swal.fire({
-                position: "top-center",
-                icon: "success",
-                title: "Data berhasil ditambah!",
-                showConfirmButton: false,
-                timer: 5000
-            }).then((result) => {
-                form.submit(); // Submit form setelah modal sukses ditutup
-            });
-        } else {
-            // Tampilkan peringatan SweetAlert jika input required tidak terisi
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Harap isi semua data yang diperlukan sebelum melanjutkan.',
-            });
-        }
-    }
+        });
+    } else if (penilai === "" || nilai === "") {
+        // Jika salah satu atau kedua input penilai dan nilai tidak terisi, tampilkan modal error
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harap isi data sebelum melanjutkan.',
+        });
+    } 
+}
 </script>
 
 

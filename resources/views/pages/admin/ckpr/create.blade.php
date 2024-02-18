@@ -94,7 +94,7 @@
 
             <div class="row">
                 <div class="col-sm-12 mt-3 text-right">
-                     <button type="submit" name="submit" value="Save" class="btn save-button">Simpan</button>
+                     <button type="submit" name="submit" value="Save" class="btn save-button" onclick="checkFormAndShowModal()">Simpan</button>
                 </div>
             </div>
 
@@ -102,39 +102,39 @@
         </form>
         </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.getElementById('myForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Mencegah form melakukan submit langsung
-        checkFormAndSubmit();
-    });
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+    function checkFormAndShowModal() {
+    var form = document.getElementById('myForm');
+    var realisasiInput = document.getElementById('realisasi');
+    var realisasiValue = realisasiInput.value.trim(); // Menghapus spasi di awal dan akhir
 
-    function checkFormAndSubmit() {
-        var realisasiInput = document.getElementById('realisasi').value;
-        var form = this; // Mengacu pada form
-
-        // Cek apakah input realisasi terisi
-        if (realisasiInput !== "") {
-            Swal.fire({
-                position: "top-center",
-                icon: "success",
-                title: "Data berhasil ditambah!",
-                showConfirmButton: false,
-                timer: 10000
-            }).then((result) => {
-                form.submit(); // Submit form setelah SweetAlert ditutup
-            });
-        } else {
-            // Tampilkan peringatan SweetAlert jika realisasi tidak terisi
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Harap isi data realisasi sebelum melanjutkan.',
-            });
-        }
+    // Jika input realisasi sudah diisi
+    if (realisasiValue !== "") {
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Data berhasil ditambah!",
+            showConfirmButton: false,
+            timer: 10000
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                $('#successModal').modal('show');
+            }
+        });
+    } else {
+        // Tampilkan modal error jika input realisasi tidak diisi
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harap isi input Realisasi sebelum melanjutkan.',
+        });
     }
+}
+
 </script>
 
+       
 
     <!-- /.container-fluid -->
     

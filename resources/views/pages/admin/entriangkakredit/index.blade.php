@@ -55,7 +55,7 @@
 
                   <div class="row">
                       <div class="col-sm-12 mt-3 text-right">
-                          <button type="submit" name="submit" value="Save" class="btn save-button" onclick="checkFormAndShowModal()"">+ Tambah</button>
+                          <button type="submit" name="submit" value="Save" class="btn save-button" onclick="checkFormAndShowModal()">+ Tambah</button>
                       </div>
                   </div>
           </div>

@@ -150,33 +150,12 @@
                                             <a href="{{ route('ckpr.edit', ['id' => $ckpr->id]) }}" class="action-link"><i
                                                     class="fas fa-edit"></i></a>
                                         </button>
-                                        <button class="btn btn-icon btn-delete btn-sm">
-                                            <a class="action-link btn-delete" data-toggle="modal"
-                                                data-target="#successModal"><i class="fas fa-trash-can"></i></a>
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('ckpr.delete', ['id' => $ckpr->id]) }}">
+                                            <i class="fas fa-trash-can"></i>
                                         </button>
                                     </td>
                                 </tr>
 
-                                <div class="modal fade" id="successModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="successModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="successModalLabel">Yakin menghapus data?</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <button class="btn btn-icon btn-modal btn-sm">
-                                                    <a href="{{ route('ckpr.delete', ['id' => $ckpr->id]) }}"
-                                                        class="action-link btn-modal">Hapus</a>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="modal fade" id="printModal" tabindex="-1" role="dialog"
                                     aria-labelledby="printModalLabel" aria-hidden="true">
@@ -311,6 +290,29 @@
                 successModal.data('hideInterval', setTimeout(function() {
                     successModal.modal('hide');
                 }, 5000));
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            // Event delegation untuk tombol hapus
+            $(document).on('click', '.btn-delete', function() {
+                var deleteUrl = $(this).data('delete-url');
+
+                Swal.fire({
+                    title: "Anda Yakin?",
+                    text: "Anda tidak akan dapat mengembalikannya!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, Hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = deleteUrl; // Redirect ke URL penghapusan
+                    }
+                });
             });
         });
     </script>

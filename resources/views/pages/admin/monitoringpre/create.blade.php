@@ -146,22 +146,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function checkFormAndShowModal() {
-    var form = document.getElementById('myForm');
-    var allInputsFilled = true;
+       function checkFormAndShowModal() {
+    var tahun = document.getElementById('tahun').value.trim();
+    var bulan = document.getElementById('bulan').value.trim();
 
-    // Loop untuk memeriksa setiap input dalam form
-    for (var i = 0; i < form.length; i++) {
-        if (form[i].type == "text" || form[i].type == "select-one") {
-            if (form[i].value == "") {
-                allInputsFilled = false;
-                break;
-            }
-        }
-    }
-
-    // Jika semua input terisi, tampilkan modal
-    if (allInputsFilled) {
+    // Jika tahun atau bulan tidak diisi, tampilkan modal error
+    if (tahun === '' || bulan === '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harap isi tahun dan bulan sebelum melanjutkan.',
+        });
+    } else {
+        // Jika tahun dan bulan terisi, tampilkan modal sukses
         Swal.fire({
             position: "top-center",
             icon: "success",
@@ -173,16 +170,8 @@
                 $('#successModal').modal('show');
             }
         });
-    } else {
-        // Tampilkan peringatan SweetAlert jika tidak semua data terisi
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Harap isi semua data sebelum melanjutkan.',
-        });
     }
 }
-
     </script>
     <!-- /.container-fluid -->
 @endsection

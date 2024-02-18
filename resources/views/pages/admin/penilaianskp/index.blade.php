@@ -128,8 +128,8 @@
                                             <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
                                             <td rowspan="3">
-                                                <button class="btn btn-icon btn-delete btn-sm">
-                                                    <a class="action-link btn-delete" data-toggle="modal" data-target="#successModal"><i class="fas fa-trash-can"></i></a>
+                                                <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}">
+                                                    <i class="fas fa-trash-can"></i>
                                                 </button>
                                             </td>
                                         <tr>
@@ -155,25 +155,6 @@
                                             <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
 
                                         </tr>
-
-                                        <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="successModalLabel">Yakin menghapus
-                                                            data?</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <button class="btn btn-icon btn-modal btn-sm">
-                                                            <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}" class="action-link btn-modal">Hapus</a>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                     @endif
                                 @empty
@@ -229,10 +210,8 @@
                                             <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
                                             <td rowspan="3">
-                                                <button class="btn btn-icon btn-delete btn-sm" data-toggle="modal" data-target="#successModal">
-                                                    <a class="action-link btn-delete">
-                                                        <i class="fas fa-trash-can"></i>
-                                                    </a>
+                                                <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}">
+                                                    <i class="fas fa-trash-can"></i>
                                                 </button>
                                             </td>
                                         <tr>
@@ -257,25 +236,6 @@
                                             <td>{{ $skp->waktu_capaian_iki }}</td>
                                             <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
                                         </tr>
-
-                                        <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="successModalLabel">Yakin menghapus
-                                                            data?</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <button class="btn btn-icon btn-modal btn-sm">
-                                                            <a href="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}" class="action-link btn-modal">Hapus</a>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @endif
                                 @empty
                                     <td colspan="16" class="text-center">Empty Data</td>
@@ -450,6 +410,29 @@
                 successModal.data('hideInterval', setTimeout(function() {
                     successModal.modal('hide');
                 }, 5000));
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            // Event delegation untuk tombol hapus
+            $(document).on('click', '.btn-delete', function() {
+                var deleteUrl = $(this).data('delete-url');
+
+                Swal.fire({
+                    title: "Anda Yakin?",
+                    text: "Anda tidak akan dapat mengembalikannya!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, Hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = deleteUrl; // Redirect ke URL penghapusan
+                    }
+                });
             });
         });
     </script>

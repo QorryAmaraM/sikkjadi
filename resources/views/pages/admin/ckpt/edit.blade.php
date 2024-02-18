@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="tahun" class="col-sm-1 pl-0 col-form-label">Tahun</label>
-                        <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="tahun"
+                        <select class="form-control col-sm-11" data-width="75%" data-live-search="true" id="tahun"
                             name="tahun" required>
                             <option value="{{ $result->tahun }}">{{ $result->tahun }}</option>
                             <option value="2024">2024</option>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="bulan" class="col-sm-1 pl-0 col-form-label">Bulan</label>
-                        <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="bulan"
+                        <select class="form-control col-sm-11" data-width="75%" data-live-search="true" id="bulan"
                             name="bulan" required>
                             <option value="{{ $result->bulan }}">{{ $result->bulan }}</option>
                             <option value="Januari">Januari</option>
@@ -116,7 +116,7 @@
                     <div class="form-group">
                         <label for="target">Target Revisi</label>
                         <input type="text" class="form-control" id="target_rev" value="{{ $result->target_rev }}"
-                            name="target_rev" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" >
+                            name="target_rev" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"  >
                     </div>
                     <div class="form-group">
                         <input type="hidden" class="form-control" id="target" value="{{ $result->target }}"
@@ -147,17 +147,20 @@
     var form = document.getElementById('myForm');
     var allInputsFilled = true;
 
-    // Loop untuk memeriksa setiap input dalam form
+    // Loop untuk memeriksa setiap input dalam form, kecuali input keterangan
     for (var i = 0; i < form.length; i++) {
         if (form[i].type == "text" || form[i].type == "select-one") {
-            if (form[i].value == "") {
-                allInputsFilled = false;
-                break;
+            // Mengecualikan input keterangan dari pemeriksaan
+            if (form[i].name !== 'keterangan' && form[i].name !== 'target_rev') {
+                if (form[i].value == "") {
+                    allInputsFilled = false;
+                    break;
+                }
             }
         }
     }
 
-    // Jika semua input terisi, tampilkan modal
+    // Jika semua input terisi kecuali input keterangan, tampilkan modal
     if (allInputsFilled) {
         Swal.fire({
             position: "top-center",
@@ -175,7 +178,7 @@
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Harap isi semua data sebelum melanjutkan.',
+            text: 'Harap isi semua data kecuali keterangan sebelum melanjutkan.',
         });
     }
 }
