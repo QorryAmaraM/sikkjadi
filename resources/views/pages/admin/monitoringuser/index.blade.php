@@ -43,7 +43,7 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="alldata">
                             @foreach ($user as $data)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
@@ -84,12 +84,14 @@
                                         <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('monitoringuser.delete', ['id' => $data->id]) }}">
                                             <i class="fas fa-trash-can"></i>
                                         </button>
-                                        
+
                                     </td>
                                 </tr>
                             @endforeach
 
                         </tbody>
+
+                        <tbody id="Content" class="searchdata"></tbody>
                     </table>
 
 
@@ -99,31 +101,37 @@
     </div>
 
     <script>
-        // Fungsi untuk filter berdasarkan input pencarian
-        function filterTable() {
-            // Mendapatkan nilai input pencarian
-            var searchText = document.getElementById('search').value.toLowerCase();
+        var savedData = "";
 
-            // Mendapatkan semua baris data pada tabel
-            var rows = document.querySelectorAll('#dataTable tbody tr');
+        $('#search').on('input', function() {
+            savedData = $(this).val();
 
-            // Melakukan iterasi pada setiap baris data
-            rows.forEach(function(row) {
-                // Mendapatkan nilai jenis fungsional dari setiap baris
-                var jenisFungsional = row.querySelector('#jenis_fungsional').textContent.toLowerCase();
+            if (savedData) {
+                $('.alldata').hide();
+                $('.searchdata').show();
+            } else {
+                $('.alldata').show();
+                $('.searchdata').hide();
+            }
 
-                // Menyembunyikan baris yang tidak sesuai dengan pencarian
-                if (jenisFungsional.includes(searchText)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
+            handleSearch(savedData);
+        });
+
+        function handleSearch(Data) {
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('/admin-monitoring/monitoringuser/search') }}',
+                data: {
+                    'data': Data
+                },
+                success: function(data) {
+                    console.log(data);
+                    $('#Content').html(data);
                 }
             });
         }
-
-        // Memanggil fungsi filter saat nilai input pencarian berubah
-        document.getElementById('search').addEventListener('input', filterTable);
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {

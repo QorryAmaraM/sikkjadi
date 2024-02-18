@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\user;
+use App\Models\entri_angka_kredit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -167,4 +168,71 @@ class MonitoringUserController extends Controller
                  break;
          }
      }
+
+     //Search
+    public function search(Request $request)
+    {
+        $output = "";
+        $iterationNumber = 1;
+        $searchTerm = $request->data;
+        
+        if ($request->data == 'admin') {
+            $searchTerm = '1';
+        } elseif ($request->data == 'kepala bps') {
+            $searchTerm = '2';
+        } elseif ($request->data == 'kepala bu') {
+            $searchTerm = '3';
+        } elseif ($request->data == 'koordinator fungsi') {
+            $searchTerm = '4';
+        } elseif ($request->data == 'staf') {
+            $searchTerm = '5';
+        }
+
+
+        $result = user::where(function ($query) use ($searchTerm) {
+                $query->where('users.nama', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('users.email', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('users.nip', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('users.golongan', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('users.role_id', 'like', '%' . $searchTerm . '%');
+            })->get();
+
+            // dd($result);
+
+        foreach ($result as $result) {
+
+            if ($result->role_id == '1') {
+                $jabatan = "Admin";
+            } elseif ($result->role_id == '2') {
+                $jabatan = "Kepala BPS";
+            } elseif ($result->role_id == '3') {
+                $jabatan = "Kepala BU";
+            } elseif ($result->role_id == '4') {
+                $jabatan = "Koordinator Fungsi";
+            } elseif ($result->role_id == '5') {
+                $jabatan = "Staf";
+            }
+           
+
+            $output .=
+                '<tr> 
+            
+            <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->nama . ' </td>
+            <td> ' . $result->email . ' </td>
+            <td> ' . $result->nip . ' </td>
+            <td> ' . $result->golongan . ' </td>
+            <td> ' . $jabatan . ' </td>
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('monitoringuser.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('monitoringuser.delete', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>   
+                          
+            </tr>';
+
+            $iterationNumber++;
+        }
+        return response($output);
+    }
 }

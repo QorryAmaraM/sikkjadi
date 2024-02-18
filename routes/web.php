@@ -141,6 +141,7 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //Monitoring User
     Route::get('/admin-monitoring/monitoringuser', [MonitoringUserController::class, 'index'])->name('admin_monitoringuser');
+    Route::get('/admin-monitoring/monitoringuser/search', [MonitoringUserController::class, 'search']);
     Route::get('/admin-monitoring/monitoringuser/create', [MonitoringUserController::class, 'create']);
     Route::post('/admin-monitoring/monitoringuser/store', [MonitoringUserController::class, 'store']);
     Route::get('/admin-monitoring/monitoringuser/{id}/edit', [MonitoringUserController::class, 'edit'])->name('monitoringuser.edit');
