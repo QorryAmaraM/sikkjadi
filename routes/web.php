@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CKPRController;
 use App\Http\Controllers\CKPTController;
 use App\Http\Controllers\DashboardController;

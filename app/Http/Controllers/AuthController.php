@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -77,7 +79,7 @@ public function resetPassword(Request $request)
 {
     $request->validate([
         'email' => 'required|email',
-        'password' => 'required|string|min:8|confirmed',
+        'password' => 'required|string|min:3|confirmed',
         'token' => 'required|string',
     ]);
 
