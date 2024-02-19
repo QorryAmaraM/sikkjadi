@@ -66,7 +66,7 @@
                                         <td>{{ $skp->jabatan }}</td>
                                         <td>
                                             <button class="btn btn-icon btn-edit btn-sm">
-                                                <a href="/admin-perencanaankerja/rencanakinerja/create/{{ $skp->id }}" type="button" class="btn add-button">+ Tambah</a>
+                                                <a href="/kepalabps-perencanaankerja/rencanakinerja/create/{{ $skp->id }}" type="button" class="btn add-button">+ Tambah</a>
                                             </button>
                                         </td>
                                     </tr>
@@ -100,7 +100,7 @@
 
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('admin-perencanaankerja/rencanakinerja/create/search') }}',
+                url: '{{ URL::to('kepalabps-perencanaankerja/rencanakinerja/create/search') }}',
                 data: {
                     'search': $value
                 },

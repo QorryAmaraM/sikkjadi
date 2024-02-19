@@ -66,7 +66,7 @@
 
         <div class="row">
             <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
-                <a href="/admin-perencanaankerja/penilaianskp/create/index" type="button" class="btn add-button">+Tambah</a>
+                <a href="/kepalabps-perencanaankerja/penilaianskp/create/index" type="button" class="btn add-button">+Tambah</a>
 
                 <button class="btn btn-icon btn-print btn-sm" data-toggle="modal" data-target="#printModal">
                     <i class="fas fa-print"></i>
@@ -128,7 +128,7 @@
                                             <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
                                             <td rowspan="3">
-                                                <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}">
+                                                <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.penilaianskp.delete', ['id' => $skp->id]) }}">
                                                     <i class="fas fa-trash-can"></i>
                                                 </button>
                                             </td>
@@ -210,7 +210,7 @@
                                             <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
                                             <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
                                             <td rowspan="3">
-                                                <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('penilaianskp.delete', ['id' => $skp->id]) }}">
+                                                <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.penilaianskp.delete', ['id' => $skp->id]) }}">
                                                     <i class="fas fa-trash-can"></i>
                                                 </button>
                                             </td>
@@ -305,7 +305,7 @@
 
 
                                             <!-- Form input data -->
-                                            <form action="/admin-perencanaankerja/penilaianskp/print">
+                                            <form action="/kepalabps-perencanaankerja/penilaianskp/print">
                                                 <div class="form-group">
                                                     <label for="inputTahun">Tahun</label>
                                                     <input type="text" class="form-control" name="input_tahun" id="input_tahun" placeholder="Masukkan Tahun SKP">
@@ -390,7 +390,7 @@
         function handleSearch(value, unitkerjavalue, kinerjavalue) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-perencanaankerja/penilaianskp/search') }}',
+                url: '{{ URL::to('/kepalabps-perencanaankerja/penilaianskp/search') }}',
                 data: {
                     'search': value,
                     'unitkerja': unitkerjavalue,

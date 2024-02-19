@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -90,7 +90,7 @@
 
         <div class="row">
             <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
-                <a href="/admin-ckp/penilaianckpr/create-index" type="button" class="btn add-button">+ Tambah</a>
+                <a href="/kepalabps-ckp/penilaianckpr/create-index" type="button" class="btn add-button">+ Tambah</a>
                 <button class="btn btn-icon btn-print btn-sm">
                     <i class="fas fa-print"></i>
                 </button>
@@ -141,10 +141,10 @@
                                     <td>{{ $nilaickpr->penilai }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('penilaianckpr.edit', ['id' => $nilaickpr->id]) }}"
+                                            <a href="{{ route('kepalabps.penilaianckpr.edit', ['id' => $nilaickpr->id]) }}"
                                                 class="action-link"><i class="fas fa-edit"></i></a>
                                         </button>
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('penilaianckpr.delete', ['id' => $nilaickpr->id]) }}">
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.penilaianckpr.delete', ['id' => $nilaickpr->id]) }}">
                                             <i class="fas fa-trash-can"></i>
                                         </button>
                                     </td>
@@ -233,7 +233,7 @@
         function handleSearch(value, tahunvalue, bulanvalue) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-ckp/penilaianckpr/saerch') }}',
+                url: '{{ URL::to('/kepalabps-ckp/penilaianckpr/saerch') }}',
                 data: {
                     'search': value,
                     'tahun': tahunvalue,

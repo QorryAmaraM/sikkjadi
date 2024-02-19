@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -11,7 +11,7 @@
 
         <!-- Content Row -->
 
-        <form id="myForm" action="/admin-monitoring/monitorinpre/store" method="POST">
+        <form id="myForm" action="/kepalabps-monitoring/monitorinpre/store" method="POST">
             @csrf
 
             <div class="row mb-8">

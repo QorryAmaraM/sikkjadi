@@ -96,7 +96,7 @@
                                     <td>{{ $rencana->kuantitas_satuan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kuantitas.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
+                                            <a href="{{ route('kepalabps.kuantitas.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
                                         </button>
                                     </td>
                                 </tr>
@@ -110,7 +110,7 @@
                                     <td>{{ $rencana->kualitas_satuan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kualitas.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
+                                            <a href="{{ route('kepalabps.kualitas.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
                                         </button>
                                     </td>
                                 </tr>
@@ -124,7 +124,7 @@
                                     <td>{{ $rencana->waktu_satuan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('waktu.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
+                                            <a href="{{ route('kepalabps.waktu.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
                                         </button>
                                     </td>
                                 </tr>

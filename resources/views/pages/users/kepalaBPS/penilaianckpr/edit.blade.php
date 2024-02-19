@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -11,7 +11,7 @@
 
         <!-- Content Row -->
 
-        <form required action="/admin-ckp/penilaianckpr/{{ $nilaickpr->id }}" method="POST">
+        <form required action="/kepalabps-ckp/penilaianckpr/{{ $nilaickpr->id }}" method="POST">
             @csrf
             @method('put')
             <div class="row mb-8">

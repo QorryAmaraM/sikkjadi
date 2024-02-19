@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -12,7 +12,7 @@
         <!-- Content Row -->
         @foreach ($result as $result)
             @if ($result->penilaian_ckpr_id == null)
-                <form id="myForm" action="/admin-monitoring/monitoringckp/store" method="POST">
+                <form id="myForm" action="/kepalabps-monitoring/monitoringckp/store" method="POST">
                     @csrf
                     <div class="row mb-8">
                         <div class="col-sm-12">
@@ -69,7 +69,7 @@
 
                 </form>
             @else
-                <form id="myForm" action="/admin-monitoring/monitoringckp/{{ $nilai_ckpr_id }}" method="POST">
+                <form id="myForm" action="/kepalabps-monitoring/monitoringckp/{{ $nilai_ckpr_id }}" method="POST">
                     @csrf
                     @method('put')
                     <div class="row mb-8">

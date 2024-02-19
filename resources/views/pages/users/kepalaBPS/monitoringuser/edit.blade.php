@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -23,7 +23,7 @@
                                 <!--/ header media -->
 
                                 <!-- form -->
-                                <form id="myForm" action="/admin-monitoring/monitoringuser/{{ $monitoringuser->id }}" method="POST">
+                                <form id="myForm" action="/kepalabps-monitoring/monitoringuser/{{ $monitoringuser->id }}" method="POST">
                                     @csrf
                                     @method('put')
                                     <div class="row">

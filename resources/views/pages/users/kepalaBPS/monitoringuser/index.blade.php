@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <a href="/admin-monitoring/monitoringuser/create" type="button" class="btn add-button">+ Tambah</a>
+                <a href="/kepalabps-monitoring/monitoringuser/create" type="button" class="btn add-button">+ Tambah</a>
             </div>
         </div>
 
@@ -77,11 +77,11 @@
                                     </td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('monitoringuser.edit', ['id' => $data->id]) }}" class="action-link">
+                                            <a href="{{ route('kepalabps.monitoringuser.edit', ['id' => $data->id]) }}" class="action-link">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                         </button>|
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('monitoringuser.delete', ['id' => $data->id]) }}">
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.monitoringuser.delete', ['id' => $data->id]) }}">
                                             <i class="fas fa-trash-can"></i>
                                         </button>
 
@@ -120,7 +120,7 @@
         function handleSearch(Data) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-monitoring/monitoringuser/search') }}',
+                url: '{{ URL::to('/kepalabps-monitoring/monitoringuser/search') }}',
                 data: {
                     'data': Data
                 },

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -11,7 +11,7 @@
 
         <!-- Content Row -->
 
-        <form id="myForm" action="/admin-perencanaankerja/penilaianskp/store" method="POST">
+        <form id="myForm" action="/kepalabps-perencanaankerja/penilaianskp/store" method="POST">
             @csrf
             <div class="row mb-8">
                 <div class="col-sm-12">

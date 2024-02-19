@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -23,7 +23,7 @@
                                 <!--/ header media -->
 
                                 <!-- form -->
-                                <form id="myForm" class="validate-form mt-2" action="/admin-monitoring/monitoringuser/store" method="POST">
+                                <form id="myForm" class="validate-form mt-2" action="/kepalabps-monitoring/monitoringuser/store" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-12 col-sm-6">

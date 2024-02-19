@@ -1,4 +1,4 @@
-@extends('layouts.admin') @section('content')
+@extends('layouts.kepalabps') @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
@@ -48,12 +48,12 @@
                                     <td>{{ $list->angka_kredit }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('listangkakredit.edit', ['id' => $list->id]) }}" class="action-link">
+                                            <a href="{{ route('kepalabps.listangkakredit.edit', ['id' => $list->id]) }}" class="action-link">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
                                         </button>|
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('listangkakredit.delete', ['id' => $list->id]) }}">
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.listangkakredit.delete', ['id' => $list->id]) }}">
                                             <i class="fas fa-trash-can"></i>
                                             </a>
                                         </button>
@@ -95,7 +95,7 @@
         function handleSearch(Data) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-masterangkakredit/listangkakredit/search') }}',
+                url: '{{ URL::to('/kepalabps-masterangkakredit/listangkakredit/search') }}',
                 data: {
                     'data': Data
                 },

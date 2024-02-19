@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -131,7 +131,7 @@
 
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('penilaianckpr.create', ['id' => $ckpr->id]) }}"
+                                            <a href="{{ route('kepalabps.penilaianckpr.create', ['id' => $ckpr->id]) }}"
                                                 type="button" class="btn add-button">+ Nilai</a>
                                         </button>
                                     </td>
@@ -213,7 +213,7 @@
         function handleSearch(value, tahunvalue, bulanvalue) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-ckp/penilaianckpr/search-create') }}',
+                url: '{{ URL::to('/kepalabps-ckp/penilaianckpr/search-create') }}',
                 data: {
                     'search': value,
                     'tahun': tahunvalue,

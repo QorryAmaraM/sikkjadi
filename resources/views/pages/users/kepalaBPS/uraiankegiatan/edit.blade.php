@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -11,7 +11,7 @@
 
         <!-- Content Row -->
 
-        <form id="myForm" action="/admin-masterutaiankegiatan/uraiankegiatan/{{ $uraiankegiatan->id }}" method="POST">
+        <form id="myForm" action="/kepalabps-masterutaiankegiatan/uraiankegiatan/{{ $uraiankegiatan->id }}" method="POST">
             @csrf
             @method('put')
             <div class="row mb-8">

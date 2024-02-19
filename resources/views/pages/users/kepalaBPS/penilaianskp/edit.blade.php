@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -11,7 +11,7 @@
 
         <!-- Content Row -->
 
-        <form action="/admin-perencanaankerja/penilaianskp/{{ $penilaianskp->id }}" method="POST">
+        <form action="/kepalabps-perencanaankerja/penilaianskp/{{ $penilaianskp->id }}" method="POST">
             @csrf
             @method('put')
             <div class="row mb-8">
@@ -21,8 +21,7 @@
                         @foreach ($result as $result)
                             @foreach ($user as $userpenilai)
                                 @if ($userpenilai->id == $result->penilai_user_id)
-                                    <input type="nama" class="form-control col-sm-11" value="{{ $userpenilai->nama }}"
-                                        disabled>
+                                    <input type="nama" class="form-control col-sm-11" value="{{ $userpenilai->nama }}" disabled>
                                 @endif
                             @endforeach
                         @endforeach
@@ -55,8 +54,7 @@
                         <label for="nama" class="col-sm-1 pl-0 col-form-label">Fungsional</label>
                         @foreach ($user as $userfungsional)
                             @if ($userfungsional->id == $result->user_id)
-                                <input type="nama" class="form-control col-sm-11" value="{{ $userfungsional->fungsional }}"
-                                    disabled>
+                                <input type="nama" class="form-control col-sm-11" value="{{ $userfungsional->fungsional }}" disabled>
                             @endif
                         @endforeach
                     </div>
@@ -75,53 +73,43 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="realisasi">Realisasi</label>
-                        <input type="realisasi" class="form-control" id="realisasi" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="realisasi" value="{{ $penilaianskp->realisasi }}">
+                        <input type="realisasi" class="form-control" id="realisasi" placeholder="Lorem Ipsum Dolor Sit Amet" name="realisasi" value="{{ $penilaianskp->realisasi }}">
                     </div>
                     <div class="form-group">
                         <label for="kondisi">Kondisi</label>
-                        <input type="kondisi" class="form-control" id="kondisi" placeholder="Lorem Ipsum Dolor Sit Amet"
-                            name="kondisi" value="{{ $penilaianskp->kondisi }}">
+                        <input type="kondisi" class="form-control" id="kondisi" placeholder="Lorem Ipsum Dolor Sit Amet" name="kondisi" value="{{ $penilaianskp->kondisi }}">
                     </div>
                     <div class="form-group">
                         <label for="capaianiki">Capaian IKI</label>
-                        <input type="capaianiki" class="form-control" id="capaianiki"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="capaian_iki" value="{{ $penilaianskp->capaian_iki }}">
+                        <input type="capaianiki" class="form-control" id="capaianiki" placeholder="Lorem Ipsum Dolor Sit Amet" name="capaian_iki" value="{{ $penilaianskp->capaian_iki }}">
                     </div>
                     <div class="form-group">
                         <label for="kategoriki">Kategori Capaian IKI</label>
-                        <input type="kategoriki" class="form-control" id="kategoriki"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="kategori_capaian_iki" value="{{ $penilaianskp->kategori_capaian_iki }}">
+                        <input type="kategoriki" class="form-control" id="kategoriki" placeholder="Lorem Ipsum Dolor Sit Amet" name="kategori_capaian_iki" value="{{ $penilaianskp->kategori_capaian_iki }}">
                     </div>
                     <div class="form-group">
                         <label for="nilaicapaian">Nilai Capaian Rencana</label>
-                        <input type="nilaicapaian" class="form-control" id="nilaicapaian"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="nilai_capaian_rencana" value="{{ $penilaianskp->realisasi }}">
+                        <input type="nilaicapaian" class="form-control" id="nilaicapaian" placeholder="Lorem Ipsum Dolor Sit Amet" name="nilai_capaian_rencana" value="{{ $penilaianskp->realisasi }}">
                     </div>
                     <div class="form-group">
                         <label for="kategoricp">Kategori Capaian Rencana</label>
-                        <input type="kategoricp" class="form-control" id="kategoricp"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="kategori_capaian_rencana" value="{{ $penilaianskp->kategori_capaian_rencana }}">
+                        <input type="kategoricp" class="form-control" id="kategoricp" placeholder="Lorem Ipsum Dolor Sit Amet" name="kategori_capaian_rencana" value="{{ $penilaianskp->kategori_capaian_rencana }}">
                     </div>
                     <div class="form-group">
                         <label for="nilaitimbang">Nilai Tertimbang</label>
-                        <input type="nilaitimbang" class="form-control" id="nilaitimbang"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="nilai_tertimbang" value="{{ $penilaianskp->nilai_tertimbang }}">
+                        <input type="nilaitimbang" class="form-control" id="nilaitimbang" placeholder="Lorem Ipsum Dolor Sit Amet" name="nilai_tertimbang" value="{{ $penilaianskp->nilai_tertimbang }}">
                     </div>
                     <div class="form-group">
                         <label for="nilaiutama">Nilai Kinerja Utama</label>
-                        <input type="nilaiutama" class="form-control" id="nilaiutama"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="nilai_kinerja_utama" value="{{ $penilaianskp->nilai_kinerja_utama }}">
+                        <input type="nilaiutama" class="form-control" id="nilaiutama" placeholder="Lorem Ipsum Dolor Sit Amet" name="nilai_kinerja_utama" value="{{ $penilaianskp->nilai_kinerja_utama }}">
                     </div>
                     <div class="form-group">
                         <label for="nilaitambahan">Nilai Kinerja Tambahan</label>
-                        <input type="nilaitambahan" class="form-control" id="nilaitambahan"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="nilai_kinerja_tambahan" value="{{ $penilaianskp->nilai_kinerja_tambahan }}">
+                        <input type="nilaitambahan" class="form-control" id="nilaitambahan" placeholder="Lorem Ipsum Dolor Sit Amet" name="nilai_kinerja_tambahan" value="{{ $penilaianskp->nilai_kinerja_tambahan }}">
                     </div>
                     <div class="form-group">
                         <label for="nilaiskp">Nilai SKP</label>
-                        <input type="nilaiskp" class="form-control" id="nilaiskp"
-                            placeholder="Lorem Ipsum Dolor Sit Amet" name="nilai_skp" value="{{ $penilaianskp->nilai_skp }}">
+                        <input type="nilaiskp" class="form-control" id="nilaiskp" placeholder="Lorem Ipsum Dolor Sit Amet" name="nilai_skp" value="{{ $penilaianskp->nilai_skp }}">
                     </div>
                 </div>
             </div>

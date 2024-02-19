@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -115,10 +115,10 @@
                                     <td>{{ $monitoringckp->keterangan_kepala }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('monitoringckp.edit', ['id' => $monitoringckp->id]) }}"
+                                            <a href="{{ route('kepalabps.monitoringckp.edit', ['id' => $monitoringckp->id]) }}"
                                                 class="action-link"><i class="fas fa-edit"></i></a>
                                         </button>
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('monitoringckp.delete', ['id' => $monitoringckp->id]) }}">
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.monitoringckp.delete', ['id' => $monitoringckp->id]) }}">
                                             <i class="fas fa-trash-can"></i>
                                         </button>
                                     </td>
@@ -207,7 +207,7 @@
         function handleSearch(value, tahunvalue, bulanvalue) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-monitoring/monitoringckp/search') }}',
+                url: '{{ URL::to('/kepalabps-monitoring/monitoringckp/search') }}',
                 data: {
                     'search': value,
                     'tahun': tahunvalue,

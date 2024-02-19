@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -139,7 +139,7 @@
                                     <td>{{ $ckpt->keterangan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="/admin-ckp/ckpr/create/{{ $ckpt->id }}" type="button" class="btn add-button">+ Realisasi</a>
+                                            <a href="/kepalabps-ckp/ckpr/create/{{ $ckpt->id }}" type="button" class="btn add-button">+ Realisasi</a>
                                         </button>
                                     </td>
                                 </tr>
@@ -221,7 +221,7 @@
         function handleSearch(value, tahunvalue, bulanvalue) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-ckp/ckpr/create/search') }}',
+                url: '{{ URL::to('/kepalabps-ckp/ckpr/create/search') }}',
                 data: {
                     'search': value,
                     'tahun': tahunvalue,

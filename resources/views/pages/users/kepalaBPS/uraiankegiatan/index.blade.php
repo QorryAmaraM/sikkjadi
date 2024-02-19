@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <a href="/admin-masterutaiankegiatan/uraiankegiatan/create" type="button" class="btn add-button">+ Tambah</a>
+                <a href="/kepalabps-masterutaiankegiatan/uraiankegiatan/create" type="button" class="btn add-button">+ Tambah</a>
             </div>
         </div>
 
@@ -49,10 +49,10 @@
                                     <td>{{ $kegiatan->uraian_kegiatan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('listuraiankredit.edit', ['id' => $kegiatan->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('kepalabps.listuraiankredit.edit', ['id' => $kegiatan->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
 
                                         </button>|
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('listuraiankredit.delete', ['id' => $kegiatan->id]) }}">
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.listuraiankredit.delete', ['id' => $kegiatan->id]) }}">
                                             <i class="fas fa-trash-can"></i></a>
                                         </button>
                                     </td>
@@ -95,7 +95,7 @@
         function handleSearch(Data) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-masterutaiankegiatan/uraiankegiatan/search') }}',
+                url: '{{ URL::to('/kepalabps-masterutaiankegiatan/uraiankegiatan/search') }}',
                 data: {
                     'data': Data
                 },

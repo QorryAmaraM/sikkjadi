@@ -82,7 +82,7 @@
             </div>     
             
             <div class="col-sm-6 d-flex justify-content-end align-items-center mb-2">
-                <a href="/admin-perencanaankerja/rencanakinerja/create/index" type="button" class="btn add-button">+
+                <a href="/kepalabps-perencanaankerja/rencanakinerja/create/index" type="button" class="btn add-button">+
                     Tambah</a>
             </div>
         </div>
@@ -132,9 +132,9 @@
 
                                     <td rowspan="3">
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('rencanakinerja.edit', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('kepalabps.rencanakinerja.edit', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
                                         </button>
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('rencanakinerja.delete', ['id' => $rencana->id]) }}">
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.rencanakinerja.delete', ['id' => $rencana->id]) }}">
                                             <i class="fas fa-trash-can"></i></a>
                                         </button>
                                     </td>
@@ -151,7 +151,7 @@
                                     <td>{{ $rencana->kualitas_satuan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kualitas.edit', ['id' => $rencana->id]) }}"
+                                            <a href="{{ route('kepalabps.kualitas.edit', ['id' => $rencana->id]) }}"
                                                 class="action-link"><i class="fas fa-edit"></i></a>
                                         </button>
                                     </td>
@@ -166,7 +166,7 @@
                                     <td>{{ $rencana->waktu_satuan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('waktu.edit', ['id' => $rencana->id]) }}"
+                                            <a href="{{ route('kepalabps.waktu.edit', ['id' => $rencana->id]) }}"
                                                 class="action-link"><i class="fas fa-edit"></i></a>
                                         </button>
                                     </td>
@@ -286,7 +286,7 @@
         function handleSearch(value, tahunValue, periodeValue, wilayahValue, unitkerjaValue, Data) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-perencanaankerja/rencanakinerja/search') }}',
+                url: '{{ URL::to('/kepalabps-perencanaankerja/rencanakinerja/search') }}',
                 data: {
                     'search': value,
                     'tahun': tahunValue,

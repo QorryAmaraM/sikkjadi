@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -91,7 +91,7 @@
         <div class="row">
             
             <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
-                <a href="/admin-monitoring/monitorinpre/create" type="button" class="btn add-button">+ Tambah</a>
+                <a href="/kepalabps-monitoring/monitorinpre/create" type="button" class="btn add-button">+ Tambah</a>
             </div>
         </div>
 
@@ -145,10 +145,10 @@
                                     <td>{{ $presensi->jhk }}</td>
                                     <td>
                                        <button class="btn btn-icon btn-edit btn-sm">
-                                           <a href="{{ route('monitoringpresensi.edit', ['id' => $presensi->id]) }}"
+                                           <a href="{{ route('kepalabps.monitoringpresensi.edit', ['id' => $presensi->id]) }}"
                                                class="action-link"><i class="fas fa-edit"></i></a>
                                        </button>
-                                       <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('monitoringpresensi.delete', ['id' => $presensi->id]) }}">
+                                       <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.monitoringpresensi.delete', ['id' => $presensi->id]) }}">
                                             <i class="fas fa-trash-can"></i>
                                         </button>
                                    </td>
@@ -237,7 +237,7 @@
       function handleSearch(value, tahunvalue, bulanvalue) {
           $.ajax({
               type: 'get',
-              url: '{{ URL::to('/admin-monitoring/monitorinpre/search') }}',
+              url: '{{ URL::to('/kepalabps-monitoring/monitorinpre/search') }}',
               data: {
                   'search': value,
                   'tahun': tahunvalue,

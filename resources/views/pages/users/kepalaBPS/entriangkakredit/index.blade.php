@@ -1,4 +1,4 @@
-      @extends('layouts.admin')
+      @extends('layouts.kepalabps')
 
       @section('content')
           <!-- Begin Page Content -->
@@ -10,7 +10,7 @@
               </div>
 
               <!-- Content Row -->
-              <form id="myForm" action="/admin-masterangkakredit/entriangkakredit/store" method="POST" id="myForm">
+              <form id="myForm" action="/kepalabps-masterangkakredit/entriangkakredit/store" method="POST" id="myForm">
                   @csrf
                   <div class="row mb-8">
                       <div class="col-sm-12">

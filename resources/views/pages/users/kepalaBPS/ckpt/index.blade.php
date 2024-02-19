@@ -92,7 +92,7 @@
 
         <div class="row">
             <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
-                <a href="/admin-ckp/ckpt/create" type="button" class="btn add-button">+ Tambah</a>
+                <a href="/kepalabps-ckp/ckpt/create" type="button" class="btn add-button">+ Tambah</a>
                 <button class="btn btn-icon btn-print btn-sm" data-toggle="modal" data-target="#printModal">
                     <i class="fas fa-print"></i>
                 </button>
@@ -135,9 +135,9 @@
                                     <td>{{ $ckpt->keterangan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('ckpt.edit', ['id' => $ckpt->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('kepalabps.ckpt.edit', ['id' => $ckpt->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
                                         </button> |
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('ckpt.delete', ['id' => $ckpt->id]) }}">
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.ckpt.delete', ['id' => $ckpt->id]) }}">
                                             <i class="fas fa-trash-can"></i>
                                         </button>
                                     </td>
@@ -155,7 +155,7 @@
                                             <div class="modal-body">
 
                                                 <!-- Form input data -->
-                                                <form action="/admin-ckp/ckpt/print">
+                                                <form action="/kepalabps-ckp/ckpt/print">
                                                     <div class="form-group">
                                                         <label for="inputData">Pejabat Penilai</label>
                                                         <input type="text" class="form-control" name="pejabatnama" id="pejabatnama">
@@ -258,7 +258,7 @@
         function handleSearch(value, tahunvalue, bulanvalue) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-ckp/ckpt/search') }}',
+                url: '{{ URL::to('/kepalabps-ckp/ckpt/search') }}',
                 data: {
                     'search': value,
                     'tahun': tahunvalue,
