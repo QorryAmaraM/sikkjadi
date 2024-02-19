@@ -124,7 +124,7 @@
                                     <td>{{ $rencana->kuantitas_satuan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kuantitas.edit', ['id' => $rencana->id]) }}"
+                                            <a href="{{ route('kepalabps.kuantitas.edit', ['id' => $rencana->id]) }}"
                                                 class="action-link"><i class="fas fa-edit"></i></a>
                                         </button>
                                     </td>
