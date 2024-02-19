@@ -37,9 +37,9 @@ class PenilaianSKPController extends Controller
             ->where('user_id', $user_role)
             ->paginate(3);
 
-        // dd($result);
+        // dd($userid == 1 || $userid == 2);
 
-        if ($userid == 1 || 2) {
+        if ($userid == 1) {
 
             foreach ($result as $penilaian) {
                 $kuantitas = $penilaian->kuantitas_kategori_capaian_iki;
@@ -118,7 +118,7 @@ class PenilaianSKPController extends Controller
 
             $sum_utama = $result->where('kinerja', 'utama')->sum('nilai_tertimbang');
             $sum_tambahan = $result->where('kinerja', 'tambahan')->sum('nilai_tertimbang');
-        } elseif ($userid == 5) {
+        } else {
 
             foreach ($resultrole as $penilaian) {
                 $kuantitas = $penilaian->kuantitas_kategori_capaian_iki;
@@ -213,7 +213,7 @@ class PenilaianSKPController extends Controller
                 return view('pages.admin.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
             case '2':
-                return view('pages.users.kepalabps.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp', 'userid']));
+                return view('pages.users.kepalabps.penilaianskp.index', compact(['resultrole', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp', 'userid']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
@@ -264,9 +264,14 @@ class PenilaianSKPController extends Controller
     public function create_index(Request $request)
     {
         $userid = Auth::user()->role_id;
-        $user = user::all();
-        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')->select('skp_tahunans.*', 'rencana_kinerjas.*')->get();
+        $user_role = Auth::user()->id;
 
+        $user = user::all();
+        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')
+            ->join('users', 'users.id', '=', 'skp_tahunans.user_id')
+            ->select('users.*','skp_tahunans.*', 'rencana_kinerjas.*')
+            ->where('user_id', $user_role)
+            ->paginate(5);
 
         switch ($userid) {
             case '1':
@@ -320,7 +325,7 @@ class PenilaianSKPController extends Controller
 
     public function create_kuantitas($id)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $user = user::all();
         $skp_tahunan = skp_tahunan::all();
         $rencanakinerja_id = $id;
@@ -347,7 +352,7 @@ class PenilaianSKPController extends Controller
 
     public function create_kualitas($id)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $user = user::all();
         $skp_tahunan = skp_tahunan::all();
         $rencanakinerja_id = $id;
@@ -374,7 +379,7 @@ class PenilaianSKPController extends Controller
 
     public function create_waktu($id)
     {
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $user = user::all();
         $skp_tahunan = skp_tahunan::all();
         $rencanakinerja_id = $id;

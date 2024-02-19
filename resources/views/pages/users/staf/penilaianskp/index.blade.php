@@ -33,7 +33,8 @@
         </form>
 
         <div class="row">
-            <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">               
+            <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
+                <a href="/staf-perencanaankerja/penilaianskp/create/index" type="button" class="btn add-button">+Tambah</a>               
 
                 <button class="btn btn-icon btn-print btn-sm" data-toggle="modal" data-target="#printModal">
                     <i class="fas fa-print"></i>
