@@ -11,7 +11,7 @@
 
         <!-- Content Row -->
 
-        <form id="myForm" action="/kepalabps-ckp/ckpt/store" method="POST">
+        <form id="myForm" action="/kepalabu-ckp/ckpt/store" method="POST">
             @csrf
 
             <div class="row mb-8">

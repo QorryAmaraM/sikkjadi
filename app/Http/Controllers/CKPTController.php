@@ -31,7 +31,6 @@ class CKPTController extends Controller
             ->where('ckpts.user_id', $userid)
             ->paginate(5);
 
-            
             // dd($resultrole);
 
 
@@ -43,7 +42,7 @@ class CKPTController extends Controller
                 return view('pages.users.kepalabps.ckpt.index', compact(['user', 'ckpt', 'resultrole']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpt.index', compact(['user', 'ckpt', 'result']));
+                return view('pages.users.kepalabu.ckpt.index', compact(['user', 'ckpt', 'resultrole']));
                 break;
             case '4':
                 return view('pages.users.kf.ckpt.index', compact(['user', 'ckpt', 'result']));
