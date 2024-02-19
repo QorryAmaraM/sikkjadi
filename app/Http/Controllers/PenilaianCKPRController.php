@@ -60,16 +60,16 @@ class PenilaianCKPRController extends Controller
                 return view('pages.admin.penilaianckpr.create_index', compact(['user', 'ckpr']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.penilaianckpr.create_index', compact(['user']));
+                return view('pages.users.kepalabps.penilaianckpr.create_index', compact(['user', 'ckpr']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.penilaianckpr.create_index', compact(['user']));
+                return view('pages.users.kepalabu.penilaianckpr.create_index', compact(['user', 'ckpr']));
                 break;
             case '4':
-                return view('pages.users.kf.penilaianckpr.create_index', compact(['user']));
+                return view('pages.users.kf.penilaianckpr.create_index', compact(['user', 'ckpr']));
                 break;
             case '5':
-                return view('pages.users.staf.penilaianckpr.create_index', compact(['user']));
+                return view('pages.users.staf.penilaianckpr.create_index', compact(['user', 'ckpr']));
                 break;
         }
     }

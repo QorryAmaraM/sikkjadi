@@ -21,16 +21,16 @@ class MonitoringPresensiController extends Controller
                 return view('pages.admin.monitoringpre.index', compact(['monitoringpresensi','user']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.monitoringpre.index', compact(['monitoringpresensi']));
+                return view('pages.users.kepalabps.monitoringpre.index', compact(['monitoringpresensi','user']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.monitoringpre.index', compact(['monitoringpresensi']));
+                return view('pages.users.kepalabu.monitoringpre.index', compact(['monitoringpresensi','user']));
                 break;
             case '4':
-                return view('pages.users.kf.monitoringpre.index', compact(['monitoringpresensi']));
+                return view('pages.users.kf.monitoringpre.index', compact(['monitoringpresensi','user']));
                 break;
             case '5':
-                return view('pages.users.staf.monitoringpre.index', compact(['monitoringpresensi']));
+                return view('pages.users.staf.monitoringpre.index', compact(['monitoringpresensi','user']));
                 break;
         }
     }
