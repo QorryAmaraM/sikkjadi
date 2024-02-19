@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <a href="/kf-masterutaiankegiatan/uraiankegiatanrole/create" type="button" class="btn add-button">+ Tambah</a>
+                <a href="/kf-masteruraiankegiatan/uraiankegiatan/create" type="button" class="btn add-button">+ Tambah</a>
             </div>
         </div>
 

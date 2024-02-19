@@ -52,10 +52,8 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="kegiatan">Uraian Kegiatan</label>
-                        <input type="kegiatan" class="form-control" value="{{ $result->uraian_kegiatan }}" disabled>
-                        
+                        <input type="kegiatan" class="form-control" value="{{ $result->uraian_kegiatan }}" disabled>                        
                     </div>
-
                     <div class="form-group">
                         <label for="kodebutir">Kode Butir</label>
                         <input type="kegiatan" class="form-control" value="{{ $result->kode_butir }}" disabled>

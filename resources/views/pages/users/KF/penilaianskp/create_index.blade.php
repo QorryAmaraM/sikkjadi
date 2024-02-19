@@ -10,41 +10,6 @@
         </div>
 
         <!-- Content Row -->
-        <div class="row mb-8">
-            <div class="col-sm-6">
-                <div class="search form-group d-flex align-items-center">
-                    <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Nama</label>
-                    <select name="search" id="search" class="form-control">
-                        <option value="">Pilih Pegawai</option>
-                        @php
-                            $namaArray = [];
-                        @endphp
-                        @foreach ($result as $nilaiskp)
-                            @php
-                                $userId = $nilaiskp->user_id;
-                                $nama = '';
-                            @endphp
-                            @foreach ($user as $users)
-                                @if ($userId == $users->id)
-                                    @php
-                                        $nama = $users->nama;
-                                    @endphp
-                                    @if (!in_array($nama, $namaArray))
-                                        <option value="{{ $userId }}">
-                                            {{ $nama }}
-                                        </option>
-                                        @php
-                                            $namaArray[] = $nama;
-                                        @endphp
-                                    @endif
-                                @endif
-                            @endforeach
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-        </div>
-
 
         <div class="row">
             <div class="col-sm-6">
@@ -96,7 +61,7 @@
                                     <td>{{ $rencana->kuantitas_satuan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabps.kuantitas.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
+                                            <a href="{{ route('kf.kuantitas.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
                                         </button>
                                     </td>
                                 </tr>
@@ -110,7 +75,7 @@
                                     <td>{{ $rencana->kualitas_satuan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabps.kualitas.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
+                                            <a href="{{ route('kf.kualitas.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
                                         </button>
                                     </td>
                                 </tr>
@@ -124,7 +89,7 @@
                                     <td>{{ $rencana->waktu_satuan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabps.waktu.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
+                                            <a href="{{ route('kf.waktu.create', ['id' => $rencana->id]) }}" type="button" class="btn add-button">+ Nilai</a>
                                         </button>
                                     </td>
                                 </tr>

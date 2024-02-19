@@ -449,12 +449,12 @@ Route::middleware(['checkRole:4'])->group(function () {
 
     //List Uraian Kredit
     Route::get('/kf-masteruraiankegiatan/uraiankegiatan', [ListUraianKegiatanController::class, 'index'])->name('kf_uraiankegiatan');
-    Route::get('/kf-masterutaiankegiatan/uraiankegiatan/search', [ListUraianKegiatanController::class, 'search']);
-    Route::get('/kf-masterutaiankegiatan/uraiankegiatan/create', [ListUraianKegiatanController::class, 'create']);
-    Route::post('/kf-masterutaiankegiatan/uraiankegiatan/store', [ListUraianKegiatanController::class, 'store']);
-    Route::get('/kf-masterutaiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit'])->name('kf.listuraiankredit.edit');
-    Route::put('/kf-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'update']);
-    Route::get('/kf-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'destroy'])->name('kf.listuraiankredit.delete');
+    Route::get('/kf-masteruraiankegiatan/uraiankegiatan/search', [ListUraianKegiatanController::class, 'search']);
+    Route::get('/kf-masteruraiankegiatan/uraiankegiatan/create', [ListUraianKegiatanController::class, 'create']);
+    Route::post('/kf-masteruraiankegiatan/uraiankegiatan/store', [ListUraianKegiatanController::class, 'store']);
+    Route::get('/kf-masteruraiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit'])->name('kf.listuraiankredit.edit');
+    Route::put('/kf-masteruraiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'update']);
+    Route::get('/kf-masteruraiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'destroy'])->name('kf.listuraiankredit.delete');
 
     //CKP-T
     Route::get('/kf-ckp/ckpt', [CKPTController::class, 'index'])->name('kf_ckpt');

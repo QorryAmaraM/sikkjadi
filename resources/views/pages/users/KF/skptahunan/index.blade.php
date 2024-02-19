@@ -14,38 +14,6 @@
         <!-- Content Row -->
         <div class="row mb-8">
             <div class="col-sm-6">
-                <div class="search form-group d-flex align-items-center">
-                    <label for="searchSelect" class="mb-0 mr-4">Pegawai</label>
-                    <select name="searchpegawai" id="searchpegawai" class="form-control">
-                        <option value="">Pilih Pegawai</option>
-                        @php
-                            $namaArray = [];
-                        @endphp
-                        @foreach ($skptahunanrole as $skp)
-                            @php
-                                $userId = $skp->user_id;
-                                $nama = '';
-                            @endphp
-                            @foreach ($user as $users)
-                                @if ($userId == $users->id)
-                                    @php
-                                        $nama = $users->nama;
-                                    @endphp
-                                    @if (!in_array($nama, $namaArray))
-                                        <option value="{{ $userId }}">
-                                            {{ $nama }}
-                                        </option>
-                                        @php
-                                            $namaArray[] = $nama;
-                                        @endphp
-                                    @endif
-                                @endif
-                            @endforeach
-                        @endforeach
-                    </select>
-                </div>
-
-
             </div>
         </div>
 
@@ -82,9 +50,7 @@
                         </thead>
 
                         <tbody class="alldata">
-
                             @forelse ($skptahunanrole as $skp)
-                                @if ($skp->user_id == $userId)
                                     <tr>
                                         <td class="searchable tahun">{{ $skp->tahun }}</td>
                                         <td class="searchable">{{ $skp->periode }}</td>
@@ -103,17 +69,12 @@
                                             </button>
                                         </td>
                                     </tr>
-                                @endif
                             @empty
                                 <td colspan="6" class="text-center">Empty Data</td>
                             @endforelse
-
                         </tbody>
-
                         <tbody id="Content" class="searchdata"></tbody>
-
                     </table>
-
                 </div>
                 <div class="d-flex justify-content-center">
                     {{ $skptahunanrole->links('vendor.pagination.bootstrap-4') }}

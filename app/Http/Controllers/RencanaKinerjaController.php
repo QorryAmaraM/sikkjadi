@@ -68,7 +68,7 @@ class REncanaKinerjaController extends Controller
                 return view('pages.users.kepalabu.skptahunan.create_index', compact(['skptahunan', 'user']));
                 break;
             case '4':
-                return view('pages.users.kf.skptahunan.create_index', compact(['skptahunan', 'user']));
+                return view('pages.users.kf.rencanakinerja.create_index', compact(['skptahunan', 'user']));
                 break;
             case '5':
                 return view('pages.users.staf.skptahunan.create_index', compact(['skptahunan', 'user']));
