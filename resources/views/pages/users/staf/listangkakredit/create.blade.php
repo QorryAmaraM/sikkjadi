@@ -1,4 +1,4 @@
-         @extends('layouts.staff')
+@extends('layouts.staf')
 
          @section('content')
             <!-- Begin Page Content -->

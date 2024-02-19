@@ -1,225 +1,441 @@
 @extends('layouts.staf')
 
 @section('content')
-   <!-- Begin Page Content -->
-   <div class="container-fluid">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
-      <!-- Page Heading -->
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-         <h1 class="h3 mb-0 text-black-800">Penilaian SKP</h1>
-      </div>
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-black-800">Penilaian SKP</h1>
+        </div>
 
-      <!-- Content Row -->
+        <!-- Content Row -->
 
-      <form>
-         <div class="row mb-8">
-            <div class="col-sm-7">
-               <div class="form-group d-flex align-items-center">
-                  <label for="nama" class="col-sm-2 pl-0 col-form-label">Nama</label>
-                  <input type="nama" class="form-control col-sm-10" id="nama" placeholder="Lorem Ipsum">
-               </div>
-               <div class="form-group d-flex align-items-center">
-                  <label for="nip" class="col-sm-2 pl-0 col-form-label">NIP</label>
-                  <input type="nip" class="form-control col-sm-10" id="nip" placeholder="12345">
-               </div>
-               <div class="form-group d-flex align-items-center">
-                  <label for="pangkat" class="col-sm-2 pl-0 col-form-label">Pangkat</label>
-                  <input type="pangkat" class="form-control col-sm-10" id="pangkat" placeholder="Pembina Tingkat">
-               </div>
-               <div class="form-group d-flex align-items-center">
-                  <label for="jabatan" class="col-sm-2 pl-0 col-form-label">Jabatan</label>
-                  <input type="jabatan" class="form-control col-sm-10" id="jabatan" placeholder="Kepala">
-               </div>
-               <div class="form-group d-flex align-items-center">
-                  <label for="unitkerja" class="col-sm-2 pl-0 col-form-label">Unit Kerja</label>
-                  <input type="unitkerja" class="form-control col-sm-10" id="unitkerja" placeholder="Pusat Pendidikan dan Pelatihan">
-               </div>
-               <div class="form-group d-flex align-items-center">
-                  <label for="kinerja" class="col-sm-2 pl-0 col-form-label">Kinerja</label>
-                  <div class="form-check form-check-inline">
-                     <input class="form-check-input" type="checkbox" id="kjutama" value="option1">
-                     <label class="form-check-label" for="inlineCheckbox1">Utama</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                     <input class="form-check-input" type="checkbox" id="kjtambahan" value="option2">
-                     <label class="form-check-label" for="inlineCheckbox2">Tambahan</label>
-                  </div>
-               </div>
+        <form>
+            <div class="row mb-8">
+                <div class="col-sm-7">
+
+                    <div class="search form-group d-flex align-items-center">
+                        <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Nama</label>
+                        <select name="search" id="search" class="form-control">
+                            <option value="">Pilih Pegawai</option>
+                            @php
+                                $namaArray = [];
+                            @endphp
+                            @foreach ($result as $penilaian_skp)
+                                @php
+                                    $userId = $penilaian_skp->user_id;
+                                    $nama = '';
+                                @endphp
+                                @foreach ($user as $users)
+                                    @if ($userId == $users->id)
+                                        @php
+                                            $nama = $users->nama;
+                                        @endphp
+                                        @if (!in_array($nama, $namaArray))
+                                            <option value="{{ $userId }}">
+                                                {{ $nama }}
+                                            </option>
+                                            @php
+                                                $namaArray[] = $nama;
+                                            @endphp
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group d-flex align-items-center">
+                        <label for="unitkerja" class="col-sm-2 pl-0 col-form-label">Unit Kerja</label>
+                        <input class="form-control col-sm-10" name="unitkerja" id="unitkerja" placeholder="Unit Kerja">
+                    </div>
+
+                    <div class="search form-group d-flex align-items-center">
+                        <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Kinerja</label>
+                        <select name="kinerja" id="kinerja" class="form-control">
+                            <option value="">Kinerja</option>
+                            <option value="utama">Utama</option>
+                            <option value="tambahan">Tambahan</option>
+                        </select>
+                    </div>
+
+                </div>
             </div>
-         </div>
-      </form>
-      
-      <div class="row">
-         <div class="col-sm-6">
-            <div class="inner-form">
-               <div class="input-form">
-                  <input id="search" type="text" placeholder="Pencarian"/>
-                     <div class="input-form-append align-items-center">
-                        <i class="fas fa-search"></i>
-                     </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-sm-6 d-flex justify-content-end align-items-center">
-            <button type="button" class="btn salin-button mr-2">Salin Rencana Kinerja</button>
-            <a href="/staf-perencanaanlerja/penilaianskp/create" type="button" class="btn add-button">+ Tambah</a>
-         </div>
-      </div>
+        </form>
 
-      <div class="row">
-         <div class="col-sm-12" style="margin-top: -25px">
-            <div class="table-responsive">
-               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-               <thead>
-                     <tr>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Jenis</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aspek</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">IKI</th>
-                        <th colspan="2" style="padding:0.2rem; border-bottom: none">Target</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Satuan</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Realisasi</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kondisi</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian Rencana</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
-                        <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi</th>
-                     </tr>
-                     <tr>
-                        <th style="border-top: none">Min</th>
-                        <th style="border-top: none">Max</th>
-                     </tr>
-                </thead>
-                  <tbody>
-                     @foreach ($penilaianskp as $skp)
-                        <tr>
-                           <td>{{ $skp->jenis }}</td>
-                           <td>{{ $skp->rencana_kinerja_atasan }}</td>
-                           <td>{{ $skp->rencana_kinerja }}</td>
-                           <td>{{ $skp->aspek }}</td>
-                           <td>{{ $skp->iki }}</td>
-                           <td>{{ $skp->target_min }}</td>
-                           <td>{{ $skp->target_max }}</td>
-                           <td>{{ $skp->satuan }}</td>
-                           <td>{{ $skp->realisasi }}</td>
-                           <td>{{ $skp->kondisi }}</td>
-                           <td>{{ $skp->capaian_iki }}</td>
-                           <td>{{ $skp->kategori_capaian_iki }}</td>
-                           <td>{{ $skp->nilai_capaian_rencana }}</td>
-                           <td>{{ $skp->kategori_capaian_rencana }}</td>
-                           <td>{{ $skp->nilai_tertimbang }}</td>
-                           <td>
-                              <button class="btn btn-icon btn-edit btn-sm">
-                                 <a href="/staf-perencanaanlerja/penilaianskp/{{ $skp->id }}/edit" class="action-link"><i class="fas fa-edit"></i>
-                              </button>
-                           </td>                                 
-                           <td>                                    
-                              <form action="/staf-perencanaanlerja/penilaianskp/{{ $skp->id }}" method="POST" class="delete-form">
-                                 @csrf
-                                 @method('delete')
-                                 <button class="btn btn-icon btn-delete btn-sm"><i class="fas fa-trash-can"></i></button>
-                              </form>
-                           </td>
-                        </tr>
-                         
-                     @endforeach
-                  </tbody>
-                  <tbody>
-                     <tr>
-                        <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja Utama</td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
-                     </tr>
-                  </tbody>
-                  <tbody>
-                     @foreach ($penilaianskp as $skp)
-                     
-                     <tr>
-                        <td>{{ $skp->nilai_kinerja_utama }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                           <button class="btn btn-icon btn-edit btn-sm">
-                              <i class="fas fa-edit"></i>
-                           </button>
-                           <button class="btn btn-icon btn-delete btn-sm">
-                              <i class="fas fa-trash-can"></i>
-                           </button>
-                        </td>
-                     </tr>
-                     @endforeach
-                  </tbody>
+        <div class="row">
+            <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
+                <a href="/staf-perencanaankerja/penilaianskp/create/index" type="button" class="btn add-button">+Tambah</a>
 
-                  <tbody>
-                     <tr>
-                        <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja Tambahan</td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
-                     </tr>
-                     <tr>
-                        <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai SKP</td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5"></td>
-                        <td style="background-color: #9ba4b5; color: #000; font-weight: bold;"></td>
-                     </tr>
-                  </tbody>
-               </table>
+                <button class="btn btn-icon btn-print btn-sm" data-toggle="modal" data-target="#printModal">
+                    <i class="fas fa-print"></i>
+                </button>
+
             </div>
-         </div>
-      </div>
-   </div>
-   <!-- /.container-fluid -->
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="table-responsive">
+                    <div style="overflow-x: auto;">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="min-width: 1500px;">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Jenis</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan
+                                    </th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aspek</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">IKI</th>
+                                    <th colspan="2" style="padding:0.2rem; border-bottom: none">Target</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Satuan</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Realisasi</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kondisi</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI
+                                    </th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian Rencana</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana
+                                    </th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aksi</th>
+                                </tr>
+                                <tr>
+                                    <th style="border-top: none">Min</th>
+                                    <th style="border-top: none">Max</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tabel_utama">
+                                @forelse ($result as $skp)
+                                    @if ($skp->kinerja == 'utama')
+                                        <tr>
+                                            <td rowspan="3">{{ $skp->kinerja }}</td>
+                                            <td rowspan="3">{{ $skp->rencana_kinerja_atasan }}</td>
+                                            <td rowspan="3">{{ $skp->rencana_kinerja }}</td>
+
+                                            <td>Kuantitas</td>
+                                            <td>{{ $skp->kuantitas_iki }}</td>
+                                            <td>{{ $skp->kuantitas_target_min }}</td>
+                                            <td>{{ $skp->kuantitas_target_max }}</td>
+                                            <td>{{ $skp->kuantitas_satuan }}</td>
+                                            <td>{{ $skp->kuantitas_realisasi }}</td>
+                                            <td>{{ $skp->kuantitas_kondisi }}</td>
+                                            <td>{{ $skp->kuantitas_capaian_iki }}</td>
+                                            <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
+
+                                            <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
+                                            <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
+                                            <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
+                                            <td rowspan="3">
+                                                <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('staf.penilaianskp.delete', ['id' => $skp->id]) }}">
+                                                    <i class="fas fa-trash-can"></i>
+                                                </button>
+                                            </td>
+                                        <tr>
+                                            <td>Kualitas</td>
+                                            <td>{{ $skp->kualitas_iki }}</td>
+                                            <td>{{ $skp->kualitas_target_min }}</td>
+                                            <td>{{ $skp->kualitas_target_max }}</td>
+                                            <td>{{ $skp->kualitas_satuan }}</td>
+                                            <td>{{ $skp->kualitas_realisasi }}</td>
+                                            <td>{{ $skp->kualitas_kondisi }}</td>
+                                            <td>{{ $skp->kualitas_capaian_iki }}</td>
+                                            <td>{{ $skp->kualitas_kategori_capaian_iki }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Waktu</td>
+                                            <td>{{ $skp->waktu_iki }}</td>
+                                            <td>{{ $skp->waktu_target_min }}</td>
+                                            <td>{{ $skp->waktu_target_max }}</td>
+                                            <td>{{ $skp->waktu_satuan }}</td>
+                                            <td>{{ $skp->waktu_realisasi }}</td>
+                                            <td>{{ $skp->waktu_kondisi }}</td>
+                                            <td>{{ $skp->waktu_capaian_iki }}</td>
+                                            <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
+
+                                        </tr>
+
+                                    @endif
+                                @empty
+                                    <td colspan="16" class="text-center">Empty Data</td>
+                                @endforelse
+                            </tbody>
+
+                            <tbody id="Utama" class="searchdata"></tbody>
+
+                            <tbody class="tabel_utama">
+                                <tr>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja
+                                        Utama
+                                    </td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">
+                                        {{ $nilai_kinerja_utama }}</td>
+                                </tr>
+                            </tbody>
+
+                            <tbody class="tabel_tambahan">
+                                @forelse ($result as $skp)
+                                    @if ($skp->kinerja == 'tambahan')
+                                        <tr>
+                                            <td rowspan="3">{{ $skp->kinerja }}</td>
+                                            <td rowspan="3">{{ $skp->rencana_kinerja_atasan }}</td>
+                                            <td rowspan="3">{{ $skp->rencana_kinerja }}</td>
+
+                                            <td>Kuantitas</td>
+                                            <td>{{ $skp->kuantitas_iki }}</td>
+                                            <td>{{ $skp->kuantitas_target_min }}</td>
+                                            <td>{{ $skp->kuantitas_target_max }}</td>
+                                            <td>{{ $skp->kuantitas_satuan }}</td>
+                                            <td>{{ $skp->kuantitas_realisasi }}</td>
+                                            <td>{{ $skp->kuantitas_kondisi }}</td>
+                                            <td>{{ $skp->kuantitas_capaian_iki }}</td>
+                                            <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
+
+                                            <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
+                                            <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
+                                            <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
+                                            <td rowspan="3">
+                                                <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('staf.penilaianskp.delete', ['id' => $skp->id]) }}">
+                                                    <i class="fas fa-trash-can"></i>
+                                                </button>
+                                            </td>
+                                        <tr>
+                                            <td>Kualitas</td>
+                                            <td>{{ $skp->kualitas_iki }}</td>
+                                            <td>{{ $skp->kualitas_target_min }}</td>
+                                            <td>{{ $skp->kualitas_target_max }}</td>
+                                            <td>{{ $skp->kualitas_satuan }}</td>
+                                            <td>{{ $skp->kualitas_realisasi }}</td>
+                                            <td>{{ $skp->kualitas_kondisi }}</td>
+                                            <td>{{ $skp->kualitas_capaian_iki }}</td>
+                                            <td>{{ $skp->kualitas_kategori_capaian_iki }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Waktu</td>
+                                            <td>{{ $skp->waktu_iki }}</td>
+                                            <td>{{ $skp->waktu_target_min }}</td>
+                                            <td>{{ $skp->waktu_target_max }}</td>
+                                            <td>{{ $skp->waktu_satuan }}</td>
+                                            <td>{{ $skp->waktu_realisasi }}</td>
+                                            <td>{{ $skp->waktu_kondisi }}</td>
+                                            <td>{{ $skp->waktu_capaian_iki }}</td>
+                                            <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
+                                        </tr>
+                                    @endif
+                                @empty
+                                    <td colspan="16" class="text-center">Empty Data</td>
+                                @endforelse
+                            </tbody>
+
+                            <tbody id="Tambahan" class="searchdata"></tbody>
+
+                            <tbody class="tabel_tambahan">
+                                <tr>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai Kerja
+                                        Tambahan
+                                    </td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">
+                                        {{ $nilai_kinerja_tambahan }}</td>
+                                </tr>
+                            </tbody>
+
+                            <tbody>
+                                <tr>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">Nilai SKP</td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5"></td>
+                                    <td style="background-color: #9ba4b5; color: #000; font-weight: bold;">
+                                        {{ $nilai_skp }}</td>
+                                </tr>
+
+                            </tbody>
+
+                            <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="printModalLabel">Cetak Penilaian SKP
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+
+                                            <!-- Form input data -->
+                                            <form action="/staf-perencanaankerja/penilaianskp/print">
+                                                <div class="form-group">
+                                                    <label for="inputTahun">Tahun</label>
+                                                    <input type="text" class="form-control" name="input_tahun" id="input_tahun" placeholder="Masukkan Tahun SKP">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" name="submit" value="Save" class="btn btn-primary">Cetak</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </table>
+
+                        <div class="d-flex justify-content-center">
+                    {{ $result->links('vendor.pagination.bootstrap-4') }}
+            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <script>
+        var savedValue = "";
+        var savedUnitkerjaValue = "";
+        var savedJenisValue = "";
+        var savedKinerjaValue = "";
+
+        $('#search').on('input', function() {
+            savedValue = $(this).val();
+
+            if (savedValue) {
+                $('.tabel_utama').hide();
+                $('.tabel_tambahan').hide();
+                $('.searchdata').show();
+            } else {
+                $('.tabel_utama').show();
+                $('.tabel_tambahan').show();
+                $('.searchdata').hide();
+            }
+
+            handleSearch(savedValue, savedUnitkerjaValue, savedKinerjaValue);
+        });
+
+        $('#unitkerja').on('input', function() {
+            savedUnitkerjaValue = $(this).val();
+
+            if (savedUnitkerjaValue) {
+                $('.tabel_utama').hide();
+                $('.tabel_tambahan').hide();
+                $('.searchdata').show();
+            } else {
+                $('.tabel_utama').show();
+                $('.tabel_tambahan').show();
+                $('.searchdata').hide();
+            }
+
+            handleSearch(savedValue, savedUnitkerjaValue, savedKinerjaValue);
+        });
+
+        $('#kinerja').on('input', function() {
+            savedKinerjaValue = $(this).val();
+
+            if (savedKinerjaValue == 'utama') {
+                $('.tabel_utama').show();
+                $('.tabel_tambahan').hide();
+            } else if (savedKinerjaValue == 'tambahan') {
+                $('.tabel_utama').hide();
+                $('.tabel_tambahan').show();
+            } else {
+                $('.tabel_utama').show();
+                $('.tabel_tambahan').show();
+
+            }
+
+            handleSearch(savedValue, savedUnitkerjaValue, savedKinerjaValue);
+        });
+
+        function handleSearch(value, unitkerjavalue, kinerjavalue) {
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('/staf-perencanaankerja/penilaianskp/search') }}',
+                data: {
+                    'search': value,
+                    'unitkerja': unitkerjavalue,
+                    'kinerja': kinerjavalue
+                },
+                success: function(data) {
+                    console.log(data);
+                    $('#Utama').html(data);
+                }
+            });
+        }
+
+        $(function() {
+            $('#successModal').on('show.bs.modal', function() {
+                var successModal = $(this);
+                clearTimeout(successModal.data('hideInterval'));
+                successModal.data('hideInterval', setTimeout(function() {
+                    successModal.modal('hide');
+                }, 5000));
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            // Event delegation untuk tombol hapus
+            $(document).on('click', '.btn-delete', function() {
+                var deleteUrl = $(this).data('delete-url');
+
+                Swal.fire({
+                    title: "Anda Yakin?",
+                    text: "Anda tidak akan dapat mengembalikannya!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, Hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = deleteUrl; // Redirect ke URL penghapusan
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
+
+{{-- utama<tr> --}}
