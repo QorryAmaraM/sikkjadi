@@ -44,8 +44,8 @@
                         @endforeach
                     </select>
                 </div>
-                                
-                
+
+
             </div>
         </div>
 
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-            </div>           
+            </div>
 
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
                 <a href="{{ url('/kepalabps-perencanaankerja/spktahunan/create') }}" type="button" class="btn add-button">+ Tambah</a>
@@ -84,24 +84,26 @@
                         <tbody class="alldata">
 
                             @forelse ($skptahunan as $skp)
-                                <tr>
-                                    <td class="searchable tahun">{{ $skp->tahun }}</td>
-                                    <td class="searchable">{{ $skp->periode }}</td>
-                                    <td class="searchable">{{ $skp->wilayah }}</td>
-                                    <td class="searchable">{{ $skp->unit_kerja }}</td>
-                                    <td class="searchable">{{ $skp->jabatan }}</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabps.spktahunan.edit', ['id' => $skp->id]) }}" class="action-link">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
+                                @if ($skp->user_id == $userId)
+                                    <tr>
+                                        <td class="searchable tahun">{{ $skp->tahun }}</td>
+                                        <td class="searchable">{{ $skp->periode }}</td>
+                                        <td class="searchable">{{ $skp->wilayah }}</td>
+                                        <td class="searchable">{{ $skp->unit_kerja }}</td>
+                                        <td class="searchable">{{ $skp->jabatan }}</td>
+                                        <td>
+                                            <button class="btn btn-icon btn-edit btn-sm">
+                                                <a href="{{ route('kepalabps.spktahunan.edit', ['id' => $skp->id]) }}" class="action-link">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
 
-                                        </button>|
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.spktahunan.delete', ['id' => $skp->id]) }}">
-                                            <i class="fas fa-trash-can"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                            </button>|
+                                            <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.spktahunan.delete', ['id' => $skp->id]) }}">
+                                                <i class="fas fa-trash-can"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endif
                             @empty
                                 <td colspan="6" class="text-center">Empty Data</td>
                             @endforelse

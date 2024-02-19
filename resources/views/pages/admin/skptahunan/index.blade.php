@@ -82,7 +82,6 @@
                         </thead>
 
                         <tbody class="alldata">
-
                             @forelse ($skptahunan as $skp)
                                 <tr>
                                     <td class="searchable tahun">{{ $skp->tahun }}</td>
