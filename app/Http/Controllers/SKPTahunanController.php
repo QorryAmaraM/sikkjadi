@@ -63,7 +63,7 @@ class SKPTahunanController extends Controller
     public function store(Request $request)
     {
         $userid = Auth::user()->role_id;
-        dd($request->except(['_token', 'submit']));
+        // dd($request->except(['_token', 'submit']));
         skp_tahunan::create($request->except(['_token', 'submit']));
         switch ($userid) {
             case '1':

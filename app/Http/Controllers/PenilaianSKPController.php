@@ -24,9 +24,12 @@ class PenilaianSKPController extends Controller
         $userid = Auth::user()->id;
         $user = user::all();
         $result = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
+            ->join('users', 'penilai_user_id', '=', 'users.id')
             ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
-            ->select('skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
+            ->select('users.*','skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
             ->paginate(3);
+
+            // dd($result);
 
 
         foreach ($result as $penilaian) {
@@ -128,7 +131,7 @@ class PenilaianSKPController extends Controller
                 return view('pages.admin.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
             case '2':
-                return view('pages.users.kepalabps.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
+                return view('pages.users.kepalabps.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp','userid']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));

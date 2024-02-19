@@ -15,36 +15,7 @@
             <div class="row mb-8">
                 <div class="col-sm-7">
 
-                    <div class="search form-group d-flex align-items-center">
-                        <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Nama</label>
-                        <select name="search" id="search" class="form-control">
-                            <option value="">Pilih Pegawai</option>
-                            @php
-                                $namaArray = [];
-                            @endphp
-                            @foreach ($result as $penilaian_skp)
-                                @php
-                                    $userId = $penilaian_skp->user_id;
-                                    $nama = '';
-                                @endphp
-                                @foreach ($user as $users)
-                                    @if ($userId == $users->id)
-                                        @php
-                                            $nama = $users->nama;
-                                        @endphp
-                                        @if (!in_array($nama, $namaArray))
-                                            <option value="{{ $userId }}">
-                                                {{ $nama }}
-                                            </option>
-                                            @php
-                                                $namaArray[] = $nama;
-                                            @endphp
-                                        @endif
-                                    @endif
-                                @endforeach
-                            @endforeach
-                        </select>
-                    </div>
+                    
 
                     <div class="form-group d-flex align-items-center">
                         <label for="unitkerja" class="col-sm-2 pl-0 col-form-label">Unit Kerja</label>
@@ -108,54 +79,55 @@
                             </thead>
                             <tbody class="tabel_utama">
                                 @forelse ($result as $skp)
-                                    @if ($skp->kinerja == 'utama')
-                                        <tr>
-                                            <td rowspan="3">{{ $skp->kinerja }}</td>
-                                            <td rowspan="3">{{ $skp->rencana_kinerja_atasan }}</td>
-                                            <td rowspan="3">{{ $skp->rencana_kinerja }}</td>
+                                    @if ($skp->penilai_user_id == $userid)
+                                        @if ($skp->kinerja == 'utama')
+                                            <tr>
+                                                <td rowspan="3">{{ $skp->kinerja }}</td>
+                                                <td rowspan="3">{{ $skp->rencana_kinerja_atasan }}</td>
+                                                <td rowspan="3">{{ $skp->rencana_kinerja }}</td>
 
-                                            <td>Kuantitas</td>
-                                            <td>{{ $skp->kuantitas_iki }}</td>
-                                            <td>{{ $skp->kuantitas_target_min }}</td>
-                                            <td>{{ $skp->kuantitas_target_max }}</td>
-                                            <td>{{ $skp->kuantitas_satuan }}</td>
-                                            <td>{{ $skp->kuantitas_realisasi }}</td>
-                                            <td>{{ $skp->kuantitas_kondisi }}</td>
-                                            <td>{{ $skp->kuantitas_capaian_iki }}</td>
-                                            <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
+                                                <td>Kuantitas</td>
+                                                <td>{{ $skp->kuantitas_iki }}</td>
+                                                <td>{{ $skp->kuantitas_target_min }}</td>
+                                                <td>{{ $skp->kuantitas_target_max }}</td>
+                                                <td>{{ $skp->kuantitas_satuan }}</td>
+                                                <td>{{ $skp->kuantitas_realisasi }}</td>
+                                                <td>{{ $skp->kuantitas_kondisi }}</td>
+                                                <td>{{ $skp->kuantitas_capaian_iki }}</td>
+                                                <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
 
-                                            <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
-                                            <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
-                                            <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
-                                            <td rowspan="3">
-                                                <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.penilaianskp.delete', ['id' => $skp->id]) }}">
-                                                    <i class="fas fa-trash-can"></i>
-                                                </button>
-                                            </td>
-                                        <tr>
-                                            <td>Kualitas</td>
-                                            <td>{{ $skp->kualitas_iki }}</td>
-                                            <td>{{ $skp->kualitas_target_min }}</td>
-                                            <td>{{ $skp->kualitas_target_max }}</td>
-                                            <td>{{ $skp->kualitas_satuan }}</td>
-                                            <td>{{ $skp->kualitas_realisasi }}</td>
-                                            <td>{{ $skp->kualitas_kondisi }}</td>
-                                            <td>{{ $skp->kualitas_capaian_iki }}</td>
-                                            <td>{{ $skp->kualitas_kategori_capaian_iki }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Waktu</td>
-                                            <td>{{ $skp->waktu_iki }}</td>
-                                            <td>{{ $skp->waktu_target_min }}</td>
-                                            <td>{{ $skp->waktu_target_max }}</td>
-                                            <td>{{ $skp->waktu_satuan }}</td>
-                                            <td>{{ $skp->waktu_realisasi }}</td>
-                                            <td>{{ $skp->waktu_kondisi }}</td>
-                                            <td>{{ $skp->waktu_capaian_iki }}</td>
-                                            <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
+                                                <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
+                                                <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
+                                                <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
+                                                <td rowspan="3">
+                                                    <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.penilaianskp.delete', ['id' => $skp->id]) }}">
+                                                        <i class="fas fa-trash-can"></i>
+                                                    </button>
+                                                </td>
+                                            <tr>
+                                                <td>Kualitas</td>
+                                                <td>{{ $skp->kualitas_iki }}</td>
+                                                <td>{{ $skp->kualitas_target_min }}</td>
+                                                <td>{{ $skp->kualitas_target_max }}</td>
+                                                <td>{{ $skp->kualitas_satuan }}</td>
+                                                <td>{{ $skp->kualitas_realisasi }}</td>
+                                                <td>{{ $skp->kualitas_kondisi }}</td>
+                                                <td>{{ $skp->kualitas_capaian_iki }}</td>
+                                                <td>{{ $skp->kualitas_kategori_capaian_iki }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Waktu</td>
+                                                <td>{{ $skp->waktu_iki }}</td>
+                                                <td>{{ $skp->waktu_target_min }}</td>
+                                                <td>{{ $skp->waktu_target_max }}</td>
+                                                <td>{{ $skp->waktu_satuan }}</td>
+                                                <td>{{ $skp->waktu_realisasi }}</td>
+                                                <td>{{ $skp->waktu_kondisi }}</td>
+                                                <td>{{ $skp->waktu_capaian_iki }}</td>
+                                                <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
 
-                                        </tr>
-
+                                            </tr>
+                                        @endif
                                     @endif
                                 @empty
                                     <td colspan="16" class="text-center">Empty Data</td>
@@ -190,52 +162,54 @@
 
                             <tbody class="tabel_tambahan">
                                 @forelse ($result as $skp)
-                                    @if ($skp->kinerja == 'tambahan')
-                                        <tr>
-                                            <td rowspan="3">{{ $skp->kinerja }}</td>
-                                            <td rowspan="3">{{ $skp->rencana_kinerja_atasan }}</td>
-                                            <td rowspan="3">{{ $skp->rencana_kinerja }}</td>
+                                    @if ($skp->penilai_user_id == $userid)
+                                        @if ($skp->kinerja == 'tambahan')
+                                            <tr>
+                                                <td rowspan="3">{{ $skp->kinerja }}</td>
+                                                <td rowspan="3">{{ $skp->rencana_kinerja_atasan }}</td>
+                                                <td rowspan="3">{{ $skp->rencana_kinerja }}</td>
 
-                                            <td>Kuantitas</td>
-                                            <td>{{ $skp->kuantitas_iki }}</td>
-                                            <td>{{ $skp->kuantitas_target_min }}</td>
-                                            <td>{{ $skp->kuantitas_target_max }}</td>
-                                            <td>{{ $skp->kuantitas_satuan }}</td>
-                                            <td>{{ $skp->kuantitas_realisasi }}</td>
-                                            <td>{{ $skp->kuantitas_kondisi }}</td>
-                                            <td>{{ $skp->kuantitas_capaian_iki }}</td>
-                                            <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
+                                                <td>Kuantitas</td>
+                                                <td>{{ $skp->kuantitas_iki }}</td>
+                                                <td>{{ $skp->kuantitas_target_min }}</td>
+                                                <td>{{ $skp->kuantitas_target_max }}</td>
+                                                <td>{{ $skp->kuantitas_satuan }}</td>
+                                                <td>{{ $skp->kuantitas_realisasi }}</td>
+                                                <td>{{ $skp->kuantitas_kondisi }}</td>
+                                                <td>{{ $skp->kuantitas_capaian_iki }}</td>
+                                                <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
 
-                                            <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
-                                            <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
-                                            <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
-                                            <td rowspan="3">
-                                                <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.penilaianskp.delete', ['id' => $skp->id]) }}">
-                                                    <i class="fas fa-trash-can"></i>
-                                                </button>
-                                            </td>
-                                        <tr>
-                                            <td>Kualitas</td>
-                                            <td>{{ $skp->kualitas_iki }}</td>
-                                            <td>{{ $skp->kualitas_target_min }}</td>
-                                            <td>{{ $skp->kualitas_target_max }}</td>
-                                            <td>{{ $skp->kualitas_satuan }}</td>
-                                            <td>{{ $skp->kualitas_realisasi }}</td>
-                                            <td>{{ $skp->kualitas_kondisi }}</td>
-                                            <td>{{ $skp->kualitas_capaian_iki }}</td>
-                                            <td>{{ $skp->kualitas_kategori_capaian_iki }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Waktu</td>
-                                            <td>{{ $skp->waktu_iki }}</td>
-                                            <td>{{ $skp->waktu_target_min }}</td>
-                                            <td>{{ $skp->waktu_target_max }}</td>
-                                            <td>{{ $skp->waktu_satuan }}</td>
-                                            <td>{{ $skp->waktu_realisasi }}</td>
-                                            <td>{{ $skp->waktu_kondisi }}</td>
-                                            <td>{{ $skp->waktu_capaian_iki }}</td>
-                                            <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
-                                        </tr>
+                                                <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
+                                                <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
+                                                <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
+                                                <td rowspan="3">
+                                                    <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.penilaianskp.delete', ['id' => $skp->id]) }}">
+                                                        <i class="fas fa-trash-can"></i>
+                                                    </button>
+                                                </td>
+                                            <tr>
+                                                <td>Kualitas</td>
+                                                <td>{{ $skp->kualitas_iki }}</td>
+                                                <td>{{ $skp->kualitas_target_min }}</td>
+                                                <td>{{ $skp->kualitas_target_max }}</td>
+                                                <td>{{ $skp->kualitas_satuan }}</td>
+                                                <td>{{ $skp->kualitas_realisasi }}</td>
+                                                <td>{{ $skp->kualitas_kondisi }}</td>
+                                                <td>{{ $skp->kualitas_capaian_iki }}</td>
+                                                <td>{{ $skp->kualitas_kategori_capaian_iki }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Waktu</td>
+                                                <td>{{ $skp->waktu_iki }}</td>
+                                                <td>{{ $skp->waktu_target_min }}</td>
+                                                <td>{{ $skp->waktu_target_max }}</td>
+                                                <td>{{ $skp->waktu_satuan }}</td>
+                                                <td>{{ $skp->waktu_realisasi }}</td>
+                                                <td>{{ $skp->waktu_kondisi }}</td>
+                                                <td>{{ $skp->waktu_capaian_iki }}</td>
+                                                <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
+                                            </tr>
+                                        @endif
                                     @endif
                                 @empty
                                     <td colspan="16" class="text-center">Empty Data</td>
@@ -323,8 +297,8 @@
                         </table>
 
                         <div class="d-flex justify-content-center">
-                    {{ $result->links('vendor.pagination.bootstrap-4') }}
-            </div>
+                            {{ $result->links('vendor.pagination.bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
             </div>

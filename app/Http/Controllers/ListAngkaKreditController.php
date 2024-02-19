@@ -13,16 +13,21 @@ class ListAngkaKreditController extends Controller
     //Read
     public function index(Request $request)
     {
-        $userid = Auth::user()->role_id;
+        $userid = Auth::user()->id;
 
-        $angkakredit = entri_angka_kredit::join('users', 'entri_angka_kredits.user_id', '=', 'users.id')->select('users.*', 'entri_angka_kredits.*')->paginate(5);
+        $angkakredit = entri_angka_kredit::join('users', 'entri_angka_kredits.user_id', '=', 'users.id')
+        ->select('users.*', 'entri_angka_kredits.*')
+        ->where('users.role_id', $userid)
+        ->paginate(5);
+        
+        // dd($angkakredit);
 
         switch ($userid) {
             case '1':
                 return view('pages.admin.listangkakredit.index', compact(['angkakredit']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.listangkakredit.index', compact(['angkakredit']));
+                return view('pages.users.kepalabps.listangkakredit.index', compact(['angkakredit', 'userid']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.listangkakredit.index', compact(['angkakredit']));

@@ -16,7 +16,6 @@
                     <div class="search form-group d-flex align-items-center">
                         <label for="searchSelect" class="col-sm-1 pl-0 col-form-label">Pegawai</label>
                         <select name="searchbox" id="searchbox" class="form-control">
-                            <option value="">Pilih Pegawai</option>
                             @php
                                 $namaArray = [];
                             @endphp
@@ -26,7 +25,7 @@
                                     $nama = '';
                                 @endphp
                                 @foreach ($user as $users)
-                                    @if ($userId == $users->id)
+                                    @if ($userid == $users->id)
                                         @php
                                             $nama = $users->nama;
                                         @endphp
@@ -78,8 +77,8 @@
                         </div>
                     </div>
                 </div>
-            </div>     
-            
+            </div>
+
             <div class="col-sm-6 d-flex justify-content-end align-items-center mb-2">
                 <a href="/kepalabps-perencanaankerja/rencanakinerja/create/index" type="button" class="btn add-button">+
                     Tambah</a>
@@ -110,66 +109,65 @@
                         </thead>
 
                         <tbody class="alldata">
-                            @forelse ($rencanakinerja as $rencana)
-                                <tr>
-                                    <td rowspan="3">{{ $rencana->kinerja }}</td>
-                                    <td rowspan="3">{{ $rencana->rencana_kinerja_atasan }}</td>
-                                    <td rowspan="3">{{ $rencana->rencana_kinerja }}</td>
+                            @forelse ($result as $rencana)
+                                @if ($rencana->user_id == $userid) 
+                                    <tr>
+                                        <td rowspan="3">{{ $rencana->kinerja }}</td>
+                                        <td rowspan="3">{{ $rencana->rencana_kinerja_atasan }}</td>
+                                        <td rowspan="3">{{ $rencana->rencana_kinerja }}</td>
 
-                                    <!-- Kuantitas -->
-                                    <td>Kuantitas</td>
-                                    <td>{{ $rencana->kuantitas_iki }}</td>
-                                    <td>{{ $rencana->kuantitas_target_min }}</td>
-                                    <td>{{ $rencana->kuantitas_target_max }}</td>
-                                    <td>{{ $rencana->kuantitas_satuan }}</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabps.kuantitas.edit', ['id' => $rencana->id]) }}"
-                                                class="action-link"><i class="fas fa-edit"></i></a>
-                                        </button>
-                                    </td>
+                                        <!-- Kuantitas -->
+                                        <td>Kuantitas</td>
+                                        <td>{{ $rencana->kuantitas_iki }}</td>
+                                        <td>{{ $rencana->kuantitas_target_min }}</td>
+                                        <td>{{ $rencana->kuantitas_target_max }}</td>
+                                        <td>{{ $rencana->kuantitas_satuan }}</td>
+                                        <td>
+                                            <button class="btn btn-icon btn-edit btn-sm">
+                                                <a href="{{ route('kepalabps.kuantitas.edit', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
+                                            </button>
+                                        </td>
 
-                                    <td rowspan="3">
-                                        <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabps.rencanakinerja.edit', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
-                                        </button>
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.rencanakinerja.delete', ['id' => $rencana->id]) }}">
-                                            <i class="fas fa-trash-can"></i></a>
-                                        </button>
-                                    </td>
+                                        <td rowspan="3">
+                                            <button class="btn btn-icon btn-edit btn-sm">
+                                                <a href="{{ route('kepalabps.rencanakinerja.edit', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
+                                            </button>
+                                            <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.rencanakinerja.delete', ['id' => $rencana->id]) }}">
+                                                <i class="fas fa-trash-can"></i></a>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- Kualitas -->
+                                        <td>Kualitas</td>
+                                        <td>{{ $rencana->kualitas_iki }}</td>
+                                        <td>{{ $rencana->kualitas_target_min }}</td>
+                                        <td>{{ $rencana->kualitas_target_max }}</td>
+                                        <td>{{ $rencana->kualitas_satuan }}</td>
+                                        <td>
+                                            <button class="btn btn-icon btn-edit btn-sm">
+                                                <a href="{{ route('kepalabps.kualitas.edit', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <!-- Waktu -->
+                                        <td>Waktu</td>
+                                        <td>{{ $rencana->waktu_iki }}</td>
+                                        <td>{{ $rencana->waktu_target_min }}</td>
+                                        <td>{{ $rencana->waktu_target_max }}</td>
+                                        <td>{{ $rencana->waktu_satuan }}</td>
+                                        <td>
+                                            <button class="btn btn-icon btn-edit btn-sm">
+                                                <a href="{{ route('kepalabps.waktu.edit', ['id' => $rencana->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endif
 
 
-                                </tr>
-
-                                <tr>
-                                    <!-- Kualitas -->
-                                    <td>Kualitas</td>
-                                    <td>{{ $rencana->kualitas_iki }}</td>
-                                    <td>{{ $rencana->kualitas_target_min }}</td>
-                                    <td>{{ $rencana->kualitas_target_max }}</td>
-                                    <td>{{ $rencana->kualitas_satuan }}</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabps.kualitas.edit', ['id' => $rencana->id]) }}"
-                                                class="action-link"><i class="fas fa-edit"></i></a>
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <!-- Waktu -->
-                                    <td>Waktu</td>
-                                    <td>{{ $rencana->waktu_iki }}</td>
-                                    <td>{{ $rencana->waktu_target_min }}</td>
-                                    <td>{{ $rencana->waktu_target_max }}</td>
-                                    <td>{{ $rencana->waktu_satuan }}</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabps.waktu.edit', ['id' => $rencana->id]) }}"
-                                                class="action-link"><i class="fas fa-edit"></i></a>
-                                        </button>
-                                    </td>
-                                </tr>
 
                             @empty
                                 <td colspan="10" class="text-center">Empty Data</td>
@@ -180,8 +178,8 @@
                     </table>
 
                     <div class="d-flex justify-content-center">
-                    {{ $rencanakinerja->links('vendor.pagination.bootstrap-4') }}
-            </div>
+                        {{ $rencanakinerja->links('vendor.pagination.bootstrap-4') }}
+                    </div>
                 </div>
             </div>
         </div>

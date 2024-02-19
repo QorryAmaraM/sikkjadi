@@ -39,26 +39,28 @@
                         </thead>
                         <tbody class="alldata">
                             @forelse ($angkakredit as $list)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $list->jenis_fungsional }}</td>
-                                    <td>{{ $list->nama }}</td>
-                                    <td>{{ $list->kode_butir }}</td>
-                                    <td>{{ $list->isi_butir }}</td>
-                                    <td>{{ $list->angka_kredit }}</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabps.listangkakredit.edit', ['id' => $list->id]) }}" class="action-link">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
+                                {{-- @if ($list->user_id == $userid)  --}}
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $list->jenis_fungsional }}</td>
+                                        <td>{{ $list->nama }}</td>
+                                        <td>{{ $list->kode_butir }}</td>
+                                        <td>{{ $list->isi_butir }}</td>
+                                        <td>{{ $list->angka_kredit }}</td>
+                                        <td>
+                                            <button class="btn btn-icon btn-edit btn-sm">
+                                                <a href="{{ route('kepalabps.listangkakredit.edit', ['id' => $list->id]) }}" class="action-link">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
 
-                                        </button>|
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.listangkakredit.delete', ['id' => $list->id]) }}">
-                                            <i class="fas fa-trash-can"></i>
-                                            </a>
-                                        </button>
-                                    </td>
-                                </tr>
+                                            </button>|
+                                            <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.listangkakredit.delete', ['id' => $list->id]) }}">
+                                                <i class="fas fa-trash-can"></i>
+                                                </a>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {{-- @endif --}}
                             @empty
                                 <td colspan="7" class="text-center">Empty Data</td>
                             @endforelse
@@ -77,7 +79,7 @@
 
     <script>
         var savedData = "";
-        
+
         $('#search').on('input', function() {
             savedData = $(this).val();
 

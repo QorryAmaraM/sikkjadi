@@ -15,9 +15,8 @@
         <div class="row mb-8">
             <div class="col-sm-6">
                 <div class="search form-group d-flex align-items-center">
-                    <label for="searchSelect" class="mb-0 mr-4">Pegawai</label>
-                    <select name="searchpegawai" id="searchpegawai" class="form-control">
-                        <option value="">Pilih Pegawai</option>
+                    <label for="searchSelect" class="mb-0 mr-4"></label>                    
+                        <option value=""></option>
                         @php
                             $namaArray = [];
                         @endphp
@@ -33,7 +32,6 @@
                                     @endphp
                                     @if (!in_array($nama, $namaArray))
                                         <option value="{{ $userId }}">
-                                            {{ $nama }}
                                         </option>
                                         @php
                                             $namaArray[] = $nama;
@@ -42,10 +40,8 @@
                                 @endif
                             @endforeach
                         @endforeach
-                    </select>
+                    
                 </div>
-
-
             </div>
         </div>
 
