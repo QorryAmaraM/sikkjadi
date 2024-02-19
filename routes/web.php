@@ -462,94 +462,122 @@ Route::middleware(['checkRole:4'])->group(function () {
 });
 
 Route::middleware(['checkRole:5'])->group(function () {
-    Route::get('/staff-dashboard', [DashboardController::class, 'dashboard'])->name('staf_dashboard');
+    Route::get('/staf-dashboard', [DashboardController::class, 'dashboard'])->name('staf_dashboard');
+    Route::get('/staf-profil', [DashboardController::class, 'profil']);
 
     //SKP Tahunan
     Route::get('/staf-perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('staf_skptahunan');
+    Route::get('/staf-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search']);
     Route::get('/staf-perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create']);
     Route::post('/staf-perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'store']);
-    Route::get('/staf-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit']);
+    Route::get('/staf-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit'])->name('staf.spktahunan.edit');
     Route::put('/staf-perencanaankerja/spktahunan/{id}', [SKPTahunanController::class, 'update']);
-    Route::delete('/staf-perencanaankerja/spktahunan/{id}', [SKPTahunanController::class, 'destroy']);
+    Route::get('/staf-perencanaankerja/spktahunan/{id}', [SKPTahunanController::class, 'destroy'])->name('staf.spktahunan.delete');
 
     //Rencana Kinerja
     Route::get('/staf-perencanaankerja/rencanakinerja', [RencanaKinerjaController::class, 'index'])->name('staf_rencanakinerja');
-    Route::get('/staf-perencanaankerja/rencanakinerja/create', [RencanaKinerjaController::class, 'create']);
+    Route::get('/staf-perencanaankerja/rencanakinerja/search', [RencanaKinerjaController::class, 'search']);
+    Route::get('/staf-perencanaankerja/rencanakinerja/create/index', [RencanaKinerjaController::class, 'create_index']);
+    Route::get('/staf-perencanaankerja/rencanakinerja/create/{id}', [RencanaKinerjaController::class, 'create']);
     Route::post('/staf-perencanaankerja/rencanakinerja/store', [RencanaKinerjaController::class, 'store']);
-    Route::get('/staf-perencanaankerja/rencanakinerja/{id}/edit', [RencanaKinerjaController::class, 'edit']);
+    Route::get('/staf-perencanaankerja/rencanakinerja/{id}/edit', [RencanaKinerjaController::class, 'edit'])->name('staf.rencanakinerja.edit');
+    Route::get('/staf-perencanaankerja/rencanakinerja/{id}/kuantitas-edit', [RencanaKinerjaController::class, 'edit_kuantitas'])->name('staf.kuantitas.edit');
+    Route::get('/staf-perencanaankerja/rencanakinerja/{id}/kualitas-edit', [RencanaKinerjaController::class, 'edit_kualitas'])->name('staf.kualitas.edit');
+    Route::get('/staf-perencanaankerja/rencanakinerja/{id}/waktu-edit', [RencanaKinerjaController::class, 'edit_waktu'])->name('staf.waktu.edit');
     Route::put('/staf-perencanaankerja/rencanakinerja/{id}', [RencanaKinerjaController::class, 'update']);
-    Route::delete('/staf-perencanaankerja/rencanakinerja/{id}', [RencanaKinerjaController::class, 'destroy']);
+    Route::get('/staf-perencanaankerja/rencanakinerja/{id}', [RencanaKinerjaController::class, 'destroy'])->name('staf.rencanakinerja.delete');
 
     //Penilaian SKP
     Route::get('/staf-perencanaankerja/penilaianskp', [PenilaianSKPController::class, 'index'])->name('staf_penilaianskp');
-    Route::get('/staf-perencanaankerja/penilaianskp/create', [PenilaianSKPController::class, 'create']);
+    Route::get('/staf-perencanaankerja/penilaianskp/print', [PenilaianSKPController::class, 'print']);
+    Route::get('/staf-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search']);
+    Route::get('/staf-perencanaankerja/penilaianskp/create/index', [PenilaianSKPController::class, 'create_index']);
+    Route::get('/staf-perencanaankerja/penilaianskp/create/search', [PenilaianSKPController::class, 'create_search']);
+    Route::get('/staf-perencanaankerja/penilaianskp/create/{id}/kuantitas', [PenilaianSKPController::class, 'create_kuantitas'])->name('staf.kuantitas.create');
+    Route::get('/staf-perencanaankerja/penilaianskp/create/{id}/kualitas', [PenilaianSKPController::class, 'create_kualitas'])->name('staf.kualitas.create');
+    Route::get('/staf-perencanaankerja/penilaianskp/create/{id}/waktu', [PenilaianSKPController::class, 'create_waktu'])->name('staf.waktu.create');
     Route::post('/staf-perencanaankerja/penilaianskp/store', [PenilaianSKPController::class, 'store']);
-    Route::get('/staf-perencanaankerja/penilaianskp/{id}/edit', [PenilaianSKPController::class, 'edit']);
+    Route::get('/staf-perencanaankerja/penilaianskp/{id}/edit', [PenilaianSKPController::class, 'edit'])->name('staf.penilaianskp.edit');
     Route::put('/staf-perencanaankerja/penilaianskp/{id}', [PenilaianSKPController::class, 'update']);
-    Route::delete('/staf-perencanaankerja/penilaianskp/{id}', [PenilaianSKPController::class, 'destroy']);
+    Route::get('/staf-perencanaankerja/penilaianskp/{id}', [PenilaianSKPController::class, 'destroy'])->name('staf.penilaianskp.delete');
 
     //List Angka Kredit
     Route::get('/staf-masterangkakredit/listangkakredit', [ListAngkaKreditController::class, 'index'])->name('staf_listangkakredit');
-    Route::get('/staf-masterangkakredit/listangkakredit/create', [ListAngkaKreditController::class, 'create']);
-    Route::post('/staf-masterangkakredit/listangkakredit/store', [ListAngkaKreditController::class, 'post']);
-    Route::get('/staf-masterangkakredit/listangkakredit/{id}/edit', [ListAngkaKreditController::class, 'edit']);
+    Route::get('/staf-masterangkakredit/listangkakredit/search', [ListAngkaKreditController::class, 'search']);
+    Route::get('/staf-masterangkakredit/listangkakredit/{id}/edit', [ListAngkaKreditController::class, 'edit'])->name('staf.listangkakredit.edit');
     Route::put('/staf-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'update']);
-    Route::delete('/staf-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy']);
+    Route::get('/staf-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy'])->name('staf.listangkakredit.delete');
 
     //Entri Angka Kredit
     Route::get('/staf-masterangkakredit/entriangkakredit', [EntriAngkaKreditController::class, 'index'])->name('staf_entriangkakredit');
-    Route::get('/staf-masterangkakredit/entriangkakredit/create', [EntriAngkaKreditController::class, 'create']);
     Route::post('/staf-masterangkakredit/entriangkakredit/store', [EntriAngkaKreditController::class, 'store']);
-    Route::get('/staf-masterangkakredit/entriangkakredit/{id}/edit', [EntriAngkaKreditController::class, 'edit']);
-    Route::put('/staf-masterangkakredit/entriangkakredit/{id}', [EntriAngkaKreditController::class, 'update']);
-    Route::delete('/staf-masterangkakredit/entriangkakredit/{id}', [EntriAngkaKreditController::class, 'destroy']);
 
     //List Uraian Kredit
     Route::get('/staf-masteruraiankegiatan/uraiankegiatan', [ListUraianKegiatanController::class, 'index'])->name('staf_uraiankegiatan');
+    Route::get('/staf-masterutaiankegiatan/uraiankegiatan/search', [ListUraianKegiatanController::class, 'search']);
     Route::get('/staf-masterutaiankegiatan/uraiankegiatan/create', [ListUraianKegiatanController::class, 'create']);
     Route::post('/staf-masterutaiankegiatan/uraiankegiatan/store', [ListUraianKegiatanController::class, 'store']);
-    Route::get('/staf-masterutaiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit']);
+    Route::get('/staf-masterutaiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit'])->name('staf.listuraiankredit.edit');
     Route::put('/staf-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'update']);
-    Route::delete('/staf-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'destroy']);
+    Route::get('/staf-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'destroy'])->name('staf.listuraiankredit.delete');
 
     //CKP-T
-    Route::get('/staf-ckp/ckpt', [CKPTController::class, 'depan'])->name('staf_ckpt');
-    Route::get('/staf-ckp/ckpt/{nama}/index', [CKPTController::class, 'index']);
+    Route::get('/staf-ckp/ckpt', [CKPTController::class, 'index'])->name('staf_ckpt');
+    Route::get('/staf-ckp/ckpt/print', [CKPTController::class, 'print']);
+    Route::get('/staf-ckp/ckpt/search', [CKPTController::class, 'search']);
     Route::get('/staf-ckp/ckpt/create', [CKPTController::class, 'create']);
     Route::post('/staf-ckp/ckpt/store', [CKPTController::class, 'store']);
-    Route::get('/staf-ckp/ckpt/{id}/edit', [CKPTController::class, 'edit']);
+    Route::get('/staf-ckp/ckpt/{id}/edit', [CKPTController::class, 'edit'])->name('staf.ckpt.edit');
     Route::put('/staf-ckp/ckpt/{id}', [CKPTController::class, 'update']);
-    Route::delete('/staf-ckp/ckpt/{id}', [CKPTController::class, 'destroy']);
+    Route::get('/staf-ckp/ckpt/{id}', [CKPTController::class, 'destroy'])->name('staf.ckpt.delete');
 
     //CKP-R
     Route::get('/staf-ckp/ckpr', [CKPRController::class, 'index'])->name('staf_ckpr');
-    Route::get('/staf-ckp/ckpr/create', [CKPRController::class, 'create']);
+    Route::get('/staf-ckp/ckpr/print', [CKPRController::class, 'print']);
+    Route::get('/staf-ckp/ckpr/search', [CKPRController::class, 'search']);
+    Route::get('/staf-ckp/ckpr/create/index', [CKPRController::class, 'create_index']);
+    Route::get('/staf-ckp/ckpr/create/search', [CKPRController::class, 'create_search']);
+    Route::get('/staf-ckp/ckpr/create/{id}', [CKPRController::class, 'create'])->name('staf.ckpr.create');
     Route::post('/staf-ckp/ckpr/store', [CKPRController::class, 'store']);
-    Route::get('/staf-ckp/ckpr/{id}/edit', [CKPRController::class, 'edit']);
+    Route::get('/staf-ckp/ckpr/{id}/edit', [CKPRController::class, 'edit'])->name('staf.ckpr.edit');
     Route::put('/staf-ckp/ckpr/{id}', [CKPRController::class, 'update']);
-    Route::delete('/staf-ckp/ckpr/{id}', [CKPRController::class, 'destroy']);
+    Route::get('/staf-ckp/ckpr/{id}', [CKPRController::class, 'destroy'])->name('staf.ckpr.delete');
 
     //Penilaian CKPR
     Route::get('/staf-ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('staf_penilaianckpr');
-    Route::get('/staf-ckp/penilaianckpr/create', [PenilaianCKPRController::class, 'create']);
+    Route::get('/staf-ckp/penilaianckpr/saerch', [PenilaianCKPRController::class, 'search']);
+    Route::get('/staf-ckp/penilaianckpr/search-create', [PenilaianCKPRController::class, 'search_create']);
+    Route::get('/staf-ckp/penilaianckpr/create-index', [PenilaianCKPRController::class, 'create_index']);
+    Route::get('/staf-ckp/penilaianckpr/create/{id}', [PenilaianCKPRController::class, 'create'])->name('staf.penilaianckpr.create');
     Route::post('/staf-ckp/penilaianckpr/store', [PenilaianCKPRController::class, 'store']);
-    Route::get('/staf-ckp/penilaianckpr/{id}/edit', [PenilaianCKPRController::class, 'edit']);
+    Route::get('/staf-ckp/penilaianckpr/{id}/edit', [PenilaianCKPRController::class, 'edit'])->name('staf.penilaianckpr.edit');
     Route::put('/staf-ckp/penilaianckpr/{id}', [PenilaianCKPRController::class, 'update']);
-    Route::delete('/staf-ckp/penilaianckpr/{id}', [PenilaianCKPRController::class, 'destroy']);
+    Route::get('/staf-ckp/penilaianckpr/{id}', [PenilaianCKPRController::class, 'destroy'])->name('staf.penilaianckpr.delete');
 
     //Monitoring CKP
     Route::get('/staf-monitoring/monitoringckp', [MonitoringCKPController::class, 'index'])->name('staf_monitoringckp');
+    Route::get('/staf-monitoring/monitoringckp/search', [MonitoringCKPController::class, 'search']);
     Route::get('/staf-monitoring/monitoringckp/create', [MonitoringCKPController::class, 'create']);
     Route::post('/staf-monitoring/monitoringckp/store', [MonitoringCKPController::class, 'store']);
-    Route::get('/staf-monitoring/monitoringckp/{id}/edit', [MonitoringCKPController::class, 'edit']);
+    Route::get('/staf-monitoring/monitoringckp/{id}/edit', [MonitoringCKPController::class, 'edit'])->name('staf.monitoringckp.edit');
     Route::put('/staf-monitoring/monitoringckp/{id}', [MonitoringCKPController::class, 'update']);
-    Route::delete('/staf-monitoring/monitoringckp/{id}', [MonitoringCKPController::class, 'destroy']);
+    Route::get('/staf-monitoring/monitoringckp/{id}', [MonitoringCKPController::class, 'destroy'])->name('staf.monitoringckp.delete');
 
     //Monitoring Presensi
     Route::get('/staf-monitoring/monitoringpre', [MonitoringPresensiController::class, 'index'])->name('staf_monitoringpre');
+    Route::get('/staf-monitoring/monitorinpre/search', [MonitoringPresensiController::class, 'search']);
     Route::get('/staf-monitoring/monitorinpre/create', [MonitoringPresensiController::class, 'create']);
     Route::post('/staf-monitoring/monitorinpre/store', [MonitoringPresensiController::class, 'store']);
-    Route::get('/staf-monitoring/monitorinpre/{id}/edit', [MonitoringPresensiController::class, 'edit']);
+    Route::get('/staf-monitoring/monitorinpre/{id}/edit', [MonitoringPresensiController::class, 'edit'])->name('staf.monitoringpresensi.edit');
     Route::put('/staf-monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'update']);
-    Route::delete('/staf-monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'destroy']);
+    Route::get('/staf-monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'destroy'])->name('staf.monitoringpresensi.delete');
+
+    //Monitoring User
+    Route::get('/staf-monitoring/monitoringuser', [MonitoringUserController::class, 'index'])->name('staf_monitoringuser');
+    Route::get('/staf-monitoring/monitoringuser/search', [MonitoringUserController::class, 'search']);
+    Route::get('/staf-monitoring/monitoringuser/create', [MonitoringUserController::class, 'create']);
+    Route::post('/staf-monitoring/monitoringuser/store', [MonitoringUserController::class, 'store']);
+    Route::get('/staf-monitoring/monitoringuser/{id}/edit', [MonitoringUserController::class, 'edit'])->name('staf.monitoringuser.edit');
+    Route::put('/staf-monitoring/monitoringuser/{id}', [MonitoringUserController::class, 'update']);
+    Route::get('/staf-monitoring/monitoringuser/{id}', [MonitoringUserController::class, 'destroy'])->name('staf.monitoringuser.delete');
 });

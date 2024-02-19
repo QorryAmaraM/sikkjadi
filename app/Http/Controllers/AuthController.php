@@ -39,7 +39,7 @@ class AuthController extends Controller
                     return redirect()->intended('/kf-dashboard' . $user->role);
                 case 5:
                     Auth::login($user);
-                    return redirect()->intended('/staff-dashboard' . $user->role);
+                    return redirect()->intended('/staf-dashboard' . $user->role);
                 default:
                     return redirect('/login');
             }

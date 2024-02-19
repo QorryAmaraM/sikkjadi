@@ -50,7 +50,7 @@ class CKPRController extends Controller
                 return view('pages.users.kf.ckpr.index', compact(['ckpr', 'user', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.ckpr.index', compact(['ckpr', 'user', 'result']));
+                return view('pages.users.staf.ckpr.index', compact(['ckpr', 'user', 'resultrole']));
                 break;
         }
     }

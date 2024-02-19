@@ -25,6 +25,18 @@ class PenilaianCKPRController extends Controller
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->select('users.*', 'entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->paginate(5);
+
+            // dd($result);
+
+        $resultrole = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select('users.*', 'entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->where('ckpts.user_id', $userid)
+            ->paginate(5);
+
         switch ($userid) {
             case '1':
                 return view('pages.admin.penilaianckpr.index', compact(['nilaickpr', 'user', 'result']));
@@ -39,7 +51,7 @@ class PenilaianCKPRController extends Controller
                 return view('pages.users.kf.penilaianckpr.index', compact(['nilaickpr', 'user', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.penilaianckpr.index', compact(['nilaickpr', 'user', 'result']));
+                return view('pages.users.staf.penilaianckpr.index', compact(['nilaickpr', 'user', 'resultrole']));
                 break;
         }
     }
