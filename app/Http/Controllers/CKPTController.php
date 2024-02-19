@@ -89,11 +89,13 @@ class CKPTController extends Controller
     //Create
     public function create(Request $request)
     {
-        $userid = Auth::user()->role_id;
-        $angkakredit = entri_angka_kredit::all();
-        $uraiankegiatan = list_uraian_kegiatan::all();
+        $userid = Auth::user()->id;
+        $user_role = Auth::user()->role_id;
+        $angkakredit = entri_angka_kredit::where('user_id', $userid)->get();
+        $uraiankegiatan = list_uraian_kegiatan::where('user_id', $userid)->get();
+        // dd($angkakredit);
         $user = user::all();
-        switch ($userid) {
+        switch ($user_role) {
             case '1':
                 return view('pages.admin.ckpt.create', compact(['user', 'angkakredit', 'uraiankegiatan']));
                 break;

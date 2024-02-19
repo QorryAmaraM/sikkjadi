@@ -358,7 +358,7 @@ Route::middleware(['checkRole:3'])->group(function () {
 
     //Penilaian CKPR
     Route::get('/kepalabu-ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('kepalabu_penilaianckpr');
-    Route::get('/kepalabu-ckp/penilaianckpr/saerch', [PenilaianCKPRController::class, 'search']);
+    Route::get('/kepalabu-ckp/penilaianckpr/search', [PenilaianCKPRController::class, 'search']);
     Route::get('/kepalabu-ckp/penilaianckpr/search-create', [PenilaianCKPRController::class, 'search_create']);
     Route::get('/kepalabu-ckp/penilaianckpr/create-index', [PenilaianCKPRController::class, 'create_index']);
     Route::get('/kepalabu-ckp/penilaianckpr/create/{id}', [PenilaianCKPRController::class, 'create'])->name('kepalabu.penilaianckpr.create');
@@ -402,7 +402,7 @@ Route::middleware(['checkRole:4'])->group(function () {
 
     //SKP Tahunan
     Route::get('/kf-perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('kf_skptahunan');
-    Route::get('/kf-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search']);
+    Route::get('/kf-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search_role']);
     Route::get('/kf-perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create']);
     Route::post('/kf-perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'store']);
     Route::get('/kf-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit'])->name('kf.spktahunan.edit');
@@ -411,7 +411,7 @@ Route::middleware(['checkRole:4'])->group(function () {
 
     //Rencana Kinerja
     Route::get('/kf-perencanaankerja/rencanakinerja', [RencanaKinerjaController::class, 'index'])->name('kf_rencanakinerja');
-    Route::get('/kf-perencanaankerja/rencanakinerja/search', [RencanaKinerjaController::class, 'search']);
+    Route::get('/kf-perencanaankerja/rencanakinerja/search', [RencanaKinerjaController::class, 'search_role']);
     Route::get('/kf-perencanaankerja/rencanakinerja/create/index', [RencanaKinerjaController::class, 'create_index']);
     Route::get('/kf-perencanaankerja/rencanakinerja/create/{id}', [RencanaKinerjaController::class, 'create']);
     Route::post('/kf-perencanaankerja/rencanakinerja/store', [RencanaKinerjaController::class, 'store']);

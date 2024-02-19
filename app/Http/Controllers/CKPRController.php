@@ -115,7 +115,7 @@ class CKPRController extends Controller
                 return view('pages.users.kepalabps.ckpr.create-index', compact(['user', 'ckpt', 'resultrole']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpr.create-index', compact(['user', 'ckpt', 'result']));
+                return view('pages.users.kepalabu.ckpr.create-index', compact(['user', 'ckpt', 'resultrole']));
                 break;
             case '4':
                 return view('pages.users.kf.ckpr.create-index', compact(['user', 'ckpt', 'result']));

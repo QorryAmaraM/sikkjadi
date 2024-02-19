@@ -86,9 +86,11 @@
                         <label for="kegiatan">Uraian Kegiatan</label>
                         <select class="form-control" data-width="75%" name="uraian_kegiatan_id" required>
                             <option value="">Pilih Uraian Kegiatan</option>
+
                             @foreach ($uraiankegiatan as $uraiankegiatan)
                                 <option value="{{ $uraiankegiatan->id }}">{{ $uraiankegiatan->uraian_kegiatan }}</option>
                             @endforeach
+                            
                         </select>
                     </div>
 

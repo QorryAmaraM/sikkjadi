@@ -127,7 +127,7 @@
         function handleSearch(valuepegawai, savedValue2) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-perencanaankerja/skptahunan/search') }}',
+                url: '{{ URL::to('/kf-perencanaankerja/skptahunan/search') }}',
                 data: {
                     'searchpegawai': valuepegawai,
                     'search': savedValue2
