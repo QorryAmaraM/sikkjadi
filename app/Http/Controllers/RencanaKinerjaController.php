@@ -49,7 +49,7 @@ class REncanaKinerjaController extends Controller
                 return view('pages.admin.rencanakinerja.create_index', compact(['skptahunan', 'user']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.skptahunan.index', compact(['skptahunan', 'user']));
+                return view('pages.users.kepalabps.rencanakinerja.create_index', compact(['skptahunan', 'user']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.skptahunan.index', compact(['skptahunan', 'user']));
@@ -73,7 +73,7 @@ class REncanaKinerjaController extends Controller
                 return view('pages.admin.rencanakinerja.create', compact(['user', 'skptahunan']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.rencanakinerja.create', compact(['user']));
+                return view('pages.users.kepalabps.rencanakinerja.create', compact(['user', 'skptahunan']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.rencanakinerja.create', compact(['user']));
@@ -151,7 +151,7 @@ class REncanaKinerjaController extends Controller
                 return view('pages.admin.rencanakinerja.edit_kuantitas', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                return view('pages.users.kepalabps.rencanakinerja.edit_kuantitas', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));

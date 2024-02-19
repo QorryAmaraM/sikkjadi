@@ -1,4 +1,4 @@
-@extends('layouts.kepalabps')
+@extends('layouts.admin')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -6,7 +6,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-black-800">Edit Rencana Kinerja</h1>
+            <h1 class="h3 mb-0 text-black-800">Edit Aspek</h1>
         </div>
 
         <!-- Content Row -->
@@ -44,64 +44,44 @@
                         <input type="unitkerja" class="form-control col-sm-11" value="{{ $result->unit_kerja }}" disabled>
                     </div>
 
-                    <div class="form-group d-flex align-items-center">
-                        <label for="kinerja" class="col-sm-1 pl-0 col-form-label">Kinerja</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="kjutama" value="utama" name="kinerja"
-                                onclick="toggleCheckbox('kjutama')" <?php echo $rencanakinerja->kinerja == 'utama' ? 'checked' : ''; ?> required>
-                            <label class="form-check-label" for="inlineCheckbox1">Utama</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="kjtambahan" value="tambahan" name="kinerja"
-                                onclick="toggleCheckbox('kjtambahan')" <?php echo $rencanakinerja->kinerja == 'tambahan' ? 'checked' : ''; ?> required>
-                            <label class="form-check-label" for="inlineCheckbox2">Tambahan</label>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
             <div class="row mb-8">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="iki">Rencana Kinerja Atasan</label>
-                        <input type="iki" class="form-control" id="rencana_kinerja_atasan" name="rencana_kinerja_atasan" value="{{ $rencanakinerja->rencana_kinerja_atasan }}" required>
+                        <label for="aspek">Aspek</label>
+                        <input type="aspek" class="form-control" id="aspek" name="aspek" value="Kualitas" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="iki">Rencana Kinerja</label>
-                        <input type="iki" class="form-control" id="rencana_kinerja" name="rencana_kinerja" value="{{ $rencanakinerja->rencana_kinerja }}" required>
+                        <label for="iki">IKI</label>
+                        <input type="iki" class="form-control" id="kualitas_iki" name="kualitas_iki" value="{{ $rencanakinerja->kualitas_iki }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="targetmin">Target Min</label>
+                        <input type="targetmin" class="form-control" id="kualitas_target_min" name="kualitas_target_min" value="{{ $rencanakinerja->kualitas_target_min }}" required onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
+                    </div>
+                    <div class="form-group">
+                        <label for="targetmix">Target Max</label>
+                        <input type="targetmix" class="form-control" id="kualitas_target_max" name="kualitas_target_max" value="{{ $rencanakinerja->kualitas_target_max }}" required onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
+                    </div>
+                    <div class="form-group">
+                        <label for="satuan">Satuan</label>
+                        <input type="satuan" class="form-control" id="kualitas_satuan" name="kualitas_satuan" value="{{ $rencanakinerja->kualitas_satuan }}" required>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12 mt-3 text-right">
-
                     <button type="submit" name="submit" value="Save" class="btn save-button" onclick="checkFormAndShowModal()">Simpan</button>
                 </div>
             </div>
+
         </form>
     </div>
     <!-- /.container-fluid -->
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Set initial state based on the value of $rencanakinerja->kinerja
-            var utamaCheckbox = document.getElementById('kjutama');
-            var tambahanCheckbox = document.getElementById('kjtambahan');
-
-            utamaCheckbox.disabled = tambahanCheckbox.checked;
-            tambahanCheckbox.disabled = utamaCheckbox.checked;
-        });
-
-        function toggleCheckbox(checkboxId) {
-            var checkbox = document.getElementById(checkboxId);
-            var otherCheckboxId = (checkboxId === 'kjutama') ? 'kjtambahan' : 'kjutama';
-            var otherCheckbox = document.getElementById(otherCheckboxId);
-
-            otherCheckbox.disabled = checkbox.checked;
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function checkFormAndShowModal() {
@@ -123,7 +103,7 @@
         Swal.fire({
             position: "top-center",
             icon: "success",
-            title: "Data berhasil diedit!",
+            title: "Data berhasil ditambah!",
             showConfirmButton: false,
             timer: 10000
         }).then((result) => {

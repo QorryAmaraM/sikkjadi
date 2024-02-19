@@ -128,7 +128,7 @@ class PenilaianSKPController extends Controller
                 return view('pages.admin.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
             case '2':
-                return view('pages.users.kepalabps.penilaianskp.index', compact(['penilaianskp', 'result', 'user']));
+                return view('pages.users.kepalabps.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
             case '3':
                 return view('pages.users.kepalabu.penilaianskp.index', compact(['penilaianskp', 'result', 'user']));
@@ -161,7 +161,7 @@ class PenilaianSKPController extends Controller
                 return view('pages.admin.penilaianskp.print', compact('user', 'result', 'input_tahun'));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpt.index', compact(['ckpt']));
+                return view('pages.users.kepalabps.ckpt.index', compact('user', 'result', 'input_tahun'));
                 break;
             case '3':
                 return view('pages.users.kepalabu.ckpt.index', compact(['ckpt']));

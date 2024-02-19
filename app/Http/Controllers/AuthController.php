@@ -19,31 +19,30 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        
+
         $user = \App\Models\User::where('email', $credentials['email'])->first();
 
         if ($user && password_verify($credentials['password'], $user->password)) {
 
             switch ($user->role_id) {
-                        case 1:
-                            Auth::login($user);
-                            return redirect()->intended('/admin-dashboard' . $user->role);
-                        case 2:
-                            Auth::login($user);
-                            return redirect()->intended('/kepalabps-dashboard' . $user->role);
-                        case 3:
-                            Auth::login($user);
-                            return redirect()->intended('/kepalabu-dashboard' . $user->role);
-                        case 4:
-                            Auth::login($user);
-                            return redirect()->intended('/kf-dashboard' . $user->role);
-                        case 5:
-                            Auth::login($user);
-                            return redirect()->intended('/staff-dashboard' . $user->role);
-                        default:
-                            return redirect('/login');
-                    }
-            
+                case 1:
+                    Auth::login($user);
+                    return redirect()->intended('/admin-dashboard' . $user->role);
+                case 2:
+                    Auth::login($user);
+                    return redirect()->intended('/kepalabps-dashboard' . $user->role);
+                case 3:
+                    Auth::login($user);
+                    return redirect()->intended('/kepalabu-dashboard' . $user->role);
+                case 4:
+                    Auth::login($user);
+                    return redirect()->intended('/kf-dashboard' . $user->role);
+                case 5:
+                    Auth::login($user);
+                    return redirect()->intended('/staff-dashboard' . $user->role);
+                default:
+                    return redirect('/login');
+            }
         }
 
         return redirect()->back()->withErrors(['login' => 'Login failed.']);
@@ -53,45 +52,45 @@ class AuthController extends Controller
     // {
     //     return view('auth.forgot-password');
     // }
-    
+
     public function showForgotPasswordForm()
-{
-    return view('auth.passwords.forgot-password');
-}
+    {
+        return view('auth.passwords.forgot-password');
+    }
 
-public function sendResetLinkEmail(Request $request)
-{
-    $this->validate($request, ['email' => 'required|email']);
+    public function sendResetLinkEmail(Request $request)
+    {
+        $this->validate($request, ['email' => 'required|email']);
 
-    $response = Password::sendResetLink($request->only('email'));
+        $response = Password::sendResetLink($request->only('email'));
 
-    return $response == Password::RESET_LINK_SENT
-                ? back()->with('status', trans($response))
-                : back()->withErrors(['email' => trans($response)]);
-}
+        return $response == Password::RESET_LINK_SENT
+            ? back()->with('status', trans($response))
+            : back()->withErrors(['email' => trans($response)]);
+    }
 
-public function showResetPasswordForm($token)
-{
-    return view('auth.passwords.reset')->with(['token' => $token]);
-}
+    public function showResetPasswordForm($token)
+    {
+        return view('auth.passwords.reset')->with(['token' => $token]);
+    }
 
-public function resetPassword(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required|string|min:3|confirmed',
-        'token' => 'required|string',
-    ]);
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:3|confirmed',
+            'token' => 'required|string',
+        ]);
 
-    $response = Password::reset($request->only('email', 'password', 'password_confirmation', 'token'), function ($user, $password) {
-        $user->password = Hash::make($password);
-        $user->save();
-    });
+        $response = Password::reset($request->only('email', 'password', 'password_confirmation', 'token'), function ($user, $password) {
+            $user->password = Hash::make($password);
+            $user->save();
+        });
 
-    return $response == Password::PASSWORD_RESET
-                ? redirect()->route('login')->with('status', trans($response))
-                : back()->withErrors(['email' => [trans($response)]]);
-}
+        return $response == Password::PASSWORD_RESET
+            ? redirect()->route('login')->with('status', trans($response))
+            : back()->withErrors(['email' => [trans($response)]]);
+    }
 
     public function logout(Request $request): RedirectResponse
     {

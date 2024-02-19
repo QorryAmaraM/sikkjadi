@@ -23,7 +23,7 @@ class DashboardController extends Controller
                 return view('pages.admin.dashboard.index', compact(['user', 'chartckp','chartskp']));
                 break;
             case '2':
-                return view('pages.users.kepalaBPS.dashboard.index', compact(['user']));
+                return view('pages.users.kepalaBPS.dashboard.index', compact(['user', 'chartckp','chartskp']));
                 break;
             case '3':
                 return view('pages.users.kepalaBU.dashboard.index', compact(['user']));
@@ -48,7 +48,7 @@ class DashboardController extends Controller
                 return view('pages.admin.profile', compact('user'));
                 break;
             case '2':
-                return view('pages.users.kepalaBPS.dashboard.index', compact(['user']));
+                return view('pages.users.kepalaBPS.profile', compact(['user']));
                 break;
             case '3':
                 return view('pages.users.kepalaBU.dashboard.index', compact(['user']));

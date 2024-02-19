@@ -6,7 +6,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-black-800">Capaian Kinerja Karyawan Realisasi</h1>
+            <h1 class="h3 mb-0 text-black-800">Pilih Periode Penilaian CKPR</h1>
         </div>
 
         <!-- Content Row -->
@@ -21,9 +21,9 @@
                             @php
                                 $namaArray = [];
                             @endphp
-                            @foreach ($result as $ckpr)
+                            @foreach ($ckpr as $ckpr_nama)
                                 @php
-                                    $userId = $ckpr->user_id;
+                                    $userId = $ckpr_nama->user_id;
                                     $nama = '';
                                 @endphp
                                 @foreach ($user as $users)
@@ -89,54 +89,37 @@
         </form>
 
         <div class="row">
-            <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
-                <a href="/admin-ckp/ckpr/create/index" type="button" class="btn add-button">+ Tambah</a>
-                <button class="btn btn-icon btn-print btn-sm" data-toggle="modal" data-target="#printModal">
-                    <i class="fas fa-print"></i>
-                </button>
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-12">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Fungsi</th>
+                                <th>Kode</th>
                                 <th>Periode</th>
-                                <th>Uraian Kegiatan</th>
                                 <th>Satuan</th>
                                 <th>Target</th>
                                 <th>Target Rev</th>
                                 <th>Realisasi</th>
                                 <th>Persen (%)</th>
                                 <th>Nilai</th>
-                                <th>Kode Butir</th>
-                                <th>Angka Kredit</th>
-                                <th>Kode</th>
                                 <th>Keterangan</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @forelse ($result as $ckpr)
+                            @foreach ($ckpr as $ckpr)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $ckpr->fungsi }}</td>
+                                    <td>{{ $ckpr->kode }}</td>
                                     <td>{{ $ckpr->tahun }} {{ $ckpr->bulan }}</td>
-                                    <td>{{ $ckpr->uraian_kegiatan }}</td>
                                     <td>{{ $ckpr->satuan }}</td>
                                     <td>{{ $ckpr->target }}</td>
                                     <td>{{ $ckpr->target_rev }}</td>
                                     <td>{{ $ckpr->realisasi }}</td>
                                     <td>{{ $ckpr->persen }} %</td>
                                     <td>{{ $ckpr->nilai }}</td>
-                                    <td>{{ $ckpr->kode_butir }}</td>
-                                    <td>{{ $ckpr->angka_kredit }}</td>
-                                    <td>{{ $ckpr->kode }}</td>
                                     <td>{{ $ckpr->keterangan }}</td>
                                     <td>
                                         @if ($ckpr->status == '1')
@@ -145,58 +128,18 @@
                                             <span class="badge badge-danger">Belum Diverifikasi</span>
                                         @endif
                                     </td>
+
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('ckpr.edit', ['id' => $ckpr->id]) }}" class="action-link"><i
-                                                    class="fas fa-edit"></i></a>
-                                        </button>
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('ckpr.delete', ['id' => $ckpr->id]) }}">
-                                            <i class="fas fa-trash-can"></i>
+                                            <a href="{{ route('penilaianckpr.create', ['id' => $ckpr->id]) }}"
+                                                type="button" class="btn add-button">+ Nilai</a>
                                         </button>
                                     </td>
                                 </tr>
-
-
-                                <div class="modal fade" id="printModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="printModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="printModalLabel">Cetak CKP-T</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <!-- Form input data -->
-                                                <form action="/admin-ckp/ckpr/print">
-                                                    <div class="form-group">
-                                                        <label for="inputData">Pejabat Penilai</label>
-                                                        <input type="text" class="form-control" name="pejabatnama" id="pejabatnama">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="inputData">NIP Pejabat Penilai</label>
-                                                        <input type="text" class="form-control" name="pejabatid" id="pejabatid">
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                        <button type="submit" name="submit" value="Save" class="btn btn-primary">Cetak</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             @endforeach
                         </tbody>
-
                         <tbody id="Content" class="searchdata"></tbody>
                     </table>
-
-                    <div class="d-flex justify-content-center">
-                    {{ $result->links('vendor.pagination.bootstrap-4') }}
-            </div>
                 </div>
             </div>
         </div>
@@ -270,7 +213,7 @@
         function handleSearch(value, tahunvalue, bulanvalue) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-ckp/ckpr/search') }}',
+                url: '{{ URL::to('/admin-ckp/penilaianckpr/search-create') }}',
                 data: {
                     'search': value,
                     'tahun': tahunvalue,
@@ -282,38 +225,5 @@
                 }
             });
         }
-
-        $(function() {
-            $('#successModal').on('show.bs.modal', function() {
-                var successModal = $(this);
-                clearTimeout(successModal.data('hideInterval'));
-                successModal.data('hideInterval', setTimeout(function() {
-                    successModal.modal('hide');
-                }, 5000));
-            });
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        $(document).ready(function() {
-            // Event delegation untuk tombol hapus
-            $(document).on('click', '.btn-delete', function() {
-                var deleteUrl = $(this).data('delete-url');
-
-                Swal.fire({
-                    title: "Anda Yakin?",
-                    text: "Anda tidak akan dapat mengembalikannya!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya, Hapus!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = deleteUrl; // Redirect ke URL penghapusan
-                    }
-                });
-            });
-        });
     </script>
 @endsection

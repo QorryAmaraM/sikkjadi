@@ -18,11 +18,10 @@
             <span>DASHBOARD</span>
         </a>
     </li>
-    
+
     {{-- perencaan kerja --}}
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-book"></i>
             <span>PERENCANAAN KERJA</span>
         </a>
@@ -50,8 +49,7 @@
 
     {{-- Master Angka Kredit --}}
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
-            aria-expanded="true" aria-controls="collapse3">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
             <i class="fas fa-envelope"></i>
             <span>MASTER ANGKA KREDIT</span>
 
@@ -74,8 +72,7 @@
     </li>
     {{-- MASTER URAIAN KEGIATAN --}}
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
-            aria-expanded="true" aria-controls="collapse4">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
             <i class="fas fa-bookmark"></i>
             <span>MASTER URAIAN KEGIATAN</span>
         </a>
@@ -93,8 +90,7 @@
 
     {{-- CKP --}}
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
-            aria-expanded="true" aria-controls="collapse5">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5" aria-expanded="true" aria-controls="collapse5">
             <i class="fas fa-book-open"></i>
             <span>CKP</span>
         </a>
@@ -122,8 +118,7 @@
 
     {{-- MONITORING --}}
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse6"
-            aria-expanded="true" aria-controls="collapse6">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse6" aria-expanded="true" aria-controls="collapse6">
             <i class="fas fa-desktop"></i>
             <span>MONITORING</span>
         </a>
@@ -148,9 +143,7 @@
         <hr class="sidebar-divider my-0">
         <form action="/logout" method="POST">
             @csrf
-            <button class="nav-link collapsed btn btn-link" style="text-align: right;" data-toggle="modal"
-                data-target="#logoutModal" type="submit"> <i
-                    class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            <button class="nav-link collapsed btn btn-link" style="text-align: right;" data-toggle="modal" data-target="#logoutModal" type="submit"> <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                 Logout
             </button>
         </form>

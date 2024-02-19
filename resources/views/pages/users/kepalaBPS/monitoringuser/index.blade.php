@@ -6,7 +6,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-black-800">List Uraian Kegiatan</h1>
+            <h1 class="h3 mb-0 text-black-800">Monitoring User</h1>
         </div>
 
         <!-- Content Row -->
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <a href="/admin-masterutaiankegiatan/uraiankegiatan/create" type="button" class="btn add-button">+ Tambah</a>
+                <a href="/admin-monitoring/monitoringuser/create" type="button" class="btn add-button">+ Tambah</a>
             </div>
         </div>
 
@@ -34,46 +34,71 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Pembuat</th>
-                                <th>Fungsi</th>
-                                <th>Uraian Kegiatan</th>
-                                <th>Aksi</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>NIP</th>
+                                <th>Golongan</th>
+                                <th>Fungsional</th>
+                                <th>Jabatan</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @forelse ($uraiankegiatan as $kegiatan)
+                            @foreach ($user as $data)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $kegiatan->pembuat }}</td>
-                                    <td>{{ $kegiatan->fungsi }}</td>
-                                    <td>{{ $kegiatan->uraian_kegiatan }}</td>
+                                    <td>{{ $data->nama }}</td>
+                                    <td>{{ $data->email }}</td>
+                                    <td>{{ $data->nip }}</td>
+                                    <td>{{ $data->golongan }}</td>
+                                    <td>{{ $data->fungsional }}</td>
+                                    <td>
+                                        @switch($data->role_id)
+                                            @case(1)
+                                                Admin
+                                            @break
+
+                                            @case(2)
+                                                Kepala BPS
+                                            @break
+
+                                            @case(3)
+                                                Kepala BU
+                                            @break
+
+                                            @case(4)
+                                                Koordinator Fungsi
+                                            @break
+
+                                            @case(5)
+                                                Staf
+                                            @break
+                                        @endswitch
+                                    </td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('listuraiankredit.edit', ['id' => $kegiatan->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
-
+                                            <a href="{{ route('monitoringuser.edit', ['id' => $data->id]) }}" class="action-link">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
                                         </button>|
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('listuraiankredit.delete', ['id' => $kegiatan->id]) }}">
-                                            <i class="fas fa-trash-can"></i></a>
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('monitoringuser.delete', ['id' => $data->id]) }}">
+                                            <i class="fas fa-trash-can"></i>
                                         </button>
+
                                     </td>
                                 </tr>
+                            @endforeach
 
-                            @empty
-                                <td colspan="7" class="text-center">Empty Data</td>
-                            @endforelse
                         </tbody>
 
                         <tbody id="Content" class="searchdata"></tbody>
                     </table>
 
-                    <div class="d-flex justify-content-center">
-                        {{ $uraiankegiatan->links('vendor.pagination.bootstrap-4') }}
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-
 
     <script>
         var savedData = "";
@@ -95,7 +120,7 @@
         function handleSearch(Data) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-masterutaiankegiatan/uraiankegiatan/search') }}',
+                url: '{{ URL::to('/admin-monitoring/monitoringuser/search') }}',
                 data: {
                     'data': Data
                 },
@@ -130,5 +155,6 @@
             });
         });
     </script>
+
     <!-- /.container-fluid -->
 @endsection
