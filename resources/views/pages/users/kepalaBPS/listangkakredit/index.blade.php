@@ -92,12 +92,12 @@
             handleSearch(savedData);
         });
 
-        function handleSearch(Data) {
+        function handleSearch(savedData) {
             $.ajax({
                 type: 'get',
                 url: '{{ URL::to('/kepalabps-masterangkakredit/listangkakredit/search') }}',
                 data: {
-                    'data': Data
+                    'data': savedData
                 },
                 success: function(data) {
                     console.log(data);

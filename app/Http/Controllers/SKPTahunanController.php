@@ -21,6 +21,8 @@ class SKPTahunanController extends Controller
         $skptahunanrole = skp_tahunan::where('user_id', $userid)
             ->paginate(5);
 
+            // dd($skptahunanrole);
+
         switch ($user_role) {
             case '1':
                 return view('pages.admin.skptahunan.index', compact(['skptahunan', 'user']));
@@ -179,6 +181,45 @@ class SKPTahunanController extends Controller
                     ->orWhere('skp_tahunans.jabatan', 'like', '%' . $searchTerm . '%');
             })
             ->where('skp_tahunans.user_id', 'like', '%' . $searchpasti . '%')
+            ->get();
+
+        // dd($search);
+
+        foreach ($search as $search) {
+            $output .=
+                '<tr> 
+            
+            <td> ' . $search->tahun . ' </td>
+            <td> ' . $search->periode . ' </td>
+            <td> ' . $search->wilayah . ' </td>
+            <td> ' . $search->unit_kerja . ' </td>
+            <td> ' . $search->jabatan . ' </td>
+
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('spktahunan.edit', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('spktahunan.delete', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>        
+            
+            </tr>';
+        }
+        return response($output);
+    }
+
+    public function search_role(Request $request)
+    {
+        $output = "";
+        $userid = Auth::user()->id;
+        $searchTerm = $request->search;
+
+        $search = skp_tahunan::where('user_id', $userid)
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('skp_tahunans.tahun', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('skp_tahunans.periode', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('skp_tahunans.wilayah', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('skp_tahunans.unit_kerja', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('skp_tahunans.jabatan', 'like', '%' . $searchTerm . '%');
+            })
             ->get();
 
         // dd($search);

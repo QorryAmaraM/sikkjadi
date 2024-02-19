@@ -158,5 +158,50 @@ class ListAngkaKreditController extends Controller
             $iterationNumber++;
         }
         return response($output);
+    
+    }
+
+    public function search_role(Request $request)
+    {
+        $userid = Auth::user()->id;
+        $output = "";
+        $iterationNumber = 1;
+        $searchTerm = $request->data;
+
+        $result = entri_angka_kredit::join('users', 'entri_angka_kredits.user_id', '=', 'users.id')
+            ->select('users.*', 'entri_angka_kredits.*')
+            ->where('user_id', $userid)
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('jenis_fungsional', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('kode_butir', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('isi_butir', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('nama', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('angka_kredit', 'like', '%' . $searchTerm . '%');
+            })
+            ->get();
+
+            // dd($result);
+
+        foreach ($result as $item) {
+            $output .=
+                '<tr> 
+            
+            <td> ' . $iterationNumber . ' </td>
+            <td> ' . $item->jenis_fungsional . ' </td>
+            <td> ' . $item->nama . ' </td>
+            <td> ' . $item->kode_butir . ' </td>
+            <td> ' . $item->isi_butir . ' </td>
+            <td> ' . $item->angka_kredit . ' </td>
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('listangkakredit.edit', ['id' => $item->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('listangkakredit.delete', ['id' => $item->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>   
+                          
+            </tr>';
+
+            $iterationNumber++;
+        }
+        return response($output);
     }
 }

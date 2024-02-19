@@ -95,29 +95,13 @@
     <!-- Script -->
 
     <script>
-        var valuepegawai = "";
-        var savedValue2 = "";
-
-        $('#searchpegawai').on('input', function() {
-
-            valuepegawai = $(this).val();
-
-            if (valuepegawai) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else {
-                $('.alldata').show();
-                $('.searchdata').hide();
-            }
-
-            handleSearch(valuepegawai, savedValue2);
-        });
+        var savedValue = "";
 
         $('#search').on('input', function() {
 
-            savedValue2 = $(this).val();
+            savedValue = $(this).val();
 
-            if (savedValue2) {
+            if (savedValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
             } else {
@@ -125,16 +109,15 @@
                 $('.searchdata').hide();
             }
 
-            handleSearch(valuepegawai, savedValue2);
+            handleSearch(savedValue);
         });
 
-        function handleSearch(valuepegawai, savedValue2) {
+        function handleSearch(savedValue) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-perencanaankerja/skptahunan/search') }}',
+                url: '{{ URL::to('/kepalabps-perencanaankerja/skptahunan/search') }}',
                 data: {
-                    'searchpegawai': valuepegawai,
-                    'search': savedValue2
+                    'search': savedValue
                 },
 
                 success: function(data) {

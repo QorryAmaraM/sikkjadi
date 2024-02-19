@@ -26,7 +26,7 @@ class ListUraianKegiatanController extends Controller
                 return view('pages.admin.uraiankegiatan.index', compact(['uraiankegiatan']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.uraiankegiatan.index', compact(['uraiankegiatan']));
+                return view('pages.users.kepalabps.uraiankegiatan.index', compact(['uraiankegiatanrole']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.uraiankegiatan.index', compact(['uraiankegiatanrole']));
@@ -174,6 +174,46 @@ class ListUraianKegiatanController extends Controller
                 $query->where('list_uraian_kegiatans.pembuat', 'like', '%' . $searchTerm . '%')
                     ->orWhere('list_uraian_kegiatans.fungsi', 'like', '%' . $searchTerm . '%')
                     ->orWhere('list_uraian_kegiatans.uraian_kegiatan', 'like', '%' . $searchTerm . '%');
+            })
+            ->get();
+
+            // dd($result);
+
+        foreach ($result as $result) {
+            $output .=
+                '<tr> 
+            
+            <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->pembuat . ' </td>
+            <td> ' . $result->fungsi . ' </td>
+            <td> ' . $result->uraian_kegiatan . ' </td>
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('listuraiankredit.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('listuraiankredit.delete', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>   
+                          
+            </tr>';
+
+            $iterationNumber++;
+        }
+        return response($output);
+    }
+
+    public function search_role(Request $request)
+    {
+        $userid = Auth::user()->id;
+        $output = "";
+        $iterationNumber = 1;
+        $searchTerm = $request->data;
+
+        $result = list_uraian_kegiatan::join('users', 'list_uraian_kegiatans.user_id', '=', 'users.id')
+            ->select('users.*', 'list_uraian_kegiatans.*')
+            ->where('user_id', $userid)
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('pembuat', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('fungsi', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('uraian_kegiatan', 'like', '%' . $searchTerm . '%');
             })
             ->get();
 

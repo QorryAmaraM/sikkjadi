@@ -10,47 +10,11 @@
         </div>
 
         <!-- Content Row -->
-        <div class="row mb-8">
-            <div class="col-sm-6">
-                <div class="search form-group d-flex align-items-center">
-                    <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Nama</label>
-                    <select name="search" id="search" class="form-control">
-                        <option value="">Pilih Pegawai</option>
-                        @php
-                            $namaArray = [];
-                        @endphp
-                        @foreach ($result as $nilaiskp)
-                            @php
-                                $userId = $nilaiskp->user_id;
-                                $nama = '';
-                            @endphp
-                            @foreach ($user as $users)
-                                @if ($userId == $users->id)
-                                    @php
-                                        $nama = $users->nama;
-                                    @endphp
-                                    @if (!in_array($nama, $namaArray))
-                                        <option value="{{ $userId }}">
-                                            {{ $nama }}
-                                        </option>
-                                        @php
-                                            $namaArray[] = $nama;
-                                        @endphp
-                                    @endif
-                                @endif
-                            @endforeach
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-        </div>
-
-
         <div class="row">
             <div class="col-sm-6">
                 <div class="inner-form">
                     <div class="input-form">
-                        <input id="search" type="text" placeholder="Pencarian" />
+                        <input id="search" name="search" type="text" placeholder="Pencarian" />
                         <div class="input-form-append align-items-center">
                             <i class="fas fa-search"></i>
                         </div>
@@ -142,12 +106,13 @@
     <!-- /.container-fluid -->
 
     <!-- Script -->
-    <script type="text/javascript">
-        $('#search').on('change', function() {
+    <script>
+        var savedData = "";
 
-            $value = $(this).val();
+        $('#search').on('input', function() {
+            savedData = $(this).val();
 
-            if ($value) {
+            if (savedData) {
                 $('.alldata').hide();
                 $('.searchdata').show();
             } else {
@@ -155,21 +120,24 @@
                 $('.searchdata').hide();
             }
 
+            handleSearch(savedData);
+        });
+
+        function handleSearch(Data) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-perencanaankerja/penilaianskp/create/search') }}',
+                url: '{{ URL::to('/kepalabps-perencanaankerja/penilaianskp/create/search') }}',
                 data: {
-                    'search': $value
+                    'data': Data
                 },
-
                 success: function(data) {
                     console.log(data);
                     $('#Content').html(data);
                 }
-
             });
+        }
 
-        })
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
