@@ -13,7 +13,7 @@
 
 <!-- Content Row -->
 
-<form id="myForm" action="/admin-perencanaankerja/rencanakinerja/store" method="POST">
+<form id="myForm" action="/kepalabps-perencanaankerja/rencanakinerja/store" method="POST">
     @csrf
     <div class="row mb-8">
         <div class="col-sm-12">

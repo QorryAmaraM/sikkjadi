@@ -29,16 +29,16 @@ class MonitoringCKPController extends Controller
                 return view('pages.admin.monitoringckp.index', compact(['monitoringckp', 'user', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.monitoringckp.index', compact(['monitoringckp']));
+                return view('pages.users.kepalabps.monitoringckp.index', compact(['monitoringckp', 'user', 'result']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.monitoringckp.index', compact(['monitoringckp']));
+                return view('pages.users.kepalabu.monitoringckp.index', compact(['monitoringckp', 'user', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.monitoringckp.index', compact(['monitoringckp']));
+                return view('pages.users.kf.monitoringckp.index', compact(['monitoringckp', 'user', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.monitoringckp.index', compact(['monitoringckp']));
+                return view('pages.users.staf.monitoringckp.index', compact(['monitoringckp', 'user', 'result']));
                 break;
         }
     }
@@ -109,16 +109,16 @@ class MonitoringCKPController extends Controller
                 return view('pages.admin.monitoringckp.edit', compact(['nilai_ckpr_id', 'user', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.monitoringckp.edit', compact(['monitoringckp', 'user']));
+                return view('pages.users.kepalabps.monitoringckp.edit', compact(['nilai_ckpr_id', 'user', 'result']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.monitoringckp.edit', compact(['monitoringckp', 'user']));
+                return view('pages.users.kepalabu.monitoringckp.edit', compact(['nilai_ckpr_id', 'user', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.monitoringckp.edit', compact(['monitoringckp', 'user']));
+                return view('pages.users.kf.monitoringckp.edit', compact(['nilai_ckpr_id', 'user', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.monitoringckp.edit', compact(['monitoringckp', 'user']));
+                return view('pages.users.staf.monitoringckp.edit', compact(['nilai_ckpr_id', 'user', 'result']));
                 break;
         }
     }

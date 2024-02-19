@@ -131,13 +131,13 @@ class PenilaianSKPController extends Controller
                 return view('pages.users.kepalabps.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
             case '3':
-                return view('pages.users.kepalabu.penilaianskp.index', compact(['penilaianskp', 'result', 'user']));
+                return view('pages.users.kepalabu.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
             case '4':
-                return view('pages.users.kf.penilaianskp.index', compact(['penilaianskp', 'result', 'user']));
+                return view('pages.users.kf.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
             case '5':
-                return view('pages.users.staf.penilaianskp.index', compact(['penilaianskp', 'result', 'user']));
+                return view('pages.users.staf.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
         }
     }
@@ -161,16 +161,16 @@ class PenilaianSKPController extends Controller
                 return view('pages.admin.penilaianskp.print', compact('user', 'result', 'input_tahun'));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpt.index', compact('user', 'result', 'input_tahun'));
+                return view('pages.users.kepalabps.ckpt.print', compact('user', 'result', 'input_tahun'));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpt.index', compact(['ckpt']));
+                return view('pages.users.kepalabu.ckpt.print', compact('user', 'result', 'input_tahun'));
                 break;
             case '4':
-                return view('pages.users.kf.ckpt.index', compact(['ckpt']));
+                return view('pages.users.kf.ckpt.print', compact('user', 'result', 'input_tahun'));
                 break;
             case '5':
-                return view('pages.users.staf.ckpt.index', compact(['ckpt']));
+                return view('pages.users.staf.ckpt.print', compact('user', 'result', 'input_tahun'));
                 break;
         }
     }
@@ -188,16 +188,16 @@ class PenilaianSKPController extends Controller
                 return view('pages.admin.penilaianskp.create_index', compact(['result', 'user']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.skptahunan.index', compact(['result', 'user']));
+                return view('pages.users.kepalabps.penilaianskp.create_index', compact(['result', 'user']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.skptahunan.index', compact(['result', 'user']));
+                return view('pages.users.kepalabu.penilaianskp.create_index', compact(['result', 'user']));
                 break;
             case '4':
-                return view('pages.users.kf.skptahunan.index', compact(['result', 'user']));
+                return view('pages.users.kf.penilaianskp.create_index', compact(['result', 'user']));
                 break;
             case '5':
-                return view('pages.users.staf.skptahunan.index', compact(['result', 'user']));
+                return view('pages.users.staf.penilaianskp.create_index', compact(['result', 'user']));
                 break;
         }
     }
@@ -246,16 +246,16 @@ class PenilaianSKPController extends Controller
                 return view('pages.admin.penilaianskp.create_kuantitas', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.penilaianskp.create', compact(['user']));
+                return view('pages.users.kepalabps.penilaianskp.create_kuantitas', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.penilaianskp.create', compact(['user']));
+                return view('pages.users.kepalabu.penilaianskp.create_kuantitas', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.penilaianskp.create', compact(['user']));
+                return view('pages.users.kf.penilaianskp.create_kuantitas', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.penilaianskp.create', compact(['user']));
+                return view('pages.users.staf.penilaianskp.create_kuantitas', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
         }
     }
@@ -273,16 +273,16 @@ class PenilaianSKPController extends Controller
                 return view('pages.admin.penilaianskp.create_kualitas', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.penilaianskp.create', compact(['user']));
+                return view('pages.users.kepalabps.penilaianskp.create_kualitas', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.penilaianskp.create', compact(['user']));
+                return view('pages.users.kepalabu.penilaianskp.create_kualitas', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.penilaianskp.create', compact(['user']));
+                return view('pages.users.kf.penilaianskp.create_kualitas', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.penilaianskp.create', compact(['user']));
+                return view('pages.users.staf.penilaianskp.create_kualitas', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
         }
     }
@@ -300,16 +300,16 @@ class PenilaianSKPController extends Controller
                 return view('pages.admin.penilaianskp.create_waktu', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.penilaianskp.create', compact(['user']));
+                return view('pages.users.kepalabps.penilaianskp.create_waktu', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.penilaianskp.create', compact(['user']));
+                return view('pages.users.kepalabu.penilaianskp.create_waktu', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.penilaianskp.create', compact(['user']));
+                return view('pages.users.kf.penilaianskp.create_waktu', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.penilaianskp.create', compact(['user']));
+                return view('pages.users.staf.penilaianskp.create_waktu', compact(['user', 'rencanakinerja_id', 'skp_tahunan', 'result']));
                 break;
         }
     }

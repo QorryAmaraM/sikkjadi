@@ -33,16 +33,16 @@ class CKPRController extends Controller
                 return view('pages.admin.ckpr.index', compact(['ckpr', 'user', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpr.index', compact(['ckpr']));
+                return view('pages.users.kepalabps.ckpr.index', compact(['ckpr', 'user', 'result']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpr.index', compact(['ckpr']));
+                return view('pages.users.kepalabu.ckpr.index', compact(['ckpr', 'user', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.ckpr.index', compact(['ckpr']));
+                return view('pages.users.kf.ckpr.index', compact(['ckpr', 'user', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.ckpr.index', compact(['ckpr']));
+                return view('pages.users.staf.ckpr.index', compact(['ckpr', 'user', 'result']));
                 break;
         }
     }
@@ -66,16 +66,16 @@ class CKPRController extends Controller
                 return view('pages.admin.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpr.index', compact(['ckpr']));
+                return view('pages.users.kepalabps.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpr.index', compact(['ckpr']));
+                return view('pages.users.kepalabu.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
             case '4':
-                return view('pages.users.kf.ckpr.index', compact(['ckpr']));
+                return view('pages.users.kf.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
             case '5':
-                return view('pages.users.staf.ckpr.index', compact(['ckpr']));
+                return view('pages.users.staf.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
         }
     }
@@ -96,16 +96,16 @@ class CKPRController extends Controller
                 return view('pages.admin.ckpr.create-index', compact(['user', 'ckpt', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpr.create', compact(['user']));
+                return view('pages.users.kepalabps.ckpr.create-index', compact(['user', 'ckpt', 'result']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpr.create', compact(['user']));
+                return view('pages.users.kepalabu.ckpr.create-index', compact(['user', 'ckpt', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.ckpr.create', compact(['user']));
+                return view('pages.users.kf.ckpr.create-index', compact(['user', 'ckpt', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.ckpr.create', compact(['user']));
+                return view('pages.users.staf.ckpr.create-index', compact(['user', 'ckpt', 'result']));
                 break;
         }
     }
@@ -124,16 +124,16 @@ class CKPRController extends Controller
                 return view('pages.admin.ckpr.create', compact(['user', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpr.create', compact(['user']));
+                return view('pages.users.kepalabps.ckpr.create', compact(['user', 'result']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpr.create', compact(['user']));
+                return view('pages.users.kepalabu.ckpr.create', compact(['user', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.ckpr.create', compact(['user']));
+                return view('pages.users.kf.ckpr.create', compact(['user', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.ckpr.create', compact(['user']));
+                return view('pages.users.staf.ckpr.create', compact(['user', 'result']));
                 break;
         }
     }
@@ -220,16 +220,16 @@ class CKPRController extends Controller
                 return view('pages.admin.ckpr.edit', compact(['ckpr', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpr.edit', compact(['ckpr', 'user']));
+                return view('pages.users.kepalabps.ckpr.edit', compact(['ckpr', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpr.edit', compact(['ckpr', 'user']));
+                return view('pages.users.kepalabu.ckpr.edit', compact(['ckpr', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '4':
-                return view('pages.users.kf.ckpr.edit', compact(['ckpr', 'user']));
+                return view('pages.users.kf.ckpr.edit', compact(['ckpr', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '5':
-                return view('pages.users.staf.ckpr.edit', compact(['ckpr', 'user']));
+                return view('pages.users.staf.ckpr.edit', compact(['ckpr', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
                 break;
         }
     }

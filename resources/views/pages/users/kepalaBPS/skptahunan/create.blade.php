@@ -8,7 +8,7 @@
             <h1 class="h3 mb-0 text-black-800">Tambah Perencanaan Kinerja Tahunan</h1>
         </div>
         <!-- Content Row -->
-        <form id="myForm" action="/admin-perencanaankerja/spktahunan/store" method="POST">
+        <form id="myForm" action="/kepalabps-perencanaankerja/spktahunan/store" method="POST">
             @csrf
             <div class="row mb-8">
                 <div class="col-sm-6">

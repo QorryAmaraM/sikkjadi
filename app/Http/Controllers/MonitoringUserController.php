@@ -22,16 +22,16 @@ class MonitoringUserController extends Controller
                 return view('pages.admin.monitoringuser.index', compact(['user']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.monitoringpre.index', compact(['monitoringpresensi']));
+                return view('pages.users.kepalabps.monitoringuser.index', compact(['user']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.monitoringpre.index', compact(['monitoringpresensi']));
+                return view('pages.users.kepalabu.monitoringuser.index', compact(['user']));
                 break;
             case '4':
-                return view('pages.users.kf.monitoringpre.index', compact(['monitoringpresensi']));
+                return view('pages.users.kf.monitoringuser.index', compact(['user']));
                 break;
             case '5':
-                return view('pages.users.staf.monitoringpre.index', compact(['monitoringpresensi']));
+                return view('pages.users.staf.monitoringuser.index', compact(['user']));
                 break;
         }
     }
@@ -46,16 +46,16 @@ class MonitoringUserController extends Controller
                 return view('pages.admin.monitoringuser.create', compact(['user']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.monitoringpre.create', compact(['user']));
+                return view('pages.users.kepalabps.monitoringuser.create', compact(['user']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.monitoringpre.create', compact(['user']));
+                return view('pages.users.kepalabu.monitoringuser.create', compact(['user']));
                 break;
             case '4':
-                return view('pages.users.kf.monitoringpre.create', compact(['user']));
+                return view('pages.users.kf.monitoringuser.create', compact(['user']));
                 break;
             case '5':
-                return view('pages.users.staf.monitoringpre.create', compact(['user']));
+                return view('pages.users.staf.monitoringuser.create', compact(['user']));
                 break;
         }
     }
@@ -74,16 +74,16 @@ class MonitoringUserController extends Controller
                 return redirect('/admin-monitoring/monitoringuser');
                 break;
             case '2':
-                return redirect('/kepalabps-monitoring/monitoringpre');
+                return redirect('/kepalabps-monitoring/monitoringuser');
                 break;
             case '3':
-                return redirect('/kepalabu-monitoring/monitoringpre');
+                return redirect('/kepalabu-monitoring/monitoringuser');
                 break;
             case '4':
-                return redirect('/kf-monitoring/monitoringpre');
+                return redirect('/kf-monitoring/monitoringuser');
                 break;
             case '5':
-                return redirect('/staf-monitoring/monitoringpre');
+                return redirect('/staf-monitoring/monitoringuser');
                 break;
         }
     }
@@ -99,16 +99,16 @@ class MonitoringUserController extends Controller
                 return view('pages.admin.monitoringuser.edit', compact(['monitoringuser', 'user']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.monitoringpre.edit', compact(['monitoringpresensi', 'user']));
+                return view('pages.users.kepalabps.monitoringuser.edit', compact(['monitoringuser', 'user']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.monitoringpre.edit', compact(['monitoringpresensi', 'user']));
+                return view('pages.users.kepalabu.monitoringuser.edit', compact(['monitoringuser', 'user']));
                 break;
             case '4':
-                return view('pages.users.kf.monitoringpre.edit', compact(['monitoringpresensi', 'user']));
+                return view('pages.users.kf.monitoringuser.edit', compact(['monitoringuser', 'user']));
                 break;
             case '5':
-                return view('pages.users.staf.monitoringpre.edit', compact(['monitoringpresensi', 'user']));
+                return view('pages.users.staf.monitoringuser.edit', compact(['monitoringuser', 'user']));
                 break;
         }
     }
