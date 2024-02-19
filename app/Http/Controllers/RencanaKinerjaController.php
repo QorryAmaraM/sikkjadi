@@ -52,13 +52,13 @@ class REncanaKinerjaController extends Controller
                 return view('pages.users.kepalabps.rencanakinerja.create_index', compact(['skptahunan', 'user']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.skptahunan.index', compact(['skptahunan', 'user']));
+                return view('pages.users.kepalabu.skptahunan.create_index', compact(['skptahunan', 'user']));
                 break;
             case '4':
-                return view('pages.users.kf.skptahunan.index', compact(['skptahunan', 'user']));
+                return view('pages.users.kf.skptahunan.create_index', compact(['skptahunan', 'user']));
                 break;
             case '5':
-                return view('pages.users.staf.skptahunan.index', compact(['skptahunan', 'user']));
+                return view('pages.users.staf.skptahunan.create_index', compact(['skptahunan', 'user']));
                 break;
         }
     }
@@ -76,13 +76,13 @@ class REncanaKinerjaController extends Controller
                 return view('pages.users.kepalabps.rencanakinerja.create', compact(['user', 'skptahunan']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.rencanakinerja.create', compact(['user']));
+                return view('pages.users.kepalabu.rencanakinerja.create', compact(['user', 'skptahunan']));
                 break;
             case '4':
-                return view('pages.users.kf.rencanakinerja.create', compact(['user']));
+                return view('pages.users.kf.rencanakinerja.create', compact(['user', 'skptahunan']));
                 break;
             case '5':
-                return view('pages.users.staf.rencanakinerja.create', compact(['user']));
+                return view('pages.users.staf.rencanakinerja.create', compact(['user', 'skptahunan']));
                 break;
         }
     }
@@ -154,13 +154,13 @@ class REncanaKinerjaController extends Controller
                 return view('pages.users.kepalabps.rencanakinerja.edit_kuantitas', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                return view('pages.users.kepalabu.rencanakinerja.edit_kuantitas', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                return view('pages.users.kf.rencanakinerja.edit_kuantitas', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                return view('pages.users.staf.rencanakinerja.edit_kuantitas', compact(['rencanakinerja', 'user', 'result']));
                 break;
         }
     }
@@ -177,16 +177,16 @@ class REncanaKinerjaController extends Controller
                 return view('pages.admin.rencanakinerja.edit_kualitas', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                return view('pages.users.kepalabps.rencanakinerja.edit_kualitas', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                return view('pages.users.kepalabu.rencanakinerja.edit_kualitas', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                return view('pages.users.kf.rencanakinerja.edit_kualitas', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                return view('pages.users.staf.rencanakinerja.edit_kualitas', compact(['rencanakinerja', 'user', 'result']));
                 break;
         }
     }
@@ -203,16 +203,16 @@ class REncanaKinerjaController extends Controller
                 return view('pages.admin.rencanakinerja.edit_waktu', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                return view('pages.users.kepalabps.rencanakinerja.edit_waktu', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                return view('pages.users.kepalabu.rencanakinerja.edit_waktu', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                return view('pages.users.kf.rencanakinerja.edit_waktu', compact(['rencanakinerja', 'user', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.rencanakinerja.edit', compact(['rencanakinerja', 'user', 'result']));
+                return view('pages.users.staf.rencanakinerja.edit_waktu', compact(['rencanakinerja', 'user', 'result']));
                 break;
         }
     }

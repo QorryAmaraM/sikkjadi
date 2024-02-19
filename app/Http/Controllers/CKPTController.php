@@ -27,16 +27,16 @@ class CKPTController extends Controller
                 return view('pages.admin.ckpt.index', compact(['user', 'ckpt', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpt.index', compact(['ckpt']));
+                return view('pages.users.kepalabps.ckpt.index', compact(['user', 'ckpt', 'result']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpt.index', compact(['ckpt']));
+                return view('pages.users.kepalabu.ckpt.index', compact(['user', 'ckpt', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.ckpt.index', compact(['ckpt']));
+                return view('pages.users.kf.ckpt.index', compact(['user', 'ckpt', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.ckpt.index', compact(['ckpt']));
+                return view('pages.users.staf.ckpt.index', compact(['user', 'ckpt', 'result']));
                 break;
         }
     }
@@ -60,16 +60,16 @@ class CKPTController extends Controller
                 return view('pages.admin.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpt.index', compact(['ckpt']));
+                return view('pages.users.kepalabps.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpt.index', compact(['ckpt']));
+                return view('pages.users.kepalabu.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
             case '4':
-                return view('pages.users.kf.ckpt.index', compact(['ckpt']));
+                return view('pages.users.kf.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
             case '5':
-                return view('pages.users.staf.ckpt.index', compact(['ckpt']));
+                return view('pages.users.staf.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
         }
     }
@@ -86,16 +86,16 @@ class CKPTController extends Controller
                 return view('pages.admin.ckpt.create', compact(['user', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpt.create', compact(['user']));
+                return view('pages.users.kepalabps.ckpt.create', compact(['user', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpt.create', compact(['user']));
+                return view('pages.users.kepalabu.ckpt.create', compact(['user', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '4':
-                return view('pages.users.kf.ckpt.create', compact(['user']));
+                return view('pages.users.kf.ckpt.create', compact(['user', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '5':
-                return view('pages.users.staf.ckpt.create', compact(['user']));
+                return view('pages.users.staf.ckpt.create', compact(['user', 'angkakredit', 'uraiankegiatan']));
                 break;
         }
     }
@@ -141,16 +141,16 @@ class CKPTController extends Controller
                 return view('pages.admin.ckpt.edit', compact(['ckpt', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpt.edit', compact(['ckpt', 'user']));
+                return view('pages.users.kepalabps.ckpt.edit', compact(['ckpt', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpt.edit', compact(['ckpt', 'user']));
+                return view('pages.users.kepalabu.ckpt.edit', compact(['ckpt', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '4':
-                return view('pages.users.kf.ckpt.edit', compact(['ckpt', 'user']));
+                return view('pages.users.kf.ckpt.edit', compact(['ckpt', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
                 break;
             case '5':
-                return view('pages.users.staf.ckpt.edit', compact(['ckpt', 'user']));
+                return view('pages.users.staf.ckpt.edit', compact(['ckpt', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
                 break;
         }
     }

@@ -26,13 +26,13 @@ class DashboardController extends Controller
                 return view('pages.users.kepalaBPS.dashboard.index', compact(['user', 'chartckp','chartskp']));
                 break;
             case '3':
-                return view('pages.users.kepalaBU.dashboard.index', compact(['user']));
+                return view('pages.users.kepalaBU.dashboard.index', compact(['user', 'chartckp','chartskp']));
                 break;
             case '4':
-                return view('pages.users.KF.dashboard.index', compact(['user']));
+                return view('pages.users.KF.dashboard.index', compact(['user', 'chartckp','chartskp']));
                 break;
             case '5':
-                return view('pages.users.staf.dashboard.index', compact(['user']));
+                return view('pages.users.staf.dashboard.index', compact(['user', 'chartckp','chartskp']));
                 break;
         }
     }
@@ -51,13 +51,13 @@ class DashboardController extends Controller
                 return view('pages.users.kepalaBPS.profile', compact(['user']));
                 break;
             case '3':
-                return view('pages.users.kepalaBU.dashboard.index', compact(['user']));
+                return view('pages.users.kepalaBU.profile', compact(['user']));
                 break;
             case '4':
-                return view('pages.users.KF.dashboard.index', compact(['user']));
+                return view('pages.users.KF.profile', compact(['user']));
                 break;
             case '5':
-                return view('pages.users.staf.dashboard.index', compact(['user']));
+                return view('pages.users.staf.profile', compact(['user']));
                 break;
         }
     }
