@@ -1,5 +1,4 @@
-@extends('layouts.admin')
-
+@extends('layouts.kepalaBPS')
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
