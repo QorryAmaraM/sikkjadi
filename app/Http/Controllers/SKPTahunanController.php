@@ -32,7 +32,7 @@ class SKPTahunanController extends Controller
                 return view('pages.users.kepalabu.skptahunan.index', compact(['skptahunanrole', 'user']));
                 break;
             case '4':
-                return view('pages.users.kf.skptahunan.index', compact(['skptahunan', 'user']));
+                return view('pages.users.kf.skptahunan.index', compact(['skptahunanrole', 'user']));
                 break;
             case '5':
                 return view('pages.users.staf.skptahunan.index', compact(['skptahunanrole', 'user']));

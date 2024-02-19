@@ -13,36 +13,7 @@
         <form>
             <div class="row mb-8">
                 <div class="col-sm-12">
-                    <div class="search form-group d-flex align-items-center">
-                        <label for="searchSelect" class="col-sm-1 pl-0 col-form-label">Pegawai</label>
-                        <select name="searchbox" id="searchbox" class="form-control">
-                            @php
-                                $namaArray = [];
-                            @endphp
-                            @foreach ($resultrole as $rencana_kinerja)
-                                @php
-                                    $userId = $rencana_kinerja->user_id;
-                                    $nama = '';
-                                @endphp
-                                @foreach ($user as $users)
-                                    @if ($userid == $users->id)
-                                        @php
-                                            $nama = $users->nama;
-                                        @endphp
-                                        @if (!in_array($nama, $namaArray))
-                                            <option value="{{ $userId }}">
-                                                {{ $nama }}
-                                            </option>
-                                            @php
-                                                $namaArray[] = $nama;
-                                            @endphp
-                                        @endif
-                                    @endif
-                                @endforeach
-                            @endforeach
-                        </select>
-                    </div>
-
+                    
                     <div class="tahun form-group d-flex align-items-center">
                         <label for="tahun" class="col-sm-1 pl-0 col-form-label">Tahun</label>
                         <input class="form-control col-sm-11" name="tahun" id="tahun" placeholder="YYYY" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">

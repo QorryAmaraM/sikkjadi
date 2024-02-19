@@ -22,7 +22,7 @@
                             @php
                                 $namaArray = [];
                             @endphp
-                            @foreach ($result as $ckpt)
+                            @foreach ($resultrole as $ckpt)
                                 @php
                                     $userId = $ckpt->user_id;
                                     $nama = '';
@@ -120,7 +120,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @forelse ($result as $ckpt)
+                            @forelse ($resultrole as $ckpt)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpt->fungsi }}</td>
@@ -182,7 +182,7 @@
                     </table>
 
                     <div class="d-flex justify-content-center">
-                    {{ $result->links('vendor.pagination.bootstrap-4') }}
+                    {{ $resultrole->links('vendor.pagination.bootstrap-4') }}
             </div>
                 </div>
             </div>

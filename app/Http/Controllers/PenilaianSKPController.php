@@ -22,100 +22,182 @@ class PenilaianSKPController extends Controller
         $nilai_kinerja_tambahan = 0;
         $simpan = [];
         $userid = Auth::user()->role_id;
+        $user_role = Auth::user()->id;
         $user = user::all();
         $result = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
             ->join('users', 'penilai_user_id', '=', 'users.id')
             ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
-            ->select('users.*','skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
+            ->select('users.*', 'skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
             ->paginate(3);
 
-            // dd($result);
+        $resultrole = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
+            ->join('users', 'penilai_user_id', '=', 'users.id')
+            ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
+            ->select('users.*', 'skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
+            ->where('user_id', $user_role)
+            ->paginate(3);
+
+        // dd($result);
+
+        if ($userid == 1 || 2) {
+
+            foreach ($result as $penilaian) {
+                $kuantitas = $penilaian->kuantitas_kategori_capaian_iki;
+                $kualitas = $penilaian->kualitas_kategori_capaian_iki;
+                $waktu = $penilaian->waktu_kategori_capaian_iki;
 
 
-        foreach ($result as $penilaian) {
-            $kuantitas = $penilaian->kuantitas_kategori_capaian_iki;
-            $kualitas = $penilaian->kualitas_kategori_capaian_iki;
-            $waktu = $penilaian->waktu_kategori_capaian_iki;
+                $sangat_kurang = 0;
+                $kurang = 0;
+                $cukup = 0;
+                $baik = 0;
+                $sangat_baik = 0;
 
+                if ($kuantitas == 'sangat kurang') {
+                    $sangat_kurang++;
+                } elseif ($kuantitas == 'kurang') {
+                    $kurang++;
+                } elseif ($kuantitas == 'cukup') {
+                    $cukup++;
+                } elseif ($kuantitas == 'baik') {
+                    $baik++;
+                } elseif ($kuantitas == 'sangat baik') {
+                    $sangat_baik++;
+                }
 
-            $sangat_kurang = 0;
-            $kurang = 0;
-            $cukup = 0;
-            $baik = 0;
-            $sangat_baik = 0;
+                if ($kualitas == 'sangat kurang') {
+                    $sangat_kurang++;
+                } elseif ($kualitas == 'kurang') {
+                    $kurang++;
+                } elseif ($kualitas == 'cukup') {
+                    $cukup++;
+                } elseif ($kualitas == 'baik') {
+                    $baik++;
+                } elseif ($kualitas == 'sangat baik') {
+                    $sangat_baik++;
+                }
 
-            if ($kuantitas == 'sangat kurang') {
-                $sangat_kurang++;
-            } elseif ($kuantitas == 'kurang') {
-                $kurang++;
-            } elseif ($kuantitas == 'cukup') {
-                $cukup++;
-            } elseif ($kuantitas == 'baik') {
-                $baik++;
-            } elseif ($kuantitas == 'sangat baik') {
-                $sangat_baik++;
+                if ($waktu == 'sangat kurang') {
+                    $sangat_kurang++;
+                } elseif ($waktu == 'kurang') {
+                    $kurang++;
+                } elseif ($waktu == 'cukup') {
+                    $cukup++;
+                } elseif ($waktu == 'baik') {
+                    $baik++;
+                } elseif ($waktu == 'sangat baik') {
+                    $sangat_baik++;
+                }
+
+                if ($sangat_baik == 2 && $baik == 1 || $sangat_baik == 3 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 0 && $baik == 0 && $sangat_baik == 1) {
+                    $data['kategori_capaian_rencana'] = 'sangat baik';
+                    $data['nilai_capaian_rencana'] = 120;
+                    $data['nilai_tertimbang'] = ((80 / 100) * 120) + ((20 / 100) * 120);
+                } elseif ($kurang == 0 && $sangat_kurang == 0 && $cukup == 1 || $kurang == 0 && $sangat_kurang == 0 && $baik >= 2 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 0 && $baik == 1 && $sangat_baik == 0) {
+                    $data['kategori_capaian_rencana'] = 'baik';
+                    $data['nilai_capaian_rencana'] = 100;
+                    $data['nilai_tertimbang'] = ((80 / 100) * 100) + ((20 / 100) * 100);
+                } elseif ($sangat_kurang == 0 && $kurang == 1 || $sangat_kurang == 0 && $cukup >= 2 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 1 && $baik == 0 && $sangat_baik == 0) {
+                    $data['kategori_capaian_rencana'] = 'cukup';
+                    $data['nilai_capaian_rencana'] = 80;
+                    $data['nilai_tertimbang'] = ((80 / 100) * 80) + ((10 / 100) * 80);
+                } elseif ($sangat_kurang == 1 || $kurang >= 2 || $sangat_kurang == 0 && $kurang == 1 && $cukup == 0 && $baik == 0 && $sangat_baik == 0) {
+                    $data['kategori_capaian_rencana'] = 'kurang';
+                    $data['nilai_capaian_rencana'] = 60;
+                    $data['nilai_tertimbang'] = ((80 / 100) * 60) + ((5 / 100) * 60);
+                } elseif ($sangat_kurang >= 2 || $sangat_kurang == 1 && $kurang == 0 && $cukup == 0 && $baik == 0 && $sangat_baik == 0) {
+                    $data['kategori_capaian_rencana'] = 'sangat kurang';
+                    $data['nilai_capaian_rencana'] = 25;
+                    $data['nilai_tertimbang'] = ((80 / 100) * 25) + ((1 / 100) * 25);
+                }
+
+                $penilaian->update($data);
             }
+            $jumlah_utama = $result->where('kinerja', 'utama')->count();
+            $jumlah_tambahan = $result->where('kinerja', 'tambahan')->count();
 
-            if ($kualitas == 'sangat kurang') {
-                $sangat_kurang++;
-            } elseif ($kualitas == 'kurang') {
-                $kurang++;
-            } elseif ($kualitas == 'cukup') {
-                $cukup++;
-            } elseif ($kualitas == 'baik') {
-                $baik++;
-            } elseif ($kualitas == 'sangat baik') {
-                $sangat_baik++;
+            $sum_utama = $result->where('kinerja', 'utama')->sum('nilai_tertimbang');
+            $sum_tambahan = $result->where('kinerja', 'tambahan')->sum('nilai_tertimbang');
+        } elseif ($userid == 5) {
+
+            foreach ($resultrole as $penilaian) {
+                $kuantitas = $penilaian->kuantitas_kategori_capaian_iki;
+                $kualitas = $penilaian->kualitas_kategori_capaian_iki;
+                $waktu = $penilaian->waktu_kategori_capaian_iki;
+
+
+                $sangat_kurang = 0;
+                $kurang = 0;
+                $cukup = 0;
+                $baik = 0;
+                $sangat_baik = 0;
+
+                if ($kuantitas == 'sangat kurang') {
+                    $sangat_kurang++;
+                } elseif ($kuantitas == 'kurang') {
+                    $kurang++;
+                } elseif ($kuantitas == 'cukup') {
+                    $cukup++;
+                } elseif ($kuantitas == 'baik') {
+                    $baik++;
+                } elseif ($kuantitas == 'sangat baik') {
+                    $sangat_baik++;
+                }
+
+                if ($kualitas == 'sangat kurang') {
+                    $sangat_kurang++;
+                } elseif ($kualitas == 'kurang') {
+                    $kurang++;
+                } elseif ($kualitas == 'cukup') {
+                    $cukup++;
+                } elseif ($kualitas == 'baik') {
+                    $baik++;
+                } elseif ($kualitas == 'sangat baik') {
+                    $sangat_baik++;
+                }
+
+                if ($waktu == 'sangat kurang') {
+                    $sangat_kurang++;
+                } elseif ($waktu == 'kurang') {
+                    $kurang++;
+                } elseif ($waktu == 'cukup') {
+                    $cukup++;
+                } elseif ($waktu == 'baik') {
+                    $baik++;
+                } elseif ($waktu == 'sangat baik') {
+                    $sangat_baik++;
+                }
+
+                if ($sangat_baik == 2 && $baik == 1 || $sangat_baik == 3 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 0 && $baik == 0 && $sangat_baik == 1) {
+                    $data['kategori_capaian_rencana'] = 'sangat baik';
+                    $data['nilai_capaian_rencana'] = 120;
+                    $data['nilai_tertimbang'] = ((80 / 100) * 120) + ((20 / 100) * 120);
+                } elseif ($kurang == 0 && $sangat_kurang == 0 && $cukup == 1 || $kurang == 0 && $sangat_kurang == 0 && $baik >= 2 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 0 && $baik == 1 && $sangat_baik == 0) {
+                    $data['kategori_capaian_rencana'] = 'baik';
+                    $data['nilai_capaian_rencana'] = 100;
+                    $data['nilai_tertimbang'] = ((80 / 100) * 100) + ((20 / 100) * 100);
+                } elseif ($sangat_kurang == 0 && $kurang == 1 || $sangat_kurang == 0 && $cukup >= 2 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 1 && $baik == 0 && $sangat_baik == 0) {
+                    $data['kategori_capaian_rencana'] = 'cukup';
+                    $data['nilai_capaian_rencana'] = 80;
+                    $data['nilai_tertimbang'] = ((80 / 100) * 80) + ((10 / 100) * 80);
+                } elseif ($sangat_kurang == 1 || $kurang >= 2 || $sangat_kurang == 0 && $kurang == 1 && $cukup == 0 && $baik == 0 && $sangat_baik == 0) {
+                    $data['kategori_capaian_rencana'] = 'kurang';
+                    $data['nilai_capaian_rencana'] = 60;
+                    $data['nilai_tertimbang'] = ((80 / 100) * 60) + ((5 / 100) * 60);
+                } elseif ($sangat_kurang >= 2 || $sangat_kurang == 1 && $kurang == 0 && $cukup == 0 && $baik == 0 && $sangat_baik == 0) {
+                    $data['kategori_capaian_rencana'] = 'sangat kurang';
+                    $data['nilai_capaian_rencana'] = 25;
+                    $data['nilai_tertimbang'] = ((80 / 100) * 25) + ((1 / 100) * 25);
+                }
+
+                $penilaian->update($data);
             }
+            $jumlah_utama = $resultrole->where('kinerja', 'utama')->count();
+            $jumlah_tambahan = $resultrole->where('kinerja', 'tambahan')->count();
 
-            if ($waktu == 'sangat kurang') {
-                $sangat_kurang++;
-            } elseif ($waktu == 'kurang') {
-                $kurang++;
-            } elseif ($waktu == 'cukup') {
-                $cukup++;
-            } elseif ($waktu == 'baik') {
-                $baik++;
-            } elseif ($waktu == 'sangat baik') {
-                $sangat_baik++;
-            }
-
-            if ($sangat_baik == 2 && $baik == 1 || $sangat_baik == 3 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 0 && $baik == 0 && $sangat_baik == 1) {
-                $data['kategori_capaian_rencana'] = 'sangat baik';
-                $data['nilai_capaian_rencana'] = 120;
-                $data['nilai_tertimbang'] = ((80 / 100) * 120) + ((20 / 100) * 120);
-            } elseif ($kurang == 0 && $sangat_kurang == 0 && $cukup == 1 || $kurang == 0 && $sangat_kurang == 0 && $baik >= 2 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 0 && $baik == 1 && $sangat_baik == 0) {
-                $data['kategori_capaian_rencana'] = 'baik';
-                $data['nilai_capaian_rencana'] = 100;
-                $data['nilai_tertimbang'] = ((80 / 100) * 100) + ((20 / 100) * 100);
-            } elseif ($sangat_kurang == 0 && $kurang == 1 || $sangat_kurang == 0 && $cukup >= 2 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 1 && $baik == 0 && $sangat_baik == 0) {
-                $data['kategori_capaian_rencana'] = 'cukup';
-                $data['nilai_capaian_rencana'] = 80;
-                $data['nilai_tertimbang'] = ((80 / 100) * 80) + ((10 / 100) * 80);
-            } elseif ($sangat_kurang == 1 || $kurang >= 2 || $sangat_kurang == 0 && $kurang == 1 && $cukup == 0 && $baik == 0 && $sangat_baik == 0) {
-                $data['kategori_capaian_rencana'] = 'kurang';
-                $data['nilai_capaian_rencana'] = 60;
-                $data['nilai_tertimbang'] = ((80 / 100) * 60) + ((5 / 100) * 60);
-            } elseif ($sangat_kurang >= 2 || $sangat_kurang == 1 && $kurang == 0 && $cukup == 0 && $baik == 0 && $sangat_baik == 0) {
-                $data['kategori_capaian_rencana'] = 'sangat kurang';
-                $data['nilai_capaian_rencana'] = 25;
-                $data['nilai_tertimbang'] = ((80 / 100) * 25) + ((1 / 100) * 25);
-            }
-
-            $penilaian->update($data);
-
-            $simpan[] = [
-                'kuantitas' => $kuantitas,
-                'kualitas' => $kualitas,
-                'waktu' => $waktu,
-            ];
+            $sum_utama = $resultrole->where('kinerja', 'utama')->sum('nilai_tertimbang');
+            $sum_tambahan = $resultrole->where('kinerja', 'tambahan')->sum('nilai_tertimbang');
         }
-
-        $jumlah_utama = $result->where('kinerja', 'utama')->count();
-        $jumlah_tambahan = $result->where('kinerja', 'tambahan')->count();
-
-        $sum_utama = $result->where('kinerja', 'utama')->sum('nilai_tertimbang');
-        $sum_tambahan = $result->where('kinerja', 'tambahan')->sum('nilai_tertimbang');
 
         if ($jumlah_utama !== 0 && $sum_utama !== 0) {
             $nilai_kinerja_utama = $sum_utama / $jumlah_utama;
@@ -131,7 +213,7 @@ class PenilaianSKPController extends Controller
                 return view('pages.admin.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
             case '2':
-                return view('pages.users.kepalabps.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp','userid']));
+                return view('pages.users.kepalabps.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp', 'userid']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
@@ -140,7 +222,7 @@ class PenilaianSKPController extends Controller
                 return view('pages.users.kf.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
             case '5':
-                return view('pages.users.staf.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
+                return view('pages.users.staf.penilaianskp.index', compact(['resultrole', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
         }
     }

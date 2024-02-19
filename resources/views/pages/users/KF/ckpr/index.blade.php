@@ -21,7 +21,7 @@
                             @php
                                 $namaArray = [];
                             @endphp
-                            @foreach ($result as $ckpr)
+                            @foreach ($resultrole as $ckpr)
                                 @php
                                     $userId = $ckpr->user_id;
                                     $nama = '';
@@ -122,7 +122,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @forelse ($result as $ckpr)
+                            @forelse ($resultrole as $ckpr)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpr->fungsi }}</td>
@@ -195,7 +195,7 @@
                     </table>
 
                     <div class="d-flex justify-content-center">
-                    {{ $result->links('vendor.pagination.bootstrap-4') }}
+                    {{ $resultrole->links('vendor.pagination.bootstrap-4') }}
             </div>
                 </div>
             </div>
@@ -308,8 +308,8 @@
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
                     confirmButtonText: "Ya, Hapus!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
+                }).then((resultrole) => {
+                    if (resultrole.isConfirmed) {
                         window.location.href = deleteUrl; // Redirect ke URL penghapusan
                     }
                 });

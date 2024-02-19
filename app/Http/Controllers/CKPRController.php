@@ -48,7 +48,7 @@ class CKPRController extends Controller
                 return view('pages.users.kepalabu.ckpr.index', compact(['ckpr', 'user', 'resultrole']));
                 break;
             case '4':
-                return view('pages.users.kf.ckpr.index', compact(['ckpr', 'user', 'result']));
+                return view('pages.users.kf.ckpr.index', compact(['ckpr', 'user', 'resultrole']));
                 break;
             case '5':
                 return view('pages.users.staf.ckpr.index', compact(['ckpr', 'user', 'resultrole']));
@@ -121,7 +121,7 @@ class CKPRController extends Controller
                 return view('pages.users.kf.ckpr.create-index', compact(['user', 'ckpt', 'result']));
                 break;
             case '5':
-                return view('pages.users.staf.ckpr.create-index', compact(['user', 'ckpt', 'result']));
+                return view('pages.users.staf.ckpr.create-index', compact(['user', 'ckpt', 'resultrole']));
                 break;
         }
     }

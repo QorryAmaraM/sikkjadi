@@ -12,38 +12,7 @@
         </div>
 
         <!-- Content Row -->
-        <div class="row mb-8">
-            <div class="col-sm-6">
-                <div class="search form-group d-flex align-items-center">
-                    <label for="searchSelect" class="mb-0 mr-4"></label>                    
-                        <option value=""></option>
-                        @php
-                            $namaArray = [];
-                        @endphp
-                        @foreach ($skptahunanrole as $skp)
-                            @php
-                                $userId = $skp->user_id;
-                                $nama = '';
-                            @endphp
-                            @foreach ($user as $users)
-                                @if ($userId == $users->id)
-                                    @php
-                                        $nama = $users->nama;
-                                    @endphp
-                                    @if (!in_array($nama, $namaArray))
-                                        <option value="{{ $userId }}">
-                                        </option>
-                                        @php
-                                            $namaArray[] = $nama;
-                                        @endphp
-                                    @endif
-                                @endif
-                            @endforeach
-                        @endforeach
-                    
-                </div>
-            </div>
-        </div>
+        
 
         <div class="row">
             <div class="col-sm-6">

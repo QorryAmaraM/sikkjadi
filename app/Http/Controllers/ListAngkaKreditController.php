@@ -38,10 +38,10 @@ class ListAngkaKreditController extends Controller
                 return view('pages.users.kepalabu.listangkakredit.index', compact(['angkakreditrole']));
                 break;
             case '4':
-                return view('pages.users.kf.listangkakredit.index', compact(['angkakredit']));
+                return view('pages.users.kf.listangkakredit.index', compact(['angkakreditrole']));
                 break;
             case '5':
-                return view('pages.users.staf.listangkakredit.index', compact(['angkakredit']));
+                return view('pages.users.staf.listangkakredit.index', compact(['angkakreditrole']));
                 break;
         }
     }

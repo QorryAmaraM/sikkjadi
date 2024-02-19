@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <a href="/kepalabps-masterutaiankegiatan/uraiankegiatanrole/create" type="button" class="btn add-button">+ Tambah</a>
+                <a href="/kepalabps-masterutaiankegiatan/uraiankegiatan/create" type="button" class="btn add-button">+ Tambah</a>
             </div>
         </div>
 
@@ -41,7 +41,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @forelse ($uraiankegiatanrole as $kegiatan)
+                            @forelse ($uraiankegiatan as $kegiatan)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $kegiatan->pembuat }}</td>
@@ -67,7 +67,7 @@
                     </table>
 
                     <div class="d-flex justify-content-center">
-                        {{ $uraiankegiatanrole->links('vendor.pagination.bootstrap-4') }}
+                        {{ $uraiankegiatan->links('vendor.pagination.bootstrap-4') }}
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
         function handleSearch(Data) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/kepalabps-masterutaiankegiatan/uraiankegiatanrole/search') }}',
+                url: '{{ URL::to('/kepalabps-masterutaiankegiatan/uraiankegiatan/search') }}',
                 data: {
                     'data': Data
                 },

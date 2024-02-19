@@ -45,10 +45,10 @@ class CKPTController extends Controller
                 return view('pages.users.kepalabu.ckpt.index', compact(['user', 'ckpt', 'resultrole']));
                 break;
             case '4':
-                return view('pages.users.kf.ckpt.index', compact(['user', 'ckpt', 'result']));
+                return view('pages.users.kf.ckpt.index', compact(['user', 'ckpt', 'resultrole']));
                 break;
             case '5':
-                return view('pages.users.staf.ckpt.index', compact(['user', 'ckpt', 'result']));
+                return view('pages.users.staf.ckpt.index', compact(['user', 'ckpt', 'resultrole']));
                 break;
         }
     }

@@ -30,7 +30,7 @@
          <!-- Main Content -->
          <div id="content">
 
-            @include('includes.navbar')
+            @include('includes.navbar.adminnavbar')
 
             @yield('content')
 

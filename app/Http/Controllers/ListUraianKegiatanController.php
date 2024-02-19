@@ -14,28 +14,28 @@ class ListUraianKegiatanController extends Controller
     //Read
     public function index(Request $request)
     {
-        $userid = Auth::user()->role_id;
-        $user_role = Auth::user()->id;
+        $user_role = Auth::user()->role_id;
+        $userid = Auth::user()->id;
         $uraiankegiatan = list_uraian_kegiatan::paginate(5);
 
-        $uraiankegiatanrole = list_uraian_kegiatan::where('user_id', $user_role)
+        $uraiankegiatanrole = list_uraian_kegiatan::where('user_id', $userid)
         ->paginate(5);
         
-        switch ($userid) {
+        switch ($user_role) {
             case '1':
                 return view('pages.admin.uraiankegiatan.index', compact(['uraiankegiatan']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.uraiankegiatan.index', compact(['uraiankegiatanrole']));
+                return view('pages.users.kepalabps.uraiankegiatan.index', compact(['uraiankegiatan']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.uraiankegiatan.index', compact(['uraiankegiatanrole']));
                 break;
             case '4':
-                return view('pages.users.kf.uraiankegiatan.index', compact(['uraiankegiatan']));
+                return view('pages.users.kf.uraiankegiatan.index', compact(['uraiankegiatanrole']));
                 break;
             case '5':
-                return view('pages.users.staf.uraiankegiatan.index', compact(['uraiankegiatan']));
+                return view('pages.users.staf.uraiankegiatan.index', compact(['uraiankegiatanrole']));
                 break;
         }
     }

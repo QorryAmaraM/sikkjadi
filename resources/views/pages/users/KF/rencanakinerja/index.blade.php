@@ -20,7 +20,7 @@
                             @php
                                 $namaArray = [];
                             @endphp
-                            @foreach ($result as $rencana_kinerja)
+                            @foreach ($resultrole as $rencana_kinerja)
                                 @php
                                     $userId = $rencana_kinerja->user_id;
                                     $nama = '';
@@ -110,7 +110,7 @@
                         </thead>
 
                         <tbody class="alldata">
-                            @forelse ($rencanakinerja as $rencana)
+                            @forelse ($resultrole as $rencana)
                                 <tr>
                                     <td rowspan="3">{{ $rencana->kinerja }}</td>
                                     <td rowspan="3">{{ $rencana->rencana_kinerja_atasan }}</td>
@@ -180,7 +180,7 @@
                     </table>
 
                     <div class="d-flex justify-content-center">
-                    {{ $rencanakinerja->links('vendor.pagination.bootstrap-4') }}
+                    {{ $resultrole->links('vendor.pagination.bootstrap-4') }}
             </div>
                 </div>
             </div>
