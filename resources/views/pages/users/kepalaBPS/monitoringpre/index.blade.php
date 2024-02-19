@@ -88,12 +88,7 @@
             </div>
         </form>
 
-        <div class="row">
-            
-            <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
-                <a href="/kepalabps-monitoring/monitorinpre/create" type="button" class="btn add-button">+ Tambah</a>
-            </div>
-        </div>
+      
 
         <div class="row">
             <div class="col-sm-12">
@@ -119,7 +114,6 @@
                                 <th>TL3</th>
                                 <th>TL4</th>
                                 <th>JHK</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="alldata">
@@ -143,15 +137,7 @@
                                     <td>{{ $presensi->tl3 }}</td>
                                     <td>{{ $presensi->tl4 }}</td>
                                     <td>{{ $presensi->jhk }}</td>
-                                    <td>
-                                       <button class="btn btn-icon btn-edit btn-sm">
-                                           <a href="{{ route('kepalabps.monitoringpresensi.edit', ['id' => $presensi->id]) }}"
-                                               class="action-link"><i class="fas fa-edit"></i></a>
-                                       </button>
-                                       <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.monitoringpresensi.delete', ['id' => $presensi->id]) }}">
-                                            <i class="fas fa-trash-can"></i>
-                                        </button>
-                                   </td>
+                                    
                                 </tr>
 
                                 @empty

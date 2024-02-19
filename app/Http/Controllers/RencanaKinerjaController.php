@@ -23,13 +23,20 @@ class REncanaKinerjaController extends Controller
             ->select('users.*','skp_tahunans.*', 'rencana_kinerjas.*')
             ->paginate(5);
 
+        $resultrole = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')
+            ->join('users', 'users.id', '=', 'skp_tahunans.user_id')
+            ->select('users.*','skp_tahunans.*', 'rencana_kinerjas.*')
+            ->where('users.role_id', $userid)
+            ->paginate(5);
+
         // dd($result);
+
         switch ($userid) {
             case '1':
                 return view('pages.admin.rencanakinerja.index', compact(['rencanakinerja', 'result', 'user']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.rencanakinerja.index', compact(['rencanakinerja', 'result', 'user', 'userid']));
+                return view('pages.users.kepalabps.rencanakinerja.index', compact(['rencanakinerja', 'resultrole', 'user', 'userid']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.rencanakinerja.index', compact(['rencanakinerja', 'result', 'user']));

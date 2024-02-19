@@ -17,6 +17,10 @@ class ListAngkaKreditController extends Controller
 
         $angkakredit = entri_angka_kredit::join('users', 'entri_angka_kredits.user_id', '=', 'users.id')
         ->select('users.*', 'entri_angka_kredits.*')
+        ->paginate(5);
+
+        $angkakreditrole = entri_angka_kredit::join('users', 'entri_angka_kredits.user_id', '=', 'users.id')
+        ->select('users.*', 'entri_angka_kredits.*')
         ->where('users.role_id', $userid)
         ->paginate(5);
         
@@ -27,7 +31,7 @@ class ListAngkaKreditController extends Controller
                 return view('pages.admin.listangkakredit.index', compact(['angkakredit']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.listangkakredit.index', compact(['angkakredit', 'userid']));
+                return view('pages.users.kepalabps.listangkakredit.index', compact(['angkakreditrole', 'userid']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.listangkakredit.index', compact(['angkakredit']));

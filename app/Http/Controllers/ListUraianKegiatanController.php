@@ -16,12 +16,16 @@ class ListUraianKegiatanController extends Controller
     {
         $userid = Auth::user()->role_id;
         $uraiankegiatan = list_uraian_kegiatan::paginate(5);
+
+        $uraiankegiatanrole = list_uraian_kegiatan::where('user_id', $userid)
+        ->paginate(5);
+        
         switch ($userid) {
             case '1':
                 return view('pages.admin.uraiankegiatan.index', compact(['uraiankegiatan']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.uraiankegiatan.index', compact(['uraiankegiatan']));
+                return view('pages.users.kepalabps.uraiankegiatan.index', compact(['uraiankegiatanrole']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.uraiankegiatan.index', compact(['uraiankegiatan']));

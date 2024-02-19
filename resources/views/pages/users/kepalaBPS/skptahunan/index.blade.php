@@ -20,7 +20,7 @@
                         @php
                             $namaArray = [];
                         @endphp
-                        @foreach ($skptahunan as $skp)
+                        @foreach ($skptahunanrole as $skp)
                             @php
                                 $userId = $skp->user_id;
                                 $nama = '';
@@ -79,8 +79,8 @@
 
                         <tbody class="alldata">
 
-                            @forelse ($skptahunan as $skp)
-                                @if ($skp->user_id == $userId)
+                            @forelse ($skptahunanrole as $skp)
+                                {{-- @if ($skp->user_id == $userId) --}}
                                     <tr>
                                         <td class="searchable tahun">{{ $skp->tahun }}</td>
                                         <td class="searchable">{{ $skp->periode }}</td>
@@ -99,7 +99,7 @@
                                             </button>
                                         </td>
                                     </tr>
-                                @endif
+                                {{-- @endif --}}
                             @empty
                                 <td colspan="6" class="text-center">Empty Data</td>
                             @endforelse
@@ -112,7 +112,7 @@
 
                 </div>
                 <div class="d-flex justify-content-center">
-                    {{ $skptahunan->links('vendor.pagination.bootstrap-4') }}
+                    {{ $skptahunanrole->links('vendor.pagination.bootstrap-4') }}
                 </div>
             </div>
 

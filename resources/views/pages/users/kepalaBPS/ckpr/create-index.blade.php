@@ -22,7 +22,7 @@
                             @php
                                 $namaArray = [];
                             @endphp
-                            @foreach ($result as $ckpt)
+                            @foreach ($resultrole as $ckpt)
                                 @php
                                     $userId = $ckpt->user_id;
                                     $nama = '';
@@ -124,7 +124,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @foreach ($result as $ckpt)
+                            @foreach ($resultrole as $ckpt)
                                 <tr >
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpt->fungsi }}</td>

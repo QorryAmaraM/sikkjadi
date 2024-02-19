@@ -38,8 +38,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @forelse ($angkakredit as $list)
-                                {{-- @if ($list->user_id == $userid)  --}}
+                            @forelse ($angkakreditrole as $list)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $list->jenis_fungsional }}</td>
@@ -59,8 +58,7 @@
                                                 </a>
                                             </button>
                                         </td>
-                                    </tr>
-                                {{-- @endif --}}
+                                    </tr>                                
                             @empty
                                 <td colspan="7" class="text-center">Empty Data</td>
                             @endforelse
@@ -70,7 +68,7 @@
                     </table>
 
                     <div class="d-flex justify-content-center">
-                        {{ $angkakredit->links('vendor.pagination.bootstrap-4') }}
+                        {{ $angkakreditrole->links('vendor.pagination.bootstrap-4') }}
                     </div>
                 </div>
             </div>

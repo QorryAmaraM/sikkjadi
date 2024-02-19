@@ -18,7 +18,7 @@ class CKPRController extends Controller
     //Read
     public function index(Request $request)
     {
-        $userid = Auth::user()->role_id;
+        $userid = Auth::user()->id;
         $ckpr = ckpr::all();
         $user = user::all();
         $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
@@ -28,12 +28,20 @@ class CKPRController extends Controller
             ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->paginate(5);
 
+        $resultrole = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->where('ckpts.user_id', $userid)
+            ->paginate(5);
+
         switch ($userid) {
             case '1':
                 return view('pages.admin.ckpr.index', compact(['ckpr', 'user', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpr.index', compact(['ckpr', 'user', 'result']));
+                return view('pages.users.kepalabps.ckpr.index', compact(['ckpr', 'user', 'resultrole']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.ckpr.index', compact(['ckpr', 'user', 'result']));
@@ -83,12 +91,18 @@ class CKPRController extends Controller
     //Create
     public function create_index(Request $request)
     {
-        $userid = Auth::user()->role_id;
+        $userid = Auth::user()->id;
         $ckpt = ckpt::all();
         $user = user::all();
         $result = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
+            ->get();
+
+        $resultrole = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
+            ->where('ckpts.user_id', $userid)
             ->get();
         $user = user::all();
         switch ($userid) {
@@ -96,7 +110,7 @@ class CKPRController extends Controller
                 return view('pages.admin.ckpr.create-index', compact(['user', 'ckpt', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpr.create-index', compact(['user', 'ckpt', 'result']));
+                return view('pages.users.kepalabps.ckpr.create-index', compact(['user', 'ckpt', 'resultrole']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.ckpr.create-index', compact(['user', 'ckpt', 'result']));
@@ -293,7 +307,7 @@ class CKPRController extends Controller
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
-            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*','penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
             ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
             ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')

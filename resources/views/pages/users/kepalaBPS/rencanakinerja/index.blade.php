@@ -19,7 +19,7 @@
                             @php
                                 $namaArray = [];
                             @endphp
-                            @foreach ($result as $rencana_kinerja)
+                            @foreach ($resultrole as $rencana_kinerja)
                                 @php
                                     $userId = $rencana_kinerja->user_id;
                                     $nama = '';
@@ -109,8 +109,8 @@
                         </thead>
 
                         <tbody class="alldata">
-                            @forelse ($result as $rencana)
-                                @if ($rencana->user_id == $userid) 
+                            @forelse ($resultrole as $rencana)
+                                {{-- @if ($rencana->user_id == $userid)  --}}
                                     <tr>
                                         <td rowspan="3">{{ $rencana->kinerja }}</td>
                                         <td rowspan="3">{{ $rencana->rencana_kinerja_atasan }}</td>
@@ -165,7 +165,7 @@
                                             </button>
                                         </td>
                                     </tr>
-                                @endif
+                                {{-- @endif --}}
 
 
 
@@ -315,8 +315,8 @@
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
                     confirmButtonText: "Ya, Hapus!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
+                }).then((resultrole) => {
+                    if (resultrole.isConfirmed) {
                         window.location.href = deleteUrl; // Redirect ke URL penghapusan
                     }
                 });

@@ -42,16 +42,16 @@ class EntriAngkaKreditController extends Controller
                 return redirect('/admin-masterangkakredit/listangkakredit');
                 break;
             case '2':
-                return redirect('/kepalabps-ckp/ckpt');
+                return redirect('/kepalabps-masterangkakredit/listangkakredit');
                 break;
             case '3':
-                return redirect('/kepalabu-ckp/ckpt');
+                return redirect('/kepalabu-masterangkakredit/listangkakredit');
                 break;
             case '4':
-                return redirect('/kf-ckp/ckpt');
+                return redirect('/kf-masterangkakredit/listangkakredit');
                 break;
             case '5':
-                return redirect('/staf-ckp/ckpt');
+                return redirect('/staf-masterangkakredit/listangkakredit');
                 break;
         }
     }
