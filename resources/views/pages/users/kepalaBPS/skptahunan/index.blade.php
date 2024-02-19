@@ -62,7 +62,7 @@
             </div>           
 
             <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                <a href="{{ url('/admin-perencanaankerja/spktahunan/create') }}" type="button" class="btn add-button">+ Tambah</a>
+                <a href="{{ url('/kepalabps-perencanaankerja/spktahunan/create') }}" type="button" class="btn add-button">+ Tambah</a>
             </div>
         </div>
 
@@ -92,12 +92,12 @@
                                     <td class="searchable">{{ $skp->jabatan }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('spktahunan.edit', ['id' => $skp->id]) }}" class="action-link">
+                                            <a href="{{ route('kepalabps.spktahunan.edit', ['id' => $skp->id]) }}" class="action-link">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
                                         </button>|
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('spktahunan.delete', ['id' => $skp->id]) }}">
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.spktahunan.delete', ['id' => $skp->id]) }}">
                                             <i class="fas fa-trash-can"></i>
                                         </button>
                                     </td>
