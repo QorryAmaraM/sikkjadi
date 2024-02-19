@@ -50,7 +50,7 @@
                         type="kodebutir"
                         class="form-control col-sm-10"
                         name="kode_butir"
-                        value="{{ $angkakredit->kode_butir }}"></div>
+                        value="{{ $angkakredit->kode_butir }}" required></div>
                     <div class="form-group d-flex align-items-center" required>
                         <label for="isibutir" class="col-sm-2 pl-0 col-form-label">Isi Butir</label>
                         <input

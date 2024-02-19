@@ -110,7 +110,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="kegiatan">CKPR Akhir</label>
-                                <input type="text" class="form-control" id="ckp_akhir" name="ckp_akhir" value="{{ $result->ckp_akhir }}"  placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required>
+                                <input type="number" min="0" max="100" class="form-control" id="ckp_akhir" name="ckp_akhir" value="{{ $result->ckp_akhir }}"  placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required>
                             </div>
                             <div class="form-group">
                                 <label for="kodebutir">Keterangan Kepala</label>
@@ -131,48 +131,61 @@
         @endforeach
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-       function checkFormAndShowModal() {
-    var form = document.getElementById('myForm');
-    var allInputsFilled = true;
+        <script>
+    function checkFormAndShowModal() {
+        var form = document.getElementById('myForm');
+        var allInputsFilled = true;
+        var ckpAkhirValue = parseFloat(document.getElementById('ckp_akhir').value);
 
-    // Loop untuk memeriksa setiap input dalam form, kecuali input keterangan
-    for (var i = 0; i < form.length; i++) {
-        if (form[i].type == "text" || form[i].type == "select-one") {
-            // Mengecualikan input keterangan dari pemeriksaan
-            if (form[i].name !== 'keterangan_kepala') {
-                if (form[i].value == "") {
-                    allInputsFilled = false;
-                    break;
+        // Loop untuk memeriksa setiap input dalam form, kecuali input keterangan
+        for (var i = 0; i < form.length; i++) {
+            if (form[i].type == "text" || form[i].type == "select-one") {
+                // Mengecualikan input keterangan dari pemeriksaan
+                if (form[i].name !== 'keterangan_kepala') {
+                    if (form[i].value == "") {
+                        allInputsFilled = false;
+                        break;
+                    }
                 }
             }
         }
-    }
 
-    // Jika semua input terisi kecuali input keterangan, tampilkan modal
-    if (allInputsFilled) {
-        Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Data berhasil ditambah!",
-            showConfirmButton: false,
-            timer: 10000
-        }).then((result) => {
-            if (result.dismiss === Swal.DismissReason.timer) {
-                $('#successModal').modal('show');
+        // Jika semua input terisi kecuali input keterangan
+        if (allInputsFilled) {
+            // Memeriksa apakah nilai CKP Akhir berada dalam rentang yang valid (0-100)
+            if (!isNaN(ckpAkhirValue) && ckpAkhirValue >= 0 && ckpAkhirValue <= 100) {
+                // Tampilkan modal sukses jika semua valid
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Data berhasil ditambah!",
+                    showConfirmButton: false,
+                    timer: 1000
+                }).then((result) => {
+                    // Jika modal sukses ditutup, tampilkan modal yang lain jika diperlukan
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        $('#successModal').modal('show');
+                    }
+                });
+            } else {
+                // Tampilkan peringatan SweetAlert jika nilai CKP Akhir tidak valid
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Nilai CKP Akhir harus berada dalam rentang 0-100.',
+                });
             }
-        });
-    } else {
-        // Tampilkan peringatan SweetAlert jika tidak semua data terisi
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Harap isi semua data sebelum melanjutkan.',
-        });
+        } else {
+            // Tampilkan peringatan SweetAlert jika tidak semua data terisi
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Harap isi semua data sebelum melanjutkan.',
+            });
+        }
     }
-}
+</script>
 
-    </script>
 
         <!-- /.container-fluid -->
     @endsection

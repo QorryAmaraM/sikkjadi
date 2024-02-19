@@ -39,11 +39,6 @@
                         <i class="fas fa-bookmark"></i>Rencana Kinerja
                     </p>
                 </a>
-                <a class="collapse-item" href="{{ route('admin_penilaianskp') }}">
-                    <p class="sub-nav-text">
-                        <i class="fas fa-bookmark"></i>Penilaian SKP
-                    </p>
-                </a>
             </div>
         </div>
     </li>
@@ -111,11 +106,6 @@
                         <i class="fas fa-bookmark"></i>CKP-R
                     </p>
                 </a>
-                <a class="collapse-item" href="{{ route('admin_penilaianckpr') }}">
-                    <p class="sub-nav-text">
-                        <i class="fas fa-bookmark"></i>Penilaian CKP-R
-                    </p>
-                </a>
             </div>
         </div>
     </li>
@@ -147,18 +137,6 @@
                 </a>
             </div>
         </div>
-    </li>
-
-    <li class="nav-item" style="position: absolute; bottom:0px;margin-bottom:0; ">
-        <hr class="sidebar-divider my-0">
-        <form action="/logout" method="POST">
-            @csrf
-            <button class="nav-link collapsed btn btn-link" style="text-align: right;" data-toggle="modal"
-                data-target="#logoutModal" type="submit"> <i
-                    class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                Logout
-            </button>
-        </form>
     </li>
 </ul>
 

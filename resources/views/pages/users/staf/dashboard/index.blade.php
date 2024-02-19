@@ -8,7 +8,7 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             @foreach ($user as $users)
                 @if ($users->id == $userid)
-                <h1 class="h3 mb-0 text-black-800">Selamat Datang di Sistem Informasi Kinerja Karyawan BPS Admin {{ $users->nama }}</h1>
+                <h1 class="h3 mb-0 text-black-800">Selamat Datang di Sistem Informasi Kinerja Karyawan BPS {{ $users->nama }}</h1>
                 @endif
             @endforeach
             </h1>

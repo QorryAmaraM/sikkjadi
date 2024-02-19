@@ -32,7 +32,18 @@
                     Profile
                 </a>
                 
+                <div class="dropdown-divider"></div> <!-- Divider -->
+
+                <form action="/logout" method="POST">
+                    @csrf
+                    <button class="dropdown-item" type="submit">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </button>
+                </form>
+
             </div>
+
         </li>
 
     </ul>

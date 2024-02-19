@@ -144,17 +144,6 @@
         </div>
     </li>
 
-    <li class="nav-item" style="position: absolute; bottom:0px;margin-bottom:0; ">
-        <hr class="sidebar-divider my-0">
-        <form action="/logout" method="POST">
-            @csrf
-            <button class="nav-link collapsed btn btn-link" style="text-align: right;" data-toggle="modal"
-                data-target="#logoutModal" type="submit"> <i
-                    class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                Logout
-            </button>
-        </form>
-    </li>
 </ul>
 
 <!-- End of Sidebar -->
