@@ -19,6 +19,8 @@ class MonitoringPresensiController extends Controller
 
         $monitoringpresensirole = monitoring_presensi::where('monitoring_presensis.user_id', $userid)
         ->paginate(5);
+
+        // dd($monitoringpresensirole);
         
         $user = user::all();
         switch ($user_role) {
@@ -26,7 +28,7 @@ class MonitoringPresensiController extends Controller
                 return view('pages.admin.monitoringpre.index', compact(['monitoringpresensi','user']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.monitoringpre.index', compact(['monitoringpresensi','user']));
+                return view('pages.users.kepalabps.monitoringpre.index', compact(['monitoringpresensirole','user']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.monitoringpre.index', compact(['monitoringpresensi','user']));
