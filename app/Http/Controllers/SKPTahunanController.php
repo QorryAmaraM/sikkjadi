@@ -14,13 +14,14 @@ class SKPTahunanController extends Controller
     public function index(Request $request)
     {
         $userid = Auth::user()->id;
+        $user_role = Auth::user()->role_id;
         $user = user::all();
         $skptahunan = skp_tahunan::paginate(5);
 
         $skptahunanrole = skp_tahunan::where('user_id', $userid)
             ->paginate(5);
 
-        switch ($userid) {
+        switch ($user_role) {
             case '1':
                 return view('pages.admin.skptahunan.index', compact(['skptahunan', 'user']));
                 break;
@@ -28,7 +29,7 @@ class SKPTahunanController extends Controller
                 return view('pages.users.kepalabps.skptahunan.index', compact(['skptahunanrole', 'user']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.skptahunan.index', compact(['skptahunan', 'user']));
+                return view('pages.users.kepalabu.skptahunan.index', compact(['skptahunanrole', 'user']));
                 break;
             case '4':
                 return view('pages.users.kf.skptahunan.index', compact(['skptahunan', 'user']));

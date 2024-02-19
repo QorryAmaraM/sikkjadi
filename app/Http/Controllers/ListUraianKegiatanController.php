@@ -15,9 +15,10 @@ class ListUraianKegiatanController extends Controller
     public function index(Request $request)
     {
         $userid = Auth::user()->role_id;
+        $user_role = Auth::user()->id;
         $uraiankegiatan = list_uraian_kegiatan::paginate(5);
 
-        $uraiankegiatanrole = list_uraian_kegiatan::where('user_id', $userid)
+        $uraiankegiatanrole = list_uraian_kegiatan::where('user_id', $user_role)
         ->paginate(5);
         
         switch ($userid) {
@@ -28,7 +29,7 @@ class ListUraianKegiatanController extends Controller
                 return view('pages.users.kepalabps.uraiankegiatan.index', compact(['uraiankegiatanrole']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.uraiankegiatan.index', compact(['uraiankegiatan']));
+                return view('pages.users.kepalabu.uraiankegiatan.index', compact(['uraiankegiatanrole']));
                 break;
             case '4':
                 return view('pages.users.kf.uraiankegiatan.index', compact(['uraiankegiatan']));

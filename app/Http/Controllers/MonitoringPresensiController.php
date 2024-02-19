@@ -13,15 +13,15 @@ class MonitoringPresensiController extends Controller
     //Read 
     public function index(Request $request)
     {
-        $userid = Auth::user()->role_id;
+        $userid = Auth::user()->id;
+        $user_role = Auth::user()->role_id;
         $monitoringpresensi = monitoring_presensi::paginate(5);
 
         $monitoringpresensirole = monitoring_presensi::where('monitoring_presensis.user_id', $userid)
         ->paginate(5);
-
         
         $user = user::all();
-        switch ($userid) {
+        switch ($user_role) {
             case '1':
                 return view('pages.admin.monitoringpre.index', compact(['monitoringpresensi','user']));
                 break;

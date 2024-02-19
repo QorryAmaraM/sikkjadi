@@ -15,6 +15,7 @@ class REncanaKinerjaController extends Controller
     public function index(Request $request)
     {
         $userid = Auth::user()->id;
+        $user_role = Auth::user()->role_id;
         // dd($userid);
         $rencanakinerja = rencana_kinerja::paginate(5);
         $user = user::all();
@@ -31,7 +32,7 @@ class REncanaKinerjaController extends Controller
 
         // dd($result);
 
-        switch ($userid) {
+        switch ($user_role) {
             case '1':
                 return view('pages.admin.rencanakinerja.index', compact(['rencanakinerja', 'result', 'user']));
                 break;
@@ -39,13 +40,13 @@ class REncanaKinerjaController extends Controller
                 return view('pages.users.kepalabps.rencanakinerja.index', compact(['rencanakinerja', 'resultrole', 'user', 'userid']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.rencanakinerja.index', compact(['rencanakinerja', 'result', 'user']));
+                return view('pages.users.kepalabu.rencanakinerja.index', compact(['rencanakinerja', 'resultrole', 'user']));
                 break;
             case '4':
                 return view('pages.users.kf.rencanakinerja.index', compact(['rencanakinerja', 'result', 'user']));
                 break;
             case '5':
-                return view('pages.users.staf.rencanakinerja.index', compact(['rencanakinerja', 'result', 'user']));
+                return view('pages.users.staf.rencanakinerja.index', compact(['rencanakinerja', 'resultrole', 'user']));
                 break;
         }
     }

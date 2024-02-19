@@ -276,95 +276,123 @@ Route::middleware(['checkRole:2'])->group(function () {
 //Kepala Bu
 Route::middleware(['checkRole:3'])->group(function () {
     Route::get('/kepalabu-dashboard', [DashboardController::class, 'dashboard'])->name('kepalabu_dashboard');
+    Route::get('/kepalabu-profil', [DashboardController::class, 'profil']);
 
     //SKP Tahunan
     Route::get('/kepalabu-perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('kepalabu_skptahunan');
+    Route::get('/kepalabu-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search']);
     Route::get('/kepalabu-perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create']);
     Route::post('/kepalabu-perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'store']);
-    Route::get('/kepalabu-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit']);
+    Route::get('/kepalabu-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit'])->name('kepalabu.spktahunan.edit');
     Route::put('/kepalabu-perencanaankerja/spktahunan/{id}', [SKPTahunanController::class, 'update']);
-    Route::delete('/kepalabu-perencanaankerja/spktahunan/{id}', [SKPTahunanController::class, 'destroy']);
+    Route::get('/kepalabu-perencanaankerja/spktahunan/{id}', [SKPTahunanController::class, 'destroy'])->name('kepalabu.spktahunan.delete');
 
     //Rencana Kinerja
     Route::get('/kepalabu-perencanaankerja/rencanakinerja', [RencanaKinerjaController::class, 'index'])->name('kepalabu_rencanakinerja');
-    Route::get('/kepalabu-perencanaankerja/rencanakinerja/create', [RencanaKinerjaController::class, 'create']);
+    Route::get('/kepalabu-perencanaankerja/rencanakinerja/search', [RencanaKinerjaController::class, 'search']);
+    Route::get('/kepalabu-perencanaankerja/rencanakinerja/create/index', [RencanaKinerjaController::class, 'create_index']);
+    Route::get('/kepalabu-perencanaankerja/rencanakinerja/create/{id}', [RencanaKinerjaController::class, 'create']);
     Route::post('/kepalabu-perencanaankerja/rencanakinerja/store', [RencanaKinerjaController::class, 'store']);
-    Route::get('/kepalabu-perencanaankerja/rencanakinerja/{id}/edit', [RencanaKinerjaController::class, 'edit']);
+    Route::get('/kepalabu-perencanaankerja/rencanakinerja/{id}/edit', [RencanaKinerjaController::class, 'edit'])->name('kepalabu.rencanakinerja.edit');
+    Route::get('/kepalabu-perencanaankerja/rencanakinerja/{id}/kuantitas-edit', [RencanaKinerjaController::class, 'edit_kuantitas'])->name('kepalabu.kuantitas.edit');
+    Route::get('/kepalabu-perencanaankerja/rencanakinerja/{id}/kualitas-edit', [RencanaKinerjaController::class, 'edit_kualitas'])->name('kepalabu.kualitas.edit');
+    Route::get('/kepalabu-perencanaankerja/rencanakinerja/{id}/waktu-edit', [RencanaKinerjaController::class, 'edit_waktu'])->name('kepalabu.waktu.edit');
     Route::put('/kepalabu-perencanaankerja/rencanakinerja/{id}', [RencanaKinerjaController::class, 'update']);
-    Route::delete('/kepalabu-perencanaankerja/rencanakinerja/{id}', [RencanaKinerjaController::class, 'destroy']);
+    Route::get('/kepalabu-perencanaankerja/rencanakinerja/{id}', [RencanaKinerjaController::class, 'destroy'])->name('kepalabu.rencanakinerja.delete');
 
     //Penilaian SKP
     Route::get('/kepalabu-perencanaankerja/penilaianskp', [PenilaianSKPController::class, 'index'])->name('kepalabu_penilaianskp');
-    Route::get('/kepalabu-perencanaankerja/penilaianskp/create', [PenilaianSKPController::class, 'create']);
+    Route::get('/kepalabu-perencanaankerja/penilaianskp/print', [PenilaianSKPController::class, 'print']);
+    Route::get('/kepalabu-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search']);
+    Route::get('/kepalabu-perencanaankerja/penilaianskp/create/index', [PenilaianSKPController::class, 'create_index']);
+    Route::get('/kepalabu-perencanaankerja/penilaianskp/create/search', [PenilaianSKPController::class, 'create_search']);
+    Route::get('/kepalabu-perencanaankerja/penilaianskp/create/{id}/kuantitas', [PenilaianSKPController::class, 'create_kuantitas'])->name('kepalabu.kuantitas.create');
+    Route::get('/kepalabu-perencanaankerja/penilaianskp/create/{id}/kualitas', [PenilaianSKPController::class, 'create_kualitas'])->name('kepalabu.kualitas.create');
+    Route::get('/kepalabu-perencanaankerja/penilaianskp/create/{id}/waktu', [PenilaianSKPController::class, 'create_waktu'])->name('kepalabu.waktu.create');
     Route::post('/kepalabu-perencanaankerja/penilaianskp/store', [PenilaianSKPController::class, 'store']);
-    Route::get('/kepalabu-perencanaankerja/penilaianskp/{id}/edit', [PenilaianSKPController::class, 'edit']);
+    Route::get('/kepalabu-perencanaankerja/penilaianskp/{id}/edit', [PenilaianSKPController::class, 'edit'])->name('kepalabu.penilaianskp.edit');
     Route::put('/kepalabu-perencanaankerja/penilaianskp/{id}', [PenilaianSKPController::class, 'update']);
-    Route::delete('/kepalabu-perencanaankerja/penilaianskp/{id}', [PenilaianSKPController::class, 'destroy']);
+    Route::get('/kepalabu-perencanaankerja/penilaianskp/{id}', [PenilaianSKPController::class, 'destroy'])->name('kepalabu.penilaianskp.delete');
 
     //List Angka Kredit
     Route::get('/kepalabu-masterangkakredit/listangkakredit', [ListAngkaKreditController::class, 'index'])->name('kepalabu_listangkakredit');
-    Route::get('/kepalabu-masterangkakredit/listangkakredit/create', [ListAngkaKreditController::class, 'create']);
-    Route::post('/kepalabu-masterangkakredit/listangkakredit/store', [ListAngkaKreditController::class, 'post']);
-    Route::get('/kepalabu-masterangkakredit/listangkakredit/{id}/edit', [ListAngkaKreditController::class, 'edit']);
+    Route::get('/kepalabu-masterangkakredit/listangkakredit/search', [ListAngkaKreditController::class, 'search']);
+    Route::get('/kepalabu-masterangkakredit/listangkakredit/{id}/edit', [ListAngkaKreditController::class, 'edit'])->name('kepalabu.listangkakredit.edit');
     Route::put('/kepalabu-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'update']);
-    Route::delete('/kepalabu-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy']);
+    Route::get('/kepalabu-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy'])->name('kepalabu.listangkakredit.delete');
 
     //Entri Angka Kredit
     Route::get('/kepalabu-masterangkakredit/entriangkakredit', [EntriAngkaKreditController::class, 'index'])->name('kepalabu_entriangkakredit');
-    Route::get('/kepalabu-masterangkakredit/entriangkakredit/create', [EntriAngkaKreditController::class, 'create']);
     Route::post('/kepalabu-masterangkakredit/entriangkakredit/store', [EntriAngkaKreditController::class, 'store']);
-    Route::get('/kepalabu-masterangkakredit/entriangkakredit/{id}/edit', [EntriAngkaKreditController::class, 'edit']);
-    Route::put('/kepalabu-masterangkakredit/entriangkakredit/{id}', [EntriAngkaKreditController::class, 'update']);
-    Route::delete('/kepalabu-masterangkakredit/entriangkakredit/{id}', [EntriAngkaKreditController::class, 'destroy']);
 
     //List Uraian Kredit
     Route::get('/kepalabu-masteruraiankegiatan/uraiankegiatan', [ListUraianKegiatanController::class, 'index'])->name('kepalabu_uraiankegiatan');
+    Route::get('/kepalabu-masterutaiankegiatan/uraiankegiatan/search', [ListUraianKegiatanController::class, 'search']);
     Route::get('/kepalabu-masterutaiankegiatan/uraiankegiatan/create', [ListUraianKegiatanController::class, 'create']);
     Route::post('/kepalabu-masterutaiankegiatan/uraiankegiatan/store', [ListUraianKegiatanController::class, 'store']);
-    Route::get('/kepalabu-masterutaiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit']);
+    Route::get('/kepalabu-masterutaiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit'])->name('kepalabu.listuraiankredit.edit');
     Route::put('/kepalabu-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'update']);
-    Route::delete('/kepalabu-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'destroy']);
+    Route::get('/kepalabu-masterutaiankegiatan/uraiankegiatan/{id}', [ListUraianKegiatanController::class, 'destroy'])->name('kepalabu.listuraiankredit.delete');
 
     //CKP-T
-    Route::get('/kepalabu-ckp/ckpt', [CKPTController::class, 'depan'])->name('kepalabu_ckpt');
-    Route::get('/kepalabu-ckp/ckpt/{nama}/index', [CKPTController::class, 'index']);
+    Route::get('/kepalabu-ckp/ckpt', [CKPTController::class, 'index'])->name('kepalabu_ckpt');
+    Route::get('/kepalabu-ckp/ckpt/print', [CKPTController::class, 'print']);
+    Route::get('/kepalabu-ckp/ckpt/search', [CKPTController::class, 'search']);
     Route::get('/kepalabu-ckp/ckpt/create', [CKPTController::class, 'create']);
     Route::post('/kepalabu-ckp/ckpt/store', [CKPTController::class, 'store']);
-    Route::get('/kepalabu-ckp/ckpt/{id}/edit', [CKPTController::class, 'edit']);
+    Route::get('/kepalabu-ckp/ckpt/{id}/edit', [CKPTController::class, 'edit'])->name('kepalabu.ckpt.edit');
     Route::put('/kepalabu-ckp/ckpt/{id}', [CKPTController::class, 'update']);
-    Route::delete('/kepalabu-ckp/ckpt/{id}', [CKPTController::class, 'destroy']);
+    Route::get('/kepalabu-ckp/ckpt/{id}', [CKPTController::class, 'destroy'])->name('kepalabu.ckpt.delete');
 
     //CKP-R
     Route::get('/kepalabu-ckp/ckpr', [CKPRController::class, 'index'])->name('kepalabu_ckpr');
-    Route::get('/kepalabu-ckp/ckpr/create', [CKPRController::class, 'create']);
+    Route::get('/kepalabu-ckp/ckpr/print', [CKPRController::class, 'print']);
+    Route::get('/kepalabu-ckp/ckpr/search', [CKPRController::class, 'search']);
+    Route::get('/kepalabu-ckp/ckpr/create/index', [CKPRController::class, 'create_index']);
+    Route::get('/kepalabu-ckp/ckpr/create/search', [CKPRController::class, 'create_search']);
+    Route::get('/kepalabu-ckp/ckpr/create/{id}', [CKPRController::class, 'create'])->name('kepalabu.ckpr.create');
     Route::post('/kepalabu-ckp/ckpr/store', [CKPRController::class, 'store']);
-    Route::get('/kepalabu-ckp/ckpr/{id}/edit', [CKPRController::class, 'edit']);
+    Route::get('/kepalabu-ckp/ckpr/{id}/edit', [CKPRController::class, 'edit'])->name('kepalabu.ckpr.edit');
     Route::put('/kepalabu-ckp/ckpr/{id}', [CKPRController::class, 'update']);
-    Route::delete('/kepalabu-ckp/ckpr/{id}', [CKPRController::class, 'destroy']);
+    Route::get('/kepalabu-ckp/ckpr/{id}', [CKPRController::class, 'destroy'])->name('kepalabu.ckpr.delete');
 
     //Penilaian CKPR
     Route::get('/kepalabu-ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('kepalabu_penilaianckpr');
-    Route::get('/kepalabu-ckp/penilaianckpr/create', [PenilaianCKPRController::class, 'create']);
+    Route::get('/kepalabu-ckp/penilaianckpr/saerch', [PenilaianCKPRController::class, 'search']);
+    Route::get('/kepalabu-ckp/penilaianckpr/search-create', [PenilaianCKPRController::class, 'search_create']);
+    Route::get('/kepalabu-ckp/penilaianckpr/create-index', [PenilaianCKPRController::class, 'create_index']);
+    Route::get('/kepalabu-ckp/penilaianckpr/create/{id}', [PenilaianCKPRController::class, 'create'])->name('kepalabu.penilaianckpr.create');
     Route::post('/kepalabu-ckp/penilaianckpr/store', [PenilaianCKPRController::class, 'store']);
-    Route::get('/kepalabu-ckp/penilaianckpr/{id}/edit', [PenilaianCKPRController::class, 'edit']);
+    Route::get('/kepalabu-ckp/penilaianckpr/{id}/edit', [PenilaianCKPRController::class, 'edit'])->name('kepalabu.penilaianckpr.edit');
     Route::put('/kepalabu-ckp/penilaianckpr/{id}', [PenilaianCKPRController::class, 'update']);
-    Route::delete('/kepalabu-ckp/penilaianckpr/{id}', [PenilaianCKPRController::class, 'destroy']);
+    Route::get('/kepalabu-ckp/penilaianckpr/{id}', [PenilaianCKPRController::class, 'destroy'])->name('kepalabu.penilaianckpr.delete');
 
     //Monitoring CKP
     Route::get('/kepalabu-monitoring/monitoringckp', [MonitoringCKPController::class, 'index'])->name('kepalabu_monitoringckp');
+    Route::get('/kepalabu-monitoring/monitoringckp/search', [MonitoringCKPController::class, 'search']);
     Route::get('/kepalabu-monitoring/monitoringckp/create', [MonitoringCKPController::class, 'create']);
     Route::post('/kepalabu-monitoring/monitoringckp/store', [MonitoringCKPController::class, 'store']);
-    Route::get('/kepalabu-monitoring/monitoringckp/{id}/edit', [MonitoringCKPController::class, 'edit']);
+    Route::get('/kepalabu-monitoring/monitoringckp/{id}/edit', [MonitoringCKPController::class, 'edit'])->name('kepalabu.monitoringckp.edit');
     Route::put('/kepalabu-monitoring/monitoringckp/{id}', [MonitoringCKPController::class, 'update']);
-    Route::delete('/kepalabu-monitoring/monitoringckp/{id}', [MonitoringCKPController::class, 'destroy']);
+    Route::get('/kepalabu-monitoring/monitoringckp/{id}', [MonitoringCKPController::class, 'destroy'])->name('kepalabu.monitoringckp.delete');
 
     //Monitoring Presensi
     Route::get('/kepalabu-monitoring/monitoringpre', [MonitoringPresensiController::class, 'index'])->name('kepalabu_monitoringpre');
+    Route::get('/kepalabu-monitoring/monitorinpre/search', [MonitoringPresensiController::class, 'search']);
     Route::get('/kepalabu-monitoring/monitorinpre/create', [MonitoringPresensiController::class, 'create']);
     Route::post('/kepalabu-monitoring/monitorinpre/store', [MonitoringPresensiController::class, 'store']);
-    Route::get('/kepalabu-monitoring/monitorinpre/{id}/edit', [MonitoringPresensiController::class, 'edit']);
+    Route::get('/kepalabu-monitoring/monitorinpre/{id}/edit', [MonitoringPresensiController::class, 'edit'])->name('kepalabu.monitoringpresensi.edit');
     Route::put('/kepalabu-monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'update']);
-    Route::delete('/kepalabu-monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'destroy']);
+    Route::get('/kepalabu-monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'destroy'])->name('kepalabu.monitoringpresensi.delete');
+
+    //Monitoring User
+    Route::get('/kepalabu-monitoring/monitoringuser', [MonitoringUserController::class, 'index'])->name('kepalabu_monitoringuser');
+    Route::get('/kepalabu-monitoring/monitoringuser/search', [MonitoringUserController::class, 'search']);
+    Route::get('/kepalabu-monitoring/monitoringuser/create', [MonitoringUserController::class, 'create']);
+    Route::post('/kepalabu-monitoring/monitoringuser/store', [MonitoringUserController::class, 'store']);
+    Route::get('/kepalabu-monitoring/monitoringuser/{id}/edit', [MonitoringUserController::class, 'edit'])->name('kepalabu.monitoringuser.edit');
+    Route::put('/kepalabu-monitoring/monitoringuser/{id}', [MonitoringUserController::class, 'update']);
+    Route::get('/kepalabu-monitoring/monitoringuser/{id}', [MonitoringUserController::class, 'destroy'])->name('kepalabu.monitoringuser.delete');
 });
 
 //KF
@@ -461,6 +489,7 @@ Route::middleware(['checkRole:4'])->group(function () {
     Route::delete('/kf-monitoring/monitorinpre/{id}', [MonitoringPresensiController::class, 'destroy']);
 });
 
+//Staf
 Route::middleware(['checkRole:5'])->group(function () {
     Route::get('/staf-dashboard', [DashboardController::class, 'dashboard'])->name('staf_dashboard');
     Route::get('/staf-profil', [DashboardController::class, 'profil']);

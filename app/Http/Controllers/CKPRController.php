@@ -19,6 +19,7 @@ class CKPRController extends Controller
     public function index(Request $request)
     {
         $userid = Auth::user()->id;
+        $user_role = Auth::user()->role_id;
         $ckpr = ckpr::all();
         $user = user::all();
         $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
@@ -36,7 +37,7 @@ class CKPRController extends Controller
             ->where('ckpts.user_id', $userid)
             ->paginate(5);
 
-        switch ($userid) {
+        switch ($user_role) {
             case '1':
                 return view('pages.admin.ckpr.index', compact(['ckpr', 'user', 'result']));
                 break;
@@ -92,6 +93,7 @@ class CKPRController extends Controller
     public function create_index(Request $request)
     {
         $userid = Auth::user()->id;
+        $user_role = Auth::user()->role_id;
         $ckpt = ckpt::all();
         $user = user::all();
         $result = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
@@ -105,7 +107,7 @@ class CKPRController extends Controller
             ->where('ckpts.user_id', $userid)
             ->get();
         $user = user::all();
-        switch ($userid) {
+        switch ($user_role) {
             case '1':
                 return view('pages.admin.ckpr.create-index', compact(['user', 'ckpt', 'result']));
                 break;

@@ -21,7 +21,7 @@
                         @php
                             $namaArray = [];
                         @endphp
-                        @foreach ($skptahunan as $skp)
+                        @foreach ($skptahunanrole as $skp)
                             @php
                                 $userId = $skp->user_id;
                                 $nama = '';
@@ -83,7 +83,7 @@
 
                         <tbody class="alldata">
 
-                            @forelse ($skptahunan as $skp)
+                            @forelse ($skptahunanrole as $skp)
                                 @if ($skp->user_id == $userId)
                                     <tr>
                                         <td class="searchable tahun">{{ $skp->tahun }}</td>
@@ -116,7 +116,7 @@
 
                 </div>
                 <div class="d-flex justify-content-center">
-                    {{ $skptahunan->links('vendor.pagination.bootstrap-4') }}
+                    {{ $skptahunanrole->links('vendor.pagination.bootstrap-4') }}
                 </div>
             </div>
 
@@ -166,7 +166,7 @@
         function handleSearch(valuepegawai, savedValue2) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-perencanaankerja/skptahunan/search') }}',
+                url: '{{ URL::to('/admin-perencanaankerja/skptahunanrole/search') }}',
                 data: {
                     'searchpegawai': valuepegawai,
                     'search': savedValue2

@@ -14,7 +14,8 @@ class MonitoringCKPController extends Controller
     //Read
     public function index(Request $request)
     {
-        $userid = Auth::user()->role_id;
+        $userid = Auth::user()->id;
+        $user_role = Auth::user()->role_id;
         $monitoringckp = monitoring_ckp::all();
         $user = user::all();
         $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
@@ -35,7 +36,7 @@ class MonitoringCKPController extends Controller
             ->paginate(5);
 
 
-        switch ($userid) {
+        switch ($user_role) {
             case '1':
                 return view('pages.admin.monitoringckp.index', compact(['monitoringckp', 'user', 'result']));
                 break;

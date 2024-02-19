@@ -15,7 +15,8 @@ class CKPTController extends Controller
     //Read
     public function index(Request $request)
     {
-        $userid = Auth::user()->role_id;
+        $userid = Auth::user()->id;
+        $user_role = Auth::user()->role_id;
         $ckpt = ckpt::all();
         $user = user::all();
         $result = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
@@ -34,7 +35,7 @@ class CKPTController extends Controller
             // dd($resultrole);
 
 
-        switch ($userid) {
+        switch ($user_role) {
             case '1':
                 return view('pages.admin.ckpt.index', compact(['user', 'ckpt', 'result']));
                 break;

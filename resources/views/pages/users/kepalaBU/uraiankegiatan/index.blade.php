@@ -41,7 +41,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @forelse ($uraiankegiatan as $kegiatan)
+                            @forelse ($uraiankegiatanrole as $kegiatan)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $kegiatan->pembuat }}</td>
@@ -67,7 +67,7 @@
                     </table>
 
                     <div class="d-flex justify-content-center">
-                        {{ $uraiankegiatan->links('vendor.pagination.bootstrap-4') }}
+                        {{ $uraiankegiatanrole->links('vendor.pagination.bootstrap-4') }}
                     </div>
                 </div>
             </div>

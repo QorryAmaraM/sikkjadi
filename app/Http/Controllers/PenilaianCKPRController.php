@@ -15,7 +15,8 @@ class PenilaianCKPRController extends Controller
     //Read
     public function index(Request $request)
     {
-        $userid = Auth::user()->role_id;
+        $userid = Auth::user()->id;
+        $user_role = Auth::user()->role_id;
         $user = user::all();
         $nilaickpr = penilaian_ckpr::all();
         $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
@@ -37,7 +38,7 @@ class PenilaianCKPRController extends Controller
             ->where('ckpts.user_id', $userid)
             ->paginate(5);
 
-        switch ($userid) {
+        switch ($user_role) {
             case '1':
                 return view('pages.admin.penilaianckpr.index', compact(['nilaickpr', 'user', 'result']));
                 break;

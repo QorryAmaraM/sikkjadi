@@ -21,7 +21,7 @@ class PenilaianSKPController extends Controller
         $nilai_kinerja_utama = 0;
         $nilai_kinerja_tambahan = 0;
         $simpan = [];
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $user = user::all();
         $result = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
             ->join('users', 'penilai_user_id', '=', 'users.id')

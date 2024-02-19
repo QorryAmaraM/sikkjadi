@@ -38,7 +38,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @forelse ($angkakredit as $list)
+                            @forelse ($angkakreditrole as $list)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $list->jenis_fungsional }}</td>
@@ -68,7 +68,7 @@
                     </table>
 
                     <div class="d-flex justify-content-center">
-                        {{ $angkakredit->links('vendor.pagination.bootstrap-4') }}
+                        {{ $angkakreditrole->links('vendor.pagination.bootstrap-4') }}
                     </div>
                 </div>
             </div>
