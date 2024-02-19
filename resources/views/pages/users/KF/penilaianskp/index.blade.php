@@ -342,14 +342,14 @@
             savedKinerjaValue = $(this).val();
 
             if (savedKinerjaValue == 'utama') {
-                $('.tabel_utama').show();
+                $('.tabel_utama').hide();
                 $('.tabel_tambahan').hide();
             } else if (savedKinerjaValue == 'tambahan') {
                 $('.tabel_utama').hide();
-                $('.tabel_tambahan').show();
+                $('.tabel_tambahan').hide();
             } else {
-                $('.tabel_utama').show();
-                $('.tabel_tambahan').show();
+                $('.tabel_utama').hide();
+                $('.tabel_tambahan').hide();
 
             }
 

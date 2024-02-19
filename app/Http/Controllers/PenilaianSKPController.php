@@ -36,11 +36,11 @@ class PenilaianSKPController extends Controller
             ->select('users.*', 'skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
             ->where('user_id', $user_role)
             ->paginate(3);
+            
 
-        // dd($userid == 1 || $userid == 2);
+        // dd($userid == 1);
 
         if ($userid == 1) {
-
             foreach ($result as $penilaian) {
                 $kuantitas = $penilaian->kuantitas_kategori_capaian_iki;
                 $kualitas = $penilaian->kualitas_kategori_capaian_iki;
@@ -118,9 +118,12 @@ class PenilaianSKPController extends Controller
 
             $sum_utama = $result->where('kinerja', 'utama')->sum('nilai_tertimbang');
             $sum_tambahan = $result->where('kinerja', 'tambahan')->sum('nilai_tertimbang');
-        } else {
-
+        } 
+        else {
+            
+            
             foreach ($resultrole as $penilaian) {
+                
                 $kuantitas = $penilaian->kuantitas_kategori_capaian_iki;
                 $kualitas = $penilaian->kualitas_kategori_capaian_iki;
                 $waktu = $penilaian->waktu_kategori_capaian_iki;
@@ -168,7 +171,7 @@ class PenilaianSKPController extends Controller
                     $sangat_baik++;
                 }
 
-                if ($sangat_baik == 2 && $baik == 1 || $sangat_baik == 3 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 0 && $baik == 0 && $sangat_baik == 1) {
+                if ($sangat_baik >= 1 && $baik == 1 || $sangat_baik == 3 || $sangat_kurang == 0 && $kurang == 0 && $cukup == 0 && $baik == 0 && $sangat_baik == 1) {
                     $data['kategori_capaian_rencana'] = 'sangat baik';
                     $data['nilai_capaian_rencana'] = 120;
                     $data['nilai_tertimbang'] = ((80 / 100) * 120) + ((20 / 100) * 120);
@@ -189,6 +192,8 @@ class PenilaianSKPController extends Controller
                     $data['nilai_capaian_rencana'] = 25;
                     $data['nilai_tertimbang'] = ((80 / 100) * 25) + ((1 / 100) * 25);
                 }
+
+                // dd($sangat_kurang, $kurang, $cukup, $baik, $sangat_baik);
 
                 $penilaian->update($data);
             }

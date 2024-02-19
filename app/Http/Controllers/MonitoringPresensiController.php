@@ -34,7 +34,7 @@ class MonitoringPresensiController extends Controller
                 return view('pages.users.kepalabu.monitoringpre.index', compact(['monitoringpresensi','user']));
                 break;
             case '4':
-                return view('pages.users.kf.monitoringpre.index', compact(['monitoringpresensi','user']));
+                return view('pages.users.kf.monitoringpre.index', compact(['monitoringpresensirole','user']));
                 break;
             case '5':
                 return view('pages.users.staf.monitoringpre.index', compact(['monitoringpresensirole','user']));

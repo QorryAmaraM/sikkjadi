@@ -47,7 +47,7 @@ class MonitoringCKPController extends Controller
                 return view('pages.users.kepalabu.monitoringckp.index', compact(['monitoringckp', 'user', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.monitoringckp.index', compact(['monitoringckp', 'user', 'result']));
+                return view('pages.users.kf.monitoringckp.index', compact(['monitoringckp', 'user', 'resultrole']));
                 break;
             case '5':
                 return view('pages.users.staf.monitoringckp.index', compact(['monitoringckp', 'user', 'resultrole']));

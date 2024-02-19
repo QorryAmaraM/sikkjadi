@@ -425,7 +425,7 @@ Route::middleware(['checkRole:4'])->group(function () {
     //Penilaian SKP
     Route::get('/kf-perencanaankerja/penilaianskp', [PenilaianSKPController::class, 'index'])->name('kf_penilaianskp');
     Route::get('/kf-perencanaankerja/penilaianskp/print', [PenilaianSKPController::class, 'print']);
-    Route::get('/kf-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search']);
+    Route::get('/kf-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search_role']);
     Route::get('/kf-perencanaankerja/penilaianskp/create/index', [PenilaianSKPController::class, 'create_index']);
     Route::get('/kf-perencanaankerja/penilaianskp/create/search', [PenilaianSKPController::class, 'create_search']);
     Route::get('/kf-perencanaankerja/penilaianskp/create/{id}/kuantitas', [PenilaianSKPController::class, 'create_kuantitas'])->name('kf.kuantitas.create');
@@ -438,7 +438,7 @@ Route::middleware(['checkRole:4'])->group(function () {
 
     //List Angka Kredit
     Route::get('/kf-masterangkakredit/listangkakredit', [ListAngkaKreditController::class, 'index'])->name('kf_listangkakredit');
-    Route::get('/kf-masterangkakredit/listangkakredit/search', [ListAngkaKreditController::class, 'search']);
+    Route::get('/kf-masterangkakredit/listangkakredit/search', [ListAngkaKreditController::class, 'search_role']);
     Route::get('/kf-masterangkakredit/listangkakredit/{id}/edit', [ListAngkaKreditController::class, 'edit'])->name('kf.listangkakredit.edit');
     Route::put('/kf-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'update']);
     Route::get('/kf-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy'])->name('kf.listangkakredit.delete');
@@ -449,7 +449,7 @@ Route::middleware(['checkRole:4'])->group(function () {
 
     //List Uraian Kredit
     Route::get('/kf-masteruraiankegiatan/uraiankegiatan', [ListUraianKegiatanController::class, 'index'])->name('kf_uraiankegiatan');
-    Route::get('/kf-masteruraiankegiatan/uraiankegiatan/search', [ListUraianKegiatanController::class, 'search']);
+    Route::get('/kf-masteruraiankegiatan/uraiankegiatan/search', [ListUraianKegiatanController::class, 'search_role']);
     Route::get('/kf-masteruraiankegiatan/uraiankegiatan/create', [ListUraianKegiatanController::class, 'create']);
     Route::post('/kf-masteruraiankegiatan/uraiankegiatan/store', [ListUraianKegiatanController::class, 'store']);
     Route::get('/kf-masteruraiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit'])->name('kf.listuraiankredit.edit');
@@ -459,7 +459,7 @@ Route::middleware(['checkRole:4'])->group(function () {
     //CKP-T
     Route::get('/kf-ckp/ckpt', [CKPTController::class, 'index'])->name('kf_ckpt');
     Route::get('/kf-ckp/ckpt/print', [CKPTController::class, 'print']);
-    Route::get('/kf-ckp/ckpt/search', [CKPTController::class, 'search']);
+    Route::get('/kf-ckp/ckpt/search', [CKPTController::class, 'search_role']);
     Route::get('/kf-ckp/ckpt/create', [CKPTController::class, 'create']);
     Route::post('/kf-ckp/ckpt/store', [CKPTController::class, 'store']);
     Route::get('/kf-ckp/ckpt/{id}/edit', [CKPTController::class, 'edit'])->name('kf.ckpt.edit');
@@ -469,7 +469,7 @@ Route::middleware(['checkRole:4'])->group(function () {
     //CKP-R
     Route::get('/kf-ckp/ckpr', [CKPRController::class, 'index'])->name('kf_ckpr');
     Route::get('/kf-ckp/ckpr/print', [CKPRController::class, 'print']);
-    Route::get('/kf-ckp/ckpr/search', [CKPRController::class, 'search']);
+    Route::get('/kf-ckp/ckpr/search', [CKPRController::class, 'search_role']);
     Route::get('/kf-ckp/ckpr/create/index', [CKPRController::class, 'create_index']);
     Route::get('/kf-ckp/ckpr/create/search', [CKPRController::class, 'create_search']);
     Route::get('/kf-ckp/ckpr/create/{id}', [CKPRController::class, 'create'])->name('kf.ckpr.create');

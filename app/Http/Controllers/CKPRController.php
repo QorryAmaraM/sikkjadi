@@ -37,6 +37,8 @@ class CKPRController extends Controller
             ->where('ckpts.user_id', $userid)
             ->paginate(5);
 
+            // dd($result);
+
         switch ($user_role) {
             case '1':
                 return view('pages.admin.ckpr.index', compact(['ckpr', 'user', 'result']));
@@ -118,7 +120,7 @@ class CKPRController extends Controller
                 return view('pages.users.kepalabu.ckpr.create-index', compact(['user', 'ckpt', 'resultrole']));
                 break;
             case '4':
-                return view('pages.users.kf.ckpr.create-index', compact(['user', 'ckpt', 'result']));
+                return view('pages.users.kf.ckpr.create-index', compact(['user', 'ckpt', 'resultrole']));
                 break;
             case '5':
                 return view('pages.users.staf.ckpr.create-index', compact(['user', 'ckpt', 'resultrole']));

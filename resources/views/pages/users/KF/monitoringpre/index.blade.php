@@ -14,36 +14,6 @@
         <form>
             <div class="row mb-8">
                 <div class="col-sm-7">
-                    <div class="search form-group d-flex align-items-center">
-                        <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Nama</label>
-                        <select name="search" id="search" class="form-control">
-                            <option value="">Pilih Pegawai</option>
-                            @php
-                                $namaArray = [];
-                            @endphp
-                            @foreach ($monitoringpresensi as $monitoring)
-                                @php
-                                    $userId = $monitoring->user_id;
-                                    $nama = '';
-                                @endphp
-                                @foreach ($user as $users)
-                                    @if ($userId == $users->id)
-                                        @php
-                                            $nama = $users->nama;
-                                        @endphp
-                                        @if (!in_array($nama, $namaArray))
-                                            <option value="{{ $userId }}">
-                                                {{ $nama }}
-                                            </option>
-                                            @php
-                                                $namaArray[] = $nama;
-                                            @endphp
-                                        @endif
-                                    @endif
-                                @endforeach
-                            @endforeach
-                        </select>
-                    </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Tahun</label>
                         <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="tahun" name="tahun">
@@ -89,13 +59,6 @@
         </form>
 
         <div class="row">
-            
-            <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
-                <a href="/kf-monitoring/monitorinpre/create" type="button" class="btn add-button">+ Tambah</a>
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-12">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -119,11 +82,10 @@
                                 <th>TL3</th>
                                 <th>TL4</th>
                                 <th>JHK</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @forelse ($monitoringpresensi as $presensi)
+                            @forelse ($monitoringpresensirole as $presensi)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $presensi->tahun }} {{ $presensi->bulan }}</td>
@@ -143,15 +105,6 @@
                                     <td>{{ $presensi->tl3 }}</td>
                                     <td>{{ $presensi->tl4 }}</td>
                                     <td>{{ $presensi->jhk }}</td>
-                                    <td>
-                                       <button class="btn btn-icon btn-edit btn-sm">
-                                           <a href="{{ route('kf.monitoringpresensi.edit', ['id' => $presensi->id]) }}"
-                                               class="action-link"><i class="fas fa-edit"></i></a>
-                                       </button>
-                                       <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kf.monitoringpresensi.delete', ['id' => $presensi->id]) }}">
-                                            <i class="fas fa-trash-can"></i>
-                                        </button>
-                                   </td>
                                 </tr>
 
                                 @empty
@@ -162,7 +115,7 @@
                     </table>
 
                     <div class="d-flex justify-content-center">
-                    {{ $monitoringpresensi->links('vendor.pagination.bootstrap-4') }}
+                    {{ $monitoringpresensirole->links('vendor.pagination.bootstrap-4') }}
             </div>
                 </div>
             </div>

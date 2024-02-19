@@ -93,7 +93,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @foreach ($result as $ckpt)
+                            @foreach ($resultrole as $ckpt)
                                 <tr >
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpt->fungsi }}</td>
