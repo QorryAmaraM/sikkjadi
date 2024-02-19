@@ -280,7 +280,7 @@ Route::middleware(['checkRole:3'])->group(function () {
 
     //SKP Tahunan
     Route::get('/kepalabu-perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('kepalabu_skptahunan');
-    Route::get('/kepalabu-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search']);
+    Route::get('/kepalabu-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search_role']);
     Route::get('/kepalabu-perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create']);
     Route::post('/kepalabu-perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'store']);
     Route::get('/kepalabu-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit'])->name('kepalabu.spktahunan.edit');
@@ -289,7 +289,7 @@ Route::middleware(['checkRole:3'])->group(function () {
 
     //Rencana Kinerja
     Route::get('/kepalabu-perencanaankerja/rencanakinerja', [RencanaKinerjaController::class, 'index'])->name('kepalabu_rencanakinerja');
-    Route::get('/kepalabu-perencanaankerja/rencanakinerja/search', [RencanaKinerjaController::class, 'search']);
+    Route::get('/kepalabu-perencanaankerja/rencanakinerja/search', [RencanaKinerjaController::class, 'search_role']);
     Route::get('/kepalabu-perencanaankerja/rencanakinerja/create/index', [RencanaKinerjaController::class, 'create_index']);
     Route::get('/kepalabu-perencanaankerja/rencanakinerja/create/{id}', [RencanaKinerjaController::class, 'create']);
     Route::post('/kepalabu-perencanaankerja/rencanakinerja/store', [RencanaKinerjaController::class, 'store']);
@@ -303,7 +303,7 @@ Route::middleware(['checkRole:3'])->group(function () {
     //Penilaian SKP
     Route::get('/kepalabu-perencanaankerja/penilaianskp', [PenilaianSKPController::class, 'index'])->name('kepalabu_penilaianskp');
     Route::get('/kepalabu-perencanaankerja/penilaianskp/print', [PenilaianSKPController::class, 'print']);
-    Route::get('/kepalabu-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search']);
+    Route::get('/kepalabu-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search_role']);
     Route::get('/kepalabu-perencanaankerja/penilaianskp/create/index', [PenilaianSKPController::class, 'create_index']);
     Route::get('/kepalabu-perencanaankerja/penilaianskp/create/search', [PenilaianSKPController::class, 'create_search']);
     Route::get('/kepalabu-perencanaankerja/penilaianskp/create/{id}/kuantitas', [PenilaianSKPController::class, 'create_kuantitas'])->name('kepalabu.kuantitas.create');
@@ -316,7 +316,7 @@ Route::middleware(['checkRole:3'])->group(function () {
 
     //List Angka Kredit
     Route::get('/kepalabu-masterangkakredit/listangkakredit', [ListAngkaKreditController::class, 'index'])->name('kepalabu_listangkakredit');
-    Route::get('/kepalabu-masterangkakredit/listangkakredit/search', [ListAngkaKreditController::class, 'search']);
+    Route::get('/kepalabu-masterangkakredit/listangkakredit/search', [ListAngkaKreditController::class, 'search_role']);
     Route::get('/kepalabu-masterangkakredit/listangkakredit/{id}/edit', [ListAngkaKreditController::class, 'edit'])->name('kepalabu.listangkakredit.edit');
     Route::put('/kepalabu-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'update']);
     Route::get('/kepalabu-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy'])->name('kepalabu.listangkakredit.delete');
@@ -327,7 +327,7 @@ Route::middleware(['checkRole:3'])->group(function () {
 
     //List Uraian Kredit
     Route::get('/kepalabu-masteruraiankegiatan/uraiankegiatan', [ListUraianKegiatanController::class, 'index'])->name('kepalabu_uraiankegiatan');
-    Route::get('/kepalabu-masterutaiankegiatan/uraiankegiatan/search', [ListUraianKegiatanController::class, 'search']);
+    Route::get('/kepalabu-masterutaiankegiatan/uraiankegiatan/search', [ListUraianKegiatanController::class, 'search_role']);
     Route::get('/kepalabu-masterutaiankegiatan/uraiankegiatan/create', [ListUraianKegiatanController::class, 'create']);
     Route::post('/kepalabu-masterutaiankegiatan/uraiankegiatan/store', [ListUraianKegiatanController::class, 'store']);
     Route::get('/kepalabu-masterutaiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit'])->name('kepalabu.listuraiankredit.edit');
@@ -337,7 +337,7 @@ Route::middleware(['checkRole:3'])->group(function () {
     //CKP-T
     Route::get('/kepalabu-ckp/ckpt', [CKPTController::class, 'index'])->name('kepalabu_ckpt');
     Route::get('/kepalabu-ckp/ckpt/print', [CKPTController::class, 'print']);
-    Route::get('/kepalabu-ckp/ckpt/search', [CKPTController::class, 'search']);
+    Route::get('/kepalabu-ckp/ckpt/search', [CKPTController::class, 'search_role']);
     Route::get('/kepalabu-ckp/ckpt/create', [CKPTController::class, 'create']);
     Route::post('/kepalabu-ckp/ckpt/store', [CKPTController::class, 'store']);
     Route::get('/kepalabu-ckp/ckpt/{id}/edit', [CKPTController::class, 'edit'])->name('kepalabu.ckpt.edit');
@@ -347,7 +347,7 @@ Route::middleware(['checkRole:3'])->group(function () {
     //CKP-R
     Route::get('/kepalabu-ckp/ckpr', [CKPRController::class, 'index'])->name('kepalabu_ckpr');
     Route::get('/kepalabu-ckp/ckpr/print', [CKPRController::class, 'print']);
-    Route::get('/kepalabu-ckp/ckpr/search', [CKPRController::class, 'search']);
+    Route::get('/kepalabu-ckp/ckpr/search', [CKPRController::class, 'search_role']);
     Route::get('/kepalabu-ckp/ckpr/create/index', [CKPRController::class, 'create_index']);
     Route::get('/kepalabu-ckp/ckpr/create/search', [CKPRController::class, 'create_search']);
     Route::get('/kepalabu-ckp/ckpr/create/{id}', [CKPRController::class, 'create'])->name('kepalabu.ckpr.create');

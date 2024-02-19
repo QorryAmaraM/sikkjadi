@@ -216,7 +216,7 @@ class PenilaianSKPController extends Controller
                 return view('pages.users.kepalabps.penilaianskp.index', compact(['resultrole', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp', 'userid']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
+                return view('pages.users.kepalabu.penilaianskp.index', compact(['resultrole', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
             case '4':
                 return view('pages.users.kf.penilaianskp.index', compact(['resultrole', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
