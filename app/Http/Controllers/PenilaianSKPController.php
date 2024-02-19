@@ -407,7 +407,7 @@ class PenilaianSKPController extends Controller
     public function store(Request $request)
     {
 
-        $userid = Auth::user()->id;
+        $userid = Auth::user()->role_id;
         $data = $request->except(['_token', 'submit']);
         $rencana_kinerja = rencana_kinerja::find($request->rencanakinerja_id);
 
