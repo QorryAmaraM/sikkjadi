@@ -228,9 +228,10 @@ class PenilaianCKPRController extends Controller
 
         $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
             ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
-            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->select('users.*','entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
             ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
             ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
@@ -242,6 +243,7 @@ class PenilaianCKPRController extends Controller
                 '<tr> 
             
             <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->nama . ' </td>
             <td> ' . $result->tahun . " " . $result->bulan . ' </td>
             <td> ' . $result->uraian_kegiatan . ' </td>
             <td> ' . $result->satuan . ' </td>

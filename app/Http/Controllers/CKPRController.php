@@ -156,16 +156,19 @@ class CKPRController extends Controller
 
     public function create_search(Request $request)
     {
+        $userid = Auth::user()->id;
         $output = "";
         $iterationNumber = 1;
 
         $result = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
-            ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
+            ->where('ckpts.user_id', $userid)
             ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
             ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
             ->get();
+
+            // dd($result);
 
         foreach ($result as $result) {
 
@@ -183,10 +186,11 @@ class CKPRController extends Controller
             <td> ' . $result->angka_kredit . ' </td>
             <td> ' . $result->kode . ' </td>
             <td> ' . $result->keterangan . ' </td>
+
             <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
-                <a href="' . route('ckpr.create', ['id' => $result->id]) . '" type="button" class="btn add-button">+ Realisasi</a>
-                </button>' . ' </td> 
-                          
+                <a href="' . route('kuantitas.create', ['id' => $result->id]) . '" type="button" class="btn add-button">+ Realisasi</a>
+                </button>' .  ' </td>
+
             </tr>';
 
             $iterationNumber++;
@@ -333,6 +337,56 @@ class CKPRController extends Controller
             <td> ' . $result->realisasi . ' </td>
             <td> ' . $result->persen . ' % </td>
             <td> ' . $result->nilai . ' </td>
+            <td> ' . $result->keterangan . ' </td>
+            <td> ' . $statusBadge . ' </td>
+
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('ckpr.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('ckpr.delete', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>   
+                          
+            </tr>';
+
+            $iterationNumber++;
+        }
+        return response($output);
+    }
+
+    public function search_role(Request $request)
+    {
+        $userid = Auth::user()->id;
+        $output = "";
+        $iterationNumber = 1;
+
+        $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->where('ckpts.user_id', $userid)
+            ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
+            ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
+            ->get();
+
+        foreach ($result as $result) {
+            $statusBadge = ($result->status == '1') ? '<span class="badge badge-success">Sudah Diverifikasi</span>' : '<span class="badge badge-danger">Belum Diverifikasi</span>';
+            $output .=
+                '<tr> 
+            
+            <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->fungsi . ' </td>
+            <td> ' . $result->bulan . " " . $result->tahun . ' </td>
+            <td> ' . $result->uraian_kegiatan . ' </td>
+            <td> ' . $result->satuan . ' </td>
+            <td> ' . $result->target . ' </td>
+            <td> ' . $result->target_rev . ' </td>
+            <td> ' . $result->realisasi . ' </td>
+            <td> ' . $result->persen . ' % </td>
+            <td> ' . $result->nilai . ' </td>
+            <td> ' . $result->kode_butir . ' </td>
+            <td> ' . $result->angka_kredit . ' </td>
+            <td> ' . $result->kode . ' </td>
             <td> ' . $result->keterangan . ' </td>
             <td> ' . $statusBadge . ' </td>
 

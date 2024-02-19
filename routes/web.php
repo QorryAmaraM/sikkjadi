@@ -158,7 +158,7 @@ Route::middleware(['checkRole:2'])->group(function () {
 
     //SKP Tahunan
     Route::get('/kepalabps-perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('kepalabps_skptahunan');
-    Route::get('/kepalabps-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search']);
+    Route::get('/kepalabps-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search_role']);
     Route::get('/kepalabps-perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create']);
     Route::post('/kepalabps-perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'store']);
     Route::get('/kepalabps-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit'])->name('kepalabps.spktahunan.edit');
@@ -167,7 +167,7 @@ Route::middleware(['checkRole:2'])->group(function () {
 
     //Rencana Kinerja
     Route::get('/kepalabps-perencanaankerja/rencanakinerja', [RencanaKinerjaController::class, 'index'])->name('kepalabps_rencanakinerja');
-    Route::get('/kepalabps-perencanaankerja/rencanakinerja/search', [RencanaKinerjaController::class, 'search']);
+    Route::get('/kepalabps-perencanaankerja/rencanakinerja/search', [RencanaKinerjaController::class, 'search_role']);
     Route::get('/kepalabps-perencanaankerja/rencanakinerja/create/index', [RencanaKinerjaController::class, 'create_index']);
     Route::get('/kepalabps-perencanaankerja/rencanakinerja/create/{id}', [RencanaKinerjaController::class, 'create']);
     Route::post('/kepalabps-perencanaankerja/rencanakinerja/store', [RencanaKinerjaController::class, 'store']);
@@ -181,7 +181,7 @@ Route::middleware(['checkRole:2'])->group(function () {
     //Penilaian SKP
     Route::get('/kepalabps-perencanaankerja/penilaianskp', [PenilaianSKPController::class, 'index'])->name('kepalabps_penilaianskp');
     Route::get('/kepalabps-perencanaankerja/penilaianskp/print', [PenilaianSKPController::class, 'print']);
-    Route::get('/kepalabps-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search']);
+    Route::get('/kepalabps-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search_role']);
     Route::get('/kepalabps-perencanaankerja/penilaianskp/create/index', [PenilaianSKPController::class, 'create_index']);
     Route::get('/kepalabps-perencanaankerja/penilaianskp/create/search', [PenilaianSKPController::class, 'create_search']);
     Route::get('/kepalabps-perencanaankerja/penilaianskp/create/{id}/kuantitas', [PenilaianSKPController::class, 'create_kuantitas'])->name('kepalabps.kuantitas.create');
@@ -194,7 +194,7 @@ Route::middleware(['checkRole:2'])->group(function () {
 
     //List Angka Kredit
     Route::get('/kepalabps-masterangkakredit/listangkakredit', [ListAngkaKreditController::class, 'index'])->name('kepalabps_listangkakredit');
-    Route::get('/kepalabps-masterangkakredit/listangkakredit/search', [ListAngkaKreditController::class, 'search']);
+    Route::get('/kepalabps-masterangkakredit/listangkakredit/search', [ListAngkaKreditController::class, 'search_role']);
     Route::get('/kepalabps-masterangkakredit/listangkakredit/{id}/edit', [ListAngkaKreditController::class, 'edit'])->name('kepalabps.listangkakredit.edit');
     Route::put('/kepalabps-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'update']);
     Route::get('/kepalabps-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy'])->name('kepalabps.listangkakredit.delete');
@@ -205,7 +205,7 @@ Route::middleware(['checkRole:2'])->group(function () {
 
     //List Uraian Kredit
     Route::get('/kepalabps-masteruraiankegiatan/uraiankegiatan', [ListUraianKegiatanController::class, 'index'])->name('kepalabps_uraiankegiatan');
-    Route::get('/kepalabps-masterutaiankegiatan/uraiankegiatan/search', [ListUraianKegiatanController::class, 'search']);
+    Route::get('/kepalabps-masterutaiankegiatan/uraiankegiatan/search', [ListUraianKegiatanController::class, 'search_role']);
     Route::get('/kepalabps-masterutaiankegiatan/uraiankegiatan/create', [ListUraianKegiatanController::class, 'create']);
     Route::post('/kepalabps-masterutaiankegiatan/uraiankegiatan/store', [ListUraianKegiatanController::class, 'store']);
     Route::get('/kepalabps-masterutaiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit'])->name('kepalabps.listuraiankredit.edit');
@@ -215,7 +215,7 @@ Route::middleware(['checkRole:2'])->group(function () {
     //CKP-T
     Route::get('/kepalabps-ckp/ckpt', [CKPTController::class, 'index'])->name('kepalabps_ckpt');
     Route::get('/kepalabps-ckp/ckpt/print', [CKPTController::class, 'print']);
-    Route::get('/kepalabps-ckp/ckpt/search', [CKPTController::class, 'search']);
+    Route::get('/kepalabps-ckp/ckpt/search', [CKPTController::class, 'search_role']);
     Route::get('/kepalabps-ckp/ckpt/create', [CKPTController::class, 'create']);
     Route::post('/kepalabps-ckp/ckpt/store', [CKPTController::class, 'store']);
     Route::get('/kepalabps-ckp/ckpt/{id}/edit', [CKPTController::class, 'edit'])->name('kepalabps.ckpt.edit');
@@ -225,7 +225,7 @@ Route::middleware(['checkRole:2'])->group(function () {
     //CKP-R
     Route::get('/kepalabps-ckp/ckpr', [CKPRController::class, 'index'])->name('kepalabps_ckpr');
     Route::get('/kepalabps-ckp/ckpr/print', [CKPRController::class, 'print']);
-    Route::get('/kepalabps-ckp/ckpr/search', [CKPRController::class, 'search']);
+    Route::get('/kepalabps-ckp/ckpr/search', [CKPRController::class, 'search_role']);
     Route::get('/kepalabps-ckp/ckpr/create/index', [CKPRController::class, 'create_index']);
     Route::get('/kepalabps-ckp/ckpr/create/search', [CKPRController::class, 'create_search']);
     Route::get('/kepalabps-ckp/ckpr/create/{id}', [CKPRController::class, 'create'])->name('kepalabps.ckpr.create');

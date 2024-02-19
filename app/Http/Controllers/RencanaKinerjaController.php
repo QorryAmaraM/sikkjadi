@@ -362,4 +362,90 @@ class REncanaKinerjaController extends Controller
         }
         return response($output);
     }
+
+    public function search_role(Request $request)
+    {
+        $userid = Auth::user()->id;
+        $output = "";
+        $searchTerm = $request->data;
+
+        $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')
+            ->select('skp_tahunans.*', 'rencana_kinerjas.*')
+            ->where('user_id', $userid)
+            ->where('skp_tahunans.tahun', 'like', '%' . $request->tahun . '%')
+            ->where('skp_tahunans.periode', 'like', '%' . $request->periode . '%')
+            ->where('skp_tahunans.wilayah', 'like', '%' . $request->wilayah . '%')
+            ->where('skp_tahunans.unit_kerja', 'like', '%' . $request->unitkerja . '%')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('rencana_kinerjas.kinerja', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.rencana_kinerja_atasan', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.rencana_kinerja', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kuantitas_iki', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kuantitas_target_min', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kuantitas_target_max', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kuantitas_satuan', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kualitas_iki', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kualitas_target_min', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kualitas_target_max', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.kualitas_satuan', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.waktu_iki', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.waktu_target_min', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.waktu_target_max', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('rencana_kinerjas.waktu_satuan', 'like', '%' . $searchTerm . '%');
+            })
+            ->get();
+
+            // dd($result);
+
+        foreach ($result as $result) {
+            $output .=
+                '<tr> 
+            
+            <td rowspan="3" > ' . $result->kinerja . ' </td>
+            <td rowspan="3" > ' . $result->rencana_kinerja_atasan . ' </td>
+            <td rowspan="3" > ' . $result->rencana_kinerja . ' </td>
+            <td > ' . 'Kuantitas' . ' </td>            
+            <td > ' . $result->kuantitas_iki . ' </td>            
+            <td > ' . $result->kuantitas_target_min . ' </td>            
+            <td > ' . $result->kuantitas_target_max . ' </td>            
+            <td > ' . $result->kuantitas_satuan . ' </td>
+            
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('kuantitas.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' .  ' </td>
+
+            <td rowspan="3"> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('rencanakinerja.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' .  ' </td>
+                          
+            </tr>' .
+
+                '<tr> 
+            <td > ' . 'Kualitas' . ' </td>            
+            <td > ' . $result->kualitas_iki . ' </td>            
+            <td > ' . $result->kualitas_target_min . ' </td>            
+            <td > ' . $result->kualitas_target_max . ' </td>            
+            <td > ' . $result->kualitas_satuan . ' </td>
+            
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('kualitas.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' .  ' </td>
+                          
+            </tr>' .
+
+                '<tr> 
+            <td > ' . 'Kualitas' . ' </td>            
+            <td > ' . $result->waktu_iki . ' </td>            
+            <td > ' . $result->waktu_target_min . ' </td>            
+            <td > ' . $result->waktu_target_max . ' </td>            
+            <td > ' . $result->waktu_satuan . ' </td>
+            
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('waktu.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' .  ' </td>
+                          
+            </tr>';
+        }
+        return response($output);
+    }
 }
