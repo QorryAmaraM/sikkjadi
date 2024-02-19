@@ -135,4 +135,33 @@
 
         })
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.btn-edit').on('click', function(event) {
+            // Dapatkan semua data pada baris yang sama dengan tombol yang ditekan
+            var row = $(this).closest('tr');
+            var isEmptyFieldPresent = false;
+            
+            // Periksa setiap sel data (td) kecuali untuk kolom 'Aksi'
+            row.children('td:not(:last-child)').each(function() {
+                var text = $(this).text().trim();
+                if (text === '') {
+                    isEmptyFieldPresent = true;
+                }
+            });
+
+            // Jika ada sel yang kosong, tampilkan modal SweetAlert
+            if (isEmptyFieldPresent) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Tidak semua data telah terisi. Silakan isi semua data sebelum melanjutkan.',
+                });
+                event.preventDefault(); // Cegah navigasi
+            }
+            // Jika tidak ada sel yang kosong, biarkan event default berlanjut (link akan diikuti)
+        });
+    });
+</script>
 @endsection

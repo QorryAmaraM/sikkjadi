@@ -91,6 +91,7 @@
         <div class="row">
             
             <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
+                <button type="button" class="btn btn-primary" onclick="sortTable()">Urutkan</button>
                 <a href="/admin-monitoring/monitorinpre/create" type="button" class="btn add-button">+ Tambah</a>
             </div>
         </div>
@@ -126,7 +127,7 @@
                             @forelse ($monitoringpresensi as $presensi)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $presensi->tahun }} {{ $presensi->bulan }}</td>
+                                    <td>{{ $presensi->bulan }} {{ $presensi->tahun }}</td>
                                     <td>{{ $presensi->cp }}</td>
                                     <td>{{ $presensi->ct }}</td>
                                     <td>{{ $presensi->cb }}</td>
@@ -155,7 +156,7 @@
                                 </tr>
 
                                 @empty
-                            <td colspan="16" class="text-center">Empty Data</td>
+                            <td colspan="19" class="text-center">Empty Data</td>
                             @endforelse
                         </tbody>
                         <tbody id="Content" class="searchdata"></tbody>
@@ -274,5 +275,73 @@
             });
         });
     </script>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+    var sortButton = document.querySelector('.btn-primary'); // Memastikan ini mengacu pada tombol Urutkan
+    if (sortButton) {
+        sortButton.addEventListener('click', function() {
+            sortTable();
+        });
+    }
+});
+function sortTable() {
+    var table, rows, i, x, y, shouldSwitch;
+    table = document.getElementById("dataTable");
+    var switching = true;
+
+    // Lakukan loop hingga tidak ada lagi baris yang perlu ditukar
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+
+        // Loop melalui semua baris tabel kecuali header
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("td")[1]; // Kolom Kode (bulan tahun)
+            y = rows[i + 1].getElementsByTagName("td")[1];
+
+            // Bandingkan dua baris
+            if (shouldSwitchRows(x, y)) {
+                shouldSwitch = true;
+                break;
+            }
+        }
+
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+}
+
+function shouldSwitchRows(x, y) {
+    var xContent = x.innerHTML.split(' ');
+    var yContent = y.innerHTML.split(' ');
+
+    var xMonth = getMonthNumber(xContent[0]);
+    var yMonth = getMonthNumber(yContent[0]);
+
+    var xYear = parseInt(xContent[1], 10);
+    var yYear = parseInt(yContent[1], 10);
+
+    // Bandingkan tahun, jika berbeda
+    if (xYear > yYear) return true;
+    if (xYear < yYear) return false;
+
+    // Jika tahun sama, bandingkan bulan
+    return xMonth > yMonth;
+}
+
+
+function getMonthNumber(month) {
+    var months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    return months.indexOf(month) + 1;
+}
+
+
+
+</script>
+
 
 @endsection

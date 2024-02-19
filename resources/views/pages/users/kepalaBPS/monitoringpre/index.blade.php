@@ -112,7 +112,7 @@
                                 </tr>
 
                                 @empty
-                            <td colspan="16" class="text-center">Empty Data</td>
+                            <td colspan="18" class="text-center">Empty Data</td>
                             @endforelse
                         </tbody>
                         <tbody id="Content" class="searchdata"></tbody>

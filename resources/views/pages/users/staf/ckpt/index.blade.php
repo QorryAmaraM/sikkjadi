@@ -239,15 +239,31 @@
             });
         }
 
-        $(function() {
-            $('#successModal').on('show.bs.modal', function() {
-                var successModal = $(this);
-                clearTimeout(successModal.data('hideInterval'));
-                successModal.data('hideInterval', setTimeout(function() {
-                    successModal.modal('hide');
-                }, 5000));
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            // Event delegation untuk tombol hapus
+            $(document).on('click', '.btn-delete', function() {
+                var deleteUrl = $(this).data('delete-url');
+
+                Swal.fire({
+                    title: "Anda Yakin?",
+                    text: "Anda tidak akan dapat mengembalikannya!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, Hapus!"
+                }).then((resultrole) => {
+                    if (resultrole.isConfirmed) {
+                        window.location.href = deleteUrl; // Redirect ke URL penghapusan
+                    }
+                });
             });
         });
     </script>
+
+    
     
 @endsection

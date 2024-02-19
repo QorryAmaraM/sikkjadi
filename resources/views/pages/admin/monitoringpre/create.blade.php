@@ -37,13 +37,32 @@
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="tahun" class="col-sm-1 pl-0 col-form-label">Tahun</label>
-                        <input type="tahun" class="form-control col-sm-11" id="tahun"
-                            placeholder="YYYY" name="tahun" required>
+                        <select class="form-control col-sm-11" data-width="75%" data-live-search="true" id="tahun" name="tahun">
+                            <option value="">Pilih tahun</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                        </select>
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="bulan" class="col-sm-1 pl-0 col-form-label">Bulan</label>
-                        <input type="bulan" class="form-control col-sm-11" id="bulan" placeholder="Bulan"
-                            name="bulan" required>
+                        <select class="form-control col-sm-11" data-width="75%" data-live-search="true" id="bulan" name="bulan">
+                            <option value="">Pilih Bulan</option>
+                            <option value="Januari">Januari</option>
+                            <option value="Februari">Februari</option>
+                            <option value="Maret">Maret</option>
+                            <option value="April">April</option>
+                            <option value="Mei">Mei</option>
+                            <option value="Juni">Juni</option>
+                            <option value="July">July</option>
+                            <option value="Agustus">Agustus</option>
+                            <option value="September">September</option>
+                            <option value="Oktober">Oktober</option>
+                            <option value="November">November</option>
+                            <option value="Desember">Desember</option>
+                        </select>
                     </div>
                 </div>
             </div>
