@@ -14,38 +14,6 @@
         <form>
             <div class="row mb-8">
                 <div class="col-sm-7">
-
-                    <div class="search form-group d-flex align-items-center">
-                        <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Nama</label>
-                        <select name="search" id="search" class="form-control">
-                            <option value="">Pilih Pegawai</option>
-                            @php
-                                $namaArray = [];
-                            @endphp
-                            @foreach ($resultrole as $ckpt)
-                                @php
-                                    $userId = $ckpt->user_id;
-                                    $nama = '';
-                                @endphp
-                                @foreach ($user as $users)
-                                    @if ($userId == $users->id)
-                                        @php
-                                            $nama = $users->nama;
-                                        @endphp
-                                        @if (!in_array($nama, $namaArray))
-                                            <option value="{{ $userId }}">
-                                                {{ $nama }}
-                                            </option>
-                                            @php
-                                                $namaArray[] = $nama;
-                                            @endphp
-                                        @endif
-                                    @endif
-                                @endforeach
-                            @endforeach
-                        </select>
-                    </div>
-
                     <div class="form-group d-flex align-items-center">
                         <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Tahun</label>
                         <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="tahun">
@@ -182,8 +150,8 @@
                     </table>
 
                     <div class="d-flex justify-content-center">
-                    {{ $resultrole->links('vendor.pagination.bootstrap-4') }}
-            </div>
+                        {{ $resultrole->links('vendor.pagination.bootstrap-4') }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -191,29 +159,8 @@
     <!-- /.container-fluid -->
 
     <script>
-        var savedValue = "";
         var savedTahunValue = "";
         var savedBulanValue = "";
-
-        $('#search').on('input', function() {
-            savedValue = $(this).val();
-
-            if (savedValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else if (savedTahunValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else if (savedBulanValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else {
-                $('.alldata').show();
-                $('.searchdata').hide();
-            }
-
-            handleSearch(savedValue, savedTahunValue, savedBulanValue);
-        });
 
         $('#tahun').on('input', function() {
             savedTahunValue = $(this).val();
@@ -221,18 +168,12 @@
             if (savedTahunValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
-            } else if (savedValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else if (savedBulanValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
             } else {
                 $('.alldata').show();
                 $('.searchdata').hide();
             }
 
-            handleSearch(savedValue, savedTahunValue, savedBulanValue);
+            handleSearch(savedTahunValue, savedBulanValue);
         });
 
         $('#bulan').on('input', function() {
@@ -241,26 +182,19 @@
             if (savedBulanValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
-            } else if (savedTahunValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else if (savedValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
             } else {
                 $('.alldata').show();
                 $('.searchdata').hide();
             }
 
-            handleSearch(savedValue, savedTahunValue, savedBulanValue);
+            handleSearch(savedTahunValue, savedBulanValue);
         });
 
-        function handleSearch(value, tahunvalue, bulanvalue) {
+        function handleSearch(tahunvalue, bulanvalue) {
             $.ajax({
                 type: 'get',
                 url: '{{ URL::to('/kepalabu-ckp/ckpt/search') }}',
                 data: {
-                    'search': value,
                     'tahun': tahunvalue,
                     'bulan': bulanvalue
                 },
@@ -270,16 +204,6 @@
                 }
             });
         }
-
-        $(function() {
-            $('#successModal').on('show.bs.modal', function() {
-                var successModal = $(this);
-                clearTimeout(successModal.data('hideInterval'));
-                successModal.data('hideInterval', setTimeout(function() {
-                    successModal.modal('hide');
-                }, 5000));
-            });
-        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -304,5 +228,4 @@
             });
         });
     </script>
-    
 @endsection

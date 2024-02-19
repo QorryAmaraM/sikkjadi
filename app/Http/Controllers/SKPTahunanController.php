@@ -214,11 +214,11 @@ class SKPTahunanController extends Controller
 
         $search = skp_tahunan::where('user_id', $userid)
             ->where(function ($query) use ($searchTerm) {
-                $query->where('skp_tahunans.tahun', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('skp_tahunans.periode', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('skp_tahunans.wilayah', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('skp_tahunans.unit_kerja', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('skp_tahunans.jabatan', 'like', '%' . $searchTerm . '%');
+                $query->where('tahun', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('periode', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('wilayah', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('unit_kerja', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('jabatan', 'like', '%' . $searchTerm . '%');
             })
             ->get();
 

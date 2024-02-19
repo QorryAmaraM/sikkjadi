@@ -16,7 +16,6 @@ class REncanaKinerjaController extends Controller
     {
         $userid = Auth::user()->id;
         $user_role = Auth::user()->role_id;
-        // dd($userid);
         $rencanakinerja = rencana_kinerja::paginate(5);
         $user = user::all();
         $result = skp_tahunan::join('rencana_kinerjas', 'skp_tahunans.id', '=', 'rencana_kinerjas.skp_tahunan_id')
@@ -29,8 +28,6 @@ class REncanaKinerjaController extends Controller
             ->select('users.*','skp_tahunans.*', 'rencana_kinerjas.*')
             ->where('user_id', $userid)
             ->paginate(5);
-
-        // dd($resultrole);
 
         switch ($user_role) {
             case '1':
@@ -65,7 +62,7 @@ class REncanaKinerjaController extends Controller
                 return view('pages.users.kepalabps.rencanakinerja.create_index', compact(['skptahunan', 'user']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.skptahunan.create_index', compact(['skptahunan', 'user']));
+                return view('pages.users.kepalabu.rencanakinerja.create_index', compact(['skptahunan', 'user']));
                 break;
             case '4':
                 return view('pages.users.kf.rencanakinerja.create_index', compact(['skptahunan', 'user']));

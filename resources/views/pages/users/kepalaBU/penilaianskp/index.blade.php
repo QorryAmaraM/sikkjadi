@@ -14,38 +14,6 @@
         <form>
             <div class="row mb-8">
                 <div class="col-sm-7">
-
-                    <div class="search form-group d-flex align-items-center">
-                        <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Nama</label>
-                        <select name="search" id="search" class="form-control">
-                            <option value="">Pilih Pegawai</option>
-                            @php
-                                $namaArray = [];
-                            @endphp
-                            @foreach ($result as $penilaian_skp)
-                                @php
-                                    $userId = $penilaian_skp->user_id;
-                                    $nama = '';
-                                @endphp
-                                @foreach ($user as $users)
-                                    @if ($userId == $users->id)
-                                        @php
-                                            $nama = $users->nama;
-                                        @endphp
-                                        @if (!in_array($nama, $namaArray))
-                                            <option value="{{ $userId }}">
-                                                {{ $nama }}
-                                            </option>
-                                            @php
-                                                $namaArray[] = $nama;
-                                            @endphp
-                                        @endif
-                                    @endif
-                                @endforeach
-                            @endforeach
-                        </select>
-                    </div>
-
                     <div class="form-group d-flex align-items-center">
                         <label for="unitkerja" class="col-sm-2 pl-0 col-form-label">Unit Kerja</label>
                         <input class="form-control col-sm-10" name="unitkerja" id="unitkerja" placeholder="Unit Kerja">
@@ -107,7 +75,7 @@
                                 </tr>
                             </thead>
                             <tbody class="tabel_utama">
-                                @forelse ($result as $skp)
+                                @forelse ($resultrole as $skp)
                                     @if ($skp->kinerja == 'utama')
                                         <tr>
                                             <td rowspan="3">{{ $skp->kinerja }}</td>
@@ -189,7 +157,7 @@
                             </tbody>
 
                             <tbody class="tabel_tambahan">
-                                @forelse ($result as $skp)
+                                @forelse ($resultrole as $skp)
                                     @if ($skp->kinerja == 'tambahan')
                                         <tr>
                                             <td rowspan="3">{{ $skp->kinerja }}</td>
@@ -323,7 +291,7 @@
                         </table>
 
                         <div class="d-flex justify-content-center">
-                    {{ $result->links('vendor.pagination.bootstrap-4') }}
+                    {{ $resultrole->links('vendor.pagination.bootstrap-4') }}
             </div>
                     </div>
                 </div>
@@ -373,14 +341,14 @@
             savedKinerjaValue = $(this).val();
 
             if (savedKinerjaValue == 'utama') {
-                $('.tabel_utama').show();
+                $('.tabel_utama').hide();
                 $('.tabel_tambahan').hide();
             } else if (savedKinerjaValue == 'tambahan') {
                 $('.tabel_utama').hide();
-                $('.tabel_tambahan').show();
+                $('.tabel_tambahan').hide();
             } else {
-                $('.tabel_utama').show();
-                $('.tabel_tambahan').show();
+                $('.tabel_utama').hide();
+                $('.tabel_tambahan').hide();
 
             }
 

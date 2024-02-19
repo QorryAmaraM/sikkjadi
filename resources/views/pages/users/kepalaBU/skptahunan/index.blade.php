@@ -14,38 +14,6 @@
         <!-- Content Row -->
         <div class="row mb-8">
             <div class="col-sm-6">
-                <div class="search form-group d-flex align-items-center">
-                    <label for="searchSelect" class="mb-0 mr-4">Pegawai</label>
-                    <select name="searchpegawai" id="searchpegawai" class="form-control">
-                        <option value="">Pilih Pegawai</option>
-                        @php
-                            $namaArray = [];
-                        @endphp
-                        @foreach ($skptahunanrole as $skp)
-                            @php
-                                $userId = $skp->user_id;
-                                $nama = '';
-                            @endphp
-                            @foreach ($user as $users)
-                                @if ($userId == $users->id)
-                                    @php
-                                        $nama = $users->nama;
-                                    @endphp
-                                    @if (!in_array($nama, $namaArray))
-                                        <option value="{{ $userId }}">
-                                            {{ $nama }}
-                                        </option>
-                                        @php
-                                            $namaArray[] = $nama;
-                                        @endphp
-                                    @endif
-                                @endif
-                            @endforeach
-                        @endforeach
-                    </select>
-                </div>
-
-
             </div>
         </div>
 
@@ -84,26 +52,24 @@
                         <tbody class="alldata">
 
                             @forelse ($skptahunanrole as $skp)
-                                @if ($skp->user_id == $userId)
-                                    <tr>
-                                        <td class="searchable tahun">{{ $skp->tahun }}</td>
-                                        <td class="searchable">{{ $skp->periode }}</td>
-                                        <td class="searchable">{{ $skp->wilayah }}</td>
-                                        <td class="searchable">{{ $skp->unit_kerja }}</td>
-                                        <td class="searchable">{{ $skp->jabatan }}</td>
-                                        <td>
-                                            <button class="btn btn-icon btn-edit btn-sm">
-                                                <a href="{{ route('kepalabu.spktahunan.edit', ['id' => $skp->id]) }}" class="action-link">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
+                                <tr>
+                                    <td class="searchable tahun">{{ $skp->tahun }}</td>
+                                    <td class="searchable">{{ $skp->periode }}</td>
+                                    <td class="searchable">{{ $skp->wilayah }}</td>
+                                    <td class="searchable">{{ $skp->unit_kerja }}</td>
+                                    <td class="searchable">{{ $skp->jabatan }}</td>
+                                    <td>
+                                        <button class="btn btn-icon btn-edit btn-sm">
+                                            <a href="{{ route('kepalabu.spktahunan.edit', ['id' => $skp->id]) }}" class="action-link">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
 
-                                            </button>|
-                                            <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabu.spktahunan.delete', ['id' => $skp->id]) }}">
-                                                <i class="fas fa-trash-can"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endif
+                                        </button>|
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabu.spktahunan.delete', ['id' => $skp->id]) }}">
+                                            <i class="fas fa-trash-can"></i>
+                                        </button>
+                                    </td>
+                                </tr>
                             @empty
                                 <td colspan="6" class="text-center">Empty Data</td>
                             @endforelse
@@ -130,29 +96,13 @@
     <!-- Script -->
 
     <script>
-        var valuepegawai = "";
-        var savedValue2 = "";
-
-        $('#searchpegawai').on('input', function() {
-
-            valuepegawai = $(this).val();
-
-            if (valuepegawai) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else {
-                $('.alldata').show();
-                $('.searchdata').hide();
-            }
-
-            handleSearch(valuepegawai, savedValue2);
-        });
+        var savedValue = "";
 
         $('#search').on('input', function() {
 
-            savedValue2 = $(this).val();
+            savedValue = $(this).val();
 
-            if (savedValue2) {
+            if (savedValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
             } else {
@@ -160,16 +110,15 @@
                 $('.searchdata').hide();
             }
 
-            handleSearch(valuepegawai, savedValue2);
+            handleSearch(savedValue);
         });
 
-        function handleSearch(valuepegawai, savedValue2) {
+        function handleSearch(savedValue) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-perencanaankerja/skptahunan/search') }}',
+                url: '{{ URL::to('/kepalabu-perencanaankerja/skptahunan/search') }}',
                 data: {
-                    'searchpegawai': valuepegawai,
-                    'search': savedValue2
+                    'search': savedValue
                 },
 
                 success: function(data) {

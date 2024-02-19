@@ -14,36 +14,6 @@
         <form>
             <div class="row mb-8">
                 <div class="col-sm-7">
-                    <div class="search form-group d-flex align-items-center">
-                        <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Nama</label>
-                        <select name="search" id="search" class="form-control">
-                            <option value="">Pilih Pegawai</option>
-                            @php
-                                $namaArray = [];
-                            @endphp
-                            @foreach ($result as $monitoring)
-                                @php
-                                    $userId = $monitoring->user_id;
-                                    $nama = '';
-                                @endphp
-                                @foreach ($user as $users)
-                                    @if ($userId == $users->id)
-                                        @php
-                                            $nama = $users->nama;
-                                        @endphp
-                                        @if (!in_array($nama, $namaArray))
-                                            <option value="{{ $userId }}">
-                                                {{ $nama }}
-                                            </option>
-                                            @php
-                                                $namaArray[] = $nama;
-                                            @endphp
-                                        @endif
-                                    @endif
-                                @endforeach
-                            @endforeach
-                        </select>
-                    </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Tahun</label>
                         <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="tahun">
@@ -102,7 +72,6 @@
                                 <th>CKP</th>
                                 <th>CKP Akhir</th>
                                 <th>Keterangan Kepala</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="alldata">
@@ -113,15 +82,6 @@
                                     <td>{{ $monitoringckp->nilai }}</td>
                                     <td>{{ $monitoringckp->ckp_akhir }}</td>
                                     <td>{{ $monitoringckp->keterangan_kepala }}</td>
-                                    <td>
-                                        <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabu.monitoringckp.edit', ['id' => $monitoringckp->id]) }}"
-                                                class="action-link"><i class="fas fa-edit"></i></a>
-                                        </button>
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabu.monitoringckp.delete', ['id' => $monitoringckp->id]) }}">
-                                            <i class="fas fa-trash-can"></i>
-                                        </button>
-                                    </td>
                                 </tr>
 
                                 @empty
