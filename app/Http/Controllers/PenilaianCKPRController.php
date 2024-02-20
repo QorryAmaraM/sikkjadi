@@ -181,16 +181,16 @@ class PenilaianCKPRController extends Controller
                 return redirect('/admin-ckp/penilaianckpr');
                 break;
             case '2':
-                return redirect('/kepalabps-perencanaankerja/penilaianckpr');
+                return redirect('/kepalabps-ckp/penilaianckpr');
                 break;
             case '3':
-                return redirect('/kepalabu-perencanaankerja/penilaianckpr');
+                return redirect('/kepalabu-ckp/penilaianckpr');
                 break;
             case '4':
-                return redirect('/kf-perencanaankerja/penilaianckpr');
+                return redirect('/kf-ckp/penilaianckpr');
                 break;
             case '5':
-                return redirect('/staf-perencanaankerja/penilaianckpr');
+                return redirect('/staf-ckp/penilaianckpr');
                 break;
         }
     }
