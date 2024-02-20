@@ -17,13 +17,19 @@ class DashboardController extends Controller
         $chartskp = $chartskp->build();
         $user = user::all();
         $userid = Auth::user()->role_id;
+
+        $nilai_skp_terendah = User::min('nilai_skp');
+
+        $nilai_skp_tertinggi = User::max('nilai_skp');
+
+        // dd($user);
         
         switch ($userid) {
             case '1':
                 return view('pages.admin.dashboard.index', compact(['user', 'chartckp','chartskp']));
                 break;
             case '2':
-                return view('pages.users.kepalaBPS.dashboard.index', compact(['user', 'chartckp','chartskp']));
+                return view('pages.users.kepalaBPS.dashboard.index', compact(['user', 'chartckp','chartskp', 'nilai_skp_tertinggi', 'nilai_skp_terendah']));
                 break;
             case '3':
                 return view('pages.users.kepalaBU.dashboard.index', compact(['user', 'chartckp','chartskp']));
