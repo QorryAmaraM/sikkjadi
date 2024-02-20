@@ -24,7 +24,7 @@ class MonitoringPresensiController extends Controller
             ->orderByRaw("FIELD(monitoring_presensis.bulan, 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember')")
             ->paginate(5);
 
-        dd($monitoringpresensirole);
+        // dd($monitoringpresensirole);
 
         // dd($monitoringpresensirole);
 
