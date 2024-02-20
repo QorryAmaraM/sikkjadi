@@ -115,10 +115,10 @@
                                     <td>{{ $monitoringckp->nilai }}</td>
                                     <td>{{ $monitoringckp->ckp_akhir }}</td>
                                     <td>{{ $monitoringckp->keterangan_kepala }}</td>
+                                    
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabps.monitoringckp.edit', ['id' => $monitoringckp->id]) }}"
-                                                class="action-link"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('kepalabps.monitoringckp.edit', ['id' => $monitoringckp->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
                                         </button>
                                         <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.monitoringckp.delete', ['id' => $monitoringckp->id]) }}">
                                             <i class="fas fa-trash-can"></i>
@@ -126,16 +126,17 @@
                                     </td>
                                 </tr>
 
-                                @empty
-                        <td colspan="6" class="text-center">Empty Data</td>
+                            @empty
+                                <td colspan="6" class="text-center">Empty Data</td>
                             @endforelse
                         </tbody>
                         <tbody id="Content" class="searchdata"></tbody>
                     </table>
 
-                    <div class="d-flex justify-content-center">
-                    {{ $result->links('vendor.pagination.bootstrap-4') }}
-            </div>
+                    <div class="pagination-links" id="paginationDiv">
+                        {{ $result->links('vendor.pagination.bootstrap-4') }}
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -149,9 +150,10 @@
         $('#search').on('input', function() {
             savedValue = $(this).val();
 
-            if (savedValue) {
+            if (savedValue) {                
                 $('.alldata').hide();
                 $('.searchdata').show();
+                $('.pagination-links').hide();
             } else if (savedTahunValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
@@ -161,6 +163,7 @@
             } else {
                 $('.alldata').show();
                 $('.searchdata').hide();
+                $('.pagination-links').hide();
             }
 
             handleSearch(savedValue, savedTahunValue, savedBulanValue);
@@ -221,7 +224,6 @@
                 }
             });
         }
-       
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
