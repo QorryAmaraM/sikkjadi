@@ -181,7 +181,7 @@ Route::middleware(['checkRole:2'])->group(function () {
     //Penilaian SKP
     Route::get('/kepalabps-perencanaankerja/penilaianskp', [PenilaianSKPController::class, 'index'])->name('kepalabps_penilaianskp');
     Route::get('/kepalabps-perencanaankerja/penilaianskp/print', [PenilaianSKPController::class, 'print']);
-    Route::get('/kepalabps-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search_role']);
+    Route::get('/kepalabps-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search_kepalabps']);
     Route::get('/kepalabps-perencanaankerja/penilaianskp/create/index', [PenilaianSKPController::class, 'create_index']);
     Route::get('/kepalabps-perencanaankerja/penilaianskp/create/search', [PenilaianSKPController::class, 'create_search']);
     Route::get('/kepalabps-perencanaankerja/penilaianskp/create/{id}/kuantitas', [PenilaianSKPController::class, 'create_kuantitas'])->name('kepalabps.kuantitas.create');

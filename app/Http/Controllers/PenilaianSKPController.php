@@ -995,22 +995,29 @@ class PenilaianSKPController extends Controller
 
     public function search_kepalabps(Request $request)
     {
-
         $result = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
             ->join('users', 'penilai_user_id', '=', 'users.id')
             ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
             ->select('users.*', 'skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
-            // ->where('user_id', $request->search)
+            ->where('user_id', $request->search)
             ->get();       
-            
-            dd($result);
+        
+        $jumlah_utama = $result->where('kinerja', 'utama')->count();
+        $jumlah_tambahan = $result->where('kinerja', 'tambahan')->count();
+        
+        $sum_utama = $result->where('kinerja', 'utama')->sum('nilai_tertimbang');
+        $sum_tambahan = $result->where('kinerja', 'tambahan')->sum('nilai_tertimbang');
+
+        if ($jumlah_utama !== 0 && $sum_utama !== 0) {
+            $nilai_kinerja_utama = $sum_utama / $jumlah_utama;
+        }
+        if ($jumlah_tambahan !== 0 && $sum_tambahan !== 0) {
+            $nilai_kinerja_tambahan = $sum_tambahan / $jumlah_tambahan;
+        }
         
         $output = "";
         $lastutama = false;
         $lasttambahan = false;
-        $user_role = Auth::user()->id;
-
-        // dd($result);
 
         foreach ($result as $utama) {
             if ($utama->kinerja == "utama") {
@@ -1064,7 +1071,7 @@ class PenilaianSKPController extends Controller
                 </tr>';
                 $lastutama = true;
             }
-        }
+        }           
 
         if ($lastutama) {
             $output .=
@@ -1085,7 +1092,7 @@ class PenilaianSKPController extends Controller
                 <td style="background-color: #9ba4b5" > ' . '' . ' </td>
                 <td style="background-color: #9ba4b5" > ' . '' . ' </td>
                 <td style="background-color: #9ba4b5" > ' . '' . ' </td>
-                <td style="background-color: #9ba4b5" > ' . '' . ' </td>               
+                <td style="background-color: #9ba4b5" > ' . $nilai_kinerja_utama . ' </td>               
                 
                 </tr>';
         }
@@ -1163,7 +1170,7 @@ class PenilaianSKPController extends Controller
                 <td style="background-color: #9ba4b5" > ' . '' . ' </td>
                 <td style="background-color: #9ba4b5" > ' . '' . ' </td>
                 <td style="background-color: #9ba4b5" > ' . '' . ' </td>
-                <td style="background-color: #9ba4b5" > ' . '' . ' </td>               
+                <td style="background-color: #9ba4b5" > ' . $nilai_kinerja_tambahan . ' </td>               
                 
                 </tr>';
         }
