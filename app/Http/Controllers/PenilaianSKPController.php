@@ -213,6 +213,14 @@ class PenilaianSKPController extends Controller
 
         $nilai_skp = $nilai_kinerja_utama + $nilai_kinerja_tambahan;
 
+        $data = $request->except(['_token', 'submit']);
+
+        $data['nilai_skp'] = $nilai_skp;
+
+        $user_update = user::find($user_role);
+        $user_update->update($data);
+
+
         switch ($userid) {
             case '1':
                 return view('pages.admin.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));

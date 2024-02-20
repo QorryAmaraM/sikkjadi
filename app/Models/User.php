@@ -25,6 +25,7 @@ class User extends Authenticatable
         'nip',
         'golongan',
         'fungsional',
+        'nilai_skp',
     ];
 
     /**
