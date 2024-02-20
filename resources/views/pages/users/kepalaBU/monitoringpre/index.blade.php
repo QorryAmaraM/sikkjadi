@@ -102,6 +102,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Nama</th>
                                 <th>Kode</th>
                                 <th>CP</th>
                                 <th>CT</th>
@@ -126,6 +127,7 @@
                             @forelse ($monitoringpresensi as $presensi)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $presensi->nama }}</td>
                                     <td>{{ $presensi->tahun }} {{ $presensi->bulan }}</td>
                                     <td>{{ $presensi->cp }}</td>
                                     <td>{{ $presensi->ct }}</td>
