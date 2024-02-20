@@ -18,11 +18,12 @@
                 <div class="col-sm-12">
                     <div class="form-group d-flex align-items-center">
                         <label for="nama" class="col-sm-1 pl-0 col-form-label">Nama</label>
-                        <select class="form-control col-sm-11" data-width="75%" data-live-search="true" id="user_id" name="user_id">
+                        <select class="form-control col-sm-11" data-width="50%" data-live-search="true" id="user_id" name="user_id">
                             <option value="">Pilih Pegawai</option>
                             @foreach ($user as $pegawai)
                                 <option value="{{ $pegawai->id }}">{{ $pegawai->nama }}</option>
                             @endforeach
+                        </select>
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="nip" class="col-sm-1 pl-0 col-form-label">NIP</label>

@@ -91,7 +91,7 @@
         <div class="row">
             
             <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
-                <button type="button" class="btn btn-primary" onclick="sortTable()">Urutkan</button>
+                
                 <a href="/admin-monitoring/monitorinpre/create" type="button" class="btn add-button">+ Tambah</a>
             </div>
         </div>
