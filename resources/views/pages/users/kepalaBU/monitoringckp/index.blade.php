@@ -79,6 +79,7 @@
                             @forelse ($result as $monitoringckp)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $monitoringckp->nama }}</td>
                                     <td>{{ $monitoringckp->bulan }} {{ $monitoringckp->tahun }}</td>
                                     <td>{{ $monitoringckp->nilai }}</td>
                                     <td>{{ $monitoringckp->ckp_akhir }}</td>
