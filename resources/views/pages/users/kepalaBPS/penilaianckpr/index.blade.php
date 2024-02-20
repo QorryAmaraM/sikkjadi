@@ -126,7 +126,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $nilaickpr->nama }}</td>
-                                    <td>{{ $nilaickpr->tahun }} {{ $nilaickpr->bulan }}</td>
+                                    <td>{{ $nilaickpr->bulan }} {{ $nilaickpr->tahun }}</td>
                                     <td>{{ $nilaickpr->uraian_kegiatan }}</td>
                                     <td>{{ $nilaickpr->satuan }}</td>
                                     <td>{{ $nilaickpr->target }}</td>

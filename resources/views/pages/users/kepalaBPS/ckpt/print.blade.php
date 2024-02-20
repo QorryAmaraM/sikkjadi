@@ -143,7 +143,7 @@
                         @foreach ($result as $ckpt)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $ckpt->tahun }} {{ $ckpt->bulan }}</td>
+                                <td>{{ $ckpt->bulan }} {{ $ckpt->tahun }}</td>
                                 <td>{{ $ckpt->uraian_kegiatan }}</td>
                                 <td>{{ $ckpt->satuan }}</td>
                                 <td>

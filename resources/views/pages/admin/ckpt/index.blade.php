@@ -124,7 +124,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpt->fungsi }}</td>
-                                    <td>{{ $ckpt->tahun }} {{ $ckpt->bulan }}</td>
+                                    <td>{{ $ckpt->bulan }} {{ $ckpt->tahun }}</td>
                                     <td>{{ $ckpt->uraian_kegiatan }}</td>
                                     <td>{{ $ckpt->satuan }}</td>
                                     <td>{{ $ckpt->target }}</td>
