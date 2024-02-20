@@ -2,8 +2,9 @@
 
 namespace App\Charts;
 
-use ArielMejiaDev\LarapexCharts\LarapexChart;
 use App\Models\penilaian_ckpr;
+use Illuminate\Support\Facades\Auth;
+use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class grafikpenilaianckp
 {
@@ -16,6 +17,8 @@ class grafikpenilaianckp
 
     public function build(): \ArielMejiaDev\LarapexCharts\BarChart
     {
+        $userid = Auth::user()->id;
+
         $dataAkhir = array();
 
         $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
@@ -24,7 +27,10 @@ class grafikpenilaianckp
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
             ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*')
+            ->where('ckpts.user_id', $userid)
             ->get();
+
+            // dd($result);
 
         foreach ($result as $item) {
             // Menggunakan kombinasi tahun dan bulan sebagai kunci

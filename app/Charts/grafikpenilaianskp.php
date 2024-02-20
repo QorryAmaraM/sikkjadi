@@ -2,8 +2,9 @@
 
 namespace App\Charts;
 
-use ArielMejiaDev\LarapexCharts\LarapexChart;
 use App\Models\penilaian_skp;
+use Illuminate\Support\Facades\Auth;
+use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class grafikpenilaianskp
 {
@@ -16,10 +17,16 @@ class grafikpenilaianskp
 
     public function build(): \ArielMejiaDev\LarapexCharts\BarChart
     {
+        
+        $userid = Auth::user()->id;
+
         $nilai_akhir = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
             ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
-            ->select('tahun', 'nilai_tertimbang')
+            ->select('user_id','tahun', 'nilai_tertimbang')
+            ->where('user_id', $userid)
             ->get();
+
+            // dd($nilai_akhir);
 
         $nilai_dikelompokkan = collect($nilai_akhir)->groupBy('tahun');
 
