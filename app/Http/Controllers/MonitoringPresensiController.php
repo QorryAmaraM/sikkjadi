@@ -15,29 +15,35 @@ class MonitoringPresensiController extends Controller
     {
         $userid = Auth::user()->id;
         $user_role = Auth::user()->role_id;
-        $monitoringpresensi = monitoring_presensi::paginate(5);
-
-        $monitoringpresensirole = monitoring_presensi::where('monitoring_presensis.user_id', $userid)
+        $monitoringpresensi = monitoring_presensi::orderBy('monitoring_presensis.tahun', 'desc')
+        ->orderByRaw("FIELD(monitoring_presensis.bulan, 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember')")
         ->paginate(5);
 
+        $monitoringpresensirole = monitoring_presensi::where('monitoring_presensis.user_id', $userid)
+            ->orderBy('monitoring_presensis.tahun', 'desc')
+            ->orderByRaw("FIELD(monitoring_presensis.bulan, 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember')")
+            ->paginate(5);
+
+        dd($monitoringpresensirole);
+
         // dd($monitoringpresensirole);
-        
+
         $user = user::all();
         switch ($user_role) {
             case '1':
-                return view('pages.admin.monitoringpre.index', compact(['monitoringpresensi','user']));
+                return view('pages.admin.monitoringpre.index', compact(['monitoringpresensi', 'user']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.monitoringpre.index', compact(['monitoringpresensirole','user']));
+                return view('pages.users.kepalabps.monitoringpre.index', compact(['monitoringpresensirole', 'user']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.monitoringpre.index', compact(['monitoringpresensi','user']));
+                return view('pages.users.kepalabu.monitoringpre.index', compact(['monitoringpresensi', 'user']));
                 break;
             case '4':
-                return view('pages.users.kf.monitoringpre.index', compact(['monitoringpresensirole','user']));
+                return view('pages.users.kf.monitoringpre.index', compact(['monitoringpresensirole', 'user']));
                 break;
             case '5':
-                return view('pages.users.staf.monitoringpre.index', compact(['monitoringpresensirole','user']));
+                return view('pages.users.staf.monitoringpre.index', compact(['monitoringpresensirole', 'user']));
                 break;
         }
     }
@@ -173,15 +179,20 @@ class MonitoringPresensiController extends Controller
         $result = monitoring_presensi::where('monitoring_presensis.user_id', 'like', '%' . $request->search . '%')
             ->where('monitoring_presensis.tahun', 'like', '%' . $request->tahun . '%')
             ->where('monitoring_presensis.bulan', 'like', '%' . $request->bulan . '%')
+            ->orderBy('monitoring_presensis.tahun', 'desc')
+            ->orderByRaw("FIELD(monitoring_presensis.bulan, 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember')")
             ->get();
 
+
+        // dd($result);
+
         foreach ($result as $result) {
-           
+
             $output .=
                 '<tr> 
             
             <td> ' . $iterationNumber . ' </td>
-            <td> ' . $result->tahun .' '. $result->bulan . ' </td>
+            <td> ' . $result->tahun . ' ' . $result->bulan . ' </td>
             <td> ' . $result->cp . ' </td>
             <td> ' . $result->ct . ' </td>
             <td> ' . $result->cb . ' </td>
@@ -225,12 +236,12 @@ class MonitoringPresensiController extends Controller
             ->get();
 
         foreach ($result as $result) {
-           
+
             $output .=
                 '<tr> 
             
             <td> ' . $iterationNumber . ' </td>
-            <td> ' . $result->tahun .' '. $result->bulan . ' </td>
+            <td> ' . $result->tahun . ' ' . $result->bulan . ' </td>
             <td> ' . $result->cp . ' </td>
             <td> ' . $result->ct . ' </td>
             <td> ' . $result->cb . ' </td>
@@ -261,4 +272,3 @@ class MonitoringPresensiController extends Controller
         return response($output);
     }
 }
-
