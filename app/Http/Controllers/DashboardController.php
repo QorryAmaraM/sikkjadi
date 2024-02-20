@@ -28,7 +28,7 @@ class DashboardController extends Controller
         $nilai_skp_tertinggi = $user_nilai_skp_tertinggi->nilai_skp;
         $user_id_tertinggi = $user_nilai_skp_tertinggi->nama;
 
-        // dd($user_id_tertinggi);
+        // dd($user_id_terendah);
 
         $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
             ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')

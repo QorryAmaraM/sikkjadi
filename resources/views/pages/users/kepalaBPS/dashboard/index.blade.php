@@ -24,7 +24,7 @@
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
-                                {{ $nilai_skp_tertinggi }}    
+                                {{ $user_id_tertinggi }} = {{ $nilai_skp_tertinggi }}    
                             </div>
 
                         </a>
@@ -40,7 +40,7 @@
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
-                                {{ $nilai_skp_terendah }}    
+                                {{ $user_id_tertinggi }} = {{ $nilai_skp_terendah }}    
                             </div>
 
                         </a>
