@@ -39,10 +39,16 @@ class grafikpenilaianskp
             return $jumlahData > 0 ? $totalNilai / $jumlahData : 0;
         });
 
+        $hasil_rata_rata = $hasil_rata_rata->sortBy(function ($nilai, $tahun) {
+            return $tahun;
+        });
+
+        $hasil_rata_rata = $hasil_rata_rata->slice(-12);
+
         $tahun_array = $hasil_rata_rata->keys()->all();
         $nilai_rata_rata_array = $hasil_rata_rata->values()->all();
 
-        // dd($tahun_array);
+        // dd($hasil_rata_rata);
 
         return $this->chart->barChart()
             ->addData('Nilai SKP',  $nilai_rata_rata_array)

@@ -233,7 +233,7 @@
         function handleSearch(value, tahunvalue, bulanvalue) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/kepalabu-ckp/penilaianckpr/saerch') }}',
+                url: '{{ URL::to('/kepalabu-ckp/penilaianckpr/search') }}',
                 data: {
                     'search': value,
                     'tahun': tahunvalue,

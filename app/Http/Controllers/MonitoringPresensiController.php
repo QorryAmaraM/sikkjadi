@@ -16,11 +16,13 @@ class MonitoringPresensiController extends Controller
         $userid = Auth::user()->id;
         $user_role = Auth::user()->role_id;
         $monitoringpresensi = monitoring_presensi::join('users', 'monitoring_presensis.user_id', '=', 'users.id')
+            ->select('users.*', 'monitoring_presensis.*')
             ->orderBy('monitoring_presensis.tahun', 'desc')
             ->orderByRaw("FIELD(monitoring_presensis.bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari')")
             ->paginate(5);
 
         $monitoringpresensirole = monitoring_presensi::join('users', 'monitoring_presensis.user_id', '=', 'users.id')
+        ->select('users.*', 'monitoring_presensis.*')
             ->where('monitoring_presensis.user_id', $userid)
             ->orderBy('monitoring_presensis.tahun', 'desc')
             ->orderByRaw("FIELD(monitoring_presensis.bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari')")

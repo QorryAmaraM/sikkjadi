@@ -26,14 +26,6 @@
                         </select>
                     </div>
                     <div class="form-group d-flex align-items-center">
-                        <label for="nip" class="col-sm-1 pl-0 col-form-label">NIP</label>
-                        @foreach ($user as $users)
-                            @if ($users->id == $userid)
-                                <input type="nama" class="form-control col-sm-11" id="nama" placeholder="Lorem Ipsum" name="nip" value="{{ $users->nip }}" disabled>
-                            @endif
-                        @endforeach
-                    </div>
-                    <div class="form-group d-flex align-items-center">
                         <label for="tahun" class="col-sm-1 pl-0 col-form-label">Tahun</label>
                         <input type="tahun" class="form-control col-sm-11" id="tahun" placeholder="YYYY" name="tahun" required>
                     </div>
