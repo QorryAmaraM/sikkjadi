@@ -243,7 +243,8 @@ class PenilaianSKPController extends Controller
     public function print(Request $request)
     {
         $user = Auth::user();
-        $userid = Auth::user()->role_id;
+        $user_role = Auth::user()->role_id;
+        $userid = Auth::user()->id;
         $input_tahun = $request->input('input_tahun');
 
         $result = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
@@ -252,23 +253,31 @@ class PenilaianSKPController extends Controller
             ->where('tahun', 'like', '%' . $input_tahun . '%')
             ->get();
 
-        // dd($result);
+        $resultrole = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
+            ->join('users', 'penilai_user_id', '=', 'users.id')
+            ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
+            ->select('users.*', 'skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
+            ->where('user_id', $userid)
+            ->where('tahun', 'like', '%' . $input_tahun . '%')
+            ->get();
 
-        switch ($userid) {
+        // dd($resultrole);
+
+        switch ($user_role) {
             case '1':
                 return view('pages.admin.penilaianskp.print', compact('user', 'result', 'input_tahun'));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpt.print', compact('user', 'result', 'input_tahun'));
+                return view('pages.users.kepalabps.ckpt.print', compact('user', 'resultrole', 'input_tahun'));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpt.print', compact('user', 'result', 'input_tahun'));
+                return view('pages.users.kepalabu.ckpt.print', compact('user', 'resultrole', 'input_tahun'));
                 break;
             case '4':
-                return view('pages.users.kf.ckpt.print', compact('user', 'result', 'input_tahun'));
+                return view('pages.users.kf.ckpt.print', compact('user', 'resultrole', 'input_tahun'));
                 break;
             case '5':
-                return view('pages.users.staf.ckpt.print', compact('user', 'result', 'input_tahun'));
+                return view('pages.users.staf.ckpt.print', compact('user', 'resultrole', 'input_tahun'));
                 break;
         }
     }

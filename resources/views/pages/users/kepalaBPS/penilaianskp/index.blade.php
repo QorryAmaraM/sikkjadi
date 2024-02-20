@@ -83,8 +83,7 @@
                             <thead>
                                 <tr>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Jenis</th>
-                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan
-                                    </th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan </th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aspek</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">IKI</th>
@@ -93,8 +92,7 @@
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Realisasi</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kondisi</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>
-                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI
-                                    </th>
+                                    <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI </th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian Rencana</th>
                                     <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana
                                     </th>
