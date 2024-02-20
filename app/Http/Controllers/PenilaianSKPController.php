@@ -24,6 +24,7 @@ class PenilaianSKPController extends Controller
         $userid = Auth::user()->role_id;
         $user_role = Auth::user()->id;
         $user = user::all();
+
         $result = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
             ->join('users', 'penilai_user_id', '=', 'users.id')
             ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
@@ -119,8 +120,7 @@ class PenilaianSKPController extends Controller
             $sum_utama = $result->where('kinerja', 'utama')->sum('nilai_tertimbang');
             $sum_tambahan = $result->where('kinerja', 'tambahan')->sum('nilai_tertimbang');
         } 
-        else {
-            
+        else {           
             
             foreach ($resultrole as $penilaian) {
                 
@@ -218,7 +218,7 @@ class PenilaianSKPController extends Controller
                 return view('pages.admin.penilaianskp.index', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
             case '2':
-                return view('pages.users.kepalabps.penilaianskp.index', compact(['resultrole', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp', 'userid']));
+                return view('pages.users.kepalabps.penilaianskp.index', compact(['result','resultrole', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp', 'userid']));
                 break;
             case '3':
                 return view('pages.users.kepalabu.penilaianskp.index', compact(['resultrole', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
@@ -832,6 +832,183 @@ class PenilaianSKPController extends Controller
             ->where('skp_tahunans.unit_kerja', 'like', '%' . $request->unitkerja . '%')
             ->where('rencana_kinerjas.kinerja', 'like', '%' . $request->kinerja . '%')
             ->get();
+
+        // dd($result);
+
+        foreach ($result as $utama) {
+            if ($utama->kinerja == "utama") {
+                $output .=
+                    '<tr> 
+                
+                <td rowspan="3" > ' . $utama->kinerja . ' </td>
+                <td rowspan="3" > ' . $utama->rencana_kinerja_atasan . ' </td>
+                <td rowspan="3" > ' . $utama->rencana_kinerja . ' </td>
+    
+                <td > ' . 'Kuantitas' . ' </td>            
+                <td > ' . $utama->kuantitas_iki . ' </td>            
+                <td > ' . $utama->kuantitas_target_min . ' </td>            
+                <td > ' . $utama->kuantitas_target_max . ' </td>            
+                <td > ' . $utama->kuantitas_satuan . ' </td>
+                <td > ' . $utama->kuantitas_realisasi . ' </td>
+                <td > ' . $utama->kuantitas_kondisi . ' </td>
+                <td > ' . $utama->kuantitas_capaian_iki . ' </td>
+                <td > ' . $utama->kuantitas_kategori_capaian_iki . ' </td>
+    
+                <td rowspan="3" > ' . $utama->kategori_capaian_rencana . ' </td>
+                <td rowspan="3" > ' . $utama->nilai_capaian_rencana . ' </td>
+                <td rowspan="3" > ' . $utama->nilai_tertimbang . ' </td>
+                              
+                </tr>' .
+
+                    '<tr> 
+                <td > ' . 'Kualitas' . ' </td>            
+                <td > ' . $utama->kualitas_iki . ' </td>            
+                <td > ' . $utama->kualitas_target_min . ' </td>            
+                <td > ' . $utama->kualitas_target_max . ' </td>            
+                <td > ' . $utama->kualitas_satuan . ' </td>
+                <td > ' . $utama->kualitas_realisasi . ' </td>
+                <td > ' . $utama->kualitas_kondisi . ' </td>
+                <td > ' . $utama->kualitas_capaian_iki . ' </td>
+                <td > ' . $utama->kualitas_kategori_capaian_iki . ' </td>
+                              
+                </tr>' .
+
+                    '<tr> 
+                <td > ' . 'Kualitas' . ' </td>            
+                <td > ' . $utama->waktu_iki . ' </td>            
+                <td > ' . $utama->waktu_target_min . ' </td>            
+                <td > ' . $utama->waktu_target_max . ' </td>            
+                <td > ' . $utama->waktu_satuan . ' </td>
+                <td > ' . $utama->waktu_realisasi . ' </td>
+                <td > ' . $utama->waktu_kondisi . ' </td>
+                <td > ' . $utama->waktu_capaian_iki . ' </td>
+                <td > ' . $utama->waktu_kategori_capaian_iki . ' </td>
+                              
+                </tr>';
+                $lastutama = true;
+            }
+        }
+
+        if ($lastutama) {
+            $output .=
+                '<tr> 
+                
+                <td style="background-color: #9ba4b5; color: #000; font-weight: bold;" > ' . 'Nilai Kinerja Utama' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>               
+                
+                </tr>';
+        }
+
+        foreach ($result as $tambahan) {
+            if ($tambahan->kinerja == "tambahan") {
+                $output .=
+                    '<tr> 
+                    
+                    <td rowspan="3" > ' . $tambahan->kinerja . ' </td>
+                    <td rowspan="3" > ' . $tambahan->rencana_kinerja_atasan . ' </td>
+                    <td rowspan="3" > ' . $tambahan->rencana_kinerja . ' </td>
+        
+                    <td > ' . 'Kuantitas' . ' </td>            
+                    <td > ' . $tambahan->kuantitas_iki . ' </td>            
+                    <td > ' . $tambahan->kuantitas_target_min . ' </td>            
+                    <td > ' . $tambahan->kuantitas_target_max . ' </td>            
+                    <td > ' . $tambahan->kuantitas_satuan . ' </td>
+                    <td > ' . $tambahan->kuantitas_realisasi . ' </td>
+                    <td > ' . $tambahan->kuantitas_kondisi . ' </td>
+                    <td > ' . $tambahan->kuantitas_capaian_iki . ' </td>
+                    <td > ' . $tambahan->kuantitas_kategori_capaian_iki . ' </td>
+        
+                    <td rowspan="3" > ' . $tambahan->kategori_capaian_rencana . ' </td>
+                    <td rowspan="3" > ' . $tambahan->nilai_capaian_rencana . ' </td>
+                    <td rowspan="3" > ' . $tambahan->nilai_tertimbang . ' </td>
+                                  
+                    </tr>' .
+
+                    '<tr> 
+                    <td > ' . 'Kualitas' . ' </td>            
+                    <td > ' . $tambahan->kualitas_iki . ' </td>            
+                    <td > ' . $tambahan->kualitas_target_min . ' </td>            
+                    <td > ' . $tambahan->kualitas_target_max . ' </td>            
+                    <td > ' . $tambahan->kualitas_satuan . ' </td>
+                    <td > ' . $tambahan->kualitas_realisasi . ' </td>
+                    <td > ' . $tambahan->kualitas_kondisi . ' </td>
+                    <td > ' . $tambahan->kualitas_capaian_iki . ' </td>
+                    <td > ' . $tambahan->kualitas_kategori_capaian_iki . ' </td>
+                                  
+                    </tr>' .
+
+                    '<tr> 
+                    <td > ' . 'Kualitas' . ' </td>            
+                    <td > ' . $tambahan->waktu_iki . ' </td>            
+                    <td > ' . $tambahan->waktu_target_min . ' </td>            
+                    <td > ' . $tambahan->waktu_target_max . ' </td>            
+                    <td > ' . $tambahan->waktu_satuan . ' </td>
+                    <td > ' . $tambahan->waktu_realisasi . ' </td>
+                    <td > ' . $tambahan->waktu_kondisi . ' </td>
+                    <td > ' . $tambahan->waktu_capaian_iki . ' </td>
+                    <td > ' . $tambahan->waktu_kategori_capaian_iki . ' </td>
+                                  
+                    </tr>';
+                $lasttambahan = true;
+            }
+        }
+
+        if ($lasttambahan) {
+            $output .=
+                '<tr> 
+                
+                <td style="background-color: #9ba4b5; color: #000; font-weight: bold;" > ' . 'Nilai Kinerja Tambahan' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>
+                <td style="background-color: #9ba4b5" > ' . '' . ' </td>               
+                
+                </tr>';
+        }
+        return response($output);
+    }
+
+    public function search_kepalabps(Request $request)
+    {
+
+        $result = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
+            ->join('users', 'penilai_user_id', '=', 'users.id')
+            ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
+            ->select('users.*', 'skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
+            // ->where('user_id', $request->search)
+            ->get();       
+            
+            dd($result);
+        
+        $output = "";
+        $lastutama = false;
+        $lasttambahan = false;
+        $user_role = Auth::user()->id;
 
         // dd($result);
 

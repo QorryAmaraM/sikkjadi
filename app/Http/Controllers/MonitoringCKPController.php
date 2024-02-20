@@ -24,6 +24,8 @@ class MonitoringCKPController extends Controller
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
             ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*' )
+            ->orderBy('ckpts.tahun', 'desc')
+            ->orderByRaw("FIELD(ckpts.bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari')")
             ->paginate(5);
 
         $resultrole = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
@@ -33,7 +35,11 @@ class MonitoringCKPController extends Controller
             ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
             ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*' )
             ->where('ckpts.user_id', $userid)
+            ->orderBy('ckpts.tahun', 'desc')
+            ->orderByRaw("FIELD(ckpts.bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari')")
             ->paginate(5);
+
+            // dd($result);
 
 
         switch ($user_role) {

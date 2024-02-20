@@ -15,7 +15,36 @@
             <div class="row mb-8">
                 <div class="col-sm-7">
 
-
+                    <div class="search form-group d-flex align-items-center">
+                        <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Nama</label>
+                        <select name="search" id="search" class="form-control">
+                            <option value="">Pilih Pegawai</option>
+                            @php
+                                $namaArray = [];
+                            @endphp
+                            @foreach ($result as $penilaian_skp)
+                                @php
+                                    $userId = $penilaian_skp->user_id;
+                                    $nama = '';
+                                @endphp
+                                @foreach ($user as $users)
+                                    @if ($userId == $users->id)
+                                        @php
+                                            $nama = $users->nama;
+                                        @endphp
+                                        @if (!in_array($nama, $namaArray))
+                                            <option value="{{ $userId }}">
+                                                {{ $nama }}
+                                            </option>
+                                            @php
+                                                $namaArray[] = $nama;
+                                            @endphp
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endforeach
+                        </select>
+                    </div>
 
                     <div class="form-group d-flex align-items-center">
                         <label for="unitkerja" class="col-sm-2 pl-0 col-form-label">Unit Kerja</label>
