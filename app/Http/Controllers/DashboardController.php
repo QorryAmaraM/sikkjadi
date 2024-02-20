@@ -19,9 +19,16 @@ class DashboardController extends Controller
         $user = user::all();
         $userid = Auth::user()->role_id;
 
-        $nilai_skp_terendah = User::min('nilai_skp');
+        $user_nilai_skp_terendah = User::orderBy('nilai_skp', 'asc')->first();
+        $user_nilai_skp_tertinggi = User::orderBy('nilai_skp', 'desc')->first();
 
-        $nilai_skp_tertinggi = User::max('nilai_skp');
+        $nilai_skp_terendah = $user_nilai_skp_terendah->nilai_skp;
+        $user_id_terendah = $user_nilai_skp_terendah->nama;
+
+        $nilai_skp_tertinggi = $user_nilai_skp_tertinggi->nilai_skp;
+        $user_id_tertinggi = $user_nilai_skp_tertinggi->nama;
+
+        // dd($user_id_terendah);
 
         $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
             ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
@@ -40,7 +47,7 @@ class DashboardController extends Controller
                 return view('pages.admin.dashboard.index', compact(['user', 'chartckp', 'chartskp']));
                 break;
             case '2':
-                return view('pages.users.kepalaBPS.dashboard.index', compact(['user', 'chartckp', 'chartskp', 'nilai_skp_tertinggi', 'nilai_skp_terendah', 'nilai_ckp_tertinggi', 'nilai_ckp_terendah']));
+                return view('pages.users.kepalaBPS.dashboard.index', compact(['user', 'chartckp', 'chartskp', 'nilai_skp_tertinggi', 'nilai_skp_terendah', 'nilai_ckp_tertinggi', 'nilai_ckp_terendah', 'user_id_terendah', 'user_id_tertinggi']));
                 break;
             case '3':
                 return view('pages.users.kepalaBU.dashboard.index', compact(['user', 'chartckp', 'chartskp']));
