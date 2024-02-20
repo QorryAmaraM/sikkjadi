@@ -15,18 +15,18 @@ class MonitoringPresensiController extends Controller
     {
         $userid = Auth::user()->id;
         $user_role = Auth::user()->role_id;
-        $monitoringpresensi = monitoring_presensi::orderBy('monitoring_presensis.tahun', 'desc')
-            ->orderByRaw("FIELD(monitoring_presensis.bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari')")
-            ->paginate(5);
-
-        $monitoringpresensirole = monitoring_presensi::where('monitoring_presensis.user_id', $userid)
+        $monitoringpresensi = monitoring_presensi::join('users', 'monitoring_presensis.user_id', '=', 'users.id')
             ->orderBy('monitoring_presensis.tahun', 'desc')
             ->orderByRaw("FIELD(monitoring_presensis.bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari')")
             ->paginate(5);
 
-        // dd($monitoringpresensirole);
+        $monitoringpresensirole = monitoring_presensi::join('users', 'monitoring_presensis.user_id', '=', 'users.id')
+            ->where('monitoring_presensis.user_id', $userid)
+            ->orderBy('monitoring_presensis.tahun', 'desc')
+            ->orderByRaw("FIELD(monitoring_presensis.bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari')")
+            ->paginate(5);
 
-        // dd($monitoringpresensirole);
+        // dd($monitoringpresensi);
 
         $user = user::all();
         switch ($user_role) {
