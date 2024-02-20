@@ -98,6 +98,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Nama</th>
                                 <th>Periode</th>
                                 <th>CKP</th>
                                 <th>CKP Akhir</th>
@@ -109,6 +110,7 @@
                             @forelse ($result as $monitoringckp)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $monitoringckp->nama }}</td>
                                     <td>{{ $monitoringckp->tahun }} {{ $monitoringckp->bulan }}</td>
                                     <td>{{ $monitoringckp->nilai }}</td>
                                     <td>{{ $monitoringckp->ckp_akhir }}</td>
