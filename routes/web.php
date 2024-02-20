@@ -256,7 +256,7 @@ Route::middleware(['checkRole:2'])->group(function () {
 
     //Monitoring Presensi
     Route::get('/kepalabps-monitoring/monitoringpre', [MonitoringPresensiController::class, 'index'])->name('kepalabps_monitoringpre');
-    Route::get('/kepalabps-monitoring/monitorinpre/search', [MonitoringPresensiController::class, 'search']);
+    Route::get('/kepalabps-monitoring/monitorinpre/search', [MonitoringPresensiController::class, 'search_role']);
     Route::get('/kepalabps-monitoring/monitorinpre/create', [MonitoringPresensiController::class, 'create']);
     Route::post('/kepalabps-monitoring/monitorinpre/store', [MonitoringPresensiController::class, 'store']);
     Route::get('/kepalabps-monitoring/monitorinpre/{id}/edit', [MonitoringPresensiController::class, 'edit'])->name('kepalabps.monitoringpresensi.edit');
@@ -500,7 +500,7 @@ Route::middleware(['checkRole:4'])->group(function () {
 
     //Monitoring Presensi
     Route::get('/kf-monitoring/monitoringpre', [MonitoringPresensiController::class, 'index'])->name('kf_monitoringpre');
-    Route::get('/kf-monitoring/monitorinpre/search', [MonitoringPresensiController::class, 'search']);
+    Route::get('/kf-monitoring/monitorinpre/search', [MonitoringPresensiController::class, 'search_role']);
     Route::get('/kf-monitoring/monitorinpre/create', [MonitoringPresensiController::class, 'create']);
     Route::post('/kf-monitoring/monitorinpre/store', [MonitoringPresensiController::class, 'store']);
     Route::get('/kf-monitoring/monitorinpre/{id}/edit', [MonitoringPresensiController::class, 'edit'])->name('kf.monitoringpresensi.edit');
