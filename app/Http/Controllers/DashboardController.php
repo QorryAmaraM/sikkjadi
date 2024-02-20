@@ -19,8 +19,12 @@ class DashboardController extends Controller
         $user = user::all();
         $userid = Auth::user()->role_id;
 
-        $user_nilai_skp_terendah = User::orderBy('nilai_skp', 'asc')->first();
+        $user_nilai_skp_terendah = User::where('nama', '!=', 'admin')
+            ->orderBy('nilai_skp', 'asc')
+            ->first();
         $user_nilai_skp_tertinggi = User::orderBy('nilai_skp', 'desc')->first();
+
+
 
         $nilai_skp_terendah = $user_nilai_skp_terendah->nilai_skp;
         $user_id_terendah = $user_nilai_skp_terendah->nama;
@@ -40,7 +44,7 @@ class DashboardController extends Controller
             ->get();
 
         $nilai_ckp_terendah = $result->min('ckp_akhir');
-        
+
         $nilai_ckp_tertinggi = $result->max('ckp_akhir');
 
         switch ($userid) {
