@@ -128,7 +128,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $presensi->nama }}</td>
-                                    <td>{{ $presensi->tahun }} {{ $presensi->bulan }}</td>
+                                    <td>{{ $presensi->bulan }} {{ $presensi->tahun }}</td>
                                     <td>{{ $presensi->cp }}</td>
                                     <td>{{ $presensi->ct }}</td>
                                     <td>{{ $presensi->cb }}</td>
