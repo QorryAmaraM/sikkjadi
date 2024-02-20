@@ -24,7 +24,7 @@ class MonitoringCKPController extends Controller
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
-            ->select('users.*','ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*' )
+            ->select('users.*', 'ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*')
             ->orderBy('ckpts.tahun', 'desc')
             ->orderByRaw("FIELD(ckpts.bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari')")
             ->paginate(5);
@@ -35,13 +35,13 @@ class MonitoringCKPController extends Controller
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
-            ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*' )
+            ->select('users.*', 'ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*')
             ->where('ckpts.user_id', $userid)
             ->orderBy('ckpts.tahun', 'desc')
             ->orderByRaw("FIELD(ckpts.bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari')")
             ->paginate(5);
 
-            // dd($result);
+        // dd($result);
 
 
         switch ($user_role) {
@@ -120,7 +120,7 @@ class MonitoringCKPController extends Controller
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
-            ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*' )
+            ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*')
             ->where('penilaian_ckprs.id', 'like', '%' . $id . '%')
             ->get();
         $user = user::all();
@@ -200,14 +200,17 @@ class MonitoringCKPController extends Controller
 
         $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
             ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
-            ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*' )
+            ->select('users.*','ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*')
             ->where('ckpts.user_id', 'like', '%' . $request->search . '%')
             ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
             ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
             ->get();
+
+            // dd($result);
 
         foreach ($result as $result) {
 
@@ -215,6 +218,7 @@ class MonitoringCKPController extends Controller
                 '<tr> 
             
             <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->nama . ' </td>
             <td> ' . $result->tahun . " " . $result->bulan . ' </td>
             <td> ' . $result->nilai . ' </td>
             <td> ' . $result->ckp_akhir . ' </td>
@@ -242,22 +246,26 @@ class MonitoringCKPController extends Controller
 
         $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
             ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
-            ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*' )
+            ->select('users.*', 'ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*')
             ->where('ckpts.user_id', $userid)
             ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
             ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
             ->get();
 
+            
+
         foreach ($result as $result) {
 
             $output .=
                 '<tr> 
-            
+
+            <td> ' . $result->nama . ' </td>
             <td> ' . $iterationNumber . ' </td>
-            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
+            <td> ' . $result->bulan . " " . $result->tahun . ' </td>
             <td> ' . $result->nilai . ' </td>
             <td> ' . $result->ckp_akhir . ' </td>
             <td> ' . $result->keterangan_kepala . ' </td> 
