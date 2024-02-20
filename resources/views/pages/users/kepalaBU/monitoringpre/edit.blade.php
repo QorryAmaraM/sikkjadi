@@ -11,7 +11,7 @@
 
         <!-- Content Row -->
 
-        <form action="/kepalabu-monitoring/monitorinpre/{{ $monitoringpresensi->id }}" method="POST">
+        <form id="myForm" action="/kepalabu-monitoring/monitorinpre/{{ $monitoringpresensi->id }}" method="POST">
             @csrf
             @method('put')
 

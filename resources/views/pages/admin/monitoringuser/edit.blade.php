@@ -89,14 +89,49 @@
                                         </div>
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
-                                                <label for="account-e-mail">Golongan</label>
-                                                <input type="golongan" class="form-control" name="golongan" id="golongan" value="{{ $monitoringuser->golongan }}" />
+                                            <label for="account-e-mail">Golongan</label>
+                                                <select class="form-control col-sm-12" data-width="75%" data-live-search="true" id="golongan" name="golongan" value="{{ $monitoringuser->golongan }} required>
+                                                    <option value="">Pilih Fungsional</option>
+                                                    <option value="Pembina Utama (IV/e)">Pembina Utama (IV/e)</option>
+                                                    <option value="Pembina UtamaMadya (IV/d)">Pembina UtamaMadya (IV/d)</option>
+                                                    <option value="Pembina Utama Muda (IV/c)">Pembina Utama Muda (IV/c)</option> 
+                                                    <option value="Pembina Tingkat I (IV/b)">Pembina Tingkat I (IV/b)</option>
+                                                    <option value="Pembina (IV/a)">Pembina (IV/a)</option>
+                                                    <option value="Penata Tingkat I (III/d)">Penata Tingkat I (III/d)</option>
+                                                    <option value="Penata (III/c)">Penata (III/c)</option>
+                                                    <option value="Penata Muda Tingkat I (III/b)">Penata Muda Tingkat I (III/b)</option>
+                                                    <option value="Penata Muda (III/a)">Penata Muda (III/a)</option>
+                                                    <option value="Pengatur Tingkat I (II/d)">Pengatur Tingkat I (II/d)</option>
+                                                    <option value="Pengatur (II/c)">Pengatur (II/c)</option>
+                                                    <option value="Pengatur Muda Tingkat I (II/b)">Pengatur Muda Tingkat I (II/b)</option>
+                                                    <option value="Pengatur Muda (II/a)">Pengatur Muda (II/a)</option>
+                                                    <option value="Juru Tingkat I (I/d)">Juru Tingkat I (I/d)</option>
+                                                    <option value="Juru (I/c)">Juru (I/c)</option>
+                                                    <option value="Juru Muda Tingkat I (I/b)">Juru Muda Tingkat I (I/b)</option>
+                                                    <option value="Juru Muda (I/a)">Juru Muda (I/a)</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
-                                                <label for="account-e-mail">Fungsional</label>
-                                                <input type="fungsional" class="form-control" name="fungsional" id="fungsional" value="{{ $monitoringuser->fungsional }}" />
+                                            <label for="account-e-mail">Fungsional</label>
+                                                <select class="form-control col-sm-12" data-width="75%" data-live-search="true" id="fungsional" name="fungsional" value="{{ $monitoringuser->fungsional }}" required>
+                                                    <option value="">Pilih Fungsional</option>
+                                                    <option value="KEPALA KANTOR">Kepala Kantor </option>
+                                                    <option value="Fungsional Pranata Komputer Muda">Fungsional Pranata Komputer Muda</option>
+                                                    <option value="Kepala Sub Bagian Umum">Kepala Sub Bagian Umum</option>
+                                                    <option value="Statistisi Ahli Muda">Statistisi Ahli Muda</option>
+                                                    <option value="Pranata Keuangan APBN Terampil">Pranata Keuangan APBN Terampil</option>
+                                                    <option value="Tugas Belajar">Tugas Belajar</option>
+                                                    <option value="Statistisi Pelaksana Lanjutan">Statistisi Pelaksana Lanjutan</option>
+                                                    <option value="BENDAHARA PENGELUARAN">Bendahara Pengeluaran</option>
+                                                    <option value="Staf Subbag Umum">Staf Subbag Umum</option>
+                                                    <option value="Statistisi Penyeli">Statistisi Penyeli</option>
+                                                    <option value="Statistisi Ahli Pertama">Statistisi Ahli Pertama</option>
+                                                    <option value="Pranata komputer ahli pertama">Pranata komputer ahli pertama</option>
+                                                    <option value="Statistisi Ahli Pertama">Statistisi Ahli Pertama</option>
+                                                    <option value="CPNS">CPNS</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

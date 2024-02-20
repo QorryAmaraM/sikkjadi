@@ -93,26 +93,19 @@
                                             <div class="form-group">
                                                 <label for="account-e-mail">Fungsional</label>
                                                 <select class="form-control col-sm-12" data-width="75%" data-live-search="true" id="fungsional" name="fungsional" required>
-                                                    <option value="">Pilih Fungsional</option>
-                                                    <option value="KEPALA KANTOR">KEPALA KANTOR </option>
+                                                <option value="">Pilih Fungsional</option>
+                                                    <option value="KEPALA KANTOR">Kepala Kantor </option>
                                                     <option value="Fungsional Pranata Komputer Muda">Fungsional Pranata Komputer Muda</option>
-                                                    <option value="Statistisi Ahli Muda">Statistisi Ahli Muda</option>
-                                                    <option value="Statistisi Ahli Muda">Statistisi Ahli Muda</option>
-                                                    <option value="Statistisi Ahli Muda">Statistisi Ahli Muda</option>
-                                                    <option value="Statistisi Ahli Muda">Statistisi Ahli Muda</option>
+                                                    <option value="Kepala Sub Bagian Umum">Kepala Sub Bagian Umum</option>
                                                     <option value="Statistisi Ahli Muda">Statistisi Ahli Muda</option>
                                                     <option value="Pranata Keuangan APBN Terampil">Pranata Keuangan APBN Terampil</option>
                                                     <option value="Tugas Belajar">Tugas Belajar</option>
                                                     <option value="Statistisi Pelaksana Lanjutan">Statistisi Pelaksana Lanjutan</option>
-                                                    <option value="BENDAHARA PENGELUARAN">BENDAHARA PENGELUARAN</option>
-                                                    <option value="Tugas Belajar">Tugas Belajar</option>
+                                                    <option value="BENDAHARA PENGELUARAN">Bendahara Pengeluaran</option>
                                                     <option value="Staf Subbag Umum">Staf Subbag Umum</option>
                                                     <option value="Statistisi Penyeli">Statistisi Penyeli</option>
                                                     <option value="Statistisi Ahli Pertama">Statistisi Ahli Pertama</option>
-                                                    <option value="Statistisi Ahli Pertama">Statistisi Ahli Pertama</option>
-                                                    <option value="Tugas Belajar">Tugas Belajar</option>
                                                     <option value="Pranata komputer ahli pertama">Pranata komputer ahli pertama</option>
-                                                    <option value="Statistisi Ahli Muda">Statistisi Ahli Muda</option>
                                                     <option value="Statistisi Ahli Pertama">Statistisi Ahli Pertama</option>
                                                     <option value="CPNS">CPNS</option>
                                                 </select>
