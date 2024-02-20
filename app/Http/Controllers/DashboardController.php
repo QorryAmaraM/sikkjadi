@@ -40,6 +40,7 @@ class DashboardController extends Controller
             ->get();
 
         $nilai_ckp_terendah = $result->min('ckp_akhir');
+        
         $nilai_ckp_tertinggi = $result->max('ckp_akhir');
 
         switch ($userid) {
