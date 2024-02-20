@@ -163,7 +163,7 @@
             } else {
                 $('.alldata').show();
                 $('.searchdata').hide();
-                $('.pagination-links').hide();
+                $('.pagination-links').show();
             }
 
             handleSearch(savedValue, savedTahunValue, savedBulanValue);
