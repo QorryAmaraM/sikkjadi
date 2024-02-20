@@ -68,6 +68,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Nama</th>
                                 <th>Periode</th>
                                 <th>CKP</th>
                                 <th>CKP Akhir</th>
