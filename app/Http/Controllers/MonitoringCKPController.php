@@ -225,4 +225,39 @@ class MonitoringCKPController extends Controller
         }
         return response($output);
     }
+
+    public function search_role(Request $request)
+    {
+        $userid = Auth::user()->id;
+        $output = "";
+        $iterationNumber = 1;
+
+        $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
+            ->select('ckpts.*', 'ckprs.*', 'monitoring_ckps.*', 'penilaian_ckprs.*' )
+            ->where('ckpts.user_id', $userid)
+            ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
+            ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
+            ->get();
+
+        foreach ($result as $result) {
+
+            $output .=
+                '<tr> 
+            
+            <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
+            <td> ' . $result->nilai . ' </td>
+            <td> ' . $result->ckp_akhir . ' </td>
+            <td> ' . $result->keterangan_kepala . ' </td> 
+                          
+            </tr>';
+
+            $iterationNumber++;
+        }
+        return response($output);
+    }
 }

@@ -211,5 +211,54 @@ class MonitoringPresensiController extends Controller
         }
         return response($output);
     }
+
+    public function search_role(Request $request)
+    {
+        $userid = Auth::user()->id;
+        $output = "";
+        $iterationNumber = 1;
+
+        $result = monitoring_presensi::where('user_id', $userid)
+            ->where('monitoring_presensis.user_id', 'like', '%' . $request->search . '%')
+            ->where('monitoring_presensis.tahun', 'like', '%' . $request->tahun . '%')
+            ->where('monitoring_presensis.bulan', 'like', '%' . $request->bulan . '%')
+            ->get();
+
+        foreach ($result as $result) {
+           
+            $output .=
+                '<tr> 
+            
+            <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->tahun .' '. $result->bulan . ' </td>
+            <td> ' . $result->cp . ' </td>
+            <td> ' . $result->ct . ' </td>
+            <td> ' . $result->cb . ' </td>
+            <td> ' . $result->cs . ' </td>
+            <td> ' . $result->cm . ' </td>
+            <td> ' . $result->ctln . ' </td>
+            <td> ' . $result->s . ' </td>
+            <td> ' . $result->psw1 . ' </td>
+            <td> ' . $result->psw2 . ' </td>
+            <td> ' . $result->psw3 . ' </td>
+            <td> ' . $result->psw4 . ' </td>
+            <td> ' . $result->tl1 . ' </td>
+            <td> ' . $result->tl2 . ' </td>
+            <td> ' . $result->tl3 . ' </td>
+            <td> ' . $result->tl4 . ' </td>
+            <td> ' . $result->jhk . ' </td>
+
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('monitoringpresensi.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('monitoringpresensi.delete', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>   
+                          
+            </tr>';
+
+            $iterationNumber++;
+        }
+        return response($output);
+    }
 }
 

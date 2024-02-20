@@ -95,7 +95,7 @@
         function handleSearch(Data) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/staf-masterutaiankegiatan/uraiankegiatanrole/search') }}',
+                url: '{{ URL::to('/staf-masterutaiankegiatan/uraiankegiatan/search') }}',
                 data: {
                     'data': Data
                 },

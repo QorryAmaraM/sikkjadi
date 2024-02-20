@@ -106,12 +106,13 @@
     <!-- /.container-fluid -->
 
     <!-- Script -->
-    <script type="text/javascript">
-        $('#search').on('change', function() {
+    <script>
+        var savedData = "";
 
-            $value = $(this).val();
+        $('#search').on('input', function() {
+            savedData = $(this).val();
 
-            if ($value) {
+            if (savedData) {
                 $('.alldata').hide();
                 $('.searchdata').show();
             } else {
@@ -119,21 +120,24 @@
                 $('.searchdata').hide();
             }
 
+            handleSearch(savedData);
+        });
+
+        function handleSearch(Data) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/admin-perencanaankerja/penilaianskp/create/search') }}',
+                url: '{{ URL::to('/staf-perencanaankerja/penilaianskp/create/search') }}',
                 data: {
-                    'search': $value
+                    'data': Data
                 },
-
                 success: function(data) {
                     console.log(data);
                     $('#Content').html(data);
                 }
-
             });
+        }
 
-        })
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">

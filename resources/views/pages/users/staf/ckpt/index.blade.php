@@ -150,8 +150,8 @@
                     </table>
 
                     <div class="d-flex justify-content-center">
-                    {{ $resultrole->links('vendor.pagination.bootstrap-4') }}
-            </div>
+                        {{ $resultrole->links('vendor.pagination.bootstrap-4') }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -159,29 +159,8 @@
     <!-- /.container-fluid -->
 
     <script>
-        var savedValue = "";
         var savedTahunValue = "";
         var savedBulanValue = "";
-
-        $('#search').on('input', function() {
-            savedValue = $(this).val();
-
-            if (savedValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else if (savedTahunValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else if (savedBulanValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else {
-                $('.alldata').show();
-                $('.searchdata').hide();
-            }
-
-            handleSearch(savedValue, savedTahunValue, savedBulanValue);
-        });
 
         $('#tahun').on('input', function() {
             savedTahunValue = $(this).val();
@@ -189,18 +168,12 @@
             if (savedTahunValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
-            } else if (savedValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else if (savedBulanValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
             } else {
                 $('.alldata').show();
                 $('.searchdata').hide();
             }
 
-            handleSearch(savedValue, savedTahunValue, savedBulanValue);
+            handleSearch(savedTahunValue, savedBulanValue);
         });
 
         $('#bulan').on('input', function() {
@@ -209,26 +182,19 @@
             if (savedBulanValue) {
                 $('.alldata').hide();
                 $('.searchdata').show();
-            } else if (savedTahunValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
-            } else if (savedValue) {
-                $('.alldata').hide();
-                $('.searchdata').show();
             } else {
                 $('.alldata').show();
                 $('.searchdata').hide();
             }
 
-            handleSearch(savedValue, savedTahunValue, savedBulanValue);
+            handleSearch(savedTahunValue, savedBulanValue);
         });
 
-        function handleSearch(value, tahunvalue, bulanvalue) {
+        function handleSearch(tahunvalue, bulanvalue) {
             $.ajax({
                 type: 'get',
                 url: '{{ URL::to('/staf-ckp/ckpt/search') }}',
                 data: {
-                    'search': value,
                     'tahun': tahunvalue,
                     'bulan': bulanvalue
                 },
@@ -238,7 +204,6 @@
                 }
             });
         }
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -263,7 +228,4 @@
             });
         });
     </script>
-
-    
-    
 @endsection

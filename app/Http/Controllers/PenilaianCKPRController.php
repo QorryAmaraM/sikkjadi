@@ -272,6 +272,51 @@ class PenilaianCKPRController extends Controller
         return response($output);
     }
 
+    public function search_role(Request $request)
+    {
+        $userid = Auth::user()->id;
+        $output = "";
+        $iterationNumber = 1;
+
+        $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select('users.*','entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->where('ckpts.user_id', $userid)
+            ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
+            ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
+            ->get();
+
+        foreach ($result as $result) {
+
+            $output .=
+                '<tr> 
+            
+            <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->nama . ' </td>
+            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
+            <td> ' . $result->uraian_kegiatan . ' </td>
+            <td> ' . $result->satuan . ' </td>
+            <td> ' . $result->target . ' </td>
+            <td> ' . $result->realisasi . ' </td>
+            <td> ' . $result->persen . ' % </td>
+            <td> ' . $result->nilai . ' </td>
+            <td> ' . $result->kode_butir . ' </td>
+            <td> ' . $result->angka_kredit . ' </td>
+            <td> ' . $result->kode . ' </td>
+            <td> ' . $result->keterangan . ' </td>
+            <td> ' . $result->keterangan_penilai . ' </td>
+            <td> ' . $result->penilai . ' </td>  
+                          
+            </tr>';
+
+            $iterationNumber++;
+        }
+        return response($output);
+    }
+
     public function search_create(Request $request)
     {
         $output = "";

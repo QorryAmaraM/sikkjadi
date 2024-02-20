@@ -524,7 +524,7 @@ Route::middleware(['checkRole:5'])->group(function () {
 
     //SKP Tahunan
     Route::get('/staf-perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('staf_skptahunan');
-    Route::get('/staf-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search']);
+    Route::get('/staf-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search_role']);
     Route::get('/staf-perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create']);
     Route::post('/staf-perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'store']);
     Route::get('/staf-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit'])->name('staf.spktahunan.edit');
@@ -533,7 +533,7 @@ Route::middleware(['checkRole:5'])->group(function () {
 
     //Rencana Kinerja
     Route::get('/staf-perencanaankerja/rencanakinerja', [RencanaKinerjaController::class, 'index'])->name('staf_rencanakinerja');
-    Route::get('/staf-perencanaankerja/rencanakinerja/search', [RencanaKinerjaController::class, 'search']);
+    Route::get('/staf-perencanaankerja/rencanakinerja/search', [RencanaKinerjaController::class, 'search_role']);
     Route::get('/staf-perencanaankerja/rencanakinerja/create/index', [RencanaKinerjaController::class, 'create_index']);
     Route::get('/staf-perencanaankerja/rencanakinerja/create/{id}', [RencanaKinerjaController::class, 'create']);
     Route::post('/staf-perencanaankerja/rencanakinerja/store', [RencanaKinerjaController::class, 'store']);
@@ -547,7 +547,7 @@ Route::middleware(['checkRole:5'])->group(function () {
     //Penilaian SKP
     Route::get('/staf-perencanaankerja/penilaianskp', [PenilaianSKPController::class, 'index'])->name('staf_penilaianskp');
     Route::get('/staf-perencanaankerja/penilaianskp/print', [PenilaianSKPController::class, 'print']);
-    Route::get('/staf-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search']);
+    Route::get('/staf-perencanaankerja/penilaianskp/search', [PenilaianSKPController::class, 'search_role']);
     Route::get('/staf-perencanaankerja/penilaianskp/create/index', [PenilaianSKPController::class, 'create_index']);
     Route::get('/staf-perencanaankerja/penilaianskp/create/search', [PenilaianSKPController::class, 'create_search']);
     Route::get('/staf-perencanaankerja/penilaianskp/create/{id}/kuantitas', [PenilaianSKPController::class, 'create_kuantitas'])->name('staf.kuantitas.create');
@@ -560,7 +560,7 @@ Route::middleware(['checkRole:5'])->group(function () {
 
     //List Angka Kredit
     Route::get('/staf-masterangkakredit/listangkakredit', [ListAngkaKreditController::class, 'index'])->name('staf_listangkakredit');
-    Route::get('/staf-masterangkakredit/listangkakredit/search', [ListAngkaKreditController::class, 'search']);
+    Route::get('/staf-masterangkakredit/listangkakredit/search', [ListAngkaKreditController::class, 'search_role']);
     Route::get('/staf-masterangkakredit/listangkakredit/{id}/edit', [ListAngkaKreditController::class, 'edit'])->name('staf.listangkakredit.edit');
     Route::put('/staf-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'update']);
     Route::get('/staf-masterangkakredit/listangkakredit/{id}', [ListAngkaKreditController::class, 'destroy'])->name('staf.listangkakredit.delete');
@@ -571,7 +571,7 @@ Route::middleware(['checkRole:5'])->group(function () {
 
     //List Uraian Kredit
     Route::get('/staf-masteruraiankegiatan/uraiankegiatan', [ListUraianKegiatanController::class, 'index'])->name('staf_uraiankegiatan');
-    Route::get('/staf-masterutaiankegiatan/uraiankegiatan/search', [ListUraianKegiatanController::class, 'search']);
+    Route::get('/staf-masterutaiankegiatan/uraiankegiatan/search', [ListUraianKegiatanController::class, 'search_role']);
     Route::get('/staf-masterutaiankegiatan/uraiankegiatan/create', [ListUraianKegiatanController::class, 'create']);
     Route::post('/staf-masterutaiankegiatan/uraiankegiatan/store', [ListUraianKegiatanController::class, 'store']);
     Route::get('/staf-masterutaiankegiatan/uraiankegiatan/{id}/edit', [ListUraianKegiatanController::class, 'edit'])->name('staf.listuraiankredit.edit');
@@ -581,7 +581,7 @@ Route::middleware(['checkRole:5'])->group(function () {
     //CKP-T
     Route::get('/staf-ckp/ckpt', [CKPTController::class, 'index'])->name('staf_ckpt');
     Route::get('/staf-ckp/ckpt/print', [CKPTController::class, 'print']);
-    Route::get('/staf-ckp/ckpt/search', [CKPTController::class, 'search']);
+    Route::get('/staf-ckp/ckpt/search', [CKPTController::class, 'search_role']);
     Route::get('/staf-ckp/ckpt/create', [CKPTController::class, 'create']);
     Route::post('/staf-ckp/ckpt/store', [CKPTController::class, 'store']);
     Route::get('/staf-ckp/ckpt/{id}/edit', [CKPTController::class, 'edit'])->name('staf.ckpt.edit');
@@ -591,7 +591,7 @@ Route::middleware(['checkRole:5'])->group(function () {
     //CKP-R
     Route::get('/staf-ckp/ckpr', [CKPRController::class, 'index'])->name('staf_ckpr');
     Route::get('/staf-ckp/ckpr/print', [CKPRController::class, 'print']);
-    Route::get('/staf-ckp/ckpr/search', [CKPRController::class, 'search']);
+    Route::get('/staf-ckp/ckpr/search', [CKPRController::class, 'search_role']);
     Route::get('/staf-ckp/ckpr/create/index', [CKPRController::class, 'create_index']);
     Route::get('/staf-ckp/ckpr/create/search', [CKPRController::class, 'create_search']);
     Route::get('/staf-ckp/ckpr/create/{id}', [CKPRController::class, 'create'])->name('staf.ckpr.create');
@@ -602,7 +602,7 @@ Route::middleware(['checkRole:5'])->group(function () {
 
     //Penilaian CKPR
     Route::get('/staf-ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('staf_penilaianckpr');
-    Route::get('/staf-ckp/penilaianckpr/saerch', [PenilaianCKPRController::class, 'search']);
+    Route::get('/staf-ckp/penilaianckpr/saerch', [PenilaianCKPRController::class, 'search_role']);
     Route::get('/staf-ckp/penilaianckpr/search-create', [PenilaianCKPRController::class, 'search_create']);
     Route::get('/staf-ckp/penilaianckpr/create-index', [PenilaianCKPRController::class, 'create_index']);
     Route::get('/staf-ckp/penilaianckpr/create/{id}', [PenilaianCKPRController::class, 'create'])->name('staf.penilaianckpr.create');
@@ -613,7 +613,7 @@ Route::middleware(['checkRole:5'])->group(function () {
 
     //Monitoring CKP
     Route::get('/staf-monitoring/monitoringckp', [MonitoringCKPController::class, 'index'])->name('staf_monitoringckp');
-    Route::get('/staf-monitoring/monitoringckp/search', [MonitoringCKPController::class, 'search']);
+    Route::get('/staf-monitoring/monitoringckp/search', [MonitoringCKPController::class, 'search_role']);
     Route::get('/staf-monitoring/monitoringckp/create', [MonitoringCKPController::class, 'create']);
     Route::post('/staf-monitoring/monitoringckp/store', [MonitoringCKPController::class, 'store']);
     Route::get('/staf-monitoring/monitoringckp/{id}/edit', [MonitoringCKPController::class, 'edit'])->name('staf.monitoringckp.edit');
@@ -622,7 +622,7 @@ Route::middleware(['checkRole:5'])->group(function () {
 
     //Monitoring Presensi
     Route::get('/staf-monitoring/monitoringpre', [MonitoringPresensiController::class, 'index'])->name('staf_monitoringpre');
-    Route::get('/staf-monitoring/monitorinpre/search', [MonitoringPresensiController::class, 'search']);
+    Route::get('/staf-monitoring/monitorinpre/search', [MonitoringPresensiController::class, 'search_role']);
     Route::get('/staf-monitoring/monitorinpre/create', [MonitoringPresensiController::class, 'create']);
     Route::post('/staf-monitoring/monitorinpre/store', [MonitoringPresensiController::class, 'store']);
     Route::get('/staf-monitoring/monitorinpre/{id}/edit', [MonitoringPresensiController::class, 'edit'])->name('staf.monitoringpresensi.edit');
