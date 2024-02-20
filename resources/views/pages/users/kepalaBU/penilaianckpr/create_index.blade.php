@@ -95,6 +95,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Nama</th>
                                 <th>Kode</th>
                                 <th>Periode</th>
                                 <th>Satuan</th>
@@ -112,6 +113,7 @@
                             @foreach ($ckpr as $ckpr)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $ckpr->nama }}</td>
                                     <td>{{ $ckpr->kode }}</td>
                                     <td>{{ $ckpr->bulan }} {{ $ckpr->tahun }}</td>
                                     <td>{{ $ckpr->satuan }}</td>
