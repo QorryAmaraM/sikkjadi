@@ -209,7 +209,7 @@ class CKPRController extends Controller
                 return redirect('/admin-ckp/ckpr');
                 break;
             case '2':
-                return redirect('/kepalabps-ckp/ckpr');
+                return redirect('/kepalabps-ckp/ckpr'); 
                 break;
             case '3':
                 return redirect('/kepalabu-ckp/ckpr');
