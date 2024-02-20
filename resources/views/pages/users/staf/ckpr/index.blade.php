@@ -97,7 +97,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpr->fungsi }}</td>
-                                    <td>{{ $ckpr->tahun }} {{ $ckpr->bulan }}</td>
+                                    <td>{{ $ckpr->bulan }} {{ $ckpr->tahun }}</td>
                                     <td>{{ $ckpr->uraian_kegiatan }}</td>
                                     <td>{{ $ckpr->satuan }}</td>
                                     <td>{{ $ckpr->target }}</td>
