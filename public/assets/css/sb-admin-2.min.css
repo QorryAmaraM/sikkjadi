@@ -2833,6 +2833,23 @@ fieldset:disabled a.btn {
     border-radius: 20px;
     color: #000;
     font-weight: 700;
+    padding: 10px 20px; /* Tambahkan padding agar tombol terlihat lebih baik */
+    box-sizing: border-box;
+    max-width: 200px;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .btn-login {
+        width: 70%; /* Sesuaikan lebar tombol untuk layar berukuran kecil */
+    }
+}
+
+/* Responsif untuk layar sangat kecil */
+@media (max-width: 480px) {
+    .btn-login {
+        width: 90%; /* Sesuaikan lebar tombol untuk layar sangat kecil */
+    }
 }
 
 .btn-fgpw {
