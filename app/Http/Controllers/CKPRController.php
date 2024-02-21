@@ -37,7 +37,7 @@ class CKPRController extends Controller
             ->where('ckpts.user_id', $userid)
             ->paginate(5);
 
-            // dd($result);
+        // dd($result);
 
         switch ($user_role) {
             case '1':
@@ -70,7 +70,11 @@ class CKPRController extends Controller
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
             ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->where('ckpts.user_id', $userid)
             ->get();
+
+            // dd($result);
+
 
         switch ($userid) {
             case '1':
@@ -170,7 +174,7 @@ class CKPRController extends Controller
             ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
             ->get();
 
-            // dd($result);
+        // dd($result);
 
         foreach ($result as $result) {
 
@@ -209,7 +213,7 @@ class CKPRController extends Controller
                 return redirect('/admin-ckp/ckpr');
                 break;
             case '2':
-                return redirect('/kepalabps-ckp/ckpr'); 
+                return redirect('/kepalabps-ckp/ckpr');
                 break;
             case '3':
                 return redirect('/kepalabu-ckp/ckpr');
