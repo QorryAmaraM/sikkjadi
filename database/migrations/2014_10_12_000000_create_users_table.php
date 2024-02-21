@@ -24,6 +24,7 @@ return new class extends Migration
             $table->double('nip');
             $table->string('golongan');
             $table->string('fungsional');
+            $table->integer('nilai_skp')->nullable();
             $table->timestamps();
         });
     }
