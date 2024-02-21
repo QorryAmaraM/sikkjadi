@@ -371,11 +371,11 @@
             savedKinerjaValue = $(this).val();
 
             if (savedKinerjaValue == 'utama') {
-                $('.tabel_utama').hide();
+                $('.tabel_utama').show();
                 $('.tabel_tambahan').hide();
             } else if (savedKinerjaValue == 'tambahan') {
                 $('.tabel_utama').hide();
-                $('.tabel_tambahan').hide();
+                $('.tabel_tambahan').show();
             } else {
                 $('.tabel_utama').hide();
                 $('.tabel_tambahan').hide();

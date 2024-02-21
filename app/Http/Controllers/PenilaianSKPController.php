@@ -29,7 +29,9 @@ class PenilaianSKPController extends Controller
             ->join('users', 'penilai_user_id', '=', 'users.id')
             ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
             ->select('users.*', 'skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
-            ->paginate(3);
+            ->get();
+
+            // dd($result);
 
         $resultrole = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
             ->join('users', 'penilai_user_id', '=', 'users.id')
