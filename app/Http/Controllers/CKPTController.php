@@ -239,7 +239,7 @@ class CKPTController extends Controller
             
             <td> ' . $iterationNumber . ' </td>
             <td> ' . $result->fungsi . ' </td>
-            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
+            <td> ' . $result->bulan . " " . $result->tahun . ' </td>
             <td> ' . $result->uraian_kegiatan . ' </td>
             <td> ' . $result->satuan . ' </td>
             <td> ' . $result->target . ' </td>
@@ -284,7 +284,7 @@ class CKPTController extends Controller
             
             <td> ' . $iterationNumber . ' </td>
             <td> ' . $result->fungsi . ' </td>
-            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
+            <td> ' . $result->bulan . " " . $result->tahun . ' </td>
             <td> ' . $result->uraian_kegiatan . ' </td>
             <td> ' . $result->satuan . ' </td>
             <td> ' . $result->target . ' </td>

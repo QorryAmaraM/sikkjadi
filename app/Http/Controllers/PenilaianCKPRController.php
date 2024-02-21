@@ -247,7 +247,7 @@ class PenilaianCKPRController extends Controller
             
             <td> ' . $iterationNumber . ' </td>
             <td> ' . $result->nama . ' </td>
-            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
+            <td> ' . $result->bulan . " " . $result->tahun . ' </td>
             <td> ' . $result->uraian_kegiatan . ' </td>
             <td> ' . $result->satuan . ' </td>
             <td> ' . $result->target . ' </td>
@@ -299,7 +299,7 @@ class PenilaianCKPRController extends Controller
             
             <td> ' . $iterationNumber . ' </td>
             <td> ' . $result->nama . ' </td>
-            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
+            <td> ' . $result->bulan . " " . $result->tahun . ' </td>
             <td> ' . $result->uraian_kegiatan . ' </td>
             <td> ' . $result->satuan . ' </td>
             <td> ' . $result->target . ' </td>
@@ -342,7 +342,7 @@ class PenilaianCKPRController extends Controller
             
             <td> ' . $iterationNumber . ' </td>
             <td> ' . $result->kode . ' </td>
-            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
+            <td> ' . $result->bulan . " " . $result->tahun . ' </td>
             <td> ' . $result->satuan . ' </td>
             <td> ' . $result->target . ' </td>
             <td> ' . $result->target_rev . ' </td>

@@ -219,7 +219,7 @@ class MonitoringCKPController extends Controller
             
             <td> ' . $iterationNumber . ' </td>
             <td> ' . $result->nama . ' </td>
-            <td> ' . $result->tahun . " " . $result->bulan . ' </td>
+            <td> ' . $result->bulan . " " . $result->tahun . ' </td>
             <td> ' . $result->nilai . ' </td>
             <td> ' . $result->ckp_akhir . ' </td>
             <td> ' . $result->keterangan_kepala . ' </td>
