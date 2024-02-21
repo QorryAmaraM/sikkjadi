@@ -20,7 +20,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <!-- Card Body -->
-                <a href="/kepalabps-perencanaankerja/penilaianskp" class="text-decoration-none">
+                <a href="/kepalabps-perencanaankerja/penilaianskp/index/{{ $user_id_tertinggi }}" class="text-decoration-none">
                     <div class="card-body cursor-pointer">                    
                         <div class="row justify-content-center">
                             <div class="col-12 col-md-8 col-lg-6">
@@ -40,7 +40,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <!-- Card Body -->
-                <a href="/kepalabps-perencanaankerja/penilaianskp" class="text-decoration-none">
+                <a href="/kepalabps-perencanaankerja/penilaianskp/index/{{ $user_id_terendah }}" class="text-decoration-none">
                     <div class="card-body cursor-pointer">                    
                         <div class="row justify-content-center">
                             <div class="col-12 col-md-8 col-lg-6">

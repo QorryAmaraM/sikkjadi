@@ -20,17 +20,19 @@ class DashboardController extends Controller
         $userid = Auth::user()->role_id;
 
         $user_nilai_skp_terendah = User::where('nama', '!=', 'admin')
+            ->whereNotNull('nilai_skp')
             ->orderBy('nilai_skp', 'asc')
             ->first();
+
+        // dd($user_nilai_skp_terendah);
+
         $user_nilai_skp_tertinggi = User::orderBy('nilai_skp', 'desc')->first();
 
-
-
         $nilai_skp_terendah = $user_nilai_skp_terendah->nilai_skp;
-        $user_id_terendah = $user_nilai_skp_terendah->nama;
+        $user_id_terendah = $user_nilai_skp_terendah->id;
 
         $nilai_skp_tertinggi = $user_nilai_skp_tertinggi->nilai_skp;
-        $user_id_tertinggi = $user_nilai_skp_tertinggi->nama;
+        $user_id_tertinggi = $user_nilai_skp_tertinggi->id;
 
         // dd($user_id_terendah);
 

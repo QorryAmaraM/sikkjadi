@@ -37,7 +37,6 @@ class PenilaianSKPController extends Controller
             ->select('users.*', 'skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
             ->where('user_id', $user_role)
             ->paginate(3);
-            
 
         // dd($userid == 1);
 
@@ -238,6 +237,49 @@ class PenilaianSKPController extends Controller
                 return view('pages.users.staf.penilaianskp.index', compact(['resultrole', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp',]));
                 break;
         }
+    }
+
+    public function index_kepalabps($id)
+    {
+        $nilai_kinerja_utama = 0;
+        $nilai_kinerja_tambahan = 0;
+        $userid = Auth::user()->d;
+        $user_role = Auth::user()->role_id;
+        $user = user::all();
+
+        $result = penilaian_skp::join('rencana_kinerjas', 'rencanakinerja_id', '=', 'rencana_kinerjas.id')
+            ->join('users', 'penilai_user_id', '=', 'users.id')
+            ->join('skp_tahunans', 'skp_tahunan_id', '=', 'skp_tahunans.id')
+            ->select('users.*', 'skp_tahunans.*', 'rencana_kinerjas.*', 'penilaian_skps.*')
+            ->where('user_id', $id)
+            ->get();
+
+        // dd($result);
+
+        $jumlah_utama = $result->where('kinerja', 'utama')->count();
+        $jumlah_tambahan = $result->where('kinerja', 'tambahan')->count();
+
+        
+        $sum_utama = $result->where('kinerja', 'utama')->sum('nilai_tertimbang');
+        $sum_tambahan = $result->where('kinerja', 'tambahan')->sum('nilai_tertimbang');
+        
+        if ($jumlah_utama !== 0 && $sum_utama !== 0) {
+            $nilai_kinerja_utama = $sum_utama / $jumlah_utama;
+        }
+        if ($jumlah_tambahan !== 0 && $sum_tambahan !== 0) {
+            $nilai_kinerja_tambahan = $sum_tambahan / $jumlah_tambahan;
+        }
+        
+        $nilai_skp = $nilai_kinerja_utama + $nilai_kinerja_tambahan;
+
+        // dd($sum_utama);
+
+        switch ($user_role) {
+            case '2':
+                return view('pages.users.kepalabps.penilaianskp.index_pegawai', compact(['result', 'user', 'nilai_kinerja_utama', 'nilai_kinerja_tambahan', 'nilai_skp', 'userid']));
+                break;
+        }
+        
     }
 
     public function print(Request $request)
