@@ -237,6 +237,7 @@ Route::middleware(['checkRole:2'])->group(function () {
 
     //Penilaian CKPR
     Route::get('/kepalabps-ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('kepalabps_penilaianckpr');
+    Route::get('/kepalabps-ckp/penilaianckpr/index/{id}', [PenilaianCKPRController::class, 'index_kepalabps']);
     Route::get('/kepalabps-ckp/penilaianckpr/saerch', [PenilaianCKPRController::class, 'search']);
     Route::get('/kepalabps-ckp/penilaianckpr/search-create', [PenilaianCKPRController::class, 'search_create']);
     Route::get('/kepalabps-ckp/penilaianckpr/create-index', [PenilaianCKPRController::class, 'create_index']);

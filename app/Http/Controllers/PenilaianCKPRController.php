@@ -57,6 +57,30 @@ class PenilaianCKPRController extends Controller
         }
     }
 
+    public function index_kepalabps($id)
+    {
+        $userid = Auth::user()->id;
+        $user_role = Auth::user()->role_id;
+        $user = user::all();
+        $nilaickpr = penilaian_ckpr::all();
+        $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select('users.*', 'entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*',  DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->where('ckpts.id', $id)
+            ->get();
+
+            // dd($result);
+
+        switch ($user_role) {
+            case '2':
+                return view('pages.users.kepalabps.penilaianckpr.index_kepalabps', compact(['nilaickpr', 'user', 'result']));
+                break;
+        }
+    }
+
     //Create
     public function create_index(Request $request)
     {
