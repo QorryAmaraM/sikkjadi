@@ -22,7 +22,7 @@
    <!-- Page Wrapper -->
    <div id="wrapper">
 
-      @include('includes.sidebar.KFsidebar')
+      @include('includes.sidebar.kfsidebar')
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">

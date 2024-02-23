@@ -83,7 +83,7 @@
                             @forelse ($resultrole as $rencana)
                                 {{-- @if ($rencana->user_id == $userid)  --}}
                                     <tr>
-                                        <td rowspan="3">{{ $rencana->kinerja }}</td>
+                                        <td rowspan="3" class="optimized-cell">{{ $rencana->kinerja }}</td>
                                         <td rowspan="3">{{ $rencana->rencana_kinerja_atasan }}</td>
                                         <td rowspan="3">{{ $rencana->rencana_kinerja }}</td>
 

@@ -161,7 +161,7 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Tidak semua data telah terisi. Silakan isi semua data sebelum melanjutkan.',
+                    text: 'Harap mengisi target terlebih dahulu pada halaman Rencana Kinerja',
                 });
                 event.preventDefault(); // Cegah navigasi
             }

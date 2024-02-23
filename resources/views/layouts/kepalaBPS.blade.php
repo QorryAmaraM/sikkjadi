@@ -22,7 +22,7 @@
    <!-- Page Wrapper -->
    <div id="wrapper">
 
-      @include('includes.sidebar.kepalaBPSsidebar')
+      @include('includes.sidebar.kepalabpssidebar')
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">

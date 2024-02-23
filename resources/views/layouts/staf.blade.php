@@ -22,7 +22,7 @@
    <!-- Page Wrapper -->
    <div id="wrapper">
 
-      @include('includes.sidebar.staffsidebar')
+      @include('includes.sidebar.stafsidebar')
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
@@ -30,7 +30,7 @@
          <!-- Main Content -->
          <div id="content">
 
-            @include('includes.navbar.staffnavbar')
+            @include('includes.navbar.stafnavbar')
 
             @yield('content')
 
