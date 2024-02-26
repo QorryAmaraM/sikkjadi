@@ -20,20 +20,12 @@
                     <div class="form-group d-flex align-items-center">
                         <label for="nama" class="col-sm-1 pl-0 col-form-label">Nama</label>
                         @foreach ($result as $result)
-                            @foreach ($user as $users)
-                                @if ($users->id == $result->user_id)
-                                    <input type="nama" class="form-control col-sm-11" id="nama" placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
-                                @endif
-                            @endforeach
+                            <input type="nama" class="form-control col-sm-11" id="nama" placeholder="Lorem Ipsum" name="nama" value="{{ $result->nama }}" disabled>
                         @endforeach
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="nip" class="col-sm-1 pl-0 col-form-label">NIP</label>
-                        @foreach ($user as $users)
-                            @if ($users->id == $result->user_id)
-                                <input type="nama" class="form-control col-sm-11" id="nama" placeholder="Lorem Ipsum" name="nip" value="{{ $users->nip }}" disabled>
-                            @endif
-                        @endforeach
+                        <input type="nama" class="form-control col-sm-11" id="nama" placeholder="Lorem Ipsum" name="nip" value="{{ $result->nip }}" disabled>
                     </div>
                     <div class="form-group d-flex align-items-center">
                         <label for="tahun" class="col-sm-1 pl-0 col-form-label">Tahun</label>
@@ -52,7 +44,6 @@
                         <label for="kegiatan">Uraian Kegiatan</label>
                         <input type="bulan" class="form-control" value="{{ $result->uraian_kegiatan }}" disabled>
                     </div>
-
                     <div class="form-group">
                         <label for="kodebutir">Kode Butir</label>
                         <input type="bulan" class="form-control" value="{{ $result->angka_kredit }}" disabled>
@@ -79,8 +70,21 @@
                     </div>
                     <div class="form-group">
                         <label for="realisasi">Realisasi</label>
-                        <input type="realisasi" class="form-control" id="realisasi" placeholder="Masukkan Angka" name="realisasi" value="{{ $result->realisasi }}" required onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
+                        <input type="realisasi" class="form-control" id="realisasi" name="realisasi" value="{{ $result->realisasi }}" disabled>
                     </div>
+                    <div class="form-group">
+                        <label for="realisasi">Status</label>
+                        <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="status" name="status">
+                            @if ($result->status == 1)
+                                <option value="1">Sudah Diverifikasi</option>
+                                <option value="0">Belum Diverifikasi</option>
+                            @else
+                                <option value="0">Belum Diverifikasi</option>
+                                <option value="1">Sudah Diverifikasi</option>
+                            @endif
+                        </select>
+                    </div>
+
                 </div>
             </div>
 

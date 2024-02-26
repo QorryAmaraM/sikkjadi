@@ -349,12 +349,13 @@ Route::middleware(['checkRole:3'])->group(function () {
     //CKP-R
     Route::get('/kepalabu-ckp/ckpr', [CKPRController::class, 'index'])->name('kepalabu_ckpr');
     Route::get('/kepalabu-ckp/ckpr/print', [CKPRController::class, 'print']);
-    Route::get('/kepalabu-ckp/ckpr/search', [CKPRController::class, 'search_role']);
+    Route::get('/kepalabu-ckp/ckpr/search', [CKPRController::class, 'search_kepalabu']);
     Route::get('/kepalabu-ckp/ckpr/create/index', [CKPRController::class, 'create_index']);
     Route::get('/kepalabu-ckp/ckpr/create/search', [CKPRController::class, 'create_search']);
     Route::get('/kepalabu-ckp/ckpr/create/{id}', [CKPRController::class, 'create'])->name('kepalabu.ckpr.create');
     Route::post('/kepalabu-ckp/ckpr/store', [CKPRController::class, 'store']);
     Route::get('/kepalabu-ckp/ckpr/{id}/edit', [CKPRController::class, 'edit'])->name('kepalabu.ckpr.edit');
+    Route::get('/kepalabu-ckp/ckpr/{id}/edit_2', [CKPRController::class, 'edit_kepalabu'])->name('kepalabu.ckpr.edit_2');
     Route::put('/kepalabu-ckp/ckpr/{id}', [CKPRController::class, 'update']);
     Route::get('/kepalabu-ckp/ckpr/{id}', [CKPRController::class, 'destroy'])->name('kepalabu.ckpr.delete');
 

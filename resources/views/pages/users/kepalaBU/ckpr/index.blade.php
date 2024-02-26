@@ -14,6 +14,38 @@
         <form>
             <div class="row mb-8">
                 <div class="col-sm-7">
+
+                    <div class="search form-group d-flex align-items-center">
+                        <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Nama</label>
+                        <select name="search" id="search" class="form-control">
+                            <option value="">Pilih Pegawai</option>
+                            @php
+                                $namaArray = [];
+                            @endphp
+                            @foreach ($result_kepalabu_all as $penilaian_skp)
+                                @php
+                                    $userId = $penilaian_skp->user_id;
+                                    $nama = '';
+                                @endphp
+                                @foreach ($user as $users)
+                                    @if ($userId == $users->id)
+                                        @php
+                                            $nama = $users->nama;
+                                        @endphp
+                                        @if (!in_array($nama, $namaArray))
+                                            <option value="{{ $nama }}">
+                                                {{ $nama }}
+                                            </option>
+                                            @php
+                                                $namaArray[] = $nama;
+                                            @endphp
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="form-group d-flex align-items-center">
                         <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Tahun</label>
                         <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="tahun">
@@ -35,6 +67,7 @@
                             <option value="2010">2010</option>
                         </select>
                     </div>
+
                     <div class="form-group d-flex align-items-center">
                         <label for="searchSelect" class="col-sm-2 pl-0 col-form-label">Bulan</label>
                         <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="bulan">
@@ -51,9 +84,9 @@
                             <option value="Oktober">Oktober</option>
                             <option value="November">November</option>
                             <option value="Desember">Desember</option>
-
                         </select>
                     </div>
+
                 </div>
             </div>
         </form>
@@ -92,7 +125,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @forelse ($resultrole as $ckpr)
+                            @forelse ($result_kepalabu as $ckpr)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpr->fungsi }}</td>
@@ -116,25 +149,27 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabu.ckpr.edit', ['id' => $ckpr->id]) }}" class="action-link"><i
-                                                    class="fas fa-edit"></i></a>
-                                        </button>
+                                        @if ($ckpr->user_id == $userid)
+                                            <button class="btn btn-icon btn-edit btn-sm">
+                                                <a href="{{ route('kepalabu.ckpr.edit', ['id' => $ckpr->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-icon btn-edit btn-sm">
+                                                <a href="{{ route('kepalabu.ckpr.edit_2', ['id' => $ckpr->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
+                                            </button>
+                                        @endif
                                         <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabu.ckpr.delete', ['id' => $ckpr->id]) }}">
                                             <i class="fas fa-trash-can"></i>
                                         </button>
                                     </td>
                                 </tr>
 
-
-                                <div class="modal fade" id="printModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="printModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="printModalLabel">Cetak CKP-T</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
@@ -162,16 +197,17 @@
                         </tbody>
 
                         <tbody id="Content" class="searchdata"></tbody>
+
                     </table>
 
                     <div class="d-flex justify-content-center">
-                    {{ $resultrole->links('vendor.pagination.bootstrap-4') }}
-            </div>
+                        {{ $result_kepalabu->links('vendor.pagination.bootstrap-4') }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /.container-fluid -->
+
     <script>
         var savedValue = "";
         var savedTahunValue = "";
@@ -263,10 +299,11 @@
             });
         });
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         $(document).ready(function() {
-            // Event delegation untuk tombol hapus
             $(document).on('click', '.btn-delete', function() {
                 var deleteUrl = $(this).data('delete-url');
 
@@ -280,7 +317,7 @@
                     confirmButtonText: "Ya, Hapus!"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = deleteUrl; // Redirect ke URL penghapusan
+                        window.location.href = deleteUrl;
                     }
                 });
             });

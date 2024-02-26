@@ -22,22 +22,35 @@ class CKPRController extends Controller
         $user_role = Auth::user()->role_id;
         $ckpr = ckpr::all();
         $user = user::all();
+
         $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
-            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->paginate(5);
 
         $resultrole = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
-            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->where('ckpts.user_id', $userid)
             ->paginate(5);
 
-        // dd($result);
+        $result_kepalabu_query = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
+            ->select('users.role_id', 'entri_angka_kredits.kode_butir', 'entri_angka_kredits.angka_kredit', 'list_uraian_kegiatans.fungsi', 'list_uraian_kegiatans.uraian_kegiatan', 'ckpts.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->whereIn('users.role_id', [3, 4, 5]);
+
+        $result_kepalabu_all =  $result_kepalabu_query->get();
+
+        $result_kepalabu = $result_kepalabu_query->paginate(5);
+
+        // dd($result_kepalabps);
 
         switch ($user_role) {
             case '1':
@@ -47,7 +60,7 @@ class CKPRController extends Controller
                 return view('pages.users.kepalabps.ckpr.index', compact(['ckpr', 'user', 'resultrole']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpr.index', compact(['ckpr', 'user', 'resultrole']));
+                return view('pages.users.kepalabu.ckpr.index', compact(['userid', 'ckpr', 'user', 'result_kepalabu', 'result_kepalabu_all']));
                 break;
             case '4':
                 return view('pages.users.kf.ckpr.index', compact(['ckpr', 'user', 'resultrole']));
@@ -73,7 +86,7 @@ class CKPRController extends Controller
             ->where('ckpts.user_id', $userid)
             ->get();
 
-            // dd($result);
+        // dd($result);
 
 
         switch ($userid) {
@@ -241,6 +254,7 @@ class CKPRController extends Controller
             ->select('entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*')
             ->where('ckprs.id', 'like', '%' . $id . '%')
             ->get();
+
         switch ($userid) {
             case '1':
                 return view('pages.admin.ckpr.edit', compact(['ckpr', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
@@ -256,6 +270,31 @@ class CKPRController extends Controller
                 break;
             case '5':
                 return view('pages.users.staf.ckpr.edit', compact(['ckpr', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
+                break;
+        }
+    }
+
+    public function edit_kepalabu($id)
+    {
+        $userid = Auth::user()->role_id;
+        $ckpr = ckpr::find($id);
+        $user = user::all();
+        $angkakredit = entri_angka_kredit::all();
+        $uraiankegiatan = list_uraian_kegiatan::all();
+        $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
+            ->select('users.nama', 'users.nip', 'entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*')
+            ->where('ckprs.id', 'like', '%' . $id . '%')
+            ->get();
+
+        // dd($result);
+
+        switch ($userid) {
+            case '3':
+                return view('pages.users.kepalabu.ckpr.edit_2', compact(['ckpr', 'user', 'result', 'angkakredit', 'uraiankegiatan']));
                 break;
         }
     }
@@ -374,6 +413,62 @@ class CKPRController extends Controller
             ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
             ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
             ->get();
+
+        // dd($result);
+
+        foreach ($result as $result) {
+            $statusBadge = ($result->status == '1') ? '<span class="badge badge-success">Sudah Diverifikasi</span>' : '<span class="badge badge-danger">Belum Diverifikasi</span>';
+            $output .=
+                '<tr> 
+            
+            <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->fungsi . ' </td>
+            <td> ' . $result->bulan . " " . $result->tahun . ' </td>
+            <td> ' . $result->uraian_kegiatan . ' </td>
+            <td> ' . $result->satuan . ' </td>
+            <td> ' . $result->target . ' </td>
+            <td> ' . $result->target_rev . ' </td>
+            <td> ' . $result->realisasi . ' </td>
+            <td> ' . $result->persen . ' % </td>
+            <td> ' . $result->nilai . ' </td>
+            <td> ' . $result->kode_butir . ' </td>
+            <td> ' . $result->angka_kredit . ' </td>
+            <td> ' . $result->kode . ' </td>
+            <td> ' . $result->keterangan . ' </td>
+            <td> ' . $statusBadge . ' </td>
+
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('ckpr.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('ckpr.delete', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>   
+                          
+            </tr>';
+
+            $iterationNumber++;
+        }
+        return response($output);
+    }
+
+    public function search_kepalabu(Request $request)
+    {
+        $userid = Auth::user()->id;
+        $output = "";
+        $iterationNumber = 1;
+
+        $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->whereIn('users.role_id', [3, 4, 5])
+            ->where('users.nama', 'like', '%' . $request->search . '%')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
+            ->select('users.nama', 'entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->where('ckpts.tahun', 'like', '%' . $request->tahun . '%')
+            ->where('ckpts.bulan', 'like', '%' . $request->bulan . '%')
+            ->get();
+
+        // dd($result);
 
         foreach ($result as $result) {
             $statusBadge = ($result->status == '1') ? '<span class="badge badge-success">Sudah Diverifikasi</span>' : '<span class="badge badge-danger">Belum Diverifikasi</span>';

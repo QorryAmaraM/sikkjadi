@@ -83,7 +83,6 @@
                     <div class="form-group">
                         <label for="penilai">Penilai</label>
                         <input type="penilai" class="form-control" id="penilai" name="penilai" required>
-                        <input type="hidden" class="form-control" id="status" name="status" value="1">
                     </div>
                     <div class="form-group">
                         <label for="ketpenilai">Keterangan Penilai</label>
