@@ -107,6 +107,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Nama</th>
                                 <th>Fungsi</th>
                                 <th>Periode</th>
                                 <th>Uraian Kegiatan</th>
@@ -128,6 +129,7 @@
                             @forelse ($result_kepalabu as $ckpr)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $ckpr->nama }}</td>
                                     <td>{{ $ckpr->fungsi }}</td>
                                     <td>{{ $ckpr->bulan }} {{ $ckpr->tahun }}</td>
                                     <td>{{ $ckpr->uraian_kegiatan }}</td>

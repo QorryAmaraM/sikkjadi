@@ -43,14 +43,14 @@ class CKPRController extends Controller
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
-            ->select('users.role_id', 'entri_angka_kredits.kode_butir', 'entri_angka_kredits.angka_kredit', 'list_uraian_kegiatans.fungsi', 'list_uraian_kegiatans.uraian_kegiatan', 'ckpts.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->select('users.nama','users.role_id', 'entri_angka_kredits.kode_butir', 'entri_angka_kredits.angka_kredit', 'list_uraian_kegiatans.fungsi', 'list_uraian_kegiatans.uraian_kegiatan', 'ckpts.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->whereIn('users.role_id', [3, 4, 5]);
 
         $result_kepalabu_all =  $result_kepalabu_query->get();
 
         $result_kepalabu = $result_kepalabu_query->paginate(5);
 
-        // dd($result_kepalabps);
+        // dd($result_kepalabu_all);
 
         switch ($user_role) {
             case '1':
@@ -476,6 +476,7 @@ class CKPRController extends Controller
                 '<tr> 
             
             <td> ' . $iterationNumber . ' </td>
+            <td> ' . $result->nama . ' </td>
             <td> ' . $result->fungsi . ' </td>
             <td> ' . $result->bulan . " " . $result->tahun . ' </td>
             <td> ' . $result->uraian_kegiatan . ' </td>
