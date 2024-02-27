@@ -6,7 +6,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-black-800">Capaian Kinerja Karyawan Realisasi</h1>
+            <h1 class="h3 mb-0 text-black-800">Verifikasi Capaian Kinerja Karyawan Realisasi</h1>
         </div>
 
         <!-- Content Row -->
@@ -74,7 +74,7 @@
                     </div>
                     <div class="form-group">
                         <label for="realisasi">Status</label>
-                        <select class="form-control col-sm-10" data-width="75%" data-live-search="true" id="status" name="status">
+                        <select class="form-control" data-width="75%" data-live-search="true" id="status" name="status">
                             @if ($result->status == 1)
                                 <option value="1">Sudah Diverifikasi</option>
                                 <option value="0">Belum Diverifikasi</option>
