@@ -21,7 +21,7 @@
                             @php
                                 $namaArray = [];
                             @endphp
-                            @foreach ($result as $penilaian)
+                            @foreach ($resultrole as $penilaian)
                                 @php
                                     $userId = $penilaian->user_id;
                                     $nama = '';
@@ -122,7 +122,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @forelse ($result as $nilaickpr)
+                            @forelse ($resultrole as $nilaickpr)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $nilaickpr->nama }}</td>
@@ -158,7 +158,7 @@
                     </table>
 
                     <div class="d-flex justify-content-center">
-                    {{ $result->links('vendor.pagination.bootstrap-4') }}
+                    {{ $resultrole->links('vendor.pagination.bootstrap-4') }}
             </div>
                 </div>
             </div>

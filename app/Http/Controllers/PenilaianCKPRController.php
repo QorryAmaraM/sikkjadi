@@ -59,7 +59,7 @@ class PenilaianCKPRController extends Controller
                 return view('pages.users.kepalabu.penilaianckpr.index', compact(['nilaickpr', 'user', 'result']));
                 break;
             case '4':
-                return view('pages.users.kf.penilaianckpr.index', compact(['nilaickpr', 'user', 'result']));
+                return view('pages.users.kf.penilaianckpr.index', compact(['nilaickpr', 'user', 'resultrole']));
                 break;
             case '5':
                 return view('pages.users.staf.penilaianckpr.index', compact(['nilaickpr', 'user', 'resultrole']));
