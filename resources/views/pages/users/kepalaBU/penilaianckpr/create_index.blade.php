@@ -228,4 +228,29 @@
             });
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const btnEdit = document.querySelectorAll('.btn-edit');
+
+        btnEdit.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent default action (navigating to the link)
+                const statusBadge = e.target.closest('tr').querySelector('.badge');
+                const status = statusBadge.textContent.trim();
+                if (status === 'Belum Diverifikasi') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'CKPR harus diverifikasi terlebih dahulu pada halaman CKPR',
+                        confirmButtonText: 'OK'
+                    });
+                } else if (status === 'Sudah Diverifikasi') {
+                    window.location.href = e.target.getAttribute('href');
+                }
+            });
+        });
+    });
+</script>
+
 @endsection
