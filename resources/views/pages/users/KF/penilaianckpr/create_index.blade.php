@@ -21,7 +21,7 @@
                             @php
                                 $namaArray = [];
                             @endphp
-                            @foreach ($ckpr as $ckpr_nama)
+                            @foreach ($ckpr_kf as $ckpr_nama)
                                 @php
                                     $userId = $ckpr_nama->user_id;
                                     $nama = '';
@@ -110,7 +110,7 @@
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @foreach ($ckpr as $ckpr)
+                            @foreach ($ckpr_kf as $ckpr)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpr->nama }}</td>

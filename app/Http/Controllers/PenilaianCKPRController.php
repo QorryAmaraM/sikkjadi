@@ -141,6 +141,7 @@ class PenilaianCKPRController extends Controller
     public function create_index(Request $request)
     {
         $userid = Auth::user()->role_id;
+
         $ckpr = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('users', 'user_id', '=', 'users.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
@@ -149,7 +150,26 @@ class PenilaianCKPRController extends Controller
             ->select('users.nama','entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->get();
 
-            // dd($ckpr);
+        $ckpr_kepalabu = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
+            ->select('users.nama','users.role_id','entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->whereIn('users.role_id', [4, 5])
+            ->get();
+
+        $ckpr_kf = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
+            ->select('users.nama','users.role_id','entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->whereIn('users.role_id', [5])
+            ->get();
+
+            // dd($ckpr_kepalabu);
+
         $user = user::all();
         switch ($userid) {
             case '1':
@@ -159,10 +179,10 @@ class PenilaianCKPRController extends Controller
                 return view('pages.users.kepalabps.penilaianckpr.create_index', compact(['user', 'ckpr']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.penilaianckpr.create_index', compact(['user', 'ckpr']));
+                return view('pages.users.kepalabu.penilaianckpr.create_index', compact(['user', 'ckpr_kepalabu']));
                 break;
             case '4':
-                return view('pages.users.kf.penilaianckpr.create_index', compact(['user', 'ckpr']));
+                return view('pages.users.kf.penilaianckpr.create_index', compact(['user', 'ckpr_kf']));
                 break;
             case '5':
                 return view('pages.users.staf.penilaianckpr.create_index', compact(['user', 'ckpr']));
