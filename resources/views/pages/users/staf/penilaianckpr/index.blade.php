@@ -59,6 +59,13 @@
             </div>
         </form>
 
+        <div class="row">
+            <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
+                <button class="btn btn-icon btn-print btn-sm" data-toggle="modal" data-target="#printModal">
+                    <i class="fas fa-print"></i>
+                </button>
+            </div>
+        </div>
         
 
         <div class="row">
