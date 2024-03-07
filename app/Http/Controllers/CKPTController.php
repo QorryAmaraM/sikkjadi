@@ -65,6 +65,12 @@ class CKPTController extends Controller
             ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
             ->get();
 
+            $resultrole = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
+            ->where('ckpts.user_id', $userid)
+            ->get();
+
         // dd($user);
 
         switch ($userid) {
@@ -72,16 +78,16 @@ class CKPTController extends Controller
                 return view('pages.admin.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
+                return view('pages.users.kepalabps.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'resultrole'));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
+                return view('pages.users.kepalabu.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'resultrole'));
                 break;
             case '4':
-                return view('pages.users.kf.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
+                return view('pages.users.kf.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'resultrole'));
                 break;
             case '5':
-                return view('pages.users.staf.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
+                return view('pages.users.staf.ckpt.print', compact('user', 'pejabatNama', 'pejabatId', 'resultrole'));
                 break;
         }
     }
