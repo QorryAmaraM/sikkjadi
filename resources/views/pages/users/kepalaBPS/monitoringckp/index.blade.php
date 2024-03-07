@@ -120,9 +120,12 @@
                                         <button class="btn btn-icon btn-edit btn-sm">
                                             <a href="{{ route('kepalabps.monitoringckp.edit', ['id' => $monitoringckp->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
                                         </button>
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.monitoringckp.delete', ['id' => $monitoringckp->id]) }}">
+                                        @if (!is_null($monitoringckp->monitoring_ckps_id))
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.monitoringckp.delete', ['id' => $monitoringckp->monitoring_ckps_id]) }}">
                                             <i class="fas fa-trash-can"></i>
                                         </button>
+                                        
+                                        @endif
                                     </td>
                                 </tr>
 
