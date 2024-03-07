@@ -75,7 +75,7 @@
             <div class="p-auto pt-3">
                 <div class="border border-dark border-1 p-2 mb-2 pb-0">
                     <b>
-                        CKP-R
+                        CKP-T
                     </b>
                 </div>
             </div>
@@ -83,9 +83,8 @@
     </header>
     <div class="form-group">
         <h5 class="text-center">
-            <b>CAPAIAN KINERJA PEGAWAI TAHUN</b>
+            <b>TARGET CAPAIAN KINERJA PEGAWAI TAHUN</b>
         </h5>
-        <p align="center"><b>CAPAIAN KINERJA PEGAWAI TAHUN</b></p>
         <div class="card-body">
             <table>
                 <tr>

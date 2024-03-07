@@ -85,7 +85,7 @@
         <h5 class="text-center">
             <b>CAPAIAN KINERJA PEGAWAI TAHUN</b>
         </h5>
-        <p align="center"><b>CAPAIAN KINERJA PEGAWAI TAHUN</b></p>
+    
         <div class="card-body">
             <table>
                 <tr>
