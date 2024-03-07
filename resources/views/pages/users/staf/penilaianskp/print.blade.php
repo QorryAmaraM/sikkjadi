@@ -156,7 +156,7 @@
                         </tr>
                     </thead>
                     <tbody class="tabel_utama">
-                        @forelse ($result as $skp)
+                        @forelse ($resultrole as $skp)
                             @if ($skp->kinerja == 'utama')
                                 <tr>
                                     <td rowspan="3">{{ $skp->tahun }}</td>
@@ -207,7 +207,7 @@
                     </tbody>
 
                     <tbody class="tabel_tambahan">
-                        @forelse ($result as $skp)
+                        @forelse ($resultrole as $skp)
                             @if ($skp->kinerja == 'tambahan')
                                 <tr>
                                     <td rowspan="3">{{ $skp->tahun }}</td>

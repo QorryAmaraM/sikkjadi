@@ -312,16 +312,16 @@ class PenilaianSKPController extends Controller
                 return view('pages.admin.penilaianskp.print', compact('user', 'result', 'input_tahun'));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpt.print', compact('user', 'resultrole', 'input_tahun'));
+                return view('pages.users.kepalabps.penilaianskp.print', compact('user', 'resultrole', 'input_tahun'));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpt.print', compact('user', 'resultrole', 'input_tahun'));
+                return view('pages.users.kepalabu.penilaianskp.print', compact('user', 'resultrole', 'input_tahun'));
                 break;
             case '4':
-                return view('pages.users.kf.ckpt.print', compact('user', 'resultrole', 'input_tahun'));
+                return view('pages.users.kf.penilaianskp.print', compact('user', 'resultrole', 'input_tahun'));
                 break;
             case '5':
-                return view('pages.users.staf.ckpt.print', compact('user', 'resultrole', 'input_tahun'));
+                return view('pages.users.staf.penilaianskp.print', compact('user', 'resultrole', 'input_tahun'));
                 break;
         }
     }
