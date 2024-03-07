@@ -99,16 +99,16 @@ class PenilaianCKPRController extends Controller
                 return view('pages.admin.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
             case '2':
-                return view('pages.users.kepalabps.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
+                return view('pages.users.kepalabps.penilaianckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
             case '3':
-                return view('pages.users.kepalabu.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
+                return view('pages.users.kepalabu.penilaianckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
                 break;
             case '4':
-                return view('pages.users.kf.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'resultrole'));
+                return view('pages.users.kf.penilaianckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'resultrole'));
                 break;
             case '5':
-                return view('pages.users.staf.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'resultrole'));
+                return view('pages.users.staf.penilaianckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'resultrole'));
                 break;
         }
     }

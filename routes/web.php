@@ -239,6 +239,7 @@ Route::middleware(['checkRole:2'])->group(function () {
     //Penilaian CKPR
     Route::get('/kepalabps-ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('kepalabps_penilaianckpr');
     Route::get('/kepalabps-ckp/penilaianckpr/index/{id}', [PenilaianCKPRController::class, 'index_kepalabps']);
+    Route::get('/kepalabps-ckp/penilaianckpr/print', [PenilaianCKPRController::class, 'print']);
     Route::get('/kepalabps-ckp/penilaianckpr/saerch', [PenilaianCKPRController::class, 'search']);
     Route::get('/kepalabps-ckp/penilaianckpr/search-create', [PenilaianCKPRController::class, 'search_create']);
     Route::get('/kepalabps-ckp/penilaianckpr/create-index', [PenilaianCKPRController::class, 'create_index']);
@@ -362,6 +363,7 @@ Route::middleware(['checkRole:3'])->group(function () {
 
     //Penilaian CKPR
     Route::get('/kepalabu-ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('kepalabu_penilaianckpr');
+    Route::get('/kepalabu-ckp/penilaianckpr/print', [PenilaianCKPRController::class, 'print']);
     Route::get('/kepalabu-ckp/penilaianckpr/search', [PenilaianCKPRController::class, 'search']);
     Route::get('/kepalabu-ckp/penilaianckpr/search-create', [PenilaianCKPRController::class, 'search_create']);
     Route::get('/kepalabu-ckp/penilaianckpr/create-index', [PenilaianCKPRController::class, 'create_index']);
@@ -484,6 +486,7 @@ Route::middleware(['checkRole:4'])->group(function () {
 
     //Penilaian CKPR
     Route::get('/kf-ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('kf_penilaianckpr');
+    Route::get('/kf-ckp/penilaianckpr/print', [PenilaianCKPRController::class, 'print']);
     Route::get('/kf-ckp/penilaianckpr/saerch', [PenilaianCKPRController::class, 'search']);
     Route::get('/kf-ckp/penilaianckpr/search-create', [PenilaianCKPRController::class, 'search_create']);
     Route::get('/kf-ckp/penilaianckpr/create-index', [PenilaianCKPRController::class, 'create_index']);
@@ -606,6 +609,7 @@ Route::middleware(['checkRole:5'])->group(function () {
 
     //Penilaian CKPR
     Route::get('/staf-ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('staf_penilaianckpr');
+    Route::get('/staf-ckp/penilaianckpr/print', [PenilaianCKPRController::class, 'print']);
     Route::get('/staf-ckp/penilaianckpr/saerch', [PenilaianCKPRController::class, 'search_role']);
     Route::get('/staf-ckp/penilaianckpr/search-create', [PenilaianCKPRController::class, 'search_create']);
     Route::get('/staf-ckp/penilaianckpr/create-index', [PenilaianCKPRController::class, 'create_index']);

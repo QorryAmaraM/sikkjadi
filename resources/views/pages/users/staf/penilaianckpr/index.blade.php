@@ -124,7 +124,7 @@
                                             <div class="modal-body">
 
                                                 <!-- Form input data -->
-                                                <form action="/kepalabps-ckp/ckpt/print">
+                                                <form action="/staf-ckp/penilaianckpr/print">
                                                     <div class="form-group">
                                                         <label for="inputData">Pejabat Penilai</label>
                                                         <input type="text" class="form-control" name="pejabatnama" id="pejabatnama">

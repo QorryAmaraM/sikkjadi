@@ -141,8 +141,7 @@
                                     <td>{{ $nilaickpr->penilai }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabps.penilaianckpr.edit', ['id' => $nilaickpr->id]) }}"
-                                                class="action-link"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('kepalabps.penilaianckpr.edit', ['id' => $nilaickpr->id]) }}" class="action-link"><i class="fas fa-edit"></i></a>
                                         </button>
                                         <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabps.penilaianckpr.delete', ['id' => $nilaickpr->id]) }}">
                                             <i class="fas fa-trash-can"></i>
@@ -162,7 +161,7 @@
                                             <div class="modal-body">
 
                                                 <!-- Form input data -->
-                                                <form action="/kepalabps-ckp/ckpt/print">
+                                                <form action="/kepalabps-ckp/penilaianckpr/print">
                                                     <div class="form-group">
                                                         <label for="inputData">Pejabat Penilai</label>
                                                         <input type="text" class="form-control" name="pejabatnama" id="pejabatnama">
@@ -182,18 +181,18 @@
                                     </div>
                                 </div>
 
-                                @empty
-                            <td colspan="16" class="text-center">Empty Data</td>
+                            @empty
+                                <td colspan="16" class="text-center">Empty Data</td>
                             @endforelse
                         </tbody>
                         <tbody id="Content" class="searchdata"></tbody>
                     </table>
 
-                   
+
 
                     <div class="d-flex justify-content-center">
-                    {{ $result->links('vendor.pagination.bootstrap-4') }}
-            </div>
+                        {{ $result->links('vendor.pagination.bootstrap-4') }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -279,7 +278,6 @@
                 }
             });
         }
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
