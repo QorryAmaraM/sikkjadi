@@ -150,12 +150,46 @@
                                     </td>
                                 </tr>
 
+                                <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="printModalLabel">Cetak Penilaian CKP-R</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <!-- Form input data -->
+                                                <form action="/kepalabps-ckp/ckpt/print">
+                                                    <div class="form-group">
+                                                        <label for="inputData">Pejabat Penilai</label>
+                                                        <input type="text" class="form-control" name="pejabatnama" id="pejabatnama">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputData">NIP Pejabat Penilai</label>
+                                                        <input type="text" class="form-control" name="pejabatid" id="pejabatid">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                        <button type="submit" name="submit" value="Save" class="btn btn-primary">Cetak</button>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 @empty
                             <td colspan="16" class="text-center">Empty Data</td>
                             @endforelse
                         </tbody>
                         <tbody id="Content" class="searchdata"></tbody>
                     </table>
+
+                   
 
                     <div class="d-flex justify-content-center">
                     {{ $result->links('vendor.pagination.bootstrap-4') }}
