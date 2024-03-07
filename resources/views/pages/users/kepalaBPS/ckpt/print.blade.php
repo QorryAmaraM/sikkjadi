@@ -12,7 +12,8 @@
         }
 
         body {
-            writing-mode: initial;;
+            writing-mode: initial;
+            ;
         }
 
 
@@ -20,18 +21,8 @@
             position: relative;
             border: 1px solid #543535;
         }
-
-        footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #f5f5f5; /* Tambahkan warna latar belakang footer sesuai kebutuhan */
-    padding: 10px 0; /* Tambahkan padding sesuai kebutuhan */
-    text-align: center;
-}
     </style>
-    <title>Cetak CKP-R | SIKK</title>
+    <title>Cetak Penilaian SKP | SIKK</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -75,7 +66,7 @@
             <div class="p-auto pt-3">
                 <div class="border border-dark border-1 p-2 mb-2 pb-0">
                     <b>
-                        CKP-T
+                        SKP
                     </b>
                 </div>
             </div>
@@ -83,8 +74,9 @@
     </header>
     <div class="form-group">
         <h5 class="text-center">
-            <b>TARGET CAPAIAN KINERJA PEGAWAI TAHUN</b>
+            <b>PENILAIAN SASARAN KINERJA PEGAWAI TAHUNAN </b>
         </h5>
+        <p align="center"><b>PENILAIAN SASARAN KINERJA PEGAWAI TAHUNAN</b></p>
         <div class="card-body">
             <table>
                 <tr>
@@ -121,6 +113,10 @@
                         @endswitch
                     </td>
                 </tr>
+                <tr>
+                    <td>Periode</td>
+                    <td>: {{ $input_tahun }} </td>
+                </tr>
 
             </table>
         </div>
@@ -134,39 +130,133 @@
                 <table class="table">
                     <thead>
                         <tr>
-                        <th>No</th>
-                        <th>Fungsi</th>
-                        <th>Periode</th>
-                        <th>Uraian Kegiatan</th>
-                        <th>Satuan</th>
-                        <th>Target</th>
-                        <th>Target Rev</th>
-                        <th>Kode Butir</th>
-                        <th>Angka Kredit</th>
-                        <th>Kode</th>
-                        <th>Keterangan</th>
-                        <th>Aksi</th>
-
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Periode</th>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Jenis</th>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja Atasan
+                            </th>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Rencana Kinerja</th>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Aspek</th>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">IKI</th>
+                            <th colspan="2" style="padding:0.2rem; border-bottom: none">Target</th>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Satuan</th>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Realisasi</th>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kondisi</th>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Capaian IKI</th>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian IKI
+                            </th>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Kategori Capaian
+                                Rencana</th>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Capaian Rencana
+                            </th>
+                            <th rowspan="2" style="padding:0.2rem; vertical-align: middle">Nilai Tertimbang</th>
+                        </tr>
+                        <tr>
+                            <th style="border-top: none">Min</th>
+                            <th style="border-top: none">Max</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    @foreach ($resultrole as $ckpt)
+                    <tbody class="tabel_utama">
+                        @forelse ($resultrole as $skp)
+                            @if ($skp->kinerja == 'utama')
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $ckpt->fungsi }}</td>
-                                    <td>{{ $ckpt->bulan }} {{ $ckpt->tahun }}</td>
-                                    <td>{{ $ckpt->uraian_kegiatan }}</td>
-                                    <td>{{ $ckpt->satuan }}</td>
-                                    <td>{{ $ckpt->target }}</td>
-                                    <td>{{ $ckpt->target_rev }}</td>
-                                    <td>{{ $ckpt->kode_butir }}</td>
-                                    <td>{{ $ckpt->angka_kredit }}</td>
-                                    <td>{{ $ckpt->kode }}</td>
-                                    <td>{{ $ckpt->keterangan }}</td>
-                                    
-                                </tr>
-                            @endforeach
+                                    <td rowspan="3">{{ $skp->tahun }}</td>
+                                    <td rowspan="3">{{ $skp->kinerja }}</td>
+                                    <td rowspan="3">{{ $skp->rencana_kinerja_atasan }}</td>
+                                    <td rowspan="3">{{ $skp->rencana_kinerja }}</td>
 
+                                    <td>Kuantitas</td>
+                                    <td>{{ $skp->kuantitas_iki }}</td>
+                                    <td>{{ $skp->kuantitas_target_min }}</td>
+                                    <td>{{ $skp->kuantitas_target_max }}</td>
+                                    <td>{{ $skp->kuantitas_satuan }}</td>
+                                    <td>{{ $skp->kuantitas_realisasi }}</td>
+                                    <td>{{ $skp->kuantitas_kondisi }}</td>
+                                    <td>{{ $skp->kuantitas_capaian_iki }}</td>
+                                    <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
+
+                                    <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
+                                    <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
+                                    <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
+                                <tr>
+                                    <td>Kualitas</td>
+                                    <td>{{ $skp->kualitas_iki }}</td>
+                                    <td>{{ $skp->kualitas_target_min }}</td>
+                                    <td>{{ $skp->kualitas_target_max }}</td>
+                                    <td>{{ $skp->kualitas_satuan }}</td>
+                                    <td>{{ $skp->kualitas_realisasi }}</td>
+                                    <td>{{ $skp->kualitas_kondisi }}</td>
+                                    <td>{{ $skp->kualitas_capaian_iki }}</td>
+                                    <td>{{ $skp->kualitas_kategori_capaian_iki }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Waktu</td>
+                                    <td>{{ $skp->waktu_iki }}</td>
+                                    <td>{{ $skp->waktu_target_min }}</td>
+                                    <td>{{ $skp->waktu_target_max }}</td>
+                                    <td>{{ $skp->waktu_satuan }}</td>
+                                    <td>{{ $skp->waktu_realisasi }}</td>
+                                    <td>{{ $skp->waktu_kondisi }}</td>
+                                    <td>{{ $skp->waktu_capaian_iki }}</td>
+                                    <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
+
+                                </tr>
+                            @endif
+                        @empty
+                            <td colspan="16" class="text-center">Empty Data</td>
+                        @endforelse
+                    </tbody>
+
+                    <tbody class="tabel_tambahan">
+                        @forelse ($resultrole as $skp)
+                            @if ($skp->kinerja == 'tambahan')
+                                <tr>
+                                    <td rowspan="3">{{ $skp->tahun }}</td>
+                                    <td rowspan="3">{{ $skp->kinerja }}</td>
+                                    <td rowspan="3">{{ $skp->rencana_kinerja_atasan }}</td>
+                                    <td rowspan="3">{{ $skp->rencana_kinerja }}</td>
+
+                                    <td>Kuantitas</td>
+                                    <td>{{ $skp->kuantitas_iki }}</td>
+                                    <td>{{ $skp->kuantitas_target_min }}</td>
+                                    <td>{{ $skp->kuantitas_target_max }}</td>
+                                    <td>{{ $skp->kuantitas_satuan }}</td>
+                                    <td>{{ $skp->kuantitas_realisasi }}</td>
+                                    <td>{{ $skp->kuantitas_kondisi }}</td>
+                                    <td>{{ $skp->kuantitas_capaian_iki }}</td>
+                                    <td>{{ $skp->kuantitas_kategori_capaian_iki }}</td>
+
+                                    <td rowspan="3">{{ $skp->kategori_capaian_rencana }}</td>
+                                    <td rowspan="3">{{ $skp->nilai_capaian_rencana }}</td>
+                                    <td rowspan="3">{{ $skp->nilai_tertimbang }}</td>
+                                <tr>
+                                    <td>Kualitas</td>
+                                    <td>{{ $skp->kualitas_iki }}</td>
+                                    <td>{{ $skp->kualitas_target_min }}</td>
+                                    <td>{{ $skp->kualitas_target_max }}</td>
+                                    <td>{{ $skp->kualitas_satuan }}</td>
+                                    <td>{{ $skp->kualitas_realisasi }}</td>
+                                    <td>{{ $skp->kualitas_kondisi }}</td>
+                                    <td>{{ $skp->kualitas_capaian_iki }}</td>
+                                    <td>{{ $skp->kualitas_kategori_capaian_iki }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Waktu</td>
+                                    <td>{{ $skp->waktu_iki }}</td>
+                                    <td>{{ $skp->waktu_target_min }}</td>
+                                    <td>{{ $skp->waktu_target_max }}</td>
+                                    <td>{{ $skp->waktu_satuan }}</td>
+                                    <td>{{ $skp->waktu_realisasi }}</td>
+                                    <td>{{ $skp->waktu_kondisi }}</td>
+                                    <td>{{ $skp->waktu_capaian_iki }}</td>
+                                    <td>{{ $skp->waktu_kategori_capaian_iki }}</td>
+
+                                </tr>
+
+                                
+                            @endif
+                        @empty
+                            <td colspan="16" class="text-center">Empty Data</td>
+                        @endforelse
                     </tbody>
                 </table>
 
@@ -174,15 +264,12 @@
                     <table class="table table-borderless text-center">
                         <tr>
                             <td class="pb-5">Pegawai yang dinilai</td>
-                            <td class="pb-5">Pejabat penilai</td>
                         </tr>
                         <tr>
                             <td class="pb-0 pt-5"><u>{{ $user->nama }}</u></td>
-                            <td class="pb-0 pt-5"><u>{{ $pejabatNama }}</u></td>
                         </tr>
                         <tr>
                             <td class="pt-0">{{ $user->nip }}</td>
-                            <td class="pt-0">{{ $pejabatId }}</td>
                         </tr>
 
                     </table>
@@ -192,12 +279,18 @@
         </div>
 
         <footer class="container-fluid bottom-0 text-center">
-            <h6>Jl. Perwira No. 50, Belakang Balok, Bukittinggi Telp (62-752) 21521, Faks (62-752) 624629, Mailbox : bps1375@bps.go.id</h6>
+            <h6>Jl. Perwira No. 50, Belakang Balok, Bukittinggi Telp (62-752) 21521, Faks (62-752) 624629, Mailbox :
+                bps1375@bps.go.id</h6>
         </footer>
 
         <script type="text/javascript">
             window.print();
         </script>
+
+
+
+
+
         <!-- jQuery -->
         <script src="https://bpskotabukittinggi.id/sanjai/template/plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->

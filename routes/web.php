@@ -112,6 +112,7 @@ Route::middleware(['checkRole:1'])->group(function () {
 
     //Penilaian CKPR
     Route::get('/admin-ckp/penilaianckpr', [PenilaianCKPRController::class, 'index'])->name('admin_penilaianckpr');
+    Route::get('/admin-ckp/penilaianckpr/print', [PenilaianCKPRController::class, 'print']);
     Route::get('/admin-ckp/penilaianckpr/saerch', [PenilaianCKPRController::class, 'search']);
     Route::get('/admin-ckp/penilaianckpr/search-create', [PenilaianCKPRController::class, 'search_create']);
     Route::get('/admin-ckp/penilaianckpr/create-index', [PenilaianCKPRController::class, 'create_index']);

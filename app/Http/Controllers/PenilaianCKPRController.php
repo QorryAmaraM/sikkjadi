@@ -67,6 +67,52 @@ class PenilaianCKPRController extends Controller
         }
     }
 
+    public function print(Request $request)
+    {
+        $user = Auth::user();
+        $user_id = Auth::user()->id;
+        $userid = Auth::user()->role_id;
+        $pejabatNama = $request->input('pejabatnama');
+        $pejabatId = $request->input('pejabatid');
+
+        $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select('users.*', 'entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->get();
+
+        $resultrole = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->select('users.*', 'entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'ckprs.*', 'penilaian_ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->where('ckpts.user_id', $userid)
+            ->get();
+
+        // dd($result);
+
+        switch ($userid) {
+            case '1':
+                return view('pages.admin.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
+                break;
+            case '2':
+                return view('pages.users.kepalabps.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
+                break;
+            case '3':
+                return view('pages.users.kepalabu.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'result'));
+                break;
+            case '4':
+                return view('pages.users.kf.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'resultrole'));
+                break;
+            case '5':
+                return view('pages.users.staf.ckpr.print', compact('user', 'pejabatNama', 'pejabatId', 'resultrole'));
+                break;
+        }
+    }
+
     public function index_kepalabps($id)
     {
         $userid = Auth::user()->id;
