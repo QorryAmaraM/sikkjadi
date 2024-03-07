@@ -56,6 +56,7 @@ class CKPTController extends Controller
     public function print(Request $request)
     {
         $user = Auth::user();
+        $user_id = Auth::user()->id;
         $userid = Auth::user()->role_id;
         $pejabatNama = $request->input('pejabatnama');
         $pejabatId = $request->input('pejabatid');
@@ -65,13 +66,13 @@ class CKPTController extends Controller
             ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
             ->get();
 
-            $resultrole = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+        $resultrole = ckpt::join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->select('list_uraian_kegiatans.*', 'entri_angka_kredits.*', 'ckpts.*')
-            ->where('ckpts.user_id', $userid)
+            ->where('ckpts.user_id', $user_id)
             ->get();
 
-        // dd($user);
+        // dd($resultrole);
 
         switch ($userid) {
             case '1':

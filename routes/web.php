@@ -18,7 +18,7 @@ use App\Http\Controllers\ListUraianKegiatanController;
 use App\Http\Controllers\MonitoringPresensiController;
 
 // routes/web.php
-Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
+Route::get('/', [AuthController::class, 'showLoginForm'])->middleware('guest')->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
 Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
