@@ -139,7 +139,7 @@
                     </thead>
 
                     <tbody class="alldata">
-                        @forelse ($result as $nilaickpr)
+                        @forelse ($resultrole as $nilaickpr)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $nilaickpr->nama }}</td>
