@@ -51,8 +51,10 @@ class DashboardController extends Controller
             ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
             ->whereNotNull('ckp_akhir')
             ->select('ckpts.id', 'ckp_akhir')
-            ->orderByRaw('CAST(ckp_akhir AS SIGNED) DESC') // Konversi ke tipe data angka
+            ->orderByRaw('CAST(ckp_akhir AS SIGNED) DESC') 
             ->first();
+
+            // dd($user_nilai_ckp_tertinggi);
             
         $nilai_ckp_terendah = $user_nilai_ckp_terendah->ckp_akhir;
         $id_ckp_terendah = $user_nilai_ckp_terendah->id;

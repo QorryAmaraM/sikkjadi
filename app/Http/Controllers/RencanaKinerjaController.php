@@ -408,11 +408,11 @@ class REncanaKinerjaController extends Controller
             <td > ' . $result->kuantitas_satuan . ' </td>
             
             <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
-                <a href="' . route('kuantitas.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                <a href="' . route('role.kuantitas.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
                 </button>' .  ' </td>
 
             <td rowspan="3"> ' . '<button class="btn btn-icon btn-edit btn-sm">
-                <a href="' . route('rencanakinerja.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                <a href="' . route('role.rencanakinerja.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
                 </button>' .  ' </td>
                           
             </tr>' .
@@ -425,7 +425,7 @@ class REncanaKinerjaController extends Controller
             <td > ' . $result->kualitas_satuan . ' </td>
             
             <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
-                <a href="' . route('kualitas.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                <a href="' . route('role.kualitas.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
                 </button>' .  ' </td>
                           
             </tr>' .
@@ -438,11 +438,12 @@ class REncanaKinerjaController extends Controller
             <td > ' . $result->waktu_satuan . ' </td>
             
             <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
-                <a href="' . route('waktu.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                <a href="' . route('role.waktu.edit', ['id' => $result->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
                 </button>' .  ' </td>
                           
             </tr>';
         }
         return response($output);
     }
+    
 }

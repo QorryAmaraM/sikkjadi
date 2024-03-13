@@ -66,6 +66,35 @@ class MonitoringCKPController extends Controller
         }
     }
 
+    public function index_kepalabps($id)
+    {
+        $userid = Auth::user()->id;
+        $user_role = Auth::user()->role_id;
+        $user = user::all();
+        $nilaickpr = penilaian_ckpr::all();
+
+        $result = penilaian_ckpr::join('ckprs', 'ckpr_id', '=', 'ckprs.id')
+            ->join('ckpts', 'ckpt_id', '=', 'ckpts.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
+            ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
+            ->leftjoin('monitoring_ckps', 'monitoring_ckps.penilaian_ckpr_id', '=', 'penilaian_ckprs.id')
+            ->select('users.*', 'ckpts.*', 'ckprs.*', 'monitoring_ckps.id as monitoring_ckps_id', 'monitoring_ckps.*', 'penilaian_ckprs.*')
+            ->orderBy('ckpts.tahun', 'desc')
+            ->orderByRaw("FIELD(ckpts.bulan, 'Desember', 'November', 'Oktober', 'September', 'Agustus', 'Juli', 'Juni', 'Mei', 'April', 'Maret', 'Februari', 'Januari')")
+            ->where('ckpts.id', $id)
+            ->get();
+
+            // dd($result);
+
+        switch ($user_role) {
+            case '2':
+                return view('pages.users.kepalabps.monitoringckp.index_kepalabps', compact(['nilaickpr', 'user', 'result']));
+                break;
+        }
+    }
+
+
     //Create
     public function create(Request $request)
     {

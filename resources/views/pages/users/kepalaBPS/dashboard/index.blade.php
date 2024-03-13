@@ -61,7 +61,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <!-- Card Body -->
-                <a href="/kepalabps-ckp/penilaianckpr/index/{{ $id_ckp_tertinggi }}" class="text-decoration-none">
+                <a href="/kepalabps-monitoring/monitoringckp/index/{{ $id_ckp_tertinggi }}" class="text-decoration-none">
                     <div class="card-body cursor-pointer">                    
                         <div class="row justify-content-center">
                             <div class="col-12 col-md-8 col-lg-6">
@@ -81,7 +81,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <!-- Card Body -->
-                <a href="/kepalabps-ckp/penilaianckpr/index/{{ $id_ckp_terendah }}" class="text-decoration-none">
+                <a href="/kepalabps-monitoring/monitoringckp/index/{{ $id_ckp_terendah }}" class="text-decoration-none">
                     <div class="card-body cursor-pointer">                    
                         <div class="row justify-content-center">
                             <div class="col-12 col-md-8 col-lg-6">

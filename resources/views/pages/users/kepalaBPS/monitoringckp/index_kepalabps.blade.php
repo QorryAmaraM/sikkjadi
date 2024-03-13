@@ -1,4 +1,4 @@
-@extends('layouts.kepalabu')
+@extends('layouts.kepalabps')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -6,7 +6,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-black-800">Penilaian Capaian Kinerja Karyawan Realisasi</h1>
+            <h1 class="h3 mb-0 text-black-800">Monitoring CKP</h1>
         </div>
 
         <!-- Content Row -->
@@ -21,9 +21,9 @@
                             @php
                                 $namaArray = [];
                             @endphp
-                            @foreach ($resultrole as $penilaian)
+                            @foreach ($result as $monitoring)
                                 @php
-                                    $userId = $penilaian->user_id;
+                                    $userId = $monitoring->user_id;
                                     $nama = '';
                                 @endphp
                                 @foreach ($user as $users)
@@ -89,12 +89,6 @@
         </form>
 
         <div class="row">
-            <div class="col-sm-12 d-flex justify-content-end align-items-center mb-2">
-                <a href="/kepalabu-ckp/penilaianckpr/create-index" type="button" class="btn add-button">+ Tambah</a>
-                <button class="btn btn-icon btn-print btn-sm" data-toggle="modal" data-target="#printModal">
-                    <i class="fas fa-print"></i>
-                </button>
-            </div>
         </div>
 
         <div class="row">
@@ -104,93 +98,43 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Pegawai</th>
+                                <th>Nama</th>
                                 <th>Periode</th>
-                                <th>Uraian Kegiatan</th>
-                                <th>Satuan</th>
-                                <th>Target</th>
-                                <th>Realisasi</th>
-                                <th>Persen (%)</th>
-                                <th>Nilai</th>
-                                <th>Kode Butir</th>
-                                <th>Angka Kredit</th>
-                                <th>Kode</th>
-                                <th>Keterangan Staf</th>
-                                <th>Keterangan Penilai</th>
-                                <th>Penilai</th>
+                                <th>CKP</th>
+                                <th>CKP Akhir</th>
+                                <th>Keterangan Kepala</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="alldata">
-                            @forelse ($resultrole as $nilaickpr)
+                            @forelse ($result as $monitoringckp)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $nilaickpr->nama }}</td>
-                                    <td>{{ $nilaickpr->bulan }} {{ $nilaickpr->tahun}}</td>
-                                    <td>{{ $nilaickpr->uraian_kegiatan }}</td>
-                                    <td>{{ $nilaickpr->satuan }}</td>
-                                    <td>{{ $nilaickpr->target }}</td>
-                                    <td>{{ $nilaickpr->realisasi }}</td>
-                                    <td>{{ $nilaickpr->persen }} %</td>
-                                    <td>{{ $nilaickpr->nilai }}</td>
-                                    <td>{{ $nilaickpr->kode_butir }}</td>
-                                    <td>{{ $nilaickpr->angka_kredit }}</td>
-                                    <td>{{ $nilaickpr->kode }}</td>
-                                    <td>{{ $nilaickpr->keterangan }}</td>
-                                    <td>{{ $nilaickpr->keterangan_penilai }}</td>
-                                    <td>{{ $nilaickpr->penilai }}</td>
+                                    <td>{{ $monitoringckp->nama }}</td>
+                                    <td>{{ $monitoringckp->bulan }} {{ $monitoringckp->tahun }}</td>
+                                    <td>{{ $monitoringckp->nilai }}</td>
+                                    <td>{{ $monitoringckp->ckp_akhir }}</td>
+                                    <td>{{ $monitoringckp->keterangan_kepala }}</td>
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabu.penilaianckpr.edit', ['id' => $nilaickpr->id]) }}"
+                                            <a href="{{ route('monitoringckp.edit', ['id' => $monitoringckp->id]) }}"
                                                 class="action-link"><i class="fas fa-edit"></i></a>
                                         </button>
-                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('kepalabu.penilaianckpr.delete', ['id' => $nilaickpr->id]) }}">
+                                        <button class="btn btn-icon btn-delete btn-sm" data-delete-url="{{ route('monitoringckp.delete', ['id' => $monitoringckp->id]) }}">
                                             <i class="fas fa-trash-can"></i>
                                         </button>
                                     </td>
                                 </tr>
 
-                                <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="printModalLabel">Cetak Penilaian CKP-R</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-
-                                                <!-- Form input data -->
-                                                <form action="/kepalabu-ckp/penilaianckpr/print">
-                                                    <div class="form-group">
-                                                        <label for="inputData">Pejabat Penilai</label>
-                                                        <input type="text" class="form-control" name="pejabatnama" id="pejabatnama">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="inputData">NIP Pejabat Penilai</label>
-                                                        <input type="text" class="form-control" name="pejabatid" id="pejabatid">
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                        <button type="submit" name="submit" value="Save" class="btn btn-primary">Cetak</button>
-                                                    </div>
-                                                </form>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 @empty
-                            <td colspan="16" class="text-center">Empty Data</td>
+                        <td colspan="6" class="text-center">Empty Data</td>
                             @endforelse
                         </tbody>
                         <tbody id="Content" class="searchdata"></tbody>
                     </table>
 
                     <div class="d-flex justify-content-center">
-                    {{ $resultrole->links('vendor.pagination.bootstrap-4') }}
+                    {{-- {{ $result->links('vendor.pagination.bootstrap-4') }} --}}
             </div>
                 </div>
             </div>
@@ -265,7 +209,7 @@
         function handleSearch(value, tahunvalue, bulanvalue) {
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/kepalabu-ckp/penilaianckpr/search') }}',
+                url: '{{ URL::to('/admin-monitoring/monitoringckp/search') }}',
                 data: {
                     'search': value,
                     'tahun': tahunvalue,
@@ -277,7 +221,7 @@
                 }
             });
         }
-
+       
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>

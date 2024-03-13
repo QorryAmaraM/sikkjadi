@@ -206,7 +206,7 @@ class SKPTahunanController extends Controller
         return response($output);
     }
 
-    public function search_role(Request $request)
+    public function search_kepalabps(Request $request)
     {
         $output = "";
         $userid = Auth::user()->id;
@@ -235,13 +235,133 @@ class SKPTahunanController extends Controller
             <td> ' . $search->jabatan . ' </td>
 
             <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
-                <a href="' . route('spktahunan.edit', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                <a href="' . route('kepalabps.spktahunan.edit', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
                 </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
-                <a href="' . route('spktahunan.delete', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                <a href="' . route('kepalabps.spktahunan.delete', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
                 </button>' . ' </td>        
             
             </tr>';
         }
         return response($output);
     }
+
+    public function search_kepalabu(Request $request)
+    {
+        $output = "";
+        $userid = Auth::user()->id;
+        $searchTerm = $request->search;
+
+        $search = skp_tahunan::where('user_id', $userid)
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('tahun', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('periode', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('wilayah', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('unit_kerja', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('jabatan', 'like', '%' . $searchTerm . '%');
+            })
+            ->get();
+
+        // dd($search);
+
+        foreach ($search as $search) {
+            $output .=
+                '<tr> 
+            
+            <td> ' . $search->tahun . ' </td>
+            <td> ' . $search->periode . ' </td>
+            <td> ' . $search->wilayah . ' </td>
+            <td> ' . $search->unit_kerja . ' </td>
+            <td> ' . $search->jabatan . ' </td>
+
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('kepalabu.spktahunan.edit', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('kepalabu.spktahunan.delete', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>        
+            
+            </tr>';
+        }
+        return response($output);
+    }
+
+    public function search_kf(Request $request)
+    {
+        $output = "";
+        $userid = Auth::user()->id;
+        $searchTerm = $request->search;
+
+        $search = skp_tahunan::where('user_id', $userid)
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('tahun', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('periode', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('wilayah', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('unit_kerja', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('jabatan', 'like', '%' . $searchTerm . '%');
+            })
+            ->get();
+
+        // dd($search);
+
+        foreach ($search as $search) {
+            $output .=
+                '<tr> 
+            
+            <td> ' . $search->tahun . ' </td>
+            <td> ' . $search->periode . ' </td>
+            <td> ' . $search->wilayah . ' </td>
+            <td> ' . $search->unit_kerja . ' </td>
+            <td> ' . $search->jabatan . ' </td>
+
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('kf.spktahunan.edit', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('kf.spktahunan.delete', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>        
+            
+            </tr>';
+        }
+        return response($output);
+    }
+
+    public function search_staf(Request $request)
+    {
+        $output = "";
+        $userid = Auth::user()->id;
+        $searchTerm = $request->search;
+
+        $search = skp_tahunan::where('user_id', $userid)
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('tahun', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('periode', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('wilayah', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('unit_kerja', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('jabatan', 'like', '%' . $searchTerm . '%');
+            })
+            ->get();
+
+        // dd($search);
+
+        foreach ($search as $search) {
+            $output .=
+                '<tr> 
+            
+            <td> ' . $search->tahun . ' </td>
+            <td> ' . $search->periode . ' </td>
+            <td> ' . $search->wilayah . ' </td>
+            <td> ' . $search->unit_kerja . ' </td>
+            <td> ' . $search->jabatan . ' </td>
+
+            <td> ' . '<button class="btn btn-icon btn-edit btn-sm">
+                <a href="' . route('staf.spktahunan.edit', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-edit"></i></a>
+                </button>' . "|" . '<button class="btn btn-icon btn-delete btn-sm">
+                <a href="' . route('staf.spktahunan.delete', ['id' => $search->id]) . '" class="action-link"><i class="fas fa-trash-can"></i></a>
+                </button>' . ' </td>        
+            
+            </tr>';
+        }
+        return response($output);
+    }
+
+
+    
 }

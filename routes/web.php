@@ -159,7 +159,7 @@ Route::middleware(['checkRole:2'])->group(function () {
 
     //SKP Tahunan
     Route::get('/kepalabps-perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('kepalabps_skptahunan');
-    Route::get('/kepalabps-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search_role']);
+    Route::get('/kepalabps-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search_kepalabps']);
     Route::get('/kepalabps-perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create']);
     Route::post('/kepalabps-perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'store']);
     Route::get('/kepalabps-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit'])->name('kepalabps.spktahunan.edit');
@@ -251,6 +251,7 @@ Route::middleware(['checkRole:2'])->group(function () {
 
     //Monitoring CKP
     Route::get('/kepalabps-monitoring/monitoringckp', [MonitoringCKPController::class, 'index'])->name('kepalabps_monitoringckp');
+    Route::get('/kepalabps-monitoring/monitoringckp/index/{id}', [MonitoringCKPController::class, 'index_kepalabps']);
     Route::get('/kepalabps-monitoring/monitoringckp/search', [MonitoringCKPController::class, 'search']);
     Route::get('/kepalabps-monitoring/monitoringckp/create', [MonitoringCKPController::class, 'create']);
     Route::post('/kepalabps-monitoring/monitoringckp/store', [MonitoringCKPController::class, 'store']);
@@ -284,7 +285,7 @@ Route::middleware(['checkRole:3'])->group(function () {
 
     //SKP Tahunan
     Route::get('/kepalabu-perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('kepalabu_skptahunan');
-    Route::get('/kepalabu-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search_role']);
+    Route::get('/kepalabu-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search_kepalabu']);
     Route::get('/kepalabu-perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create']);
     Route::post('/kepalabu-perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'store']);
     Route::get('/kepalabu-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit'])->name('kepalabu.spktahunan.edit');
@@ -408,7 +409,7 @@ Route::middleware(['checkRole:4'])->group(function () {
 
     //SKP Tahunan
     Route::get('/kf-perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('kf_skptahunan');
-    Route::get('/kf-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search_role']);
+    Route::get('/kf-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search_kf']);
     Route::get('/kf-perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create']);
     Route::post('/kf-perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'store']);
     Route::get('/kf-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit'])->name('kf.spktahunan.edit');
@@ -531,7 +532,7 @@ Route::middleware(['checkRole:5'])->group(function () {
 
     //SKP Tahunan
     Route::get('/staf-perencanaankerja/skptahunan', [SKPTahunanController::class, 'index'])->name('staf_skptahunan');
-    Route::get('/staf-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search_role']);
+    Route::get('/staf-perencanaankerja/skptahunan/search', [SKPTahunanController::class, 'search_staf']);
     Route::get('/staf-perencanaankerja/spktahunan/create', [SKPTahunanController::class, 'create']);
     Route::post('/staf-perencanaankerja/spktahunan/store', [SKPTahunanController::class, 'store']);
     Route::get('/staf-perencanaankerja/spktahunan/{id}/edit', [SKPTahunanController::class, 'edit'])->name('staf.spktahunan.edit');
