@@ -20,8 +20,7 @@
                         @foreach ($result as $result)
                             @foreach ($user as $users)
                                 @if ($users->id == $result->user_id)
-                                    <input type="nama" class="form-control col-sm-11" id="nama"
-                                        placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
+                                    <input type="nama" class="form-control col-sm-11" id="nama" placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
                                     <input type="hidden" name="ckpr_id" value="{{ $result->id }}">
                                 @endif
                             @endforeach
@@ -83,6 +82,8 @@
                     <div class="form-group">
                         <label for="penilai">Penilai</label>
                         <input type="penilai" class="form-control" id="penilai" name="penilai" required>
+                        <input type="hidden" id="status" name="status" value="1">
+
                     </div>
                     <div class="form-group">
                         <label for="ketpenilai">Keterangan Penilai</label>
@@ -97,7 +98,7 @@
 
             <div class="row">
                 <div class="col-sm-12 mt-3 text-right">
-                <button type="submit" name="submit" value="Save" class="btn save-button" onclick="checkFormAndShowModal()">Simpan</button>
+                    <button type="submit" name="submit" value="Save" class="btn save-button" onclick="checkFormAndShowModal()">Simpan</button>
 
                 </div>
             </div>
@@ -107,35 +108,35 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-    function checkFormAndShowModal() {
-    var form = document.getElementById('myForm');
-    var penilai = document.getElementById('penilai').value.trim();
-    var nilai = document.getElementById('nilai').value.trim();
+    <script>
+        function checkFormAndShowModal() {
+            var form = document.getElementById('myForm');
+            var penilai = document.getElementById('penilai').value.trim();
+            var nilai = document.getElementById('nilai').value.trim();
 
-    // Jika input penilai dan nilai terisi, tampilkan modal sukses
-    if (penilai !== "" && nilai !== "") {
-        Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Data berhasil ditambah!",
-            showConfirmButton: false,
-            timer: 10000
-        }).then((result) => {
-            if (result.dismiss === Swal.DismissReason.timer) {
-                $('#successModal').modal('show');
+            // Jika input penilai dan nilai terisi, tampilkan modal sukses
+            if (penilai !== "" && nilai !== "") {
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Data berhasil ditambah!",
+                    showConfirmButton: false,
+                    timer: 10000
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        $('#successModal').modal('show');
+                    }
+                });
+            } else if (penilai === "" || nilai === "") {
+                // Jika salah satu atau kedua input penilai dan nilai tidak terisi, tampilkan modal error
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Harap isi data sebelum melanjutkan.',
+                });
             }
-        });
-    } else if (penilai === "" || nilai === "") {
-        // Jika salah satu atau kedua input penilai dan nilai tidak terisi, tampilkan modal error
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Harap isi data sebelum melanjutkan.',
-        });
-    } 
-}
-</script>
+        }
+    </script>
 
 
     <!-- /.container-fluid -->

@@ -137,7 +137,7 @@ class PenilaianCKPRController extends Controller
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
             ->join('list_uraian_kegiatans', 'uraian_kegiatan_id', '=', 'list_uraian_kegiatans.id')
             ->leftjoin('penilaian_ckprs', 'penilaian_ckprs.ckpr_id', '=', 'ckprs.id')
-            ->select('users.nama','entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
+            ->select('users.nama','users.role_id','entri_angka_kredits.*', 'list_uraian_kegiatans.*', 'ckpts.*', 'penilaian_ckprs.*', 'ckprs.*', DB::raw('CAST((realisasi / COALESCE(target_rev, target)) * 100 AS UNSIGNED) as persen'))
             ->get();
 
         $ckpr_kepalabu = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
@@ -158,7 +158,7 @@ class PenilaianCKPRController extends Controller
             ->whereIn('users.role_id', [5])
             ->get();
 
-            // dd($ckpr_kepalabu);
+            // dd($ckpr);
 
         $user = user::all();
         switch ($userid) {
@@ -211,8 +211,11 @@ class PenilaianCKPRController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->only('status'));
         $userid = Auth::user()->role_id;
-        penilaian_ckpr::create($request->except(['_token', 'submit']));
+        penilaian_ckpr::create($request->except(['_token', 'submit','status']));
+        $ckpr = ckpr::find($request->ckpr_id);
+        $ckpr->update($request->only('status'));
         switch ($userid) {
             case '1':
                 return redirect('/admin-ckp/penilaianckpr');

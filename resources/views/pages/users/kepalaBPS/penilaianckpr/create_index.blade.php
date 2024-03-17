@@ -1,4 +1,4 @@
-@extends('layouts.kepalabps')
+@extends('layouts.kepalaBPS')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -111,7 +111,7 @@
                         </thead>
                         <tbody class="alldata">
                             @foreach ($ckpr as $ckpr)
-                                <tr>
+                                <tr data-role-id="{{ $ckpr->role_id }}">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ckpr->nama }}</td>
                                     <td>{{ $ckpr->kode }}</td>
@@ -133,8 +133,7 @@
 
                                     <td>
                                         <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kepalabps.penilaianckpr.create', ['id' => $ckpr->id]) }}"
-                                                type="button" class="btn add-button">+ Nilai</a>
+                                            <a href="{{ route('kepalabps.penilaianckpr.create', ['id' => $ckpr->id]) }}" type="button" class="btn add-button">+ Nilai</a>
                                         </button>
                                     </td>
                                 </tr>
@@ -228,28 +227,36 @@
             });
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const btnEdit = document.querySelectorAll('.btn-edit');
 
-        btnEdit.forEach(btn => {
-            btn.addEventListener('click', function (e) {
-                e.preventDefault(); // Prevent default action (navigating to the link)
-                const statusBadge = e.target.closest('tr').querySelector('.badge');
-                const status = statusBadge.textContent.trim();
-                if (status === 'Belum Diverifikasi') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'CKPR Belum Diverifikasi!',
-                        confirmButtonText: 'OK'
-                    });
-                } else if (status === 'Sudah Diverifikasi') {
-                    window.location.href = e.target.getAttribute('href');
-                }
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnEdit = document.querySelectorAll('.btn-edit');
+
+            btnEdit.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const roleId = e.target.closest('tr').getAttribute('data-role-id');
+                    const statusBadge = e.target.closest('tr').querySelector('.badge');
+                    const status = statusBadge.textContent.trim();
+
+                    if (roleId !== '3') {
+                        if (status === 'Belum Diverifikasi') {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'CKPR Belum Diverifikasi!',
+                                confirmButtonText: 'OK'
+                            });
+                        } else if (status === 'Sudah Diverifikasi') {
+                            window.location.href = e.target.getAttribute('href');
+                        }
+                    } else {
+                        window.location.href = e.target.getAttribute('href');
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 @endsection
