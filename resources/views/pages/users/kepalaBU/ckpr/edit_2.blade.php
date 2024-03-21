@@ -1,4 +1,4 @@
-@extends('layouts.kepalabu')
+@extends('layouts.kepalaBU')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -77,10 +77,16 @@
                         <select class="form-control" data-width="75%" data-live-search="true" id="status" name="status">
                             @if ($result->status == 1)
                                 <option value="1">Sudah Diverifikasi</option>
+                                <option value="2">Perbaiki CKPR</option>
+                                <option value="0">Belum Diverifikasi</option>
+                            @elseif ($result->status == 2)
+                                <option value="2">Perbaiki CKPR</option>
+                                <option value="1">Sudah Diverifikasi</option>
                                 <option value="0">Belum Diverifikasi</option>
                             @else
                                 <option value="0">Belum Diverifikasi</option>
                                 <option value="1">Sudah Diverifikasi</option>
+                                <option value="2">Perbaiki CKPR</option>
                             @endif
                         </select>
                     </div>

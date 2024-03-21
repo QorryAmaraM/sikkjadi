@@ -50,7 +50,7 @@ class CKPRController extends Controller
 
         $result_kepalabu = $result_kepalabu_query->paginate(5);
 
-        // dd($result_kepalabu_all);
+        // dd($resultrole);
 
         switch ($user_role) {
             case '1':
@@ -127,6 +127,9 @@ class CKPRController extends Controller
             ->where('ckpts.user_id', $userid)
             ->get();
         $user = user::all();
+
+        // dd($resultrole);
+
         switch ($user_role) {
             case '1':
                 return view('pages.admin.ckpr.create-index', compact(['user', 'ckpt', 'result']));
@@ -220,8 +223,12 @@ class CKPRController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->except(['_token', 'submit']));
         $userid = Auth::user()->role_id;
-        ckpr::create($request->except(['_token', 'submit']));
+        ckpr::create($request->except(['_token', 'submit','status']));
+        $ckpt = ckpt::find($request->ckpt_id);
+        $ckpt->update($request->only('status'));
+
         switch ($userid) {
             case '1':
                 return redirect('/admin-ckp/ckpr');

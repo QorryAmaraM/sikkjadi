@@ -1,4 +1,4 @@
-@extends('layouts.kepalabu')
+@extends('layouts.kepalaBU')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -82,7 +82,8 @@
                     </div>
                     <div class="form-group">
                         <label for="penilai">Penilai</label>
-                        <input type="penilai" class="form-control" id="penilai" name="penilai" required>
+                        <input type="penilai" class="form-control" value="{{ $user_nama }}" disabled>
+                        <input type="hidden" class="form-control" id="penilai" name="penilai" value="{{ $user_nama }}" required>
                     </div>
                     <div class="form-group">
                         <label for="ketpenilai">Keterangan Penilai</label>
@@ -91,6 +92,7 @@
                     <div class="form-group">
                         <label for="penilai">Nilai</label>
                         <input type="text" class="form-control" id="nilai" name="nilai" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required>
+                        <input type="hidden" id="state" name="state" value="1">
                     </div>
                 </div>
             </div>

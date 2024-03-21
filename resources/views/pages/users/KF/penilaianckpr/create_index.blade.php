@@ -1,4 +1,4 @@
-@extends('layouts.kf')
+@extends('layouts.KF')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -111,33 +111,36 @@
                         </thead>
                         <tbody class="alldata">
                             @foreach ($ckpr_kf as $ckpr)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $ckpr->nama }}</td>
-                                    <td>{{ $ckpr->kode }}</td>
-                                    <td>{{ $ckpr->bulan }} {{ $ckpr->tahun }}</td>
-                                    <td>{{ $ckpr->satuan }}</td>
-                                    <td>{{ $ckpr->target }}</td>
-                                    <td>{{ $ckpr->target_rev }}</td>
-                                    <td>{{ $ckpr->realisasi }}</td>
-                                    <td>{{ $ckpr->persen }} %</td>
-                                    <td>{{ $ckpr->nilai }}</td>
-                                    <td>{{ $ckpr->keterangan }}</td>
-                                    <td>
-                                        @if ($ckpr->status == '1')
-                                            <span class="badge badge-success">Sudah Diverifikasi</span>
-                                        @else
-                                            <span class="badge badge-danger">Belum Diverifikasi</span>
-                                        @endif
-                                    </td>
+                                @if ($ckpr->state == '0')
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $ckpr->nama }}</td>
+                                        <td>{{ $ckpr->kode }}</td>
+                                        <td>{{ $ckpr->bulan }} {{ $ckpr->tahun }}</td>
+                                        <td>{{ $ckpr->satuan }}</td>
+                                        <td>{{ $ckpr->target }}</td>
+                                        <td>{{ $ckpr->target_rev }}</td>
+                                        <td>{{ $ckpr->realisasi }}</td>
+                                        <td>{{ $ckpr->persen }} %</td>
+                                        <td>{{ $ckpr->nilai }}</td>
+                                        <td>{{ $ckpr->keterangan }}</td>
+                                        <td>
+                                            @if ($ckpr->status == '1')
+                                                <span class="badge badge-success">Sudah Diverifikasi</span>
+                                            @elseif ($ckpr->status == '2')
+                                                <span class="badge badge-warning">Perbaiki CKPR</span>
+                                            @else
+                                                <span class="badge badge-danger">Belum Diverifikasi</span>
+                                            @endif
+                                        </td>
 
-                                    <td>
-                                        <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('kf.penilaianckpr.create', ['id' => $ckpr->id]) }}"
-                                                type="button" class="btn add-button">+ Nilai</a>
-                                        </button>
-                                    </td>
-                                </tr>
+                                        <td>
+                                            <button class="btn btn-icon btn-edit btn-sm">
+                                                <a href="{{ route('kf.penilaianckpr.create', ['id' => $ckpr->id]) }}" type="button" class="btn add-button">+ Nilai</a>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
                         <tbody id="Content" class="searchdata"></tbody>
@@ -229,27 +232,27 @@
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const btnEdit = document.querySelectorAll('.btn-edit');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnEdit = document.querySelectorAll('.btn-edit');
 
-        btnEdit.forEach(btn => {
-            btn.addEventListener('click', function (e) {
-                e.preventDefault(); // Prevent default action (navigating to the link)
-                const statusBadge = e.target.closest('tr').querySelector('.badge');
-                const status = statusBadge.textContent.trim();
-                if (status === 'Belum Diverifikasi') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'CKPR Belum Diverifikasi!',
-                        confirmButtonText: 'OK'
-                    });
-                } else if (status === 'Sudah Diverifikasi') {
-                    window.location.href = e.target.getAttribute('href');
-                }
+            btnEdit.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent default action (navigating to the link)
+                    const statusBadge = e.target.closest('tr').querySelector('.badge');
+                    const status = statusBadge.textContent.trim();
+                    if (status === 'Belum Diverifikasi') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'CKPR Belum Diverifikasi!',
+                            confirmButtonText: 'OK'
+                        });
+                    } else if (status === 'Sudah Diverifikasi') {
+                        window.location.href = e.target.getAttribute('href');
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 @endsection

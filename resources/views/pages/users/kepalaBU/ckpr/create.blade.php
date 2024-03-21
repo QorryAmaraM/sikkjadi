@@ -1,4 +1,4 @@
-@extends('layouts.kepalabu')
+@extends('layouts.kepalaBU')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -21,8 +21,7 @@
                         @foreach ($result as $result)
                             @foreach ($user as $users)
                                 @if ($users->id == $userid)
-                                    <input type="nama" class="form-control col-sm-11" id="nama"
-                                        placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
+                                    <input type="nama" class="form-control col-sm-11" id="nama" placeholder="Lorem Ipsum" name="nama" value="{{ $users->nama }}" disabled>
                                     <input type="hidden" name="ckpt_id" value="{{ $result->id }}">
                                 @endif
                             @endforeach
@@ -32,8 +31,7 @@
                         <label for="nip" class="col-sm-1 pl-0 col-form-label">NIP</label>
                         @foreach ($user as $users)
                             @if ($users->id == $userid)
-                                <input type="nama" class="form-control col-sm-11" id="nama"
-                                    placeholder="Lorem Ipsum" name="nip" value="{{ $users->nip }}" disabled>
+                                <input type="nama" class="form-control col-sm-11" id="nama" placeholder="Lorem Ipsum" name="nip" value="{{ $users->nip }}" disabled>
                             @endif
                         @endforeach
                     </div>
@@ -53,7 +51,7 @@
                     <div class="form-group">
                         <label for="kegiatan">Uraian Kegiatan</label>
                         <input type="kegiatan" class="form-control" value="{{ $result->uraian_kegiatan }}" disabled>
-                        
+
                     </div>
 
                     <div class="form-group">
@@ -62,7 +60,7 @@
                     </div>
                     <div class="form-group">
                         <label for="kode">Kode</label>
-                        <input type="kegiatan" class="form-control" value="{{ $result->kode }}" disabled>                       
+                        <input type="kegiatan" class="form-control" value="{{ $result->kode }}" disabled>
                     </div>
                     <div class="form-group">
                         <label for="periode">Periode</label>
@@ -86,56 +84,54 @@
                     </div>
                     <div class="form-group">
                         <label for="realisasi">Realisasi</label>
-                        <input type="text" class="form-control" id="realisasi"
-                         name="realisasi" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required>
+                        <input type="text" class="form-control" id="realisasi" name="realisasi" placeholder="Masukkan Angka" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" required>
+                        <input type="hidden" name="status" id="status" value="1">
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12 mt-3 text-right">
-                     <button type="submit" name="submit" value="Save" class="btn save-button" onclick="checkFormAndShowModal()">Simpan</button>
+                    <button type="submit" name="submit" value="Save" class="btn save-button" onclick="checkFormAndShowModal()">Simpan</button>
                 </div>
             </div>
 
 
         </form>
-        </div>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-    function checkFormAndShowModal() {
-    var form = document.getElementById('myForm');
-    var realisasiInput = document.getElementById('realisasi');
-    var realisasiValue = realisasiInput.value.trim(); // Menghapus spasi di awal dan akhir
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function checkFormAndShowModal() {
+            var form = document.getElementById('myForm');
+            var realisasiInput = document.getElementById('realisasi');
+            var realisasiValue = realisasiInput.value.trim(); // Menghapus spasi di awal dan akhir
 
-    // Jika input realisasi sudah diisi
-    if (realisasiValue !== "") {
-        Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Data berhasil ditambah!",
-            showConfirmButton: false,
-            timer: 10000
-        }).then((result) => {
-            if (result.dismiss === Swal.DismissReason.timer) {
-                $('#successModal').modal('show');
+            // Jika input realisasi sudah diisi
+            if (realisasiValue !== "") {
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Data berhasil ditambah!",
+                    showConfirmButton: false,
+                    timer: 10000
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        $('#successModal').modal('show');
+                    }
+                });
+            } else {
+                // Tampilkan modal error jika input realisasi tidak diisi
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Harap isi input Realisasi sebelum melanjutkan.',
+                });
             }
-        });
-    } else {
-        // Tampilkan modal error jika input realisasi tidak diisi
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Harap isi input Realisasi sebelum melanjutkan.',
-        });
-    }
-}
+        }
+    </script>
 
-</script>
 
-       
 
     <!-- /.container-fluid -->
-    
 @endsection

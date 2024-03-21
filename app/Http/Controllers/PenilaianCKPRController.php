@@ -183,6 +183,7 @@ class PenilaianCKPRController extends Controller
     public function create($id)
     {
         $userid = Auth::user()->role_id;
+        $user_nama = Auth::user()->nama;
         $user = user::all();
         $result = ckpr::join('ckpts', 'ckpt_id', '=', 'ckpts.id')
             ->join('entri_angka_kredits', 'angka_kredit_id', '=', 'entri_angka_kredits.id')
@@ -195,27 +196,27 @@ class PenilaianCKPRController extends Controller
                 return view('pages.admin.penilaianckpr.create', compact(['user', 'result']));
                 break;
             case '2':
-                return view('pages.users.kepalabps.penilaianckpr.create', compact(['user', 'result']));
+                return view('pages.users.kepalabps.penilaianckpr.create', compact(['user', 'result','user_nama']));
                 break;
             case '3':
-                return view('pages.users.kepalabu.penilaianckpr.create', compact(['user', 'result']));
+                return view('pages.users.kepalabu.penilaianckpr.create', compact(['user', 'result','user_nama']));
                 break;
             case '4':
-                return view('pages.users.kf.penilaianckpr.create', compact(['user', 'result']));
+                return view('pages.users.kf.penilaianckpr.create', compact(['user', 'result','user_nama']));
                 break;
             case '5':
-                return view('pages.users.staf.penilaianckpr.create', compact(['user', 'result']));
+                return view('pages.users.staf.penilaianckpr.create', compact(['user', 'result','user_nama']));
                 break;
         }
     }
 
     public function store(Request $request)
     {
-        // dd($request->only('status'));
+        // dd($request->only('status', 'state'));
         $userid = Auth::user()->role_id;
-        penilaian_ckpr::create($request->except(['_token', 'submit','status']));
+        penilaian_ckpr::create($request->except(['_token', 'submit','status','state']));
         $ckpr = ckpr::find($request->ckpr_id);
-        $ckpr->update($request->only('status'));
+        $ckpr->update($request->only('status', 'state'));
         switch ($userid) {
             case '1':
                 return redirect('/admin-ckp/penilaianckpr');

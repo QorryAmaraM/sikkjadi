@@ -110,32 +110,35 @@
                         </thead>
                         <tbody class="alldata">
                             @foreach ($ckpr as $ckpr)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $ckpr->kode }}</td>
-                                    <td>{{ $ckpr->bulan }} {{ $ckpr->tahun }}</td>
-                                    <td>{{ $ckpr->satuan }}</td>
-                                    <td>{{ $ckpr->target }}</td>
-                                    <td>{{ $ckpr->target_rev }}</td>
-                                    <td>{{ $ckpr->realisasi }}</td>
-                                    <td>{{ $ckpr->persen }} %</td>
-                                    <td>{{ $ckpr->nilai }}</td>
-                                    <td>{{ $ckpr->keterangan }}</td>
-                                    <td>
-                                        @if ($ckpr->status == '1')
-                                            <span class="badge badge-success">Sudah Diverifikasi</span>
-                                        @else
-                                            <span class="badge badge-danger">Belum Diverifikasi</span>
-                                        @endif
-                                    </td>
+                                @if ($ckpr->state == '0')
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $ckpr->kode }}</td>
+                                        <td>{{ $ckpr->bulan }} {{ $ckpr->tahun }}</td>
+                                        <td>{{ $ckpr->satuan }}</td>
+                                        <td>{{ $ckpr->target }}</td>
+                                        <td>{{ $ckpr->target_rev }}</td>
+                                        <td>{{ $ckpr->realisasi }}</td>
+                                        <td>{{ $ckpr->persen }} %</td>
+                                        <td>{{ $ckpr->nilai }}</td>
+                                        <td>{{ $ckpr->keterangan }}</td>
+                                        <td>
+                                            @if ($ckpr->status == '1')
+                                                <span class="badge badge-success">Sudah Diverifikasi</span>
+                                            @elseif ($ckpr->status == '2')
+                                                <span class="badge badge-warning">Perbaiki CKPR</span>
+                                            @else
+                                                <span class="badge badge-danger">Belum Diverifikasi</span>
+                                            @endif
+                                        </td>
 
-                                    <td>
-                                        <button class="btn btn-icon btn-edit btn-sm">
-                                            <a href="{{ route('staf.penilaianckpr.create', ['id' => $ckpr->id]) }}"
-                                                type="button" class="btn add-button">+ Nilai</a>
-                                        </button>
-                                    </td>
-                                </tr>
+                                        <td>
+                                            <button class="btn btn-icon btn-edit btn-sm">
+                                                <a href="{{ route('staf.penilaianckpr.create', ['id' => $ckpr->id]) }}" type="button" class="btn add-button">+ Nilai</a>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
                         <tbody id="Content" class="searchdata"></tbody>

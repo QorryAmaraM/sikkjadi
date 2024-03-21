@@ -112,6 +112,8 @@
                                     <td>
                                         @if ($ckpr->status == '1')
                                             <span class="badge badge-success">Sudah Diverifikasi</span>
+                                        @elseif ($ckpr->status == '2')
+                                            <span class="badge badge-warning">Perbaiki CKPR</span>
                                         @else
                                             <span class="badge badge-danger">Belum Diverifikasi</span>
                                         @endif
